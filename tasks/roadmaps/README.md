@@ -23,7 +23,7 @@ Mỗi ngày là một phiên công việc chính; có thể ghép các ngày n�
 | **Ngày 1** | Thiết kế ViT, đọc bài | Kiểm tra GPU/môi trường, thiết kế ResNet/trainer | Chốt dữ liệu, khung ACL | Thống nhất ảnh đầu vào và logits 10 lớp |
 | **Ngày 3** | Các thành phần ViT ban đầu | Trainer bản đầu, ResNet ban đầu | Bàn giao split/tập con và metric | Dữ liệu dùng chung, không giao nhau |
 | **Ngày 5** | ViT forward/backward, số tham số | ResNet/trainer tích hợp, đối chiếu tham số | Kiểm tra dữ liệu và mẫu log/bảng | Hai mô hình sẵn sàng chạy pilot |
-| **Ngày 6–7** | Pilot ViT; đoạn proposal | Pilot ResNet, ngân sách GPU; đoạn proposal | Ghép và nộp proposal ≤2 trang | Repo/log cho giảng viên truy cập từ tuần 1 |
+| **Ngày 6–7** | Pilot ViT; đoạn proposal | Pilot ResNet, ngân sách GPU; đoạn proposal | Ghép và nộp proposal ≤2 trang | Repo/log sẵn sàng từ tuần 1; không cần mời GitHub theo xác nhận 12/11/2026 |
 | **Ngày 9** | Khóa ViT/recipe | Khóa ResNet/recipe, lịch GPU | Xác nhận split/metric/giao thức | Bắt đầu loạt chính |
 | **Ngày 13–14** | Đủ 3 lượt ViT seed đầu | Đủ 3 lượt ResNet seed đầu | Bảng validation, attention thử | Kiểm tra 6 lượt rồi mới lặp seed |
 | **Ngày 19–20** | Mục tiêu đủ 9 lượt ViT, chuẩn bị ablation | Mục tiêu đủ 9 lượt ResNet, chuẩn bị Swin | Bảng 18 lượt, nháp milestone | Ưu tiên bảng chính trước mở rộng |

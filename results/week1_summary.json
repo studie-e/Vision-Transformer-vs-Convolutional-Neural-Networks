@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-12",
+  "purpose": "week1 diagnostic; not main comparison",
+  "environment": {
+    "python": "3.13.7",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5080",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "source_sha256": "683577fd1856792d93cec53166a3cce9a67a70296dcdd5cea1d0745eba2ea9f0",
+    "commit": "f9a17bef7ee8d4c244f8773287c0a59665d00f02"
+  },
+  "driver": "617.42",
+  "parameters": 272474,
+  "pilot_epochs": 3,
+  "global_steps": 108,
+  "pilot_final_train_accuracy": 0.4071111111111111,
+  "pilot_best_val_accuracy": 0.398,
+  "overfit_epochs": 60,
+  "overfit_final_train_accuracy": 1.0,
+  "overfit_initial_train_loss": 2.383418083190918,
+  "overfit_final_train_loss": 0.002245316281914711,
+  "gpu_resume_weights_bitwise_equal": true,
+  "gpu_resume_optimizer_momentum_equal": true,
+  "gpu_resume_scheduler_equal": true,
+  "tests": "python -m pytest -q: 6 passed",
+  "syntax": "python -m compileall -q src tests: passed"
+}
