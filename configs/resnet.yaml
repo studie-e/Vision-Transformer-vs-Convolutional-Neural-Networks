@@ -1,0 +1,6 @@
+# Pilot model only; adjust width after Lan Anh supplies the ViT parameter count.
+factory: src.models.resnet:build_model
+kwargs:
+  width: 16
+  blocks_per_stage: 3
+  num_classes: 10

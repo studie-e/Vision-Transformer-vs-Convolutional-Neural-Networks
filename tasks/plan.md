@@ -8,7 +8,7 @@
 - Nhóm chủ động hoàn thiện sản phẩm trong **4 tuần đầu của lịch môn học 6 tuần**. Không thay đổi hạn nộp chính thức.
 - Mục tiêu đề xuất: làm đủ yêu cầu tối thiểu, có attention map, ablation, phân tích inductive bias và thử thêm Swin để hướng tới mức giỏi. Đây là mục tiêu thực hiện, không phải cam kết điểm số.
 - Chưa có ngày bắt đầu, lịch sử dụng máy và số giờ làm mỗi người; kế hoạch dùng tuần tương đối. Chốt lịch GPU trong tuần 1 sau khi đo thời gian chạy thực tế.
-- Đây là kế hoạch công việc; chưa triển khai mô hình, chạy thí nghiệm hay nộp sản phẩm.
+- Cập nhật 12/11/2026: đã triển khai phần tuần 1 của Minh; xem [bàn giao](../docs/minh-week1.md) và [pilot](../results/pilot.md). ViT và split chính còn chờ Lan Anh/Hiền. Theo xác nhận của Minh, giảng viên không yêu cầu gửi lời mời GitHub; các dòng về lời mời trong tài liệu gốc được điều chỉnh theo chỉ dẫn này.
 
 ## 1. Yêu cầu rút ra từ tài liệu gốc
 
@@ -24,7 +24,7 @@ Nguồn: [Đề tài bài tập lớn môn Học sâu.docx](../Đề%20tài%20b�
 | Proposal | Cuối tuần 1, tối đa 2 trang: bài toán, đầu vào/đầu ra, dữ liệu, baseline dự kiến, đánh giá, phân công | Hiền tổng hợp; cả ba viết phần mình |
 | Milestone | Cuối tuần 3, tối đa 4 trang: kết quả baseline, tiến độ, khó khăn, kế hoạch còn lại | Hiền tổng hợp; cả ba cung cấp kết quả |
 | Bản cuối | Tuần 6: báo cáo, mã nguồn, slide, thuyết trình; nhóm đặt hạn hoàn thiện nội bộ cuối tuần 4 | Cả nhóm |
-| Theo dõi quá trình | Repo GitHub và mời giảng viên từ tuần 1; chia sẻ TensorBoard hoặc W&B; commit và log đều đặn trong lịch 6 tuần | Minh điều phối repo/log; mỗi người lưu phần mình |
+| Theo dõi quá trình | Repo GitHub, log TensorBoard hoặc W&B; không cần mời giảng viên theo chỉ dẫn mới được Minh xác nhận 12/11/2026; commit và log đều đặn trong lịch 6 tuần | Minh điều phối repo/log; mỗi người lưu phần mình |
 | Tái lập | README hướng dẫn cài đặt, tải dữ liệu, train, đánh giá; requirements.txt hoặc environment.yml; script/notebook tái tạo bảng chính | Minh: môi trường/trainer; Hiền: dữ liệu/bảng; Lan Anh: ViT |
 | Sản phẩm kèm theo | Không đưa dữ liệu/trọng số lớn vào Git; dùng link ngoài; slide 10–12 phút, demo nếu có; PDF tên NhomXX_DeTai03.pdf | Cả nhóm |
 | Liêm chính | Khai báo dùng AI; trích dẫn mã nguồn mở/pretrained; ghi rõ phần tự cài. Code có thể được kiểm tra MOSS/JPlag | Mỗi người ghi nguồn ngay khi dùng |

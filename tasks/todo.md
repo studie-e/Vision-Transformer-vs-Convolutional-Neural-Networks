@@ -1,6 +1,6 @@
 # Checklist phân công — Lan Anh, Hiền, Minh
 
-Kế hoạch: [plan.md](plan.md). Các mục dưới đây **chưa thực hiện**. Tuần là tuần môn học; hoàn thiện nội bộ ở tuần 4, nộp chính thức ở tuần 6. Mỗi người cập nhật trạng thái và dẫn chứng của phần mình.
+Kế hoạch: [plan.md](plan.md). Trạng thái từng mục được cập nhật theo bằng chứng; phần tuần 1 của Minh xem [bàn giao](../docs/minh-week1.md). Tuần là tuần môn học; hoàn thiện nội bộ ở tuần 4, nộp chính thức ở tuần 6. Mỗi người cập nhật trạng thái và dẫn chứng của phần mình.
 
 **Giữ bảng gốc, chỉ đổi chỗ Minh và Hiền:** Lan Anh cài/train ViT và ablation; Minh cài/train ResNet/Swin, phụ trách trainer/môi trường/lịch GPU; Hiền phụ trách dữ liệu, đánh giá, attention, phân tích và ghép báo cáo.
 
@@ -12,10 +12,10 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T01. Môi trường, repo và log — Minh; cả nhóm phối hợp
 
-- [ ] Có môi trường chạy PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản và lệnh cài.
-- [ ] Repo cho giảng viên truy cập từ tuần 1; chia sẻ TensorBoard hoặc W&B; quy ước lưu config/seed/commit/log.
-- [ ] Dữ liệu và checkpoint lớn lưu ngoài Git; có nơi sao lưu.
-- **Kiểm tra:** chạy một phép tính GPU và ghi log thử; kiểm tra quyền truy cập thực tế sau khi chia sẻ.
+- [x] Có môi trường chạy PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản và lệnh cài trong README và báo cáo pilot.
+- [ ] Đã có repo và log TensorBoard cục bộ, quy ước config/seed/commit; còn xác nhận nơi chia sẻ/sao lưu log. Không cần mời GitHub theo giảng viên (Minh xác nhận 12/11/2026).
+- [ ] Dữ liệu/checkpoint đã được loại khỏi Git; còn xác nhận và thực hiện sao lưu sang nơi nhóm thống nhất.
+- **Kiểm tra:** GPU và log cục bộ đã chạy; kiểm tra đường dẫn/quyền truy cập sau khi nhóm chọn nơi chia sẻ log, không yêu cầu lời mời GitHub.
 - **Phụ thuộc:** không. **File dự kiến:** `README.md`, `requirements.txt`, `.gitignore`. **Quy mô:** M.
 
 ### T02. Đọc 3 bài chính — cả ba
@@ -48,17 +48,19 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T05. ResNet tương đương tham số — Minh
 
-- [ ] Có ResNet cho ảnh nhỏ; ghi rõ biến thể, chiều rộng và nguồn mã nếu dùng thư viện.
-- [ ] Đếm tham số thực tế, cùng Lan Anh điều chỉnh để chênh lệch mục tiêu ≤10%.
-- [ ] Dùng khởi tạo từ đầu, trả logits theo cùng quy ước với ViT.
+- [x] Có ResNet cho ảnh nhỏ: CIFAR-style, width 16, ba block/stage, projection shortcut; nguồn và khác biệt ghi ở docs/minh-week1.md.
+- [ ] Đã đếm ResNet 272.474 tham số và có công cụ tìm width; chờ số tham số ViT của Lan Anh để xác nhận chênh lệch ≤10%.
+- [x] ResNet khởi tạo từ đầu, trả logits [B,10]; quy ước tích hợp ViT đã ghi, chưa xác nhận chạy ViT thực tế.
+- **Bằng chứng Minh:** [pilot GPU và overfit 32 ảnh thật](../results/pilot.md), [mã ResNet](../src/models/resnet.py), [công cụ khớp tham số](../src/inspect_model.py). Chưa xác nhận khớp ViT khi chưa nhận mã/số tham số.
 - **Kiểm tra:** forward/backward và overfit batch nhỏ; Hiền đọc chéo số tham số.
 - **Phụ thuộc:** T01, T02; khớp tham số với T04. **File dự kiến:** `src/models/resnet.py`, `configs/resnet.yaml`. **Quy mô:** S.
 
 ### T06. Trainer tối thiểu và pilot — Minh chủ trì, Lan Anh phối hợp
 
-- [ ] Hai mô hình đi qua cùng pipeline train/validation; ghi loss, accuracy và learning rate.
-- [ ] Checkpoint lưu được trạng thái cần để resume; tách rõ train/eval.
-- [ ] Đo thời gian/epoch và bộ nhớ thực tế; lập lịch GPU và ước tính số lượt hoàn thành.
+- [ ] ResNet đã qua trainer chung và có loss/accuracy/lr; còn ViT của Lan Anh và split chính của Hiền để tích hợp hai mô hình.
+- [x] Checkpoint lưu model/optimizer/scheduler/RNG/generator/epoch/step; kiểm thử resume và validation có bằng chứng trong results/pilot.md.
+- [ ] Đã đo thời gian/epoch và bộ nhớ ResNet trên RTX 5080; chờ pilot ViT/split chính để chốt lịch GPU và tổng số lượt có thể hoàn thành.
+- **Bằng chứng Minh:** [kết quả pilot](../results/pilot.md), [hướng dẫn trainer/resume](../docs/minh-week1.md). ResNet đã chạy ngắt/resume qua tiến trình mới; đối chiếu GPU với chạy liền có trọng số/optimizer/lịch lr bằng nhau.
 - **Kiểm tra:** Lan Anh chạy thử ViT, Minh chạy thử ResNet; dừng rồi resume, đối chiếu log và cấu hình; không coi pilot là bảng kết quả cuối.
 - **Phụ thuộc:** T03–T05. **File dự kiến:** `src/train.py`, `src/checkpoint.py`, `configs/train.yaml`, `results/pilot.md`. **Quy mô:** M.
 
@@ -76,6 +78,8 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 - **Phụ thuộc:** T03; tích hợp với T06. **File dự kiến:** `src/evaluate.py`, `scripts/summarize.py`, `results/runs.csv`. **Quy mô:** M.
 
 ### T08. Proposal ACL — Hiền ghép; Lan Anh, Minh cùng viết
+
+Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.md) và [BibTeX](../reports/references_minh.bib); chưa xác nhận đã gửi hoặc đã có PDF cả nhóm.
 
 - [ ] Tối đa 2 trang; có bài toán, đầu vào/đầu ra, dữ liệu, baseline dự kiến, đánh giá, phân công.
 - [ ] Nêu rõ mẫu số của 10%/50%/100%, mô hình tự cài và thí nghiệm dự kiến.

@@ -4,17 +4,19 @@
 
 Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, T17, T18–T21** trong [todo.md](../todo.md). Ngày 1–28 là ngày tương đối; cửa sổ GPU phải được kiểm tra bằng pilot. Cập nhật trạng thái tại todo; đường dẫn dưới đây là sản phẩm dự kiến.
 
+**Cập nhật 12/11/2026:** đã triển khai mã và kiểm tra phần Minh; xem [bàn giao tuần 1](../../docs/minh-week1.md), [kết quả pilot](../../results/pilot.md). Chưa có ViT/split chính; không cần mời GitHub theo giảng viên. Trạng thái hoàn thành chỉ cập nhật theo mục tại todo.
+
 ## Tuần 1 — môi trường, ResNet và trainer
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
-| **1** | Kiểm tra PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản. Thiết lập repo/log/sao lưu, quyền giảng viên. Đọc kiến trúc ResNet. | Môi trường chạy GPU, README ban đầu, ghi chú ResNet → cả nhóm |
+| **1** | Kiểm tra PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản. Thiết lập repo/log/sao lưu, quyền chia sẻ trong nhóm. Đọc kiến trúc ResNet. | Môi trường chạy GPU, README ban đầu, ghi chú ResNet → cả nhóm |
 | **2** | Dựng ResNet cho ảnh nhỏ, ghi biến thể/nguồn mã; thử forward/backward. Thống nhất với Lan Anh đầu vào ảnh và logits 10 lớp. | `src/models/resnet.py`, cấu hình dự kiến |
 | **3** | Dựng vòng train/validation, optimizer/scheduler theo cấu hình; tích hợp dữ liệu Hiền giao. Log loss/accuracy/lr; kiểm tra train/eval. | `src/train.py`, `configs/train.yaml` bản đầu → Lan Anh |
 | **4** | Bổ sung checkpoint/resume: trạng thái mô hình, optimizer, scheduler và thông tin cần để tiếp tục. Lưu config/seed/commit theo run. | `src/checkpoint.py`, log mẫu, hướng dẫn chạy/resume |
 | **5** | Đối chiếu số tham số với ViT của Lan Anh; điều chỉnh ResNet trước khi train chính. Tích hợp hai mô hình vào trainer chung. | `configs/resnet.yaml`, bảng tham số, trainer dùng được → Hiền, Lan Anh |
 | **6** | Trực tiếp chạy overfit batch nhỏ/pilot ResNet; Lan Anh chạy pilot ViT theo lịch. Đo thời gian/epoch/bộ nhớ; thử dừng-resume. Viết thiết lập cho proposal. | Log/checkpoint pilot, dự toán GPU, đoạn proposal → Hiền |
-| **7** | Kiểm tra proposal, quyền repo/log giảng viên, sao lưu. Giải thích trainer và ResNet cho hai bạn. | Xác nhận mốc tuần 1; môi trường và trainer được bàn giao |
+| **7** | Kiểm tra proposal, đường dẫn repo/log, sao lưu; không cần mời GitHub theo chỉ dẫn mới. Giải thích trainer và ResNet cho hai bạn. | Xác nhận mốc tuần 1; môi trường và trainer được bàn giao |
 
 **Cuối tuần cần đạt:** GPU dùng được; hai mô hình dùng chung trainer; ResNet tương đương tham số mục tiêu; checkpoint/resume hoạt động; có số đo pilot, log chia sẻ và hướng dẫn chạy ViT cho Lan Anh.
 

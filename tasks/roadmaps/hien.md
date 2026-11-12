@@ -14,7 +14,7 @@ Tham chiếu [lịch chung](README.md) và **T02, T03, T07–T09, T12, T15, T18�
 | **4** | Hoàn thiện script đánh giá và mẫu metadata: model, tỷ lệ, seed, params, config, commit, best val, checkpoint, time/steps. Viết dữ liệu/đánh giá cho proposal. | `src/evaluate.py`, khung `results/runs.csv`, đoạn proposal |
 | **5** | Dựng script tổng hợp từng seed và mean/std; kiểm tra log mẫu với Minh. Nhận số tham số ViT/ResNet và xác nhận ngưỡng nhóm đề xuất. | `scripts/summarize.py`, bảng mẫu và danh sách điểm cần sửa |
 | **6** | Nhận phần ViT từ Lan Anh, CNN/thiết lập từ Minh. Ghép proposal: bài toán, đầu vào/ra, dữ liệu, baseline, metric, phân công; kiểm tra ≤2 trang. | Proposal PDF để cả ba đọc chéo |
-| **7** | Nộp proposal theo hạn môn, lưu bản đã nộp; kiểm tra repo/log giảng viên truy cập được cùng Minh. | Mốc tuần 1 hoàn tất, tài liệu/trạng thái được lưu |
+| **7** | Nộp proposal theo hạn môn, lưu bản đã nộp; kiểm tra repo/log cùng Minh; không cần mời GitHub theo giảng viên (xác nhận 12/11/2026). | Mốc tuần 1 hoàn tất, tài liệu/trạng thái được lưu |
 
 **Cuối tuần cần đạt:** dữ liệu đúng số lượng, không rò rỉ; hai mô hình dùng cùng manifest; metric kiểm tra bằng ví dụ biết đáp án; proposal đúng ACL/≤2 trang và đủ nội dung.
 
