@@ -1,0 +1,21 @@
+seed: 17
+model:
+  factory: src.models.resnet:build_model
+  kwargs:
+    width: 16
+    blocks_per_stage: 3
+    num_classes: 10
+data:
+  factory: src.pilot_data:build_loaders
+  source: fastai
+  root: data
+  download: true
+  split_seed: 2026
+  train_samples: 32
+  val_samples: 32
+  batch_size: 32
+training:
+  epochs: 60
+  optimizer: adamw
+  lr: 0.003
+  weight_decay: 0.0
