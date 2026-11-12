@@ -1,0 +1,75 @@
+{
+  "train_total": 45000,
+  "val_total": 5000,
+  "train_per_class": {
+    "airplane": 4500,
+    "automobile": 4500,
+    "bird": 4500,
+    "cat": 4500,
+    "deer": 4500,
+    "dog": 4500,
+    "frog": 4500,
+    "horse": 4500,
+    "ship": 4500,
+    "truck": 4500
+  },
+  "val_per_class": {
+    "airplane": 500,
+    "automobile": 500,
+    "bird": 500,
+    "cat": 500,
+    "deer": 500,
+    "dog": 500,
+    "frog": 500,
+    "horse": 500,
+    "ship": 500,
+    "truck": 500
+  },
+  "subsets": {
+    "0.10": {
+      "total": 4500,
+      "per_class": {
+        "airplane": 450,
+        "automobile": 450,
+        "bird": 450,
+        "cat": 450,
+        "deer": 450,
+        "dog": 450,
+        "frog": 450,
+        "horse": 450,
+        "ship": 450,
+        "truck": 450
+      }
+    },
+    "0.50": {
+      "total": 22500,
+      "per_class": {
+        "airplane": 2250,
+        "automobile": 2250,
+        "bird": 2250,
+        "cat": 2250,
+        "deer": 2250,
+        "dog": 2250,
+        "frog": 2250,
+        "horse": 2250,
+        "ship": 2250,
+        "truck": 2250
+      }
+    },
+    "1.00": {
+      "total": 45000,
+      "per_class": {
+        "airplane": 4500,
+        "automobile": 4500,
+        "bird": 4500,
+        "cat": 4500,
+        "deer": 4500,
+        "dog": 4500,
+        "frog": 4500,
+        "horse": 4500,
+        "ship": 4500,
+        "truck": 4500
+      }
+    }
+  }
+}

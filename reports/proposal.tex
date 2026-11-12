@@ -1,0 +1,101 @@
+% Proposal — Đề tài 3: So sánh Vision Transformer và CNN trên CIFAR-10
+% Template ACL, chế độ final (không ẩn danh), tiếng Việt, A4, hai cột
+% Biên dịch: lualatex proposal.tex  (hoặc xelatex)
+%
+% Trước khi biên dịch: cài gói fontspec, polyglossia hoặc babel-vietnamese,
+% và acl.sty từ https://github.com/acl-org/acl-style-files
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[final]{acl}
+
+% Hỗ trợ tiếng Việt với LuaLaTeX/XeLaTeX
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setmainfont{Times New Roman}
+
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{url}
+
+% BibTeX
+% acl.sty already selects acl_natbib; do not emit a second bibstyle.
+
+% -----------------------------------------------------------------------
+\title{So sánh Vision Transformer và CNN khi thay đổi lượng dữ liệu huấn luyện trên CIFAR-10}
+
+\author{%
+  Lan Anh: \underline{\hspace{1.4cm}} \\
+  MSSV: \underline{\hspace{2cm}} \\
+  \And
+  Hiền: \underline{\hspace{1.4cm}} \\
+  MSSV: \underline{\hspace{2cm}} \\
+  \And
+  Minh: \underline{\hspace{1.4cm}} \\
+  MSSV: \underline{\hspace{2cm}} \\
+}
+
+\begin{document}
+\maketitle
+
+% -----------------------------------------------------------------------
+\section*{Tóm tắt}
+
+Nhóm đề xuất so sánh Vision Transformer (ViT) tự cài đặt bằng PyTorch với ResNet có số tham số tương đương trên CIFAR-10 khi thay đổi lượng dữ liệu huấn luyện (10\%, 50\%, 100\%). Mục tiêu là phân tích sự thay đổi chênh lệch accuracy theo lượng dữ liệu và bàn về vai trò inductive bias của hai kiến trúc. Ngoài thí nghiệm chính, nhóm dự kiến thực hiện ablation positional embedding trên ViT và thử nghiệm thăm dò với Swin Transformer nhỏ.
+
+% -----------------------------------------------------------------------
+\section{Bài toán}
+
+\paragraph{Bài toán.}
+So sánh ViT tự cài với ResNet tương đương tham số trên CIFAR-10 theo ba mức dữ liệu huấn luyện: 10\%, 50\% và 100\% (mẫu số là 45.000 ảnh train sau khi tách validation). Đầu vào là ảnh RGB 32$\times$32; đầu ra là nhãn lớp và phân phối xác suất 10 lớp. Chỉ số chính: top-1 accuracy trên tập test, báo cáo mean $\pm$ std trên 3 seed.
+
+\paragraph{Câu hỏi nghiên cứu.}
+Khi tăng lượng dữ liệu huấn luyện, chênh lệch accuracy giữa ViT và ResNet thay đổi như thế nào? Nhận xét nào phù hợp với inductive bias của hai kiến trúc (tính địa phương và chia sẻ trọng số của CNN so với self-attention toàn cục của ViT), và giới hạn nào khiến nhóm chưa thể kết luận rộng hơn?
+
+% -----------------------------------------------------------------------
+\section{Dữ liệu}
+
+Nhóm sử dụng CIFAR-10~\citep{krizhevsky2009learning}: 50.000 ảnh train và 10.000 ảnh test, 10 lớp, ảnh RGB 32$\times$32. Tập train được tách phân tầng thành 45.000 train và 5.000 validation; tập test chính thức chỉ dùng đánh giá cuối sau khi khóa toàn bộ phương pháp và checkpoint.
+
+Tập con lồng nhau theo từng seed: 4.500 (10\%), 22.500 (50\%), 45.000 (100\%) ảnh train, với 10\% $\subset$ 50\% $\subset$ 100\%. Hai mô hình dùng cùng danh sách ảnh từ manifest lưu theo seed để bảo đảm điều kiện so sánh giống nhau.
+
+Train dùng random crop có padding 4 và lật ngang; validation/test chỉ chuyển tensor và chuẩn hóa. Ba split seed là 2026, 2027, 2028; train seed được ghi riêng. Độ biến thiên phản ánh cả chia dữ liệu và khởi tạo mô hình.
+
+% -----------------------------------------------------------------------
+\section{Mô hình}
+
+\paragraph{ViT~\citep{dosovitskiy2020image}.}
+Tự cài đặt bằng PyTorch: patch embedding (patch 4$\times$4), positional embedding học được, Transformer encoder (multi-head self-attention + MLP, pre-LN), classification head. Không dùng mô hình ViT có sẵn hoàn chỉnh. Có cơ chế xuất attention để trực quan hóa.
+
+\paragraph{ResNet~\citep{he2015deep}.}
+CIFAR-style: stem 3$\times$3, ba stage basic block với projection shortcut, global average pooling, lớp tuyến tính 10 lớp. Bản thử nghiệm: width 16, 3 block/stage, 272.474 tham số. Độ rộng sẽ được điều chỉnh sau khi có số tham số ViT để chênh lệch không quá 10\%. Khởi tạo từ đầu.
+
+\paragraph{Swin Transformer~\citep{liu2021swin} (thăm dò).}
+Dùng thư viện có trích dẫn, cấu hình cho ảnh 32$\times$32; ghi rõ số tham số và recipe. Nếu không khớp ngân sách thì trình bày thành thí nghiệm bổ sung với giới hạn so sánh.
+
+% -----------------------------------------------------------------------
+\section{Đánh giá}
+
+Chỉ số chính: top-1 accuracy. Mỗi lượt chạy ghi đầy đủ: model, tỷ lệ, split seed, train seed, số tham số, cấu hình, commit, checkpoint, val score, thời gian và số bước cập nhật. Kết quả báo cáo theo mean $\pm$ std trên 3 seed. Ngoài bảng chính, nhóm sẽ dựng: biểu đồ accuracy theo lượng dữ liệu, learning curve, attention map ViT, confusion matrix và phân tích lỗi theo nhóm (ViT đúng/sai $\times$ CNN đúng/sai).
+
+Ưu tiên 18 lượt chính (2 mô hình $\times$ 3 tỷ lệ $\times$ 3 seed). Optimizer, learning rate và số epoch được chọn trên validation với ngân sách tuning tương đương, rồi khóa trước loạt chính. Chọn checkpoint có validation accuracy cao nhất; hòa thì giữ epoch sớm hơn. Báo cáo độ lệch chuẩn mẫu ($ddof=1$), không chọn seed đẹp nhất. Ablation bỏ positional embedding ở 50\% và Swin ở 10\%/100\% chỉ thực hiện sau bảng chính.
+
+% -----------------------------------------------------------------------
+\section{Phân công}
+
+\textbf{Lan Anh:} tự cài và train ViT, ablation; viết Method--ViT.
+\textbf{Minh:} ResNet, trainer, môi trường, Swin; viết thiết lập và Method--CNN.
+\textbf{Hiền:} dữ liệu, đánh giá, attention, phân tích và ghép báo cáo.
+
+Mỗi người tự viết phần mình; Hiền ghép và kiểm tra format theo ACL.
+
+% -----------------------------------------------------------------------
+\paragraph{Khai báo AI.}
+Bản thảo và mã có hỗ trợ AI (Antigravity/Gemini, Codex). Nhóm cần đọc chéo và chịu trách nhiệm nội dung trước khi nộp. Thông tin thành viên để trống trong bản dự thảo; chưa phải bản đã nộp.
+
+% -----------------------------------------------------------------------
+\bibliography{references}
+
+\end{document}
+

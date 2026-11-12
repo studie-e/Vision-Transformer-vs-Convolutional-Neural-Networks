@@ -9,3 +9,9 @@ runs/
 *.pth
 *.ckpt
 ~$*.docx
+tmp/
+reports/*.aux
+reports/*.log
+reports/*.out
+reports/*.bbl
+reports/*.blg

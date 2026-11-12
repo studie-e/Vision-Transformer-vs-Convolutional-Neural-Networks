@@ -20,17 +20,17 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T02. Đọc 3 bài chính — cả ba
 
-- [ ] Lan Anh đọc ViT; Minh đọc ResNet; Hiền đọc Swin; mỗi người có ghi chú và nguồn.
+- [ ] Lan Anh đọc ViT; Minh đọc ResNet; Hiền đọc Swin; mỗi người có ghi chú và nguồn. (Hiền đã hoàn thành ghi chú Swin tại `docs/hien-week1.md`).
 - [ ] Cả ba trình bày lại ý chính, thống nhất mục tiêu so sánh và phần nào tự cài.
 - **Kiểm tra:** hai người còn lại hỏi về kiến trúc và cách áp dụng cho dữ liệu nhỏ.
 - **Phụ thuộc:** không. **File dự kiến:** `docs/literature.md`, `reports/references.bib`. **Quy mô:** S.
 
 ### T03. Dữ liệu và tập con — Hiền
 
-- [ ] Có train 45.000 / val 5.000 / test 10.000; split phân tầng, không giao nhau.
-- [ ] Có tập con train 4.500 / 22.500 / 45.000 theo từng seed; lồng nhau và dùng chung cho hai mô hình.
-- [ ] Lưu chỉ số, seed, preprocessing; augmentation chỉ áp dụng train.
-- **Kiểm tra:** kiểm đếm số ảnh/lớp, kiểm tra giao nhau và hiển thị batch sau tiền xử lý.
+- [x] Có train 45.000 / val 5.000 / test 10.000; split phân tầng, không giao nhau.
+- [x] Có tập con train 4.500 / 22.500 / 45.000 theo từng seed; lồng nhau, cung cấp cùng manifest cho hai mô hình. ResNet đã có đường tích hợp; việc chạy ViT thực tế chờ Lan Anh.
+- [x] Lưu chỉ số, seed, preprocessing; augmentation chỉ áp dụng train.
+- **Kiểm tra:** Chỉ số, nhãn thật, loader và tái lập theo `docs/hien-week1-handoff.md`; bằng chứng dữ liệu thật ghi riêng tại `results/hien_week1_checks.json` sau khi chạy pilot.
 - **Phụ thuộc:** T01. **File dự kiến:** `src/data.py`, `configs/data.yaml`, `results/splits/` chứa các manifest nhỏ. **Quy mô:** M.
 
 ### Checkpoint A
@@ -57,7 +57,7 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T06. Trainer tối thiểu và pilot — Minh chủ trì, Lan Anh phối hợp
 
-- [ ] ResNet đã qua trainer chung và có loss/accuracy/lr; còn ViT của Lan Anh và split chính của Hiền để tích hợp hai mô hình.
+- [ ] ResNet đã qua trainer chung và có loss/accuracy/lr; Hiền đã cung cấp split chính và config tích hợp. Còn ViT của Lan Anh để nghiệm thu cả hai mô hình.
 - [x] Checkpoint lưu model/optimizer/scheduler/RNG/generator/epoch/step; kiểm thử resume và validation có bằng chứng trong results/pilot.md.
 - [ ] Đã đo thời gian/epoch và bộ nhớ ResNet trên RTX 5080; chờ pilot ViT/split chính để chốt lịch GPU và tổng số lượt có thể hoàn thành.
 - **Bằng chứng Minh:** [kết quả pilot](../results/pilot.md), [hướng dẫn trainer/resume](../docs/minh-week1.md). ResNet đã chạy ngắt/resume qua tiến trình mới; đối chiếu GPU với chạy liền có trọng số/optimizer/lịch lr bằng nhau.
@@ -71,18 +71,19 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T07. Metric và mẫu bảng — Hiền
 
-- [ ] Tính top-1 accuracy và xuất nhãn/phân phối xác suất khi suy luận.
-- [ ] Mỗi lượt có model, tỷ lệ, seed, params, config, commit, checkpoint, val score, thời gian và số bước.
-- [ ] Có cách tổng hợp từng seed và mean ± std; không chọn riêng seed tốt nhất.
-- **Kiểm tra:** kiểm tra metric bằng ví dụ có đáp án biết trước; đối chiếu một log mẫu và bảng sinh ra.
+- [x] Tính top-1 accuracy và xuất nhãn/phân phối xác suất khi suy luận (`src/evaluate.py`).
+- [x] Mỗi lượt có model, tỷ lệ, seed, params, config, commit, checkpoint, val score, thời gian và số bước (đã chuẩn bị schema và `results/runs.csv`).
+- [x] Có cách tổng hợp từng seed và mean ± std; không chọn riêng seed tốt nhất (`scripts/summarize.py`).
+- **Kiểm tra:** Accuracy/mean/std có ví dụ biết đáp án; kiểm thử evaluator → metadata → CSV → summary, từ chối seed trùng, trộn recipe, config/manifest sai tại `tests/test_hien.py`. Kết quả pilot dữ liệu thật lưu riêng `results/hien_pilot_*`.
 - **Phụ thuộc:** T03; tích hợp với T06. **File dự kiến:** `src/evaluate.py`, `scripts/summarize.py`, `results/runs.csv`. **Quy mô:** M.
 
 ### T08. Proposal ACL — Hiền ghép; Lan Anh, Minh cùng viết
 
-Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.md) và [BibTeX](../reports/references_minh.bib); chưa xác nhận đã gửi hoặc đã có PDF cả nhóm.
+Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.md) và [BibTeX](../reports/references_minh.bib); Hiền đã chuẩn bị bản tổng hợp nội bộ tại [proposal_hien.md](../reports/proposal_hien.md), khung LaTeX tại [proposal.tex](../reports/proposal.tex), và [BibTeX](../reports/references.bib).
 
-- [ ] Tối đa 2 trang; có bài toán, đầu vào/đầu ra, dữ liệu, baseline dự kiến, đánh giá, phân công.
-- [ ] Nêu rõ mẫu số của 10%/50%/100%, mô hình tự cài và thí nghiệm dự kiến.
+- [x] Proposal PDF đã biên dịch và kiểm tra trực quan: 2 trang A4, ACL final, hai cột; đủ bài toán, đầu vào/đầu ra, dữ liệu, baseline, đánh giá, phân công.
+- [ ] Điền đầy đủ họ tên/MSSV trước khi nộp; bản dự thảo giữ chỗ trống theo yêu cầu người dùng.
+- [x] Nêu rõ mẫu số của 10%/50%/100%, mô hình tự cài và thí nghiệm dự kiến.
 - [ ] Cả ba rà soát và nộp cuối tuần 1; lưu bản đã nộp.
 - **Kiểm tra:** mở PDF, kiểm tra số trang/template/tên thành viên và nội dung bắt buộc.
 - **Phụ thuộc:** T02, T03, thiết kế T04–T07; không chờ hoàn tất train chính.

@@ -1,0 +1,2 @@
+model,ratio,split,protocol_id,n_seeds,mean_accuracy,std_accuracy,accuracies,split_seeds,train_seeds,params,global_steps
+src.models.resnet:build_model,0.10,val,58495c6e689f6536a3f4f92349ae47f6533d35703f6bc5738572fe92d79030eb,1,0.1692,nan,[0.1692],['2026'],['42'],272474,[36]

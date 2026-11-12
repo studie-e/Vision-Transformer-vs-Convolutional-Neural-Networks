@@ -1,0 +1,62 @@
+{
+  "purpose": "week-one integration pilot, not final comparison",
+  "device": "cpu",
+  "torch": "2.12.1+cpu",
+  "python": "3.12.3",
+  "packages": {
+    "torchvision": "0.27.1",
+    "numpy": "1.26.4",
+    "PyYAML": "6.0.2",
+    "pytest": "9.0.3",
+    "tensorboard": "2.20.0"
+  },
+  "test_evaluated": false,
+  "splits": {
+    "2026": {
+      "stratified": true,
+      "reproduced": true,
+      "train": 45000,
+      "val": 5000,
+      "subsets": [
+        4500,
+        22500,
+        45000
+      ]
+    },
+    "2027": {
+      "stratified": true,
+      "reproduced": true,
+      "train": 45000,
+      "val": 5000,
+      "subsets": [
+        4500,
+        22500,
+        45000
+      ]
+    },
+    "2028": {
+      "stratified": true,
+      "reproduced": true,
+      "train": 45000,
+      "val": 5000,
+      "subsets": [
+        4500,
+        22500,
+        45000
+      ]
+    }
+  },
+  "batch_shape": [
+    128,
+    3,
+    32,
+    32
+  ],
+  "accuracy": 0.1692,
+  "correct": 846,
+  "total": 5000,
+  "trainer_evaluator_match": true,
+  "run_dir": "runs\\hien_week1_smoke",
+  "manifest_sha256": "d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19",
+  "test_samples": 10000
+}

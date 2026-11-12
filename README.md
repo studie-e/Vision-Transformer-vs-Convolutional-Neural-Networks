@@ -2,6 +2,8 @@
 
 Đề tài 3 môn Học sâu. Lan Anh: ViT; Minh: ResNet/trainer/môi trường; Hiền: dữ liệu/đánh giá/attention. [Kế hoạch](tasks/plan.md) · [Checklist](tasks/todo.md) · [Bàn giao tuần 1 của Minh](docs/minh-week1.md).
 
+Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: [bàn giao tuần 1 của Hiền](docs/hien-week1-handoff.md). Config chạy tích hợp: `configs/hien_smoke.yaml`; lệnh `python -X utf8 -m scripts.check_hien_week1 --device cpu` kiểm tra một epoch trên split chính và lưu bằng chứng pilot riêng.
+
 ## Môi trường
 
 Đã kiểm tra trên Windows, Python 3.13.7, RTX 5080, PyTorch 2.11.0+cu128. Cài mới trong PowerShell từ thư mục repo:
@@ -52,7 +54,7 @@ python -m src.inspect_model --target 272474
 
 Lệnh thứ nhất chỉ chạy khi Lan Anh đã giao config/mã; số `272474` ở lệnh thứ hai là ví dụ, phải thay bằng số tham số ViT thật. Chưa có ViT thì chưa xác nhận hai mô hình tương đương tham số. `configs/resnet.yaml` mô tả riêng mô hình; `configs/train.yaml` là config chạy pilot đầy đủ.
 
-Đánh giá test cuối, script tổng hợp bảng chính và attention thuộc bước tích hợp sau khi Hiền/Lan Anh bàn giao; các lệnh pilot hiện tại chỉ train/validation.
+Evaluator và script tổng hợp đã có trong phần bàn giao Hiền; các lệnh pilot chỉ dùng train/validation. Test cuối chỉ chạy sau khi khóa giao thức, còn attention và tích hợp ViT tiếp tục theo kế hoạch tuần sau.
 
 ## Nguồn và phần tự cài
 

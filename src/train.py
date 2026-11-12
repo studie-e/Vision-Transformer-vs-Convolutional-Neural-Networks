@@ -214,6 +214,8 @@ def fit(model, train_loader, val_loader, config, run_dir, *, device='cpu',
         # Giữ nguyên toàn bộ config, kể cả seed/epoch, để không trộn hai thiết lập trong một run.
         if state['config'] != config:
             raise ValueError('Resume config differs; use the original config/horizon')
+        if state.get('manifest_sha256') != getattr(train_loader, 'manifest_sha256', None):
+            raise ValueError('Resume manifest differs from checkpoint')
         # Khôi phục trọng số và buffer, ví dụ running_mean/running_var của BatchNorm.
         model.load_state_dict(state['model'])
         # Khôi phục momentum của SGD hoặc các thống kê moment của AdamW, không chỉ mỗi lr.
@@ -231,7 +233,8 @@ def fit(model, train_loader, val_loader, config, run_dir, *, device='cpu',
     if not resume:
         # Ghi môi trường, giờ UTC, số tham số và cấu hình để truy vết kết quả run mới.
         metadata = {**environment(), 'created_utc': datetime.now(timezone.utc).isoformat(),
-                    'parameters': count_parameters(model), 'device': str(device), 'config': config}
+                    'parameters': count_parameters(model), 'device': str(device), 'config': config,
+                    'manifest_sha256': getattr(train_loader, 'manifest_sha256', None)}
         # JSON dùng cho metadata; indent=2 để người đọc kiểm tra được trực tiếp.
         (run_dir / 'metadata.json').write_text(json.dumps(metadata, indent=2), encoding='utf-8')
         # Chụp lại YAML đã dùng, không phụ thuộc file cấu hình bên ngoài sau đó có bị sửa hay không.
@@ -288,7 +291,8 @@ def fit(model, train_loader, val_loader, config, run_dir, *, device='cpu',
             state = {'epoch': epoch, 'global_step': global_step, 'model': model.state_dict(),
                      'optimizer': optimizer.state_dict(), 'scheduler': scheduler.state_dict(),
                      'best_val_accuracy': best, 'best_epoch': best_epoch, 'config': config,
-                     'random': random_state((train_loader, val_loader)), 'history': history}
+                     'random': random_state((train_loader, val_loader)), 'history': history,
+                     'manifest_sha256': getattr(train_loader, 'manifest_sha256', None)}
             if improved:
                 # best.pt dùng đánh giá/suy luận: chỉ ghi khi validation accuracy tăng.
                 save_checkpoint(run_dir / 'best.pt', state)

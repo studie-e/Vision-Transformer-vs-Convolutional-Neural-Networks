@@ -1,0 +1,29 @@
+# Cấu hình dữ liệu chính — Hiền
+# Dùng cho build_loaders trong src.data; thay thế pilot_data của Minh.
+#
+# split_seed: seed chia dữ liệu, độc lập với seed train trong configs/train.yaml.
+# ratio: tỷ lệ tập con ('0.10', '0.50', '1.00'); mẫu số là 45.000 ảnh train sau khi tách val.
+# splits_dir: thư mục chứa manifest JSON do src.data --generate tạo ra.
+#
+# Lưu ý:
+#   - Trước khi train, chạy: python -m src.data --generate --download
+#     để tạo manifest cho 3 seed (2026, 2027, 2028).
+#   - Cả hai mô hình (ViT và ResNet) phải dùng cùng split_seed và ratio.
+
+seed: 42          # seed train; seed này sẽ được ghi đè bởi config từng lượt chạy
+
+data:
+  factory: src.data:build_loaders
+  root: data
+  download: false          # đặt true nếu chưa tải CIFAR-10
+  split_seed: 2026         # seed chia train/val/subset; thay bằng 2027/2028 cho seed 2/3
+  ratio: "1.00"            # tỷ lệ tập con; thay bằng "0.10" hoặc "0.50"
+  batch_size: 128
+  splits_dir: results/splits
+
+training:
+  epochs: 100              # số epoch tối đa; chốt sau pilot của Lan Anh/Minh
+  optimizer: adamw
+  lr: 0.001
+  weight_decay: 0.05
+
