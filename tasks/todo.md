@@ -125,6 +125,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T12. Attention map và bảng sơ bộ — Hiền
 
+- Tiến độ Hiền: đã xuất bảng validation, learning curve, confusion matrix và attention đúng/sai từ hai pilot CPU. Có giao thức dự thảo và ma trận 18 lượt. Các mục dưới đây chờ sáu lượt P0 và đọc chéo của nhóm. Xem [bàn giao tuần 2](../docs/hien-week2.md) và [giao thức](../docs/experiment_protocol.md).
+
 - [ ] Có bảng/biểu đồ data scaling và learning curve từ 6 lượt đầu.
 - [ ] Xuất attention ViT chồng lên ảnh; ghi layer/head/cách gộp, chọn tập ảnh cố định gồm đúng và sai.
 - [ ] Có khung confusion matrix/phân tích lỗi; nhận xét chỉ là sơ bộ khi chưa đủ seed.
