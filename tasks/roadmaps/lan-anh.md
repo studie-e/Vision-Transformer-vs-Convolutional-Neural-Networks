@@ -4,6 +4,8 @@
 
 Tham chiếu [lịch chung](README.md) và các đầu việc **T02, T04, T06, T09, T10, T13, T16, T18–T21** trong [todo.md](../todo.md). Ngày 1–28 là ngày tương đối. Cập nhật trạng thái ở todo; các đường dẫn dưới đây là sản phẩm dự kiến.
 
+**Giao thức cập nhật 14/11/2026:** các cặp (split seed, train seed) dùng chung với ResNet là (2026,42), (2027,43), (2028,44). Các tên s17 trong bảng lịch cũ là đề xuất ban đầu; ưu tiên YAML đã khóa tại `configs/week2/vit_d{10,50,100}_s42.yaml` và [bàn giao Minh tuần 2](../../docs/minh-week2.md).
+
 ## Tuần 1 — tự cài ViT và chạy thử
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |

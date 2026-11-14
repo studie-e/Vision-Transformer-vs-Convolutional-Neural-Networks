@@ -98,11 +98,11 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T09. Khóa giao thức thí nghiệm — cả nhóm, Minh ghi lại
 
-- [ ] Chốt tham số hai mô hình, seed/split, augmentation, recipe từng mô hình và số epoch sau pilot.
-- [ ] Cùng ngân sách tuning trên validation; test không dùng để chọn cấu hình; quy tắc chọn checkpoint thống nhất.
-- [ ] Hàng đợi GPU ưu tiên 6 rồi 18 lượt chính trước phần mở rộng.
+- [x] Đã khóa tham số, dữ liệu, cặp seed 2026/42, augmentation và recipe riêng; cả hai mô hình dùng 100 epoch chính theo `configs/week2/locked_protocol.json` (14/11/2026, Minh giao quyền chốt).
+- [x] Đã chạy đủ hai recipe × 10 epoch trên 50% train cho mỗi mô hình; chọn bằng validation, không mở test. Bằng chứng: `results/week2/tuning.csv`.
+- [x] Giữ ưu tiên 6 rồi 18 lượt chính; tuần 2 chỉ kiểm tra forward/backward Swin, chưa huấn luyện mở rộng. Các cấu hình ViT chính đã bàn giao cho Lan Anh.
 - **Kiểm tra:** Lan Anh đối chiếu ViT; Minh đối chiếu ResNet/config train; Hiền đối chiếu dữ liệu/metric; ghi quyết định trước khi chạy.
-- **Phụ thuộc:** T03–T07. **File dự kiến:** `configs/experiment.yaml`, `docs/experiment_protocol.md`. **Quy mô:** S.
+- **Phụ thuộc:** T03–T07. **File thực tế:** `configs/week2/locked_protocol.json`, `docs/minh-week2.md`. **Quy mô:** S.
 
 ### T10. ViT: 10%/50%/100%, seed đầu — Lan Anh
 

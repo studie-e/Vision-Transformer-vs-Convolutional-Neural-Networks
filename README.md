@@ -4,6 +4,22 @@
 
 Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: [bàn giao tuần 1 của Hiền](docs/hien-week1-handoff.md). Config chạy tích hợp: `configs/hien_smoke.yaml`; lệnh `python -X utf8 -m scripts.check_hien_week1 --device cpu` kiểm tra một epoch trên split chính và lưu bằng chứng pilot riêng.
 
+## Tuần 2 của Minh
+
+[Bàn giao và recipe tuần 2](docs/minh-week2.md) · [Method–CNN](reports/method_minh_week2.md). ViT và split chính đã tích hợp; dùng các YAML trong `configs/week2/` cho thí nghiệm chính, giữ `configs/train.yaml` làm pilot tuần 1.
+
+Đã khóa 100 epoch cho cả ba tỷ lệ, cặp seed `(split=2026, train=42)`. Sau ngân sách tuning ngang nhau, ResNet chọn SGD và ViT chọn AdamW. Cấu hình ViT chính được bàn giao Lan Anh; script dưới đây thực thi ba lượt ResNet của Minh:
+
+```powershell
+python -X utf8 -m src.data --verify --verify-labels
+python -X utf8 -m scripts.run_minh_week2 --stage tune
+python -X utf8 -m scripts.run_minh_week2 --stage train
+python -X utf8 -m scripts.run_minh_week2 --stage collect
+python -X utf8 -m scripts.plot_minh_week2
+```
+
+Nếu chưa có CIFAR-10 bản Python, chuẩn bị theo hướng dẫn dữ liệu của Hiền trước khi verify. Thêm `--resume` để tiếp tục một giai đoạn dở. `locked_protocol.json` bảo vệ recipe đã khóa; kết quả tuần 2 chỉ dùng validation, chưa mở test. CSV tuning và các lượt chính được tách tại `results/week2/`; checkpoint/log nằm trong `runs/week2/`.
+
 ## Môi trường
 
 Đã kiểm tra trên Windows, Python 3.13.7, RTX 5080, PyTorch 2.11.0+cu128. Cài mới trong PowerShell từ thư mục repo:

@@ -1,4 +1,5 @@
-# Pilot model only; adjust width after Lan Anh supplies the ViT parameter count.
+# ResNet 272,474 params; matched to Lan Anh's 274,282-param ViT (gap 0.659%).
+# This file describes the model only; complete main-run configs are in configs/week2/.
 factory: src.models.resnet:build_model
 kwargs:
   width: 16
