@@ -1,0 +1,23 @@
+scope,run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc,architecture,train_images,metrics_path
+pilot,hien_week1_smoke,src.models.resnet:build_model,0.10,2026,42,58495c6e689f6536a3f4f92349ae47f6533d35703f6bc5738572fe92d79030eb,829737b8c42c7ba73d36c499869f4a8778343829bb608cacf6fc4728c31c8991,"M .gitignore
+ M README.md
+ M src/train.py
+ M tasks/todo.md
+?? configs/data.yaml
+?? configs/hien_smoke.yaml
+?? docs/hien-week1-handoff.md
+?? docs/hien-week1.md
+?? reports/TEMPLATE_SOURCE.md
+?? reports/acl.sty
+?? reports/acl_natbib.bst
+?? reports/proposal.pdf
+?? reports/proposal.tex
+?? reports/proposal_hien.md
+?? reports/references.bib
+?? results/runs.csv
+?? results/splits/
+?? scripts/
+?? src/data.py
+?? src/evaluate.py
+?? tests/test_hien.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,d3e4b22725ed07d97a701978f2ddc27f0a7835e36ebb263ad64a257d832bb995,272474,runs\hien_week1_smoke\config.yaml,5aa50c98162a87164e9223b639c171b75dc8db05,runs\hien_week1_smoke\best.pt,val,0.1692,846,5000,0.1692,1,36,36,1,20.23433659999864,20.23433659999864,,2026-11-14T09:29:49.305222+00:00,resnet,4500,runs/hien_week1_smoke/metrics.csv
+pilot,hien_week2_vit_preview,src.models.vit:build_model,0.10,2026,42,8751621fa941ee1f6c6dbb8bcd86c4c9b2a3b3b843e2a4841c3ef3a31205a98b,245a67bd4b7a91aa69625a73dbd57f3e0ada21da08f2c9dd7e52a07164126c68,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,41225d565b1d03159e746a9a8520d6f476cda2539af67545d72741c79c84e607,274282,runs\hien_week2_vit_preview\config.yaml,6211fe076b3fab37b1bf60a2c2ea56debcf5198f,runs\hien_week2_vit_preview\best.pt,val,0.2034,1017,5000,0.2034,1,36,36,1,31.1553455000103,31.1553455000103,,2026-11-14T09:29:57.312634+00:00,vit,4500,runs/hien_week2_vit_preview/metrics.csv

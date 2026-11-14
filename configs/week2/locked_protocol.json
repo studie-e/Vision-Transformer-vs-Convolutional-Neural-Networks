@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-14",
+  "main_epochs": 100,
+  "train_seed": 42,
+  "split_seed": 2026,
+  "tuning_epochs_per_candidate": 10,
+  "tuning_candidates_per_model": 2,
+  "selection": "best validation accuracy; ties prefer SGD; test unused",
+  "source_sha256": "13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb",
+  "selected": {
+    "resnet": {
+      "model": "resnet",
+      "recipe": "sgd",
+      "best_val_accuracy": 0.7774,
+      "best_epoch": 10,
+      "completed_epochs": 10,
+      "global_steps": 1760,
+      "train_seconds": 76.05399019999822,
+      "source_sha256": "13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb",
+      "run_dir": "runs\\week2\\tuning\\resnet_sgd",
+      "config_path": "configs/week2/tuning/resnet_sgd.yaml"
+    },
+    "vit": {
+      "model": "vit",
+      "recipe": "adamw",
+      "best_val_accuracy": 0.5502,
+      "best_epoch": 10,
+      "completed_epochs": 10,
+      "global_steps": 1760,
+      "train_seconds": 42.44415129999106,
+      "source_sha256": "13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb",
+      "run_dir": "runs\\week2\\tuning\\vit_adamw",
+      "config_path": "configs/week2/tuning/vit_adamw.yaml"
+    }
+  },
+  "configs": {
+    "resnet_d10_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.resnet:build_model",
+        "kwargs": {
+          "width": 16,
+          "blocks_per_stage": 3,
+          "num_classes": 10
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "0.10",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "sgd",
+        "lr": 0.05,
+        "momentum": 0.9,
+        "weight_decay": 0.0005
+      }
+    },
+    "resnet_d50_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.resnet:build_model",
+        "kwargs": {
+          "width": 16,
+          "blocks_per_stage": 3,
+          "num_classes": 10
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "0.50",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "sgd",
+        "lr": 0.05,
+        "momentum": 0.9,
+        "weight_decay": 0.0005
+      }
+    },
+    "resnet_d100_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.resnet:build_model",
+        "kwargs": {
+          "width": 16,
+          "blocks_per_stage": 3,
+          "num_classes": 10
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "1.00",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "sgd",
+        "lr": 0.05,
+        "momentum": 0.9,
+        "weight_decay": 0.0005
+      }
+    },
+    "vit_d10_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.vit:build_model",
+        "kwargs": {
+          "image_size": 32,
+          "patch_size": 4,
+          "embed_dim": 96,
+          "depth": 4,
+          "num_heads": 4,
+          "mlp_ratio": 1.5,
+          "num_classes": 10,
+          "dropout": 0.1,
+          "use_pos_embed": true
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "0.10",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "adamw",
+        "lr": 0.001,
+        "weight_decay": 0.05
+      }
+    },
+    "vit_d50_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.vit:build_model",
+        "kwargs": {
+          "image_size": 32,
+          "patch_size": 4,
+          "embed_dim": 96,
+          "depth": 4,
+          "num_heads": 4,
+          "mlp_ratio": 1.5,
+          "num_classes": 10,
+          "dropout": 0.1,
+          "use_pos_embed": true
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "0.50",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "adamw",
+        "lr": 0.001,
+        "weight_decay": 0.05
+      }
+    },
+    "vit_d100_s42.yaml": {
+      "seed": 42,
+      "model": {
+        "factory": "src.models.vit:build_model",
+        "kwargs": {
+          "image_size": 32,
+          "patch_size": 4,
+          "embed_dim": 96,
+          "depth": 4,
+          "num_heads": 4,
+          "mlp_ratio": 1.5,
+          "num_classes": 10,
+          "dropout": 0.1,
+          "use_pos_embed": true
+        }
+      },
+      "data": {
+        "factory": "src.data:build_loaders",
+        "root": "data",
+        "download": false,
+        "split_seed": 2026,
+        "ratio": "1.00",
+        "batch_size": 128,
+        "splits_dir": "results/splits"
+      },
+      "training": {
+        "epochs": 100,
+        "optimizer": "adamw",
+        "lr": 0.001,
+        "weight_decay": 0.05
+      }
+    }
+  }
+}

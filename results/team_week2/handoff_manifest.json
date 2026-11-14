@@ -1,0 +1,80 @@
+[
+  {
+    "run_id": "resnet_d10_s42",
+    "architecture": "resnet",
+    "ratio": "0.10",
+    "run_dir": "runs/week2/resnet_d10_s42",
+    "zip_path": "runs/handoff/team_week2/resnet_d10_s42.zip",
+    "zip_bytes": 4657516,
+    "zip_sha256": "2c26ff875f503543e8460ca05550a8ad846966513b9824d4a039e1f44cd7cffb",
+    "epochs": 100,
+    "best_epoch": 96,
+    "best_val_accuracy": 0.7424,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "resnet_d50_s42",
+    "architecture": "resnet",
+    "ratio": "0.50",
+    "run_dir": "runs/week2/resnet_d50_s42",
+    "zip_path": "runs/handoff/team_week2/resnet_d50_s42.zip",
+    "zip_bytes": 4651279,
+    "zip_sha256": "87b89d00c8b8edf1cd02dbbf61416208d5c32fa6e42cb3d19872f0a9e8645e86",
+    "epochs": 100,
+    "best_epoch": 89,
+    "best_val_accuracy": 0.884,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "resnet_d100_s42",
+    "architecture": "resnet",
+    "ratio": "1.00",
+    "run_dir": "runs/week2/resnet_d100_s42",
+    "zip_path": "runs/handoff/team_week2/resnet_d100_s42.zip",
+    "zip_bytes": 4653281,
+    "zip_sha256": "b5b7a2a8f6bc9aa1965882a955ae1240d7b3ea7ed8944e537b914a4ec81e59e6",
+    "epochs": 100,
+    "best_epoch": 95,
+    "best_val_accuracy": 0.918,
+    "global_steps": 35200
+  },
+  {
+    "run_id": "week2_vit_10_seed42",
+    "architecture": "vit",
+    "ratio": "0.10",
+    "run_dir": "runs/week2_vit_10_seed42",
+    "zip_path": "runs/handoff/team_week2/week2_vit_10_seed42.zip",
+    "zip_bytes": 6623880,
+    "zip_sha256": "f24c681707efd7af4d8d3ea8a7db27b015ecffd5cd3395fa8cfee17acae59818",
+    "epochs": 100,
+    "best_epoch": 70,
+    "best_val_accuracy": 0.5216,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "week2_vit_50_seed42",
+    "architecture": "vit",
+    "ratio": "0.50",
+    "run_dir": "runs/week2_vit_50_seed42",
+    "zip_path": "runs/handoff/team_week2/week2_vit_50_seed42.zip",
+    "zip_bytes": 6619673,
+    "zip_sha256": "205a034c4d7d83c367f40f057c07800b76c58ae86de1c07256c0cee1a58d8f9e",
+    "epochs": 100,
+    "best_epoch": 96,
+    "best_val_accuracy": 0.6766,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "week2_vit_100_seed42",
+    "architecture": "vit",
+    "ratio": "1.00",
+    "run_dir": "runs/week2_vit_100_seed42",
+    "zip_path": "runs/handoff/team_week2/week2_vit_100_seed42.zip",
+    "zip_bytes": 6622400,
+    "zip_sha256": "81fcd56000c83032c0ace3d98d549d926a82d20d3ae4a5461411ecf8588e7f0c",
+    "epochs": 100,
+    "best_epoch": 84,
+    "best_val_accuracy": 0.759,
+    "global_steps": 35200
+  }
+]

@@ -36,9 +36,9 @@ Mỗi ngày là một phiên công việc chính; có thể ghép các ngày n�
 
 ## Thí nghiệm thống nhất
 
-- Dữ liệu chính: CIFAR-10 RGB 32×32, 10 lớp. Tách cố định 45.000 train / 5.000 validation; giữ test chính thức 10.000 ảnh.
+- Dữ liệu chính: CIFAR-10 RGB 32×32, 10 lớp. Mỗi split seed tách phân tầng 45.000 train / 5.000 validation; giữ test chính thức 10.000 ảnh. Hai mô hình dùng cùng manifest ở từng cặp seed.
 - Tỷ lệ 10/50/100% tính trên 45.000 train: 4.500 / 22.500 / 45.000 ảnh. Ghi rõ mẫu số trong báo cáo.
-- Seed chia train/val đề xuất: **2026**. Ba seed lượt chạy đề xuất: **17, 42, 2026**; ghi riêng seed lấy tập con và seed huấn luyện. Xác nhận các giá trị này ở ngày 1.
+- Cập nhật theo bàn giao dữ liệu/proposal và giao thức khóa 14/11/2026: **(split seed, train seed) = (2026,42), (2027,43), (2028,44)**. Thay đề xuất ban đầu 17/42/2026; hai mô hình phải ghép cặp giống nhau. Mỗi split seed thay cả train/val và tập con, nên độ biến thiên không chỉ đến từ khởi tạo.
 - Tập con phân tầng, lồng nhau theo từng seed; ViT và ResNet dùng đúng cùng danh sách ảnh. ViT và ResNet chính train từ đầu.
 - Mục tiêu nội bộ: chênh lệch tham số không quá 10%, tính bằng `abs(P_vit - P_resnet) / max(P_vit, P_resnet)`. Đây là đề xuất của nhóm, không phải ngưỡng giảng viên ấn định.
 - Tuning trên validation, cùng ngân sách thử cấu hình cho hai mô hình. Khóa recipe từng kiến trúc và epoch trước loạt chính; giữ cố định theo tỷ lệ và seed.
@@ -51,13 +51,13 @@ Minh điều phối lịch dùng RTX 5080. **Lan Anh trực tiếp chạy ViT/ab
 
 | Cửa sổ dự kiến | Lượt chạy | Số lượt | Người chạy |
 |---|---|---:|---|
-| Ngày 9–12 | ViT/ResNet × 10/50/100% × seed 17 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
-| Ngày 15–16 | ViT/ResNet × 10/50/100% × seed 42 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
-| Ngày 17–19 | ViT/ResNet × 10/50/100% × seed 2026 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
+| Ngày 9–12 | ViT/ResNet × 10/50/100% × split 2026, train seed 42 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
+| Ngày 15–16 | ViT/ResNet × 10/50/100% × split 2027, train seed 43 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
+| Ngày 17–19 | ViT/ResNet × 10/50/100% × split 2028, train seed 44 | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
 | Ngày 20–23, sau bảng chính | ViT bỏ positional embedding ở 50% × 3 seed | 3 | Lan Anh |
 | Ngày 20–23, sau bảng chính | Swin ở 10% và 100% × 3 seed | 6 | Minh |
 
-Đích dự kiến **27 lượt**, chưa gồm smoke test, pilot/tuning và tái lập đại diện. Run ID gợi ý: `vit_d10_s17`, `resnet_d10_s17`, `vit_no_pos_d50_s17`, `swin_d10_s17`.
+Đích dự kiến **27 lượt**, chưa gồm smoke test, pilot/tuning và tái lập đại diện. Run ID gợi ý: `vit_d10_s42`, `resnet_d10_s42`, `vit_no_pos_d50_s42`, `swin_d10_s42` (manifest split seed 2026 ghi riêng trong config).
 
 Ngày chạy là cửa sổ dự kiến. Sau pilot, ước lượng tổng GPU từ số epoch × thời gian/epoch cho từng mô hình/tỷ lệ, cộng đánh giá/lưu và khoảng 20% dự phòng. Nếu thiếu ngân sách, điều chỉnh epoch nhất quán trước loạt chính. Nếu chậm sau đó, ưu tiên 18 lượt chính, giảm phạm vi Swin trước; ghi trung thực phạm vi thực hiện.
 

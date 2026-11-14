@@ -20,15 +20,19 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 
 **Cuối tuần cần đạt:** GPU dùng được; hai mô hình dùng chung trainer; ResNet tương đương tham số mục tiêu; checkpoint/resume hoạt động; có số đo pilot, log chia sẻ và hướng dẫn chạy ViT cho Lan Anh.
 
+**Cập nhật tuần 2 — 14/11/2026:** đã pull ViT/split chính, khóa giao thức sau tuning ngang ngân sách. Xem [bàn giao tuần 2](../../docs/minh-week2.md); cấu hình thực tế ở `configs/week2/`. Train seed 42/split seed 2026 thay đề xuất cũ seed 17.
+
+**Kết quả thực hiện tuần 2:** đủ ba lượt ResNet × 100 epoch; validation 74,24% / 88,40% / 91,80% tương ứng 10%/50%/100% train; evaluator khớp trainer. Đã chuẩn bị Swin prototype, Method–CNN, log/metadata, learning curve và bộ YAML bàn giao ViT. [Báo cáo và bằng chứng](../../results/week2/minh_week2.md). Phần Minh tự giải thích/trao đổi trực tiếp và sao lưu log vẫn cần nhóm xác nhận thực tế.
+
 ## Tuần 2 — train ResNet với ba tỷ lệ
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
 | **8** | Tuning ResNet trên validation trong ngân sách ngang ViT; ghi mọi cấu hình thử. Tính tổng GPU dự kiến, cộng đánh giá/lưu và dự phòng. | Bảng thử cấu hình, đề xuất recipe/epoch/lịch GPU |
 | **9** | Cùng nhóm khóa giao thức trước loạt chính: params, epoch, recipe từng mô hình, seed, checkpoint rule. Chia slot với Lan Anh. | Config/commit ResNet đã khóa, lịch GPU và quy tắc log |
-| **10** | Train ResNet 10% seed đầu, đúng manifest ghép cặp ViT. Lưu best checkpoint theo validation và trạng thái resume. | Run `resnet_d10_s17` → Hiền |
-| **11** | Train ResNet 50%, giữ recipe; ghi params, thời gian, số bước và val score. | Run `resnet_d50_s17` → Hiền |
-| **12** | Train ResNet 100%, giữ recipe. Hoàn tất metadata; điều chỉnh cửa sổ chạy theo tốc độ pilot nếu cần. | Run `resnet_d100_s17` → Hiền |
+| **10** | Train ResNet 10% seed đầu, đúng manifest ghép cặp ViT. Lưu best checkpoint theo validation và trạng thái resume. | Run `resnet_d10_s42` → Hiền |
+| **11** | Train ResNet 50%, giữ recipe; ghi params, thời gian, số bước và val score. | Run `resnet_d50_s42` → Hiền |
+| **12** | Train ResNet 100%, giữ recipe. Hoàn tất metadata; điều chỉnh cửa sổ chạy theo tốc độ pilot nếu cần. | Run `resnet_d100_s42` → Hiền |
 | **13** | Kiểm tra đủ 3 lượt; đọc learning curve, hỗ trợ Hiền đối chiếu metric. Chuẩn bị Swin cho ảnh nhỏ, kiểm tra forward và số tham số. | Gói ResNet seed đầu; prototype/cấu hình Swin |
 | **14** | Viết Method–CNN và README train/resume; đọc chéo ViT của Lan Anh. Dự phòng lượt lỗi/thiếu. | Phần viết, hình CNN, hướng dẫn train → Hiền, Lan Anh |
 
@@ -38,9 +42,9 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
-| **15** | Bắt đầu nhóm ResNet seed 42, ưu tiên 10%/50% theo lịch chung; dùng đúng tập con ghép cặp ViT. | Run/log và trạng thái → Hiền |
-| **16** | Hoàn tất nhóm seed 42, gồm 100%; kiểm tra best epoch/config và checkpoint. | 3 lượt seed 42 hoặc danh sách thiếu rõ ràng |
-| **17** | Bắt đầu nhóm ResNet seed 2026, giữ nguyên recipe và cùng manifest ViT. | Run/log seed 2026 → Hiền |
+| **15** | Bắt đầu nhóm ResNet train seed 43, split seed 2027, ưu tiên 10%/50% theo lịch chung; dùng đúng tập con ghép cặp ViT. | Run/log và trạng thái → Hiền |
+| **16** | Hoàn tất nhóm seed 42, gồm 100%; kiểm tra best epoch/config và checkpoint. | 3 lượt train seed 43 hoặc danh sách thiếu rõ ràng |
+| **17** | Bắt đầu nhóm ResNet train seed 44, split seed 2028, giữ nguyên recipe và cùng manifest ViT. | Run/log train seed 44 → Hiền |
 | **18** | Hoàn tất nhóm seed 2026; đối chiếu 3 tỷ lệ × 3 seed, sao lưu checkpoint. | Mục tiêu đủ 9 lượt ResNet chính |
 | **19** | Khóa cấu hình Swin cho ảnh 32×32, nguồn mã, số tham số và khởi tạo từ đầu; xác nhận cách dùng dữ liệu/metric chung. | `src/models/swin.py`, `configs/swin.yaml`, phạm vi so sánh → Hiền |
 | **20** | Khi cả ViT và ResNet đã ưu tiên đủ 18 lượt, chạy thử rồi bắt đầu Swin 10%/100%. Viết tiến độ, khó khăn, GPU/time cho milestone. | Các run Swin đã có, đoạn milestone → Hiền |
