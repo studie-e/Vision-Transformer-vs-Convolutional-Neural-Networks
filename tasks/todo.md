@@ -106,7 +106,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T10. ViT: 10%/50%/100%, seed đầu — Lan Anh
 
-- [ ] Chạy đủ ba lượt ViT 100 epoch theo recipe nhóm mới chốt: `runs/week2_vit_10_seed42`, `week2_vit_50_seed42`, `week2_vit_100_seed42`. Minh đang vận hành GPU hỗ trợ Lan Anh; các kết quả 32,00% / 50,64% / 56,26% trong `results/lanh_week2_*` là lượt CPU 5 epoch cũ, không nghiệm thu thay các lượt này.
+- [x] Minh vận hành GPU hỗ trợ Lan Anh, đã đủ ba lượt ViT 100 epoch theo recipe nhóm: `runs/week2_vit_10_seed42`, `week2_vit_50_seed42`, `week2_vit_100_seed42`. Best validation 52,16% / 67,66% / 75,90%, evaluator CUDA khớp trainer. Kết quả 5 epoch cũ giữ riêng, không tính vào P0. Bằng chứng: `results/team_week2/README.md`.
 - [x] Không đổi recipe giữa các tỷ lệ sau khi xem kết quả test; xuất tensor ma trận attention mẫu cho 10 lớp tại `results/lanh_week2_attentions.pt` cho Hiền.
 - [x] Soạn thảo bản thảo Method–ViT và phân tích Inductive Bias tại `reports/method_lanh.md`.
 - **Kiểm tra:** Hiền đối chiếu số ảnh, config và learning curve; test cuối sau khi toàn bộ lựa chọn phương pháp/checkpoint đã khóa.
@@ -116,22 +116,22 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 - [x] Hoàn thành ba lượt ResNet 10%/50%/100%, mỗi lượt 100 epoch, split seed 2026/train seed 42; dùng manifest/cấu hình ghép cặp đã bàn giao ViT. Log/best.pt/last.pt đầy đủ ở `runs/week2/`.
 - [x] Đã lưu params, thời gian, số bước, validation và đủ 100 dòng epoch mỗi lượt. Evaluator khớp trainer: 74,24% / 88,40% / 91,80%; không đánh giá test, không có run chính lỗi/rerun.
-- **Bằng chứng:** [báo cáo kết quả Minh tuần 2](../results/week2/minh_week2.md), [metadata từng run](../results/week2/resnet_runs.csv), [kiểm tra tự động](../results/week2/minh_week2_checks.json), [hướng dẫn bàn giao](../docs/minh-week2.md). Swin prototype 261.824 tham số đã qua forward/backward, chưa train; phần Method–CNN đã soạn. Chưa xác nhận thay Hiền đã đọc chéo hoặc thay Lan Anh đã chạy ba lượt ViT chính.
+- **Bằng chứng:** [báo cáo kết quả Minh tuần 2](../results/week2/minh_week2.md), [metadata từng run](../results/week2/resnet_runs.csv), [kiểm tra tự động](../results/week2/minh_week2_checks.json), [hướng dẫn bàn giao](../docs/minh-week2.md). Swin prototype 261.824 tham số đã qua forward/backward, chưa train; phần Method–CNN đã soạn. Ba ViT chính hiện đã được Minh vận hành GPU hỗ trợ Lan Anh; chưa xác nhận thay Hiền/Lan Anh đã tiếp nhận hoặc đọc chéo gói kết quả.
 - **Kiểm tra:** Hiền đối chiếu manifest dữ liệu và điều kiện so sánh; test cuối sau khi toàn bộ lựa chọn phương pháp/checkpoint đã khóa.
 - **Phụ thuộc:** T09. **Sản phẩm:** 3 run manifest, checkpoint ngoài Git và log. **Quy mô:** S về cấu hình; GPU theo pilot.
 
 ### Checkpoint C
 
-- [ ] Có đủ 6 lượt đầu; kiểm tra lỗi dữ liệu, train/eval và khớp tham số trước khi chạy thêm seed.
-- [ ] Nếu kết quả bất thường, tìm nguyên nhân và ghi thay đổi giao thức; không âm thầm trộn hai cấu hình trong cùng bảng.
+- [x] Đủ sáu lượt P0 × 100 epoch đúng giao thức nhóm, cùng seed/manifest, params khớp; evaluator CUDA/TensorBoard đã đối chiếu. Sáu ZIP sẵn ở `runs/handoff/team_week2/`, bản gộp `runs/handoff/team_week2_all_runs.zip`. Chưa chạy seed bổ sung.
+- [x] Đã tách kết quả 5 epoch/tuning cũ khỏi bảng P0; xử lý công cụ visual đánh giá CPU khác GPU một ảnh bằng lựa chọn cùng thiết bị, không nới điều kiện đối chiếu hay thay checkpoint. Xem `results/team_week2/README.md`.
 
 ### T12. Attention map và bảng sơ bộ — Hiền
 
 - Tiến độ Hiền: đã xuất bảng validation, learning curve, confusion matrix và attention đúng/sai từ hai pilot CPU. Có giao thức dự thảo và ma trận 18 lượt. Các mục dưới đây chờ sáu lượt P0 và đọc chéo của nhóm. Xem [bàn giao tuần 2](../docs/hien-week2.md) và [giao thức](../docs/experiment_protocol.md).
 
-- [ ] Có bảng/biểu đồ data scaling và learning curve từ 6 lượt đầu.
-- [ ] Xuất attention ViT chồng lên ảnh; ghi layer/head/cách gộp, chọn tập ảnh cố định gồm đúng và sai.
-- [ ] Có khung confusion matrix/phân tích lỗi; nhận xét chỉ là sơ bộ khi chưa đủ seed.
+- [x] Có bảng/biểu đồ sáu lượt 100 epoch tại `results/team_week2/visualizations/`, Minh chạy công cụ của Hiền để bàn giao; còn Hiền/Lan Anh đọc chéo.
+- [x] Đã xuất attention đúng/sai cho ba ViT, CLS → patch block cuối trung bình head, lưới 8×8; có chỉ số ảnh/nhãn/run nguồn tại `results/team_week2/visualizations/`.
+- [x] Có sáu confusion matrix và bảng validation một seed; nhận xét sơ bộ, std N/A. Chưa xác nhận buổi phân tích/đọc chéo của nhóm đã diễn ra.
 - **Kiểm tra:** Lan Anh đọc chéo cách trích attention/kích thước; Minh đối chiếu bảng với log gốc. Dùng validation cho kết quả sơ bộ.
 - **Phụ thuộc:** T07, T10, T11. **File dự kiến:** `src/visualize.py`, `results/summary.csv`, `results/figures/`. **Quy mô:** M.
 

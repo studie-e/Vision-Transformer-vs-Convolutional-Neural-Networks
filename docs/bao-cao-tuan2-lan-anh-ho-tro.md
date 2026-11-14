@@ -105,7 +105,7 @@ Script này tự động:
 - Xuất biểu đồ đường cong học tập (`_curve.png`).
 - Xuất ma trận nhầm lẫn (`_confusion.png`).
 - Xuất bản đồ attention chồng lên ảnh gốc CIFAR-10 (`_attention.png`) từ phương thức `model.get_attention_weights()`.
-- Cập nhật trạng thái `completed` trong [run_matrix.csv](../results/hien_week2/run_matrix.csv).
+- Xuất hình và bảng kiểm tra; trạng thái [run_matrix.csv](../results/hien_week2/run_matrix.csv) cần cập nhật riêng sau khi đối chiếu. Công cụ hiện tại không tự sửa ma trận; `ready_for_handoff` chỉ có nghĩa gói đã sẵn sàng, chưa xác nhận Hiền tiếp nhận.
 
 ---
 
@@ -114,3 +114,5 @@ Script này tự động:
 - **Lan Anh:** Tự cài đặt toàn bộ mô hình ViT, thiết kế module trích xuất attention weights, thực hiện khảo sát siêu tham số ban đầu, soạn thảo bản thảo phương pháp luận kiến trúc.
 - **Minh (Hỗ trợ):** Cung cấp tài nguyên GPU cá nhân (RTX), vận hành chạy 3 lượt huấn luyện 100 epoch theo hàng đợi dùng chung.
 - **Hiền (Hỗ trợ):** Khóa cấu hình YAML, kiểm tra phân tầng dữ liệu, tiếp nhận checkpoint và trích xuất dữ liệu trực quan hóa cho báo cáo.
+
+Ghi nhận thực thi GPU của Minh: [báo cáo sáu lượt P0 và gói chuyển Hiền](../results/team_week2/README.md).

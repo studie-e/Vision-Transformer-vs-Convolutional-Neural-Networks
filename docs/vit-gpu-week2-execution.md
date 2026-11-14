@@ -49,3 +49,9 @@ Checkpoint C chỉ được đánh dấu đủ sáu lượt khi cả ba ViT 100 
 ## Ghi nhận đóng góp
 
 Lan Anh phụ trách kiến trúc ViT, mã attention và phần viết phương pháp. Minh cung cấp RTX 5080 và vận hành các lượt GPU, kiểm tra/đóng gói. Hiền cung cấp dữ liệu/giao thức và tiếp nhận, phân tích kết quả. Việc vận hành trên máy Minh không thay đổi tác giả phần mô hình. Một seed không đủ để ước lượng std mẫu; test cuối và hai seed tiếp theo vẫn theo kế hoạch nhóm.
+
+## Kết quả hoàn tất
+
+Ba ViT đã đủ 100 epoch; best validation 52,16% / 67,66% / 75,90% ở 10/50/100%. Sáu run P0 đã đối chiếu bằng evaluator CUDA và có ZIP đầy đủ. [Báo cáo kết quả và chỉ mục gói](../results/team_week2/README.md). Gói gộp `runs/handoff/team_week2_all_runs.zip`, 33.833.022 byte; checksum ở file `.sha256.txt` cạnh gói. Chưa gửi cho Hiền.
+
+Công cụ visual được bổ sung `--device`, mặc định theo metadata train; tránh ép GPU run đánh giá bằng CPU, vốn có thể khác dự đoán trên ảnh sát ranh giới do số học dấu phẩy động. Với ViT 10%, CPU đếm 2.607/5.000 và CUDA đếm 2.608/5.000; số liệu bàn giao dùng CUDA đúng thiết bị train. Đã kiểm thử hồi quy, toàn suite 39 test đạt. Không sửa checkpoint, không nới điều kiện khớp log.

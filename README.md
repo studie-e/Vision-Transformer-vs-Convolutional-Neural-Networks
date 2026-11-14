@@ -10,6 +10,8 @@ Dùng [sáu YAML hiện hành](configs/week2/README.md) và [hướng dẫn nhó
 
 Phần tuning/khóa cũ bên dưới được giữ để truy vết; ưu tiên YAML `vit_10.yaml`, `vit_50.yaml`, `vit_100.yaml` khi chạy P0 hiện hành.
 
+**Đã chạy đủ sáu lượt P0 100 epoch:** ViT validation 52,16% / 67,66% / 75,90%; ResNet 74,24% / 88,40% / 91,80%. [Bảng, hình và bằng chứng hiện hành](results/team_week2/README.md). Gói gửi Hiền nằm ở `runs/handoff/team_week2_all_runs.zip` (chưa gửi ra ngoài). `results/runs.csv` chỉ chứa sáu lượt này; kết quả CPU 5 epoch cũ được lưu riêng.
+
 ## Tuần 2 của Minh
 
 [Bàn giao và recipe tuần 2](docs/minh-week2.md) · [Method–CNN](reports/method_minh_week2.md). ViT và split chính đã tích hợp; dùng các YAML trong `configs/week2/` cho thí nghiệm chính, giữ `configs/train.yaml` làm pilot tuần 1.
