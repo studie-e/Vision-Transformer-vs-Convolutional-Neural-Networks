@@ -98,16 +98,17 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T09. Khóa giao thức thí nghiệm — cả nhóm, Minh ghi lại
 
-- [x] Đã khóa tham số, dữ liệu, cặp seed 2026/42, augmentation và recipe riêng; cả hai mô hình dùng 100 epoch chính theo `configs/week2/locked_protocol.json` (14/11/2026, Minh giao quyền chốt).
-- [x] Đã chạy đủ hai recipe × 10 epoch trên 50% train cho mỗi mô hình; chọn bằng validation, không mở test. Bằng chứng: `results/week2/tuning.csv`.
-- [x] Giữ ưu tiên 6 rồi 18 lượt chính; tuần 2 chỉ kiểm tra forward/backward Swin, chưa huấn luyện mở rộng. Các cấu hình ViT chính đã bàn giao cho Lan Anh.
+- [x] Giao thức nhóm chốt: cùng split seed 2026/train seed 42, batch 128, 100 epoch, cosine; ViT AdamW lr=0.0003/wd=0.05/dropout=0.1; ResNet SGD lr=0.05/momentum=0.9/wd=0.0005. YAML hiện hành: `configs/week2/vit_{10,50,100}.yaml` và `resnet_{10,50,100}.yaml`.
+- [x] Tuning được lưu riêng; không dùng test để chọn cấu hình hoặc checkpoint. Minh đã thử hai recipe × 10 epoch cho mỗi kiến trúc (`results/week2/tuning.csv`); recipe ViT nhóm chốt mới thay lựa chọn lr=0.001 trước đó. Ba lượt ViT CPU 5 epoch của Lan Anh được giữ làm kết quả ngắn, không tính là ba lượt 100 epoch.
+- [x] Giữ ưu tiên đủ sáu lượt P0 rồi 18 lượt chính trước phần mở rộng; Minh vận hành GPU hỗ trợ Lan Anh theo tài liệu bàn giao.
 - **Kiểm tra:** Lan Anh đối chiếu ViT; Minh đối chiếu ResNet/config train; Hiền đối chiếu dữ liệu/metric; ghi quyết định trước khi chạy.
-- **Phụ thuộc:** T03–T07. **File thực tế:** `configs/week2/locked_protocol.json`, `docs/minh-week2.md`. **Quy mô:** S.
+- **Phụ thuộc:** T03–T07. **File hiện hành:** `docs/experiment_protocol.md`, `configs/week2/vit_{10,50,100}.yaml`, `configs/week2/resnet_{10,50,100}.yaml`. File `locked_protocol.json` lưu giao thức thử trước quyết định mới của nhóm. **Quy mô:** S.
 
 ### T10. ViT: 10%/50%/100%, seed đầu — Lan Anh
 
-- [ ] Hoàn thành 3 lượt với giao thức đã khóa, đủ log/checkpoint và kết quả validation.
-- [ ] Không đổi recipe giữa các tỷ lệ sau khi xem kết quả test; ghi lại mọi lỗi/rerun.
+- [ ] Chạy đủ ba lượt ViT 100 epoch theo recipe nhóm mới chốt: `runs/week2_vit_10_seed42`, `week2_vit_50_seed42`, `week2_vit_100_seed42`. Minh đang vận hành GPU hỗ trợ Lan Anh; các kết quả 32,00% / 50,64% / 56,26% trong `results/lanh_week2_*` là lượt CPU 5 epoch cũ, không nghiệm thu thay các lượt này.
+- [x] Không đổi recipe giữa các tỷ lệ sau khi xem kết quả test; xuất tensor ma trận attention mẫu cho 10 lớp tại `results/lanh_week2_attentions.pt` cho Hiền.
+- [x] Soạn thảo bản thảo Method–ViT và phân tích Inductive Bias tại `reports/method_lanh.md`.
 - **Kiểm tra:** Hiền đối chiếu số ảnh, config và learning curve; test cuối sau khi toàn bộ lựa chọn phương pháp/checkpoint đã khóa.
 - **Phụ thuộc:** T09. **Sản phẩm:** 3 run manifest, checkpoint ngoài Git và log. **Quy mô:** S về cấu hình; GPU theo pilot.
 
@@ -125,6 +126,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 - [ ] Nếu kết quả bất thường, tìm nguyên nhân và ghi thay đổi giao thức; không âm thầm trộn hai cấu hình trong cùng bảng.
 
 ### T12. Attention map và bảng sơ bộ — Hiền
+
+- Tiến độ Hiền: đã xuất bảng validation, learning curve, confusion matrix và attention đúng/sai từ hai pilot CPU. Có giao thức dự thảo và ma trận 18 lượt. Các mục dưới đây chờ sáu lượt P0 và đọc chéo của nhóm. Xem [bàn giao tuần 2](../docs/hien-week2.md) và [giao thức](../docs/experiment_protocol.md).
 
 - [ ] Có bảng/biểu đồ data scaling và learning curve từ 6 lượt đầu.
 - [ ] Xuất attention ViT chồng lên ảnh; ghi layer/head/cách gộp, chọn tập ảnh cố định gồm đúng và sai.
