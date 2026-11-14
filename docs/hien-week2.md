@@ -1,5 +1,21 @@
 # Bàn giao tuần 2 của Hiền
 
+## Nghiệm thu bằng chứng sáu lượt P0
+
+Đã đối chiếu sáu lượt trong bảng P0, log từng epoch, bảng hình và ma trận theo dõi. Cả sáu cùng dùng manifest seed 2026 và train seed 42. Log đủ epoch 1–100, số bước lần lượt là 3.600, 17.600 và 35.200 theo tỷ lệ. Epoch đầu tiên đạt accuracy cao nhất trong log khớp với best epoch đã ghi. Số dự đoán đúng chia cho 5.000 khớp bảng tổng hợp. Hash checkpoint khớp giữa các bản ghi và hash manifest khớp file local.
+
+| Tỷ lệ | Số ảnh train | ViT | ResNet | ResNet cao hơn |
+|---|---:|---:|---:|---:|
+| 10% | 4.500 | 52,16% | 74,24% | 22,08 điểm % |
+| 50% | 22.500 | 67,66% | 88,40% | 20,74 điểm % |
+| 100% | 45.000 | 75,90% | 91,80% | 15,90 điểm % |
+
+Accuracy validation tăng theo lượng dữ liệu ở cả hai mô hình và khoảng cách thu hẹp trong sáu lượt này. Mỗi cấu hình mới có một seed, nên chưa ước lượng độ lệch chuẩn qua seed. Hai mô hình dùng optimizer khác nhau và số bước tăng theo lượng ảnh ở cùng số epoch. Vì vậy bảng chỉ mô tả kết quả theo giao thức đã chạy. Tập test chưa được dùng.
+
+Đã kiểm tra đủ 16 hình trong gói. [Bảng và hình P0](../results/team_week2/README.md) gồm sáu learning curve, sáu confusion matrix, ba attention map ViT và một biểu đồ accuracy theo lượng dữ liệu. Attention lấy ảnh đúng và sai đầu tiên theo manifest, dùng CLS → patch ở block cuối, trung bình bốn head. Confusion matrix dùng hàng là nhãn thật, cột là nhãn dự đoán.
+
+Trên máy Hiền chưa có ZIP hoặc checkpoint P0. Việc đối chiếu trên đây dựa trên bằng chứng đã commit. Khi Minh chuyển gói, kiểm tra SHA-256 theo [manifest bàn giao](../results/team_week2/handoff_manifest.json), xác nhận mỗi run có config, metadata, metrics, best.pt và last.pt, rồi dùng CUDA để chạy lại `src.visualize --label validation --device cuda` với sáu thư mục run. Minh ghi nhận ViT 10% chênh một ảnh giữa CPU và CUDA, nên dùng CUDA để đối chiếu đúng kết quả đã công bố.
+
 ## Đối chiếu pilot
 
 Hai lượt CPU dùng cùng manifest 2026, train seed 42, 4.500 train và 5.000 validation. Phần đánh giá nạp lại best.pt và kiểm tra kết quả khớp log validation. ViT đạt 1.017/5.000 và ResNet đạt 846/5.000 ở pilot một epoch. Lượt ViT được chạy lại tại máy này từ configs/vit.yaml. Dùng [bảng validation](../results/hien_week2/pilot/validation.csv) để truy về log, config và hash checkpoint.
@@ -33,4 +49,4 @@ Chúng tôi tính top-1 accuracy bằng tổng số ảnh dự đoán đúng chi
 
 ## Trạng thái
 
-Đã có bản giao thức, ma trận, công cụ đọc checkpoint và sinh hình, attention thử và bản viết phương pháp. Việc đọc chéo hình với Lan Anh và đối chiếu bảng với Minh còn chờ phản hồi. Checkpoint C còn mở vì 0/6 lượt chính đã được bàn giao.
+Đã có đủ bằng chứng trong Git cho sáu lượt chính và bản viết phương pháp. Đã rà bảng và log. Còn tiếp nhận gói checkpoint từ Minh và xác nhận đọc chéo attention với Lan Anh.
