@@ -1,2 +1,31 @@
 run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc
 
+vit_d10_s42,src.models.vit:build_model,0.10,2026,42,027f7cdb0fae6a67608c4ed400f51068902864a948964cc1e6764aa5a986a95b,43561521b7943468ba552681460c99ed30a6f4ee3f47582d558d51faee6b69b9,"M src/train.py
+?? configs/vit_d10.yaml
+?? configs/vit_d100.yaml
+?? configs/vit_d50.yaml
+?? results/lanh_tuning_results.json
+?? scripts/run_lanh_week2.py
+?? scripts/tune_lanh_vit.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,730e45ae6081ca2413ccef656c5076b5a1c84b3d0f123ed86b73f26251c2723a,274282,runs\vit_d10_s42\config.yaml,6211fe076b3fab37b1bf60a2c2ea56debcf5198f,runs\vit_d10_s42\best.pt,val,0.32,1600,5000,0.32,5,180,180,5,85.96367190004094,17.192734380008186,ViT Week-2 main run vit_d10_s42 (10% dữ liệu (4.500 ảnh train)),2026-11-14T09:44:47.399189+00:00
+vit_d50_s42,src.models.vit:build_model,0.50,2026,42,027f7cdb0fae6a67608c4ed400f51068902864a948964cc1e6764aa5a986a95b,43561521b7943468ba552681460c99ed30a6f4ee3f47582d558d51faee6b69b9,"M results/runs.csv
+ M src/train.py
+?? configs/vit_d10.yaml
+?? configs/vit_d100.yaml
+?? configs/vit_d50.yaml
+?? docs/lanh-week2.md
+?? reports/method_lanh.md
+?? results/lanh_tuning_results.json
+?? results/lanh_week2_runs.csv
+?? scripts/run_lanh_week2.py
+?? scripts/tune_lanh_vit.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,c226ec56486ddbda3a05ea4fb0ea5374558215e268fb07f9f583749a4991c125,274282,runs\vit_d50_s42\config.yaml,6211fe076b3fab37b1bf60a2c2ea56debcf5198f,runs\vit_d50_s42\best.pt,val,0.5064,2532,5000,0.5064,5,880,880,5,524.4075961998897,104.88151923997793,ViT Week-2 main run vit_d50_s42 (50% dữ liệu (22.500 ảnh train)),2026-11-14T09:54:07.788114+00:00
+vit_d100_s42,src.models.vit:build_model,1.00,2026,42,027f7cdb0fae6a67608c4ed400f51068902864a948964cc1e6764aa5a986a95b,43561521b7943468ba552681460c99ed30a6f4ee3f47582d558d51faee6b69b9,"M results/runs.csv
+ M src/train.py
+?? configs/vit_d10.yaml
+?? configs/vit_d100.yaml
+?? configs/vit_d50.yaml
+?? docs/lanh-week2.md
+?? reports/method_lanh.md
+?? results/lanh_tuning_results.json
+?? results/lanh_week2_runs.csv
+?? scripts/run_lanh_week2.py
+?? scripts/tune_lanh_vit.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,690e37763ea28dedf6306851258144eb6c9993157ada79fae00e01d573a5da60,274282,runs\vit_d100_s42\config.yaml,6211fe076b3fab37b1bf60a2c2ea56debcf5198f,runs\vit_d100_s42\best.pt,val,0.5626,2813,5000,0.5626,5,1760,1760,5,938.1628308999934,187.6325661799987,ViT Week-2 main run vit_d100_s42 (100% dữ liệu (45.000 ảnh train)),2026-11-14T10:10:20.952511+00:00

@@ -98,16 +98,17 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T09. Khóa giao thức thí nghiệm — cả nhóm, Minh ghi lại
 
-- [ ] Chốt tham số hai mô hình, seed/split, augmentation, recipe từng mô hình và số epoch sau pilot.
-- [ ] Cùng ngân sách tuning trên validation; test không dùng để chọn cấu hình; quy tắc chọn checkpoint thống nhất.
+- [x] Chốt tham số hai mô hình (ResNet 272.474 vs ViT 274.282), seed/split (`split_seed=2026, train_seed=42`), augmentation; khóa recipe ViT qua tuning: AdamW lr=0.001, wd=0.01, 5 epochs (bằng chứng: `results/lanh_tuning_results.json`).
+- [x] Cùng ngân sách tuning trên validation; test không dùng để chọn cấu hình; quy tắc chọn checkpoint thống nhất theo validation accuracy.
 - [ ] Hàng đợi GPU ưu tiên 6 rồi 18 lượt chính trước phần mở rộng.
 - **Kiểm tra:** Lan Anh đối chiếu ViT; Minh đối chiếu ResNet/config train; Hiền đối chiếu dữ liệu/metric; ghi quyết định trước khi chạy.
 - **Phụ thuộc:** T03–T07. **File dự kiến:** `configs/experiment.yaml`, `docs/experiment_protocol.md`. **Quy mô:** S.
 
 ### T10. ViT: 10%/50%/100%, seed đầu — Lan Anh
 
-- [ ] Hoàn thành 3 lượt với giao thức đã khóa, đủ log/checkpoint và kết quả validation.
-- [ ] Không đổi recipe giữa các tỷ lệ sau khi xem kết quả test; ghi lại mọi lỗi/rerun.
+- [x] Hoàn thành 3 lượt với giao thức đã khóa, đủ log/checkpoint và kết quả validation: `vit_d10_s42` (32,00%), `vit_d50_s42` (50,64%), `vit_d100_s42` (56,26%). Lưu tại `results/lanh_week2_runs.csv`, `results/runs.csv`, `results/lanh_week2_summary.csv`.
+- [x] Không đổi recipe giữa các tỷ lệ sau khi xem kết quả test; xuất tensor ma trận attention mẫu cho 10 lớp tại `results/lanh_week2_attentions.pt` cho Hiền.
+- [x] Soạn thảo bản thảo Method–ViT và phân tích Inductive Bias tại `reports/method_lanh.md`.
 - **Kiểm tra:** Hiền đối chiếu số ảnh, config và learning curve; test cuối sau khi toàn bộ lựa chọn phương pháp/checkpoint đã khóa.
 - **Phụ thuộc:** T09. **Sản phẩm:** 3 run manifest, checkpoint ngoài Git và log. **Quy mô:** S về cấu hình; GPU theo pilot.
 
