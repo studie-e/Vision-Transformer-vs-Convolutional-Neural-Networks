@@ -40,9 +40,9 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T04. ViT tự cài bản đầu — Lan Anh
 
-- [ ] Tự cài patch embedding, positional embedding, self-attention, encoder và classifier; không dùng một mô hình ViT hoàn chỉnh có sẵn thay phần tự cài.
-- [ ] Forward trả logits đúng số lớp; backward có gradient; có cách lấy attention phục vụ trực quan hóa.
-- [ ] Ghi số tham số trainable và phân biệt thành phần tự viết/thành phần PyTorch.
+- [x] Tự cài patch embedding, positional embedding, self-attention, encoder và classifier; không dùng một mô hình ViT hoàn chỉnh có sẵn thay phần tự cài. (14/11/2026, `src/models/vit.py`, bằng chứng: `scripts/check_lanh_week1.py`)
+- [x] Forward trả logits đúng số lớp; backward có gradient; có cách lấy attention phục vụ trực quan hóa. (logits [B,10] ✅, 56 tham số có gradient ✅, `get_attention_weights()` trả [B,4,65,65] ✅)
+- [x] Ghi số tham số trainable và phân biệt thành phần tự viết/thành phần PyTorch. (ViT 274.282 vs ResNet 272.474, chênh 0.7%. Tự cài toàn bộ kiến trúc, dùng nn.Linear/LayerNorm/Conv2d/GELU/Dropout làm building block)
 - **Kiểm tra:** kiểm tra kích thước tensor, Lan Anh chạy overfit một batch nhỏ; Minh đọc chéo.
 - **Phụ thuộc:** T01, T02; chạy batch dữ liệu dùng T03. **File dự kiến:** `src/models/vit.py`, `configs/vit.yaml`. **Quy mô:** S.
 

@@ -1,1 +1,1 @@
-"""Model implementations; ViT will be supplied by Lan Anh."""
+"""Model implementations: ResNet (Minh) và ViT tự cài (Lan Anh)."""
