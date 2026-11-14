@@ -66,10 +66,10 @@ Train dùng random crop có padding 4 và lật ngang; validation/test chỉ chu
 \section{Mô hình}
 
 \paragraph{ViT~\citep{dosovitskiy2020image}.}
-Tự cài đặt bằng PyTorch: patch embedding (patch 4$\times$4), positional embedding học được, Transformer encoder (multi-head self-attention + MLP, pre-LN), classification head. Không dùng mô hình ViT có sẵn hoàn chỉnh. Có cơ chế xuất attention để trực quan hóa.
+Tự cài đặt bằng PyTorch: patch embedding (patch 4$\times$4, dimension 96), positional embedding học được, 4 khối Transformer encoder (4 head attention, MLP ratio 1.5, pre-LN), classification head 10 lớp. Không dùng mô hình ViT có sẵn hoàn chỉnh. Số tham số có thể học là 274.282. Có cơ chế xuất ma trận attention từng head và block để trực quan hóa.
 
 \paragraph{ResNet~\citep{he2015deep}.}
-CIFAR-style: stem 3$\times$3, ba stage basic block với projection shortcut, global average pooling, lớp tuyến tính 10 lớp. Bản thử nghiệm: width 16, 3 block/stage, 272.474 tham số. Độ rộng sẽ được điều chỉnh sau khi có số tham số ViT để chênh lệch không quá 10\%. Khởi tạo từ đầu.
+CIFAR-style: stem 3$\times$3, ba stage basic block với projection shortcut, global average pooling, lớp tuyến tính 10 lớp. Cấu hình chốt: width 16, 3 block/stage, 272.474 tham số. Số tham số giữa ViT (274.282) và ResNet (272.474) chênh lệch chỉ 0,66\%, đạt mục tiêu chênh lệch $\le 10\%$. Khởi tạo từ đầu.
 
 \paragraph{Swin Transformer~\citep{liu2021swin} (thăm dò).}
 Dùng thư viện có trích dẫn, cấu hình cho ảnh 32$\times$32; ghi rõ số tham số và recipe. Nếu không khớp ngân sách thì trình bày thành thí nghiệm bổ sung với giới hạn so sánh.

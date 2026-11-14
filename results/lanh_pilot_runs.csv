@@ -1,0 +1,13 @@
+run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc
+lanh_week1_smoke,src.models.vit:build_model,0.10,2026,42,7fbd15f71fc5f45f8e2022a2a5878a3677a868d3f61a31f387a60c7fa248c6c8,3db7e11edd4ff0f72bb6054df5ebf17ce6e579d6bb1f7a090ad66d7c91aea20a,"M results/splits/split_seed2026_manifest.json
+ M results/splits/split_seed2026_stats.json
+ M results/splits/split_seed2027_manifest.json
+ M results/splits/split_seed2027_stats.json
+ M results/splits/split_seed2028_manifest.json
+ M results/splits/split_seed2028_stats.json
+?? docs/lanh-week1-notes.md
+?? results/lanh_pilot_metrics.csv
+?? results/lanh_pilot_runs.csv
+?? results/lanh_pilot_summary.csv
+?? scripts/check_lanh_pilot.py
+?? tests/test_lanh.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,583712e8089912c6d89ce1cdce2c5cb3b93bc6e95c16628955c398397a727fd8,274282,runs\lanh_week1_smoke\config.yaml,f6afcf2ed04e5fbe827ca312bc8eb2d9cd672e3b,runs\lanh_week1_smoke\best.pt,val,0.2034,1017,5000,0.2034,1,36,36,1,13.833361600001808,13.833361600001808,"ViT week-1 integration pilot (1 epoch, ratio 0.10, seed 42)",2026-11-14T08:58:57.893189+00:00

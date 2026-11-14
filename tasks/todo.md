@@ -20,8 +20,8 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T02. Đọc 3 bài chính — cả ba
 
-- [ ] Lan Anh đọc ViT; Minh đọc ResNet; Hiền đọc Swin; mỗi người có ghi chú và nguồn. (Hiền đã hoàn thành ghi chú Swin tại `docs/hien-week1.md`).
-- [ ] Cả ba trình bày lại ý chính, thống nhất mục tiêu so sánh và phần nào tự cài.
+- [x] Lan Anh đọc ViT (ghi chú tại `docs/lanh-week1-notes.md`); Minh đọc ResNet; Hiền đọc Swin (`docs/hien-week1.md`).
+- [x] Cả ba trình bày lại ý chính, thống nhất mục tiêu so sánh và phần nào tự cài.
 - **Kiểm tra:** hai người còn lại hỏi về kiến trúc và cách áp dụng cho dữ liệu nhỏ.
 - **Phụ thuộc:** không. **File dự kiến:** `docs/literature.md`, `reports/references.bib`. **Quy mô:** S.
 
@@ -49,25 +49,25 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 ### T05. ResNet tương đương tham số — Minh
 
 - [x] Có ResNet cho ảnh nhỏ: CIFAR-style, width 16, ba block/stage, projection shortcut; nguồn và khác biệt ghi ở docs/minh-week1.md.
-- [ ] Đã đếm ResNet 272.474 tham số và có công cụ tìm width; chờ số tham số ViT của Lan Anh để xác nhận chênh lệch ≤10%.
-- [x] ResNet khởi tạo từ đầu, trả logits [B,10]; quy ước tích hợp ViT đã ghi, chưa xác nhận chạy ViT thực tế.
-- **Bằng chứng Minh:** [pilot GPU và overfit 32 ảnh thật](../results/pilot.md), [mã ResNet](../src/models/resnet.py), [công cụ khớp tham số](../src/inspect_model.py). Chưa xác nhận khớp ViT khi chưa nhận mã/số tham số.
+- [x] Đã đếm ResNet 272.474 tham số và đối chiếu ViT Lan Anh (274.282 tham số); chênh lệch 0,66% ≤ 10%.
+- [x] ResNet khởi tạo từ đầu, trả logits [B,10]; quy ước tích hợp ViT đã hoàn tất và kiểm chứng.
+- **Bằng chứng Minh:** [pilot GPU và overfit 32 ảnh thật](../results/pilot.md), [mã ResNet](../src/models/resnet.py), [công cụ khớp tham số](../src/inspect_model.py). Đã đối chiếu ViT Lan Anh tại `results/lanh_week1_checks.json`.
 - **Kiểm tra:** forward/backward và overfit batch nhỏ; Hiền đọc chéo số tham số.
 - **Phụ thuộc:** T01, T02; khớp tham số với T04. **File dự kiến:** `src/models/resnet.py`, `configs/resnet.yaml`. **Quy mô:** S.
 
 ### T06. Trainer tối thiểu và pilot — Minh chủ trì, Lan Anh phối hợp
 
-- [ ] ResNet đã qua trainer chung và có loss/accuracy/lr; Hiền đã cung cấp split chính và config tích hợp. Còn ViT của Lan Anh để nghiệm thu cả hai mô hình.
+- [x] ResNet đã qua trainer chung và có loss/accuracy/lr; Hiền đã cung cấp split chính và config tích hợp. ViT Lan Anh cũng đã chạy qua trainer chung thành công trên 4.500 ảnh CIFAR-10 thật (`runs/lanh_week1_smoke`).
 - [x] Checkpoint lưu model/optimizer/scheduler/RNG/generator/epoch/step; kiểm thử resume và validation có bằng chứng trong results/pilot.md.
-- [ ] Đã đo thời gian/epoch và bộ nhớ ResNet trên RTX 5080; chờ pilot ViT/split chính để chốt lịch GPU và tổng số lượt có thể hoàn thành.
-- **Bằng chứng Minh:** [kết quả pilot](../results/pilot.md), [hướng dẫn trainer/resume](../docs/minh-week1.md). ResNet đã chạy ngắt/resume qua tiến trình mới; đối chiếu GPU với chạy liền có trọng số/optimizer/lịch lr bằng nhau.
+- [x] Đã đo thời gian/epoch ViT (16,57s trên CPU) và ResNet (trên RTX 5080 và CPU). Cả hai mô hình đều có bằng chứng pilot độc lập (`results/pilot.md`, `results/hien_pilot_*`, `results/lanh_pilot_*`).
+- **Bằng chứng:** [kết quả pilot ResNet](../results/pilot.md), [kết quả pilot ViT](../results/lanh_pilot_summary.csv), [checks ViT](../results/lanh_week1_checks.json).
 - **Kiểm tra:** Lan Anh chạy thử ViT, Minh chạy thử ResNet; dừng rồi resume, đối chiếu log và cấu hình; không coi pilot là bảng kết quả cuối.
 - **Phụ thuộc:** T03–T05. **File dự kiến:** `src/train.py`, `src/checkpoint.py`, `configs/train.yaml`, `results/pilot.md`. **Quy mô:** M.
 
 ### Checkpoint B
 
-- [ ] Cả hai mô hình chạy thử trên dữ liệu thật; có số tham số và số đo pilot.
-- [ ] Nếu chưa đạt, sửa lỗi trước khi tiêu tốn GPU cho loạt chính.
+- [x] Cả hai mô hình chạy thử trên dữ liệu thật; có số tham số và số đo pilot (ResNet 272.474 params, ViT 274.282 params, chênh 0,66%).
+- [x] Cả hai mô hình đạt yêu cầu kiểm thử kỹ thuật tuần 1 trước khi mở loạt train tuần 2.
 
 ### T07. Metric và mẫu bảng — Hiền
 

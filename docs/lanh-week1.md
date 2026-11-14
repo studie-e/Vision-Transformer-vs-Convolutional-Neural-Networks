@@ -53,11 +53,31 @@ Các thành phần PyTorch cơ bản (`nn.Linear`, `nn.LayerNorm`, `nn.Conv2d`, 
 |---|---|
 | Forward pass: logits shape [B, 10] | ✅ Đạt |
 | Backward pass: tất cả tham số có gradient | ✅ Đạt (56 tham số) |
-| Đếm tham số: chênh lệch ≤ 10% ResNet | ✅ Đạt (0.7%) |
+| Đếm tham số: chênh lệch ≤ 10% ResNet | ✅ Đạt (0.66%) |
 | Overfit 1 batch nhỏ (50 steps) | ✅ Loss 2.33 → 0.001 |
 | Attention weights: shape đúng | ✅ [B, 4, 65, 65] |
 | Ablation mode: forward không lỗi | ✅ Đạt |
 | Ablation: pos_embed là buffer, không Parameter | ✅ Đạt |
+| Suite kiểm thử tự động pytest (`tests/test_lanh.py`) | ✅ 9/9 test đạt |
+| Pilot dữ liệu thật 4.500 ảnh CIFAR-10 (1 epoch) | ✅ 20,34% val acc (1.017/5.000) |
+| Evaluator và Trainer đồng thuận | ✅ Khớp 100% |
+| Mẫu Attention weights trên ảnh thật | ✅ Đã lưu tại `runs/lanh_week1_smoke/sample_attention.pt` |
+
+## Pilot trên dữ liệu thật CIFAR-10
+
+- **Cấu hình:** 1 epoch, batch size 128, tỷ lệ 10% (4.500 ảnh train, 5.000 val), split seed 2026, train seed 42, SGD lr=0.05, momentum=0.9.
+- **Kết quả huấn luyện:**
+  - 36 steps cập nhật
+  - Train loss: 2.2947, Train accuracy: 17,40%
+  - Val loss: 2.1755, Val accuracy: **20,34%** (1.017 / 5.000 ảnh)
+  - Thời gian: 16,57s trên CPU
+- **Đối chiếu:** `src.evaluate` nạp `best.pt` trả đúng 0.2034, khớp tuyệt đối với `best_val_accuracy` được lưu trong checkpoint bởi Trainer.
+- **Bằng chứng kỹ thuật:**
+  - `results/lanh_pilot_runs.csv`: metadata chi tiết của lượt chạy pilot.
+  - `results/lanh_pilot_summary.csv`: bảng tóm tắt 1 seed.
+  - `results/lanh_pilot_metrics.csv`: log từng epoch.
+  - `results/lanh_week1_checks.json`: xác nhận kỹ thuật tự động.
+  - `runs/lanh_week1_smoke/sample_attention.pt`: mẫu tensor 4 layer attention weights trên batch validation cho Hiền.
 
 ## Cách lấy attention weights (cho Hiền)
 

@@ -1,0 +1,2 @@
+model,ratio,split,protocol_id,n_seeds,mean_accuracy,std_accuracy,accuracies,split_seeds,train_seeds,params,global_steps
+src.models.vit:build_model,0.10,val,7fbd15f71fc5f45f8e2022a2a5878a3677a868d3f61a31f387a60c7fa248c6c8,1,0.2034,nan,[0.2034],['2026'],['42'],274282,[36]

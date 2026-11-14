@@ -1,0 +1,21 @@
+{
+  "model": "vit",
+  "trainable_parameters": 274282,
+  "parameter_diff_percent_vs_resnet": 0.66,
+  "train_samples": 4500,
+  "val_samples": 5000,
+  "train_seconds": 16.57,
+  "val_accuracy": 0.2034,
+  "evaluator_trainer_agree": true,
+  "attention_extraction_verified": true,
+  "num_encoder_blocks": 4,
+  "attention_shape": [
+    8,
+    4,
+    65,
+    65
+  ],
+  "python_version": "3.14.4",
+  "torch_version": "2.12.0+cpu",
+  "device": "cpu"
+}
