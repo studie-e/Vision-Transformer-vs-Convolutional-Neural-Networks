@@ -113,8 +113,9 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T11. ResNet: 10%/50%/100%, seed đầu — Minh
 
-- [ ] Hoàn thành 3 lượt với đúng tập con/seed ghép cặp của T10; đủ log/checkpoint.
-- [ ] Ghi params, thời gian, số bước và kết quả validation; lưu lỗi/rerun nếu có.
+- [x] Hoàn thành ba lượt ResNet 10%/50%/100%, mỗi lượt 100 epoch, split seed 2026/train seed 42; dùng manifest/cấu hình ghép cặp đã bàn giao ViT. Log/best.pt/last.pt đầy đủ ở `runs/week2/`.
+- [x] Đã lưu params, thời gian, số bước, validation và đủ 100 dòng epoch mỗi lượt. Evaluator khớp trainer: 74,24% / 88,40% / 91,80%; không đánh giá test, không có run chính lỗi/rerun.
+- **Bằng chứng:** [báo cáo kết quả Minh tuần 2](../results/week2/minh_week2.md), [metadata từng run](../results/week2/resnet_runs.csv), [kiểm tra tự động](../results/week2/minh_week2_checks.json), [hướng dẫn bàn giao](../docs/minh-week2.md). Swin prototype 261.824 tham số đã qua forward/backward, chưa train; phần Method–CNN đã soạn. Chưa xác nhận thay Hiền đã đọc chéo hoặc thay Lan Anh đã chạy ba lượt ViT chính.
 - **Kiểm tra:** Hiền đối chiếu manifest dữ liệu và điều kiện so sánh; test cuối sau khi toàn bộ lựa chọn phương pháp/checkpoint đã khóa.
 - **Phụ thuộc:** T09. **Sản phẩm:** 3 run manifest, checkpoint ngoài Git và log. **Quy mô:** S về cấu hình; GPU theo pilot.
 

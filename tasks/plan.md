@@ -9,6 +9,7 @@
 - Mục tiêu đề xuất: làm đủ yêu cầu tối thiểu, có attention map, ablation, phân tích inductive bias và thử thêm Swin để hướng tới mức giỏi. Đây là mục tiêu thực hiện, không phải cam kết điểm số.
 - Chưa có ngày bắt đầu, lịch sử dụng máy và số giờ làm mỗi người; kế hoạch dùng tuần tương đối. Chốt lịch GPU trong tuần 1 sau khi đo thời gian chạy thực tế.
 - Cập nhật 12/11/2026: đã triển khai phần tuần 1 của Minh; xem [bàn giao](../docs/minh-week1.md) và [pilot](../results/pilot.md). ViT và split chính còn chờ Lan Anh/Hiền. Theo xác nhận của Minh, giảng viên không yêu cầu gửi lời mời GitHub; các dòng về lời mời trong tài liệu gốc được điều chỉnh theo chỉ dẫn này.
+- Cập nhật 14/11/2026: đã nhận ViT/split chính từ main và hoàn tất phần kỹ thuật tuần 2 của Minh. Giao thức thực tế khóa tại `configs/week2/locked_protocol.json`: cặp seed 2026/42, 100 epoch; ResNet SGD và ViT AdamW được chọn sau tuning ngang ngân sách. [Kết quả ResNet tuần 2](../results/week2/minh_week2.md); chưa chạy ViT chính thay Lan Anh hoặc đánh giá test cuối.
 
 ## 1. Yêu cầu rút ra từ tài liệu gốc
 

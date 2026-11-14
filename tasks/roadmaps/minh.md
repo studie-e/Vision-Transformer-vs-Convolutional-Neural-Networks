@@ -22,6 +22,8 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 
 **Cập nhật tuần 2 — 14/11/2026:** đã pull ViT/split chính, khóa giao thức sau tuning ngang ngân sách. Xem [bàn giao tuần 2](../../docs/minh-week2.md); cấu hình thực tế ở `configs/week2/`. Train seed 42/split seed 2026 thay đề xuất cũ seed 17.
 
+**Kết quả thực hiện tuần 2:** đủ ba lượt ResNet × 100 epoch; validation 74,24% / 88,40% / 91,80% tương ứng 10%/50%/100% train; evaluator khớp trainer. Đã chuẩn bị Swin prototype, Method–CNN, log/metadata, learning curve và bộ YAML bàn giao ViT. [Báo cáo và bằng chứng](../../results/week2/minh_week2.md). Phần Minh tự giải thích/trao đổi trực tiếp và sao lưu log vẫn cần nhóm xác nhận thực tế.
+
 ## Tuần 2 — train ResNet với ba tỷ lệ
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |

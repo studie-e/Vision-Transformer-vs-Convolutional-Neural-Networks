@@ -1,0 +1,4 @@
+model,ratio,split,protocol_id,n_seeds,mean_accuracy,std_accuracy,accuracies,split_seeds,train_seeds,params,global_steps
+src.models.resnet:build_model,0.10,val,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,1,0.7424,nan,[0.7424],['2026'],['42'],272474,[3600]
+src.models.resnet:build_model,0.50,val,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,1,0.884,nan,[0.884],['2026'],['42'],272474,[17600]
+src.models.resnet:build_model,1.00,val,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,1,0.918,nan,[0.918],['2026'],['42'],272474,[35200]

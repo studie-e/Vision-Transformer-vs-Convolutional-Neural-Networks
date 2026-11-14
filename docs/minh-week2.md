@@ -73,6 +73,6 @@ Các ghi chú này là hướng dẫn đọc code. Việc Minh tự hiểu và g
 
 ## Trạng thái nghiệm thu
 
-Theo dõi mục T05/T06/T09/T11 và sản phẩm tuần 2 trong `tasks/todo.md`. Chỉ ghi hoàn thành sau khi có đủ run/log/đối chiếu thực tế; kết quả cuối sẽ được tổng hợp ở `results/week2/minh_week2.md`.
+Theo dõi mục T05/T06/T09/T11 và sản phẩm tuần 2 trong `tasks/todo.md`. Đã hoàn tất ba run ResNet 100 epoch, evaluator và trainer khớp chính xác; [báo cáo kết quả cuối tuần 2](../results/week2/minh_week2.md), [bảng từng run](../results/week2/resnet_runs.csv), [bộ kiểm tra](../results/week2/minh_week2_checks.json). Validation lần lượt 74,24% / 88,40% / 91,80%; 36 test đạt, không test bị skip. ViT chính/attention chung và test cuối chưa được đánh dấu hoàn thành.
 
 Tuần 2 mới một seed: std mẫu phải là N/A, chưa kết luận ổn định và chưa thể khẳng định CNN thắng/thua ViT từ pilot. Tiếp tục hai seed ResNet còn lại ở tuần 3; giữ test chính thức đến khi khóa toàn bộ phương pháp/checkpoint cuối.

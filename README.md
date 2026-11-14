@@ -8,6 +8,8 @@ Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: 
 
 [Bàn giao và recipe tuần 2](docs/minh-week2.md) · [Method–CNN](reports/method_minh_week2.md). ViT và split chính đã tích hợp; dùng các YAML trong `configs/week2/` cho thí nghiệm chính, giữ `configs/train.yaml` làm pilot tuần 1.
 
+Đã hoàn tất ba lượt ResNet × 100 epoch: validation **74,24% / 88,40% / 91,80%** ở 10%/50%/100% train. [Kết quả và biểu đồ](results/week2/minh_week2.md) · [CSV metadata](results/week2/resnet_runs.csv). Một seed, std N/A; chưa mở test hoặc chạy các lượt ViT chính thay Lan Anh.
+
 Đã khóa 100 epoch cho cả ba tỷ lệ, cặp seed `(split=2026, train=42)`. Sau ngân sách tuning ngang nhau, ResNet chọn SGD và ViT chọn AdamW. Cấu hình ViT chính được bàn giao Lan Anh; script dưới đây thực thi ba lượt ResNet của Minh:
 
 ```powershell
@@ -68,9 +70,9 @@ python -m src.inspect_model --config configs/vit.yaml
 python -m src.inspect_model --target 272474
 ```
 
-Lệnh thứ nhất chỉ chạy khi Lan Anh đã giao config/mã; số `272474` ở lệnh thứ hai là ví dụ, phải thay bằng số tham số ViT thật. Chưa có ViT thì chưa xác nhận hai mô hình tương đương tham số. `configs/resnet.yaml` mô tả riêng mô hình; `configs/train.yaml` là config chạy pilot đầy đủ.
+Lan Anh đã giao ViT: lệnh thứ nhất đếm 274.282 tham số. Số `272474` ở lệnh thứ hai là ví dụ cú pháp, khi khớp ViT thay bằng `274282`; ResNet hiện tại 272.474 tham số, lệch 0,659%. `configs/resnet.yaml` mô tả riêng mô hình; `configs/train.yaml` là config pilot đầy đủ, còn `configs/week2/` chứa các cấu hình chính.
 
-Evaluator và script tổng hợp đã có trong phần bàn giao Hiền; các lệnh pilot chỉ dùng train/validation. Test cuối chỉ chạy sau khi khóa giao thức, còn attention và tích hợp ViT tiếp tục theo kế hoạch tuần sau.
+Hiền đã bàn giao evaluator/tổng hợp, Lan Anh đã bàn giao ViT. Các lệnh pilot tuần 1 chỉ train/validation; lệnh tuần 2 dùng dữ liệu chính và đối chiếu evaluator, vẫn chưa mở test. Attention/bảng so sánh đủ hai mô hình thuộc bước tiếp theo của nhóm.
 
 ## Nguồn và phần tự cài
 
