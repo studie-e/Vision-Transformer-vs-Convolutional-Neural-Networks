@@ -2,6 +2,7 @@
 
 import argparse
 import csv
+import json
 from pathlib import Path
 
 import matplotlib
@@ -17,11 +18,17 @@ from src.evaluate import build_run_row, evaluate_checkpoint
 from src.train import factory
 
 
-def inspect_run(directory):
+# Hàm inspect_run: nạp và đối chiếu checkpoint/log trên thiết bị được chọn.
+# Nhận thư mục run và device tùy chọn; mặc định dùng thiết bị train trong metadata.
+# CPU/CUDA có thể khác làm tròn ở ảnh sát ranh giới, nên không ép đánh giá GPU run bằng CPU.
+def inspect_run(directory, device=None):
     config_path = directory / 'config.yaml'
     checkpoint = directory / 'best.pt'
     config = yaml.safe_load(config_path.read_text(encoding='utf-8'))
-    result = evaluate_checkpoint(checkpoint, config, 'val')
+    if device is None:
+        metadata = json.loads((directory / 'metadata.json').read_text(encoding='utf-8'))
+        device = metadata.get('device', 'cpu')
+    result = evaluate_checkpoint(checkpoint, config, 'val', device=device)
     row = build_run_row(config_path, checkpoint, result, 'val')
     with (directory / 'metrics.csv').open(encoding='utf-8', newline='') as stream:
         history = list(csv.DictReader(stream))
@@ -37,7 +44,7 @@ def inspect_run(directory):
     data = config['data']
     model = config['model']['factory'].split(':')[0].split('.')[-1]
     manifest = load_manifest(data['split_seed'], data.get('splits_dir', 'results/splits'))
-    row.update(architecture=model, train_images=len(manifest['subsets'][row['ratio']]),
+    row.update(architecture=model, evaluation_device=str(device), train_images=len(manifest['subsets'][row['ratio']]),
                metrics_path=(directory / 'metrics.csv').as_posix())
     return config, result, row, history
 
@@ -48,7 +55,9 @@ def save_figure(fig, path):
     plt.close(fig)
 
 
-def attention_examples(directory, config, result, output):
+# Hàm attention_examples: vẽ ảnh đúng/sai theo manifest và attention của checkpoint đã đối chiếu.
+# Tham số device phải cùng thiết bị với bước tạo result để giữ nhãn dự đoán nhất quán.
+def attention_examples(directory, config, result, output, device='cpu'):
     """Use the first correct and incorrect images in the fixed manifest order."""
     _, loader = build_loaders(config)
     dataset = loader.dataset
@@ -56,6 +65,7 @@ def attention_examples(directory, config, result, output):
     model = factory(config['model']['factory'])(config)
     state = torch.load(directory / 'best.pt', weights_only=True, map_location='cpu')
     model.load_state_dict(state['model'])
+    model.to(device)
     model.eval()
     positions = {}
     for i, (label, prediction) in enumerate(zip(result['labels'], result['predictions'])):
@@ -68,7 +78,7 @@ def attention_examples(directory, config, result, output):
         index = dataset.indices[i]
         raw_image, raw_label = raw[index]
         with torch.inference_mode():
-            prediction = int(model(image.unsqueeze(0)).argmax(1)[0])
+            prediction = int(model(image.unsqueeze(0).to(device)).argmax(1)[0])
             weights = model.get_attention_weights()[-1]
         patch = config['model']['kwargs']['patch_size']
         height, width = image.shape[-2:]
@@ -78,7 +88,8 @@ def attention_examples(directory, config, result, output):
                 or raw_image.size != (width, height) or (raw_label, prediction) !=
                 (label, result['predictions'][i]) or (label == prediction) != correct):
             raise ValueError('Attention grid or validation sample does not match the checkpoint')
-        heat = weights[0, :, 0, 1:].mean(0).reshape(grid).numpy()
+        # NumPy/matplotlib đọc tensor trên CPU; chuyển heatmap về CPU sau khi tính trên thiết bị run.
+        heat = weights[0, :, 0, 1:].mean(0).reshape(grid).cpu().numpy()
         heat = np.repeat(np.repeat(heat, patch, axis=0), patch, axis=1)
         original.imshow(raw_image)
         original.set_title(f'Index {index} | true: {result["class_names"][label]}')
@@ -95,13 +106,15 @@ def main():
     parser.add_argument('--run', type=Path, action='append', required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--label', choices=('pilot', 'validation'), default='pilot')
+    # Bỏ trống để dùng device lưu trong từng run; truyền --device cpu/cuda để chọn rõ ràng.
+    parser.add_argument('--device', choices=('cpu', 'cuda'), default=None)
     args = parser.parse_args()
     torch.set_num_threads(4)
     args.out.mkdir(parents=True, exist_ok=True)
     records = []
     seen = set()
     for number, directory in enumerate(args.run, 1):
-        config, result, row, history = inspect_run(directory)
+        config, result, row, history = inspect_run(directory, device=args.device)
         key = tuple(row[field] for field in ('architecture', 'ratio', 'split_seed', 'train_seed'))
         if key in seen:
             raise ValueError(f'Duplicate run for {key}')
@@ -124,7 +137,8 @@ def main():
         axis.set_yticks(range(10), result['class_names'])
         save_figure(fig, args.out / f'{name}_confusion.png')
         if row['architecture'] == 'vit':
-            attention_examples(directory, config, result, args.out / f'{name}_attention.png')
+            attention_examples(directory, config, result, args.out / f'{name}_attention.png',
+                               device=row['evaluation_device'])
     with (args.out / 'validation.csv').open('w', encoding='utf-8', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=['scope', *records[0]])
         writer.writeheader()
