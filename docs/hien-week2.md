@@ -29,7 +29,7 @@ Chúng tôi tính top-1 accuracy bằng tổng số ảnh dự đoán đúng chi
 
 - Trainer cộng số dự đoán đúng theo ảnh, chia cho tổng số ảnh, và tính loss có trọng số theo kích thước batch. Evaluator độc lập tái hiện đúng accuracy trên hai pilot.
 - ResNet trả logits 10 lớp trực tiếp cho CrossEntropy. Checkpoint tốt nhất dùng điều kiện tăng nghiêm ngặt của validation accuracy. Checkpoint cuối giữ trạng thái optimizer, scheduler và RNG để nối lại tại ranh giới epoch. Khi resume, trainer kiểm tra config và hash manifest.
-- Các bài kiểm thử resume và kết quả pilot Minh cung cấp bằng chứng trong phạm vi đã chạy. Thời gian CPU và GPU được ghi riêng. Nhóm cần chốt recipe và xác nhận nguồn lưu các checkpoint thực nghiệm.
+- Các bài kiểm thử resume và kết quả pilot Minh cung cấp bằng chứng trong phạm vi đã chạy. Thời gian CPU và GPU được ghi riêng. Recipe P0 đã được chốt trong giao thức. Nhóm cần xác nhận nguồn lưu các checkpoint thực nghiệm.
 
 ## Trạng thái
 
