@@ -1,3 +1,4 @@
+# Historical tuning recipe, lr=0.001. Current team P0 config: vit_10.yaml (lr=0.0003).
 seed: 42
 model:
   factory: src.models.vit:build_model

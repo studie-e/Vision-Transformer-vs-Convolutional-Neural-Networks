@@ -1,5 +1,8 @@
 # Kết quả tuần 2 — Minh, 14/11/2026
 
+> Cập nhật giao thức nhóm: ViT P0 hiện hành dùng AdamW lr **0.0003**, wd 0.05, 100 epoch theo `configs/week2/vit_{10,50,100}.yaml`. Recipe ViT lr 0.001 trong các số liệu tuning dưới đây là lịch sử, không phải lựa chọn nhóm hiện tại. Ba run ResNet 100 epoch vẫn khớp giao thức.
+
+
 ## Phạm vi đã hoàn tất
 
 Đã pull main `6211fe0`, tích hợp pipeline/split chính của Hiền và ViT tự cài của Lan Anh; đối chiếu tham số, tuning ngang ngân sách rồi khóa recipe. Đã huấn luyện **đủ ba lượt ResNet × 100 epoch**, một cặp seed `(split=2026, train=42)`, giữ nguyên ResNet 272.474 tham số. Không chạy test chính thức. Lượt ViT chính vẫn dành cho Lan Anh; bốn pilot tuning không được tính là các lượt chính.

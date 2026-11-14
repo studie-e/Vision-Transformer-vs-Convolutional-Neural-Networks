@@ -1,5 +1,8 @@
 # Method–CNN và thiết lập thí nghiệm — Minh, tuần 2
 
+> Cập nhật giao thức nhóm: ViT P0 hiện hành dùng AdamW lr **0.0003**, wd 0.05, 100 epoch theo `configs/week2/vit_{10,50,100}.yaml`. Recipe ViT lr 0.001 trong các số liệu tuning dưới đây là lịch sử, không phải lựa chọn nhóm hiện tại. Ba run ResNet 100 epoch vẫn khớp giao thức.
+
+
 ## Kiến trúc ResNet
 
 Nhóm sử dụng ResNet cho ảnh CIFAR-10 RGB 32×32, gồm stem tích chập 3×3 stride 1, ba stage residual với số kênh 16/32/64. Mỗi stage có ba basic block; mỗi block gồm hai convolution 3×3 và BatchNorm. Mạng giảm kích thước không gian ở block đầu stage 2 và 3, sau đó global average pooling và lớp linear 10 đầu ra.

@@ -4,6 +4,12 @@
 
 Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: [bàn giao tuần 1 của Hiền](docs/hien-week1-handoff.md). Config chạy tích hợp: `configs/hien_smoke.yaml`; lệnh `python -X utf8 -m scripts.check_hien_week1 --device cpu` kiểm tra một epoch trên split chính và lưu bằng chứng pilot riêng.
 
+## Giao thức nhóm mới nhất — ViT GPU hỗ trợ Lan Anh
+
+Dùng [sáu YAML hiện hành](configs/week2/README.md) và [hướng dẫn nhóm](docs/bao-cao-tuan2-lan-anh-ho-tro.md): ViT **AdamW lr 0.0003, wd 0.05, dropout 0.1**; ResNet **SGD lr 0.05, momentum 0.9, wd 0.0005**. Cùng 100 epoch, batch 128, split seed 2026/train seed 42; giữ test cuối. Minh vận hành ba lượt ViT GPU hỗ trợ Lan Anh theo yêu cầu mới.
+
+Phần tuning/khóa cũ bên dưới được giữ để truy vết; ưu tiên YAML `vit_10.yaml`, `vit_50.yaml`, `vit_100.yaml` khi chạy P0 hiện hành.
+
 ## Tuần 2 của Minh
 
 [Bàn giao và recipe tuần 2](docs/minh-week2.md) · [Method–CNN](reports/method_minh_week2.md). ViT và split chính đã tích hợp; dùng các YAML trong `configs/week2/` cho thí nghiệm chính, giữ `configs/train.yaml` làm pilot tuần 1.

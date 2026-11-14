@@ -1,5 +1,8 @@
 # Bàn giao tuần 2 — Minh
 
+> Cập nhật giao thức nhóm: ViT P0 hiện hành dùng AdamW lr **0.0003**, wd 0.05, 100 epoch theo `configs/week2/vit_{10,50,100}.yaml`. Recipe ViT lr 0.001 trong các số liệu tuning dưới đây là lịch sử, không phải lựa chọn nhóm hiện tại. Ba run ResNet 100 epoch vẫn khớp giao thức.
+
+
 ## Phạm vi và quy trình
 
 Ngày bắt đầu: **14/11/2026**, Asia/Saigon. Đã pull `main` đến commit `6211fe0`, sau đó fast-forward nhánh `Minh` để triển khai. Tiếp nối đúng phân công: Minh phụ trách ResNet/trainer, chuẩn bị Swin; Lan Anh phụ trách các lượt ViT chính; Hiền phân tích và tổng hợp dữ liệu.
