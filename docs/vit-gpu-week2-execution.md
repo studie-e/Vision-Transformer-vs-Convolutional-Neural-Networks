@@ -1,6 +1,6 @@
-# Minh vận hành GPU hỗ trợ Lan Anh — ViT tuần 2
+# Thực thi ba lượt ViT trên GPU — tuần 2
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Lan Anh** (mô hình ViT, mã trích xuất attention và Method–ViT), **Hiền** (dữ liệu, cấu hình nhóm, đối chiếu và phân tích), **Minh** (hỗ trợ chạy ba lượt trên RTX 5080, kiểm tra và đóng gói).
 
 Ghi lại lệnh chạy ba lượt ViT trên RTX 5080, cách đối chiếu kết quả và gói bàn giao cho Hiền.
 
@@ -50,12 +50,10 @@ Sau khi đủ sáu run, dùng `src.visualize --label validation` trên đúng s�
 
 Checkpoint C chỉ được đánh dấu đủ sáu lượt khi cả ba ViT 100 epoch đã hoàn tất và qua đối chiếu. Trạng thái `ready_for_handoff` nghĩa là file đã sẵn sàng cục bộ, không có nghĩa Hiền đã tiếp nhận/đọc chéo. Các số liệu, hình và chỉ mục gói hoàn tất sẽ được ghi trong `results/team_week2/`.
 
-## Ghi nhận đóng góp
-
-Lan Anh phụ trách kiến trúc ViT, mã attention và phần viết phương pháp. Minh cung cấp RTX 5080 và vận hành các lượt GPU, kiểm tra/đóng gói. Hiền cung cấp dữ liệu/giao thức và tiếp nhận, phân tích kết quả. Việc vận hành trên máy Minh không thay đổi tác giả phần mô hình. Một seed không đủ để ước lượng std mẫu; test cuối và hai seed tiếp theo vẫn theo kế hoạch nhóm.
-
 ## Kết quả hoàn tất
 
 Ba ViT đã đủ 100 epoch; best validation 52,16% / 67,66% / 75,90% ở 10/50/100%. Sáu run P0 đã đối chiếu bằng evaluator CUDA và có ZIP đầy đủ. [Báo cáo kết quả và chỉ mục gói](../results/team_week2/README.md). Gói gộp `runs/handoff/team_week2_all_runs.zip`, 33.833.022 byte; checksum ở file `.sha256.txt` cạnh gói. Chưa gửi cho Hiền.
+
+Tuần 2 có một seed nên chưa ước lượng được độ lệch chuẩn mẫu. Hai seed tiếp theo và đánh giá test cuối theo kế hoạch nhóm.
 
 Công cụ visual được bổ sung `--device`, mặc định theo metadata train; tránh ép GPU run đánh giá bằng CPU, vốn có thể khác dự đoán trên ảnh sát ranh giới do số học dấu phẩy động. Với ViT 10%, CPU đếm 2.607/5.000 và CUDA đếm 2.608/5.000; số liệu bàn giao dùng CUDA đúng thiết bị train. Đã kiểm thử hồi quy, toàn suite 39 test đạt. Không sửa checkpoint, không nới điều kiện khớp log.

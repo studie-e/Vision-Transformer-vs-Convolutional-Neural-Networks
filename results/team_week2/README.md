@@ -1,6 +1,8 @@
 # Sáu lượt P0 tuần 2 — giao thức nhóm đã chốt
 
-Ngày thực hiện: **14/11/2026**. Đã pull/fetch main, hien và lanh; merge vào nhánh Minh, đọc [báo cáo hỗ trợ Lan Anh](../../docs/bao-cao-tuan2-lan-anh-ho-tro.md), chạy mới ba ViT GPU theo đúng YAML hiện hành. Minh vận hành GPU hỗ trợ Lan Anh; tác giả/đầu việc mô hình ViT vẫn là Lan Anh.
+**Người phụ trách: Lan Anh** (mô hình ViT), **Hiền** (dữ liệu, cấu hình và tổng hợp kết quả), **Minh** (ResNet, hỗ trợ chạy ba lượt ViT trên GPU và chuẩn bị gói bàn giao).
+
+Ngày thực hiện **14/11/2026**. Đã đồng bộ mã từ main, hien và lanh vào nhánh Minh rồi chạy mới ba lượt ViT theo YAML hiện hành. [Báo cáo phối hợp thực thi](../../docs/bao-cao-tuan2-lan-anh-ho-tro.md).
 
 ## Kết quả validation sau 100 epoch
 

@@ -9,7 +9,7 @@
 - Mục tiêu đề xuất: làm đủ yêu cầu tối thiểu, có attention map, ablation, phân tích inductive bias và thử thêm Swin để hướng tới mức giỏi. Đây là mục tiêu thực hiện, không phải cam kết điểm số.
 - Chưa có ngày bắt đầu, lịch sử dụng máy và số giờ làm mỗi người; kế hoạch dùng tuần tương đối. Chốt lịch GPU trong tuần 1 sau khi đo thời gian chạy thực tế.
 - Cập nhật 12/11/2026: đã triển khai phần tuần 1 của Minh; xem [bàn giao](../docs/minh-week1.md) và [pilot](../results/pilot.md). ViT và split chính còn chờ Lan Anh/Hiền. Theo xác nhận của Minh, giảng viên không yêu cầu gửi lời mời GitHub; các dòng về lời mời trong tài liệu gốc được điều chỉnh theo chỉ dẫn này.
-- Cập nhật 14/11/2026: đã nhận ViT/split chính từ main và hoàn tất phần kỹ thuật tuần 2 của Minh. Giao thức thực tế khóa tại `configs/week2/locked_protocol.json`: cặp seed 2026/42, 100 epoch; ResNet SGD và ViT AdamW được chọn sau tuning ngang ngân sách. [Kết quả ResNet tuần 2](../results/week2/minh_week2.md); chưa chạy ViT chính thay Lan Anh hoặc đánh giá test cuối.
+- Cập nhật 14/11/2026: đã đủ sáu lượt chính tuần 2 theo YAML nhóm chốt, với cặp seed 2026/42 và 100 epoch. **Lan Anh phụ trách ViT, Hiền chuẩn bị dữ liệu và cấu hình chung, Minh chạy ResNet.** Hiền phụ trách đối chiếu và tổng hợp kết quả. [Cấu hình hiện hành](../configs/week2/README.md) · [Kết quả sáu lượt](../results/team_week2/README.md).
 
 ## 1. Yêu cầu rút ra từ tài liệu gốc
 
@@ -70,7 +70,7 @@ Câu hỏi chính: khi tăng lượng dữ liệu huấn luyện, chênh lệch 
 
 | Mức | Thí nghiệm | Số lượt dự kiến | Phụ trách |
 |---|---|---:|---|
-| P0 — bắt buộc theo đề | ViT và ResNet × 10%/50%/100% × seed đầu tiên | 6 | Lan Anh 3 ViT; Minh 3 ResNet |
+| P0 — bắt buộc theo đề | ViT và ResNet × 10%/50%/100% × seed đầu tiên | 6 | Lan Anh phụ trách ViT, Minh hỗ trợ chạy ba lượt ViT và chạy ba lượt ResNet, Hiền phụ trách dữ liệu và đối chiếu |
 | P1 — độ tin cậy đề xuất | Chạy thêm 2 seed cho cả 6 cấu hình | 12 | Lan Anh 6 ViT; Minh 6 ResNet |
 | P2 — ablation | ViT bỏ positional embedding ở 50% dữ liệu × 3 seed; đối chiếu ViT chuẩn đã có | 3 | Lan Anh; Hiền tổng hợp |
 | P2 — mở rộng | Swin nhỏ, train từ đầu, ở 10% và 100% × 3 seed | 6 | Minh; Lan Anh hỗ trợ |
@@ -104,7 +104,7 @@ Hiền tổng hợp tài liệu, nhưng **mỗi người tự viết phần mìn
 | Tuần | Lan Anh — ViT | Minh — CNN và huấn luyện | Hiền — dữ liệu và phân tích |
 |---|---|---|---|
 | **1** | Đọc bài ViT; tự cài ViT nhỏ, chạy thử | Đọc ResNet; dựng ResNet, trainer, môi trường RTX 5080; đo thời gian chạy | Chuẩn bị dữ liệu, tập con; dựng template ACL và tổng hợp proposal |
-| **2** | Chạy ViT với **10%, 50%, 100%** dữ liệu | Chạy ResNet với ba tỷ lệ tương ứng; khớp số tham số với ViT | Kiểm tra kết quả; tạo bảng, biểu đồ và attention map thử |
+| **2** | Phụ trách ViT ở **10%, 50%, 100%** dữ liệu | Chạy ResNet ở ba tỷ lệ, khớp số tham số với ViT và hỗ trợ vận hành GPU cho ba lượt ViT | Chuẩn bị cấu hình chung, kiểm tra kết quả, tạo bảng, biểu đồ và attention map thử |
 | **3** | Chạy thêm seed; làm ablation positional embedding | Chạy thêm seed; bắt đầu thử Swin sau các lượt chính | Tổng hợp trung bình/độ lệch chuẩn, phân tích lỗi; hoàn thiện milestone |
 | **4** | Chốt ablation, phần Method–ViT và slide | Chốt Swin, README, môi trường, demo và slide | Chốt Analysis, hình/bảng; ghép báo cáo ACL và slide |
 
@@ -115,7 +115,7 @@ Lịch từng ngày và các mốc bàn giao: [lộ trình chung](roadmaps/READM
 - Đầu tuần: họp khoảng 30 phút để chốt đầu ra, phụ thuộc và lịch GPU.
 - Giữa tuần: kiểm tra ngắn bằng sản phẩm thực tế: commit, log, bảng hoặc PDF; chuyển việc nếu một người bị quá tải.
 - Cuối tuần: mỗi người bàn giao mã/cấu hình, kết quả và đoạn báo cáo của mình; người đọc chéo xác nhận.
-- Minh điều phối lịch GPU dùng chung. Lan Anh thực thi các lượt ViT/ablation; Minh thực thi ResNet/Swin; Hiền nhận log/checkpoint để đánh giá và phân tích.
+- Minh điều phối lịch GPU dùng chung và thực thi ResNet/Swin. Lan Anh phụ trách các lượt ViT/ablation, với Minh hỗ trợ chạy ba lượt ViT seed đầu. Hiền phụ trách nhận log/checkpoint, đánh giá và phân tích.
 - Lưu checkpoint có thể resume và sao lưu log sau mỗi lượt. Không suy ra thời gian train chỉ từ tên GPU.
 
 ### Hai tuần còn lại trong lịch môn học

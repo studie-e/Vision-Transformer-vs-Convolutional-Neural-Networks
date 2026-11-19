@@ -1,6 +1,6 @@
 # Cấu hình nhóm hiện hành — tuần 2
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Hiền** (cấu hình và dữ liệu chung), **Lan Anh** (mô hình và thiết lập ViT), **Minh** (mô hình và thiết lập ResNet, hỗ trợ chạy ViT trên GPU).
 
 Chỉ cách chọn YAML hiện hành để chạy ResNet và ViT ở ba tỷ lệ dữ liệu trong tuần 2.
 
