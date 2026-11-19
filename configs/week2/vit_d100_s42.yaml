@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (cấu hình ViT sau tuning trước giao thức chính), Lan Anh (mô hình ViT), Hiền (manifest dữ liệu).
+# Người đóng góp: Minh (viết cấu hình ViT sau tuning trước giao thức chính).
+# Phối hợp: Lan Anh phụ trách mô hình ViT. Hiền cung cấp manifest dữ liệu.
 # Lưu cấu hình ViT 100% dữ liệu, seed 42, dùng learning rate 0.001 từ đợt thử trước giao thức chính.
 # Historical tuning recipe, lr=0.001. Current team P0 config: vit_100.yaml (lr=0.0003).
 seed: 42

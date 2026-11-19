@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (cấu hình và lượt chạy ResNet), Hiền (manifest chia dữ liệu theo seed).
+# Người đóng góp: Minh (viết cấu hình và chạy lượt ResNet bổ sung).
+# Phối hợp: Hiền cung cấp manifest chia dữ liệu theo seed.
 # Lặp thí nghiệm ResNet 50% dữ liệu với cặp seed chia dữ liệu 2028 và seed huấn luyện 44.
 seed: 44
 model:

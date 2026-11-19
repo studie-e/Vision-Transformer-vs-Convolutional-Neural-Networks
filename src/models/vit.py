@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (mô hình ViT và mã trích xuất attention).
+# Người đóng góp: Lan Anh (mô hình ViT và mã trích xuất attention).
 """Vision Transformer (ViT) tự cài cho ảnh nhỏ CIFAR-10 32×32.
 
 Nguồn kiến trúc: Dosovitskiy et al., "An Image is Worth 16x16 Words:

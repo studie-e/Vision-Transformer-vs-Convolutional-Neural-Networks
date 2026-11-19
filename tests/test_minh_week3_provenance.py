@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (kiểm thử đối chiếu phiên bản mã huấn luyện).
+# Người đóng góp: Minh (kiểm thử đối chiếu phiên bản mã huấn luyện).
 # Kiểm tra khả năng phân biệt sửa chú thích với thay đổi mã chạy hoặc thư viện khi so sánh các lượt train.
 """Kiểm tra đối chiếu mã huấn luyện giữa các commit của tuần 2 và tuần 3."""
 

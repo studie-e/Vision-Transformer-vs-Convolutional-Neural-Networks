@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (kiểm thử chọn thiết bị đánh giá khi vẽ hình).
+# Người đóng góp: Minh (kiểm thử chọn thiết bị đánh giá khi vẽ hình).
 # Kiểm tra công cụ vẽ chuyển đúng thiết bị CPU hoặc CUDA sang bước đánh giá checkpoint.
 import csv
 import json

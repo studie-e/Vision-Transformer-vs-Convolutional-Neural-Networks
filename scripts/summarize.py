@@ -1,4 +1,4 @@
-# Người phụ trách: Hiền (gộp các lượt hợp lệ và xuất thống kê theo mô hình, tỷ lệ và giao thức).
+# Người đóng góp: Hiền (gộp các lượt hợp lệ và xuất thống kê theo mô hình, tỷ lệ và giao thức).
 """Script tổng hợp kết quả — Hiền.
 
 Đọc results/runs.csv (do src.evaluate tạo ra), tính mean ± std theo từng

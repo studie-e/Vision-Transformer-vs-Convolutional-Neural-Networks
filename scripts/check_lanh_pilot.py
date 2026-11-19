@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (pilot ViT với dữ liệu CIFAR-10 và kiểm tra attention).
+# Người đóng góp: Lan Anh (pilot ViT với dữ liệu CIFAR-10 và kiểm tra attention).
 """Pilot tích hợp dữ liệu thật CIFAR-10 cho ViT — tuần 1 Lan Anh.
 
 Chạy: python -X utf8 -m scripts.check_lanh_pilot --device cpu

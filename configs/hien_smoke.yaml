@@ -1,4 +1,4 @@
-# Người phụ trách: Hiền (cấu hình chạy thử tích hợp dữ liệu chính).
+# Người đóng góp: Hiền (viết cấu hình chạy thử với manifest chính).
 # Mô hình ResNet và trainer dùng trong lượt chạy thử do Minh phụ trách.
 # Integration pilot only; not a final comparison recipe.
 seed: 42

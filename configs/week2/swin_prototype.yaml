@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (cấu hình Swin thử nghiệm).
+# Người đóng góp: Minh (cấu hình Swin thử nghiệm).
 # Định nghĩa Swin cho ảnh 32×32 để kiểm tra đầu ra và gradient khi chạy forward/backward.
 # Chỉ kiểm tra forward/backward tuần 2; chưa có số liệu Swin huấn luyện.
 model:

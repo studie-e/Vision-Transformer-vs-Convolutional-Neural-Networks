@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (cấu hình tuning), Lan Anh (mô hình ViT), Hiền (manifest dữ liệu).
+# Người đóng góp: Minh (viết cấu hình khảo sát optimizer cho ViT).
+# Phối hợp: Lan Anh phụ trách mô hình ViT. Hiền cung cấp manifest dữ liệu.
 # Thử ViT với SGD trong 10 epoch trên 50% dữ liệu train để so sánh cách thiết lập optimizer.
 seed: 42
 model:

@@ -1,4 +1,7 @@
-# Người phụ trách: Hiền (trực quan hóa), Minh (bổ sung tùy chọn CPU/CUDA).
+# Người đóng góp vào file
+# - Hiền xây phần đối chiếu kết quả validation, vẽ biểu đồ và xuất attention map.
+# - Minh bổ sung tùy chọn CPU/CUDA và truyền thiết bị giữa bước đánh giá và lấy attention.
+# Phối hợp: Lan Anh cung cấp get_attention_weights() trong mô hình ViT.
 # Đọc log của từng lượt chạy, đánh giá best.pt trên validation và đối chiếu với số liệu đã ghi.
 # Xuất đường cong học, ma trận nhầm lẫn, biểu đồ theo tỷ lệ dữ liệu và bản đồ attention của ViT.
 """Validation-only figures and run checks for the week-two handoff."""

@@ -1,4 +1,4 @@
-# Cấu hình dữ liệu chính — Hiền
+# Người đóng góp: Hiền (viết cấu hình dữ liệu CIFAR-10 dùng chung).
 # Dùng cho build_loaders trong src.data; thay thế pilot_data của Minh.
 #
 # split_seed: seed chia dữ liệu, độc lập với seed train trong configs/train.yaml.

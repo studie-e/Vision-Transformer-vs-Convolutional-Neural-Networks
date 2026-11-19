@@ -1,4 +1,4 @@
-# Người phụ trách: Hiền (đánh giá checkpoint, tính accuracy và ghi kết quả).
+# Người đóng góp: Hiền (đánh giá checkpoint, tính accuracy và ghi kết quả).
 """Script đánh giá — Hiền.
 
 Đánh giá một checkpoint đã lưu trên tập validation hoặc test; sinh nhãn dự đoán và phân phối

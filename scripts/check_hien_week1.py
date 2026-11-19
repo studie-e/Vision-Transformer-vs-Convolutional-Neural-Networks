@@ -1,4 +1,4 @@
-# Người phụ trách: Hiền (kiểm tra tích hợp dữ liệu CIFAR-10 và đánh giá pilot tuần 1).
+# Người đóng góp: Hiền (kiểm tra tích hợp dữ liệu CIFAR-10 và đánh giá pilot tuần 1).
 """Real-data integration pilot; never evaluates the official test set.
 
 Run from the repository root: python -X utf8 -m scripts.check_hien_week1

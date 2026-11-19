@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (lượt ViT CPU 5 epoch và mẫu attention từ giai đoạn đầu tuần 2).
+# Người đóng góp: Lan Anh (lượt ViT CPU 5 epoch và mẫu attention từ giai đoạn đầu tuần 2).
 """Thực hiện các lượt chạy chính Tuần 2 cho Lan Anh — ViT 10%, 50%, 100% dữ liệu (T10).
 
 Seed đầu tiên: split_seed=2026, train_seed=42.

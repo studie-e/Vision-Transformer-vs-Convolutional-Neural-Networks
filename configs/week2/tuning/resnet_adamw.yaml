@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (mô hình ResNet và cấu hình tuning), Hiền (manifest dữ liệu).
+# Người đóng góp: Minh (viết cấu hình khảo sát optimizer cho ResNet).
+# Phối hợp: Hiền cung cấp manifest dữ liệu.
 # Thử ResNet với AdamW trong 10 epoch trên 50% dữ liệu train để so sánh cách thiết lập optimizer.
 seed: 42
 model:

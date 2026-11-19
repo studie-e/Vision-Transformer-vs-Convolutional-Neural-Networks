@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (kiểm thử mô hình ViT, attention và ablation).
+# Người đóng góp: Lan Anh (kiểm thử mô hình ViT, attention và ablation).
 """Kiểm thử tự động cho các thành phần ViT của Lan Anh (tuần 1):
 - src.models.vit: PatchEmbedding, MultiHeadSelfAttention, MLP, TransformerBlock, VisionTransformer
 - Khớp tham số so với ResNet: chênh lệch ≤10% (T04, T05)

@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (kiểm thử ResNet, trainer và checkpoint).
+# Người đóng góp: Minh (kiểm thử ResNet, trainer và checkpoint).
 # Kiểm tra đầu ra và gradient của ResNet, vòng validation và khả năng khôi phục huấn luyện từ last.pt.
 import csv
 

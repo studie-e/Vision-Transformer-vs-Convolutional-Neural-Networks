@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (kiểm tra mô hình ViT tự cài tuần 1).
+# Người đóng góp: Lan Anh (kiểm tra mô hình ViT tự cài tuần 1).
 """Kiểm tra tuần 1 Lan Anh — ViT tự cài.
 
 Chạy: python -X utf8 -m scripts.check_lanh_week1

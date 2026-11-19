@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (cấu hình chạy thử ResNet tuần 1).
+# Người đóng góp: Minh (cấu hình chạy thử ResNet tuần 1).
 # Chạy thử ResNet trong 3 epoch với 4.500 ảnh train và 1.000 ảnh validation để kiểm tra trainer.
 # Full, standalone pilot config; not the locked week-2 comparison recipe.
 seed: 17

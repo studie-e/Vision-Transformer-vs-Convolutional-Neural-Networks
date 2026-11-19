@@ -1,4 +1,4 @@
-# Người phụ trách: Lan Anh (khảo sát các thiết lập optimizer của ViT).
+# Người đóng góp: Lan Anh (khảo sát các thiết lập optimizer của ViT).
 """Thực hiện khảo sát siêu tham số (hyperparameter tuning) cho ViT — Tuần 2 Ngày 8.
 
 Khảo sát 3 công thức huấn luyện trên tập 10% (4.500 ảnh, 3 epochs) với split_seed=2026, seed=42:

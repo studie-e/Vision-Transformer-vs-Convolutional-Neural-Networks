@@ -1,4 +1,5 @@
-# Người phụ trách: Lan Anh (cấu hình pilot ViT), Hiền (dữ liệu và manifest dùng chung).
+# Người đóng góp: Lan Anh (viết cấu hình pilot ViT).
+# Phối hợp: Hiền cung cấp dữ liệu và manifest dùng chung.
 # ViT pilot config — tuần 1, kiểm tra tích hợp.
 # Không phải recipe chính thức cho loạt train tuần 2.
 seed: 42

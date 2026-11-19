@@ -1,4 +1,5 @@
-# Người phụ trách: Lan Anh (ViT), Hiền (cấu hình chung), Minh (hỗ trợ chạy GPU).
+# Người đóng góp: Hiền (viết YAML ViT theo giao thức nhóm).
+# Phối hợp: Lan Anh phụ trách mô hình ViT. Minh hỗ trợ chạy lượt này trên GPU.
 # Chạy ViT trên 50% dữ liệu train theo giao thức chính tuần 2.
 seed: 42
 model:

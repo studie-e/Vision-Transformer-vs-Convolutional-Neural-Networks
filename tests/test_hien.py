@@ -1,4 +1,4 @@
-# Người phụ trách: Hiền (kiểm thử dữ liệu, đánh giá và tổng hợp kết quả).
+# Người đóng góp: Hiền (kiểm thử dữ liệu, đánh giá và tổng hợp kết quả).
 """Kiểm thử tự động cho các module tuần 1 của Hiền:
 - src.data: tính phân tầng, không giao nhau, tính lồng nhau, build_loaders.
 - src.evaluate: compute_accuracy với ví dụ biết đáp án.

@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (cấu hình và lượt chạy Swin), Hiền (manifest dữ liệu dùng chung).
+# Người đóng góp: Minh (viết cấu hình Swin cho thí nghiệm tuần 3).
+# Phối hợp: Hiền cung cấp manifest dữ liệu dùng chung.
 # Chạy thử nghiệm mở rộng Swin với 10% dữ liệu train, seed 42 và ngân sách 100 epoch.
 seed: 42
 model:

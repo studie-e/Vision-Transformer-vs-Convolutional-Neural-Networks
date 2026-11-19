@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (mô hình ResNet cho CIFAR-10).
+# Người đóng góp: Minh (mô hình ResNet cho CIFAR-10).
 # Cài đặt CNN với các khối residual và nhánh tắt để phân loại ảnh CIFAR-10 thành 10 lớp.
 # Cho phép cấu hình độ rộng và số khối, đồng thời đếm tham số để so sánh với ViT.
 """CIFAR-style ResNet with configurable width and projection shortcuts.

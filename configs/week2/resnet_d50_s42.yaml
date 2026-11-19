@@ -1,4 +1,5 @@
-# Người phụ trách: Minh (cấu hình ResNet đã khóa sau tuning), Hiền (dữ liệu và manifest dùng chung).
+# Người đóng góp: Minh (viết cấu hình ResNet sau tuning).
+# Phối hợp: Hiền cung cấp manifest dữ liệu dùng chung.
 # Lưu cấu hình ResNet 50% dữ liệu, seed 42, từ đợt khóa thông số trước khi nhóm chốt tên YAML hiện hành.
 seed: 42
 model:
