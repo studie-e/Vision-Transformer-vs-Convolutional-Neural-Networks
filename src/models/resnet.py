@@ -17,6 +17,7 @@ class BasicBlock(nn.Module):
     # Hàm __init__: dựng các lớp của một block, chưa chạy ảnh qua mạng.
     # in_channels/out_channels là số kênh vào/ra; stride=2 giảm chiều cao/rộng khi đổi stage.
     # Kết quả là đối tượng block có nhánh residual và shortcut cộng được với nhau.
+    # Minh phụ trách các lớp convolution, batch normalization và nhánh tắt của khối residual.
     def __init__(self, in_channels: int, out_channels: int, stride: int = 1):
         # Khởi tạo phần quản lý module của lớp cha trước khi gắn các lớp con.
         super().__init__()
@@ -50,6 +51,7 @@ class BasicBlock(nn.Module):
     # Hàm forward của BasicBlock: tính y=ReLU(F(x)+shortcut(x)).
     # Nhận tensor [B,C_in,H,W], trả tensor có C_out và kích thước tùy stride.
     # Phép cộng tạo đường truyền trực tiếp cho tín hiệu/gradient qua shortcut khi học.
+    # Minh phụ trách cộng nhánh residual với nhánh tắt rồi áp dụng ReLU.
     def forward(self, x: Tensor) -> Tensor:
         # Hai nhánh nhận cùng x; cộng theo phần tử, không nối kênh như torch.cat.
         return self.relu(self.residual(x) + self.shortcut(x))
@@ -61,6 +63,7 @@ class CifarResNet(nn.Module):
     # Hàm __init__: dựng cả mô hình và khởi tạo một số loại tham số.
     # width=16 cho các stage 16/32/64 kênh; blocks_per_stage=3 cho 9 BasicBlock; num_classes=10.
     # Tạo cấu trúc nn.Module, chưa huấn luyện và chưa tự đưa lên GPU.
+    # Minh phụ trách stem, các stage residual và lớp phân loại.
     def __init__(self, width: int = 16, blocks_per_stage: int = 3, num_classes: int = 10):
         # Để PyTorch đăng ký đúng các layer và tham số gắn vào self bên dưới.
         super().__init__()
@@ -105,6 +108,7 @@ class CifarResNet(nn.Module):
     # Hàm forward của CifarResNet: biến batch ảnh thành logits dùng cho CrossEntropyLoss.
     # Ví dụ width=16, ảnh 32×32: [B,3,32,32] -> [B,16,32,32] -> [B,64,8,8]
     # -> [B,64,1,1] -> [B,64] -> [B,10]. B là batch size, không bị flatten mất.
+    # Minh phụ trách luồng tính logits từ ảnh qua stem, các stage, pooling và classifier.
     def forward(self, x: Tensor) -> Tensor:
         # Đọc biểu thức từ trong ra ngoài: stem, stages, pool, flatten từ chiều 1, rồi head.
         # Không softmax: logits là đầu vào đúng cho hàm cross_entropy trong trainer.
@@ -114,6 +118,7 @@ class CifarResNet(nn.Module):
 # Hàm count_parameters: đếm số giá trị vô hướng của các tham số có thể học.
 # Đầu vào: một nn.Module; đầu ra: số nguyên, không phải số layer hoặc dung lượng file.
 # Không tính buffer BatchNorm (running_mean/var) hay tham số đã requires_grad=False.
+# Minh phụ trách đếm các tham số có thể huấn luyện.
 def count_parameters(model: nn.Module) -> int:
     # numel() đếm phần tử từng tensor; cộng toàn bộ tensor đang bật requires_grad.
     return sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
@@ -121,6 +126,7 @@ def count_parameters(model: nn.Module) -> int:
 
 # Hàm build_model: đầu nối để trainer tạo ResNet từ YAML theo quy ước factory chung.
 # Nhận dict config đầy đủ, lấy model.kwargs; trả CifarResNet mới, chưa train.
+# Minh phụ trách khởi tạo ResNet theo cấu hình YAML.
 def build_model(config: dict) -> nn.Module:
     # ** trải dict thành đối số có tên, ví dụ width=16, blocks_per_stage=3, num_classes=10.
     return CifarResNet(**config['model']['kwargs'])

@@ -27,6 +27,7 @@ RATIOS = {'d10': '0.10', 'd50': '0.50', 'd100': '1.00'}
 
 # Hàm make_tuning_configs: tạo bốn YAML thử cấu hình, hai cho ResNet và hai cho ViT.
 # Nhận thư mục đích; trả list Path; từ chối ghi đè nếu file sẵn có khác cấu hình dự kiến.
+# Minh phụ trách chuẩn bị cấu hình khảo sát optimizer cho ResNet và ViT.
 def make_tuning_configs(out_dir=Path('configs/week2/tuning')):
     # Đọc kiến trúc ViT đã được Lan Anh bàn giao, không thay mã/kiến trúc của bạn.
     vit = yaml.safe_load(Path('configs/vit.yaml').read_text(encoding='utf-8'))['model']
@@ -53,6 +54,7 @@ def make_tuning_configs(out_dir=Path('configs/week2/tuning')):
 
 # Hàm choose_recipe: chọn ứng viên có best validation accuracy cao nhất trong hai lượt đã đủ ngân sách.
 # Nhận list metadata, trả dòng được chọn; hòa thì giữ recipe đứng trước (SGD theo thứ tự công bố).
+# Minh phụ trách chọn cấu hình từ các lượt tuning đủ ngân sách theo điểm validation.
 def choose_recipe(rows):
     if len(rows) != 2 or {r['recipe'] for r in rows} != set(RECIPES):
         raise ValueError('Expected exactly one SGD and one AdamW candidate')
@@ -67,6 +69,7 @@ def choose_recipe(rows):
 
 # Hàm completed_state: kiểm tra run đã đủ epoch, cấu hình/manifest còn khớp trước khi nhận kết quả.
 # Nhận đường dẫn config/run; trả checkpoint cuối, không chạy lại huấn luyện.
+# Minh phụ trách kiểm tra lượt chạy đã đủ epoch và khớp cấu hình, manifest.
 def completed_state(config_path, run_dir):
     # Tái sử dụng kiểm tra của Hiền: config trong checkpoint và hash manifest phải khớp.
     from src.evaluate import checked_config
@@ -83,6 +86,7 @@ def completed_state(config_path, run_dir):
 
 # Hàm run_one: thực thi một cấu hình qua CLI trainer trong tiến trình riêng, ghi stdout ra log.
 # Đã hoàn tất thì kiểm tra và dùng lại; run dở chỉ tiếp tục khi truyền --resume rõ ràng.
+# Minh phụ trách chạy trainer từ YAML, ghi log và nối lại lượt đang dở khi được yêu cầu.
 def run_one(config_path, run_dir, device, resume=False):
     # Chuẩn hóa đường dẫn và xác định checkpoint dùng để tiếp tục, không dùng best.pt cho resume.
     run_dir = Path(run_dir)
@@ -122,6 +126,7 @@ def run_one(config_path, run_dir, device, resume=False):
 
 # Hàm tune_and_lock: chạy bốn pilot, chọn recipe riêng theo validation và xuất giao thức cố định.
 # Mỗi mô hình có cùng hai recipe × 10 epoch; các lượt chính sau đó dùng 100 epoch/tỷ lệ.
+# Minh phụ trách chạy khảo sát và khóa các cấu hình của quy trình tuning.
 def tune_and_lock(device, resume=False):
     # Bốn file được tạo từ hai mô hình × hai recipe, dùng cùng split/seed/tỷ lệ.
     paths = make_tuning_configs()
@@ -188,6 +193,7 @@ def tune_and_lock(device, resume=False):
 
 # Hàm locked_resnet_configs: lấy đúng ba YAML ResNet đã khóa, phát hiện việc sửa recipe sau tuning.
 # Trả list Path; không tự khóa lại bằng các số liệu từ tập test.
+# Minh phụ trách đọc và đối chiếu các YAML ResNet đã khóa.
 def locked_resnet_configs():
     # Đọc giao thức đã chọn trước loạt chính; thiếu file khóa thì dừng thay vì tự đoán recipe.
     protocol = json.loads(Path('configs/week2/locked_protocol.json').read_text(encoding='utf-8'))
@@ -202,6 +208,7 @@ def locked_resnet_configs():
 
 # Hàm collect_validation: đối chiếu evaluator của Hiền với best.pt, xuất bảng để bàn giao.
 # Chỉ dùng validation ở tuần 2; lưu dự đoán cạnh checkpoint trong runs, không mở tập test.
+# Minh phụ trách đối chiếu checkpoint ResNet với evaluator của Hiền và xuất bảng bàn giao.
 def collect_validation(device):
     # Dùng evaluator/summary của Hiền để cùng cách tính và cùng schema CSV với các lượt ViT sau này.
     from scripts.summarize import save_summary_csv, summarize
@@ -238,6 +245,7 @@ def collect_validation(device):
 
 # Hàm main: giao diện điều phối tuần 2, tách tuning/khóa cấu hình, train chính và đánh giá validation.
 # Có thể khôi phục một giai đoạn dở bằng --resume; không tự huấn luyện lượt ViT chính.
+# Minh phụ trách lệnh khảo sát, chạy ResNet và thu kết quả tuần 2.
 def main():
     # tune chạy pilot và khóa YAML; train thực hiện ba ResNet; collect chỉ đánh giá validation.
     parser = argparse.ArgumentParser(description=__doc__)

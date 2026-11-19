@@ -16,7 +16,7 @@ Phần tuning/khóa cũ bên dưới được giữ để truy vết; ưu tiên 
 
 [Bàn giao và recipe tuần 2](docs/minh-week2.md) · [Method–CNN](reports/method_minh_week2.md). ViT và split chính đã tích hợp; dùng các YAML trong `configs/week2/` cho thí nghiệm chính, giữ `configs/train.yaml` làm pilot tuần 1.
 
-Đã hoàn tất ba lượt ResNet × 100 epoch: validation **74,24% / 88,40% / 91,80%** ở 10%/50%/100% train. [Kết quả và biểu đồ](results/week2/minh_week2.md) · [CSV metadata](results/week2/resnet_runs.csv). Một seed, std N/A; chưa mở test hoặc chạy các lượt ViT chính thay Lan Anh.
+Đã hoàn tất ba lượt ResNet × 100 epoch: validation **74,24% / 88,40% / 91,80%** ở 10%/50%/100% train. Kết quả dùng một seed trên validation. [Kết quả và biểu đồ](results/week2/minh_week2.md) · [CSV metadata](results/week2/resnet_runs.csv).
 
 Đã khóa 100 epoch cho cả ba tỷ lệ, cặp seed `(split=2026, train=42)`. Sau ngân sách tuning ngang nhau, ResNet chọn SGD và ViT chọn AdamW. Cấu hình ViT chính được bàn giao Lan Anh; script dưới đây thực thi ba lượt ResNet của Minh:
 
@@ -32,7 +32,7 @@ Nếu chưa có CIFAR-10 bản Python, chuẩn bị theo hướng dẫn dữ li�
 
 ## Môi trường
 
-Đã kiểm tra trên Windows, Python 3.13.7, RTX 5080, PyTorch 2.11.0+cu128. Cài mới trong PowerShell từ thư mục repo:
+Đã kiểm tra trên Windows, Python 3.13.7, GPU hỗ trợ CUDA, PyTorch 2.11.0+cu128. Cài mới trong PowerShell từ thư mục repo:
 
 ```powershell
 python -m venv .venv

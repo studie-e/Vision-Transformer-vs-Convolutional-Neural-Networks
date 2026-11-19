@@ -28,6 +28,7 @@ from torch import Tensor, nn
 # Ảnh 32×32 patch 4×4 → lưới 8×8 = 64 patch, mỗi patch là vector embed_dim chiều.
 # Dùng Conv2d với kernel=stride=patch_size, tương đương reshape + linear nhưng gọn hơn.
 class PatchEmbedding(nn.Module):
+    # Lan Anh phụ trách thiết lập kích thước patch và lớp chiếu patch thành embedding.
     def __init__(self, image_size: int = 32, patch_size: int = 4,
                  in_channels: int = 3, embed_dim: int = 128):
         super().__init__()
@@ -43,6 +44,7 @@ class PatchEmbedding(nn.Module):
                                     stride=patch_size)
 
     # Forward: [B, 3, 32, 32] → [B, 64, embed_dim] cho patch 4×4.
+    # Lan Anh phụ trách biến lưới patch thành chuỗi token đầu vào.
     def forward(self, x: Tensor) -> Tensor:
         # Conv2d: [B, 3, 32, 32] → [B, embed_dim, 8, 8]
         x = self.projection(x)
@@ -60,6 +62,7 @@ class PatchEmbedding(nn.Module):
 # Mỗi token query tất cả token khác qua Q·K^T/√d rồi lấy tổng trọng số V.
 # Chia thành num_heads head song song, mỗi head xử lý embed_dim/num_heads chiều.
 class MultiHeadSelfAttention(nn.Module):
+    # Lan Anh phụ trách các phép chiếu Q, K, V và đầu ra của nhiều head.
     def __init__(self, embed_dim: int = 128, num_heads: int = 4, dropout: float = 0.0):
         super().__init__()
         # Kiểm tra embed_dim chia hết cho num_heads.
@@ -85,6 +88,7 @@ class MultiHeadSelfAttention(nn.Module):
         self._attn_weights: Tensor | None = None
 
     # Forward: [B, N, D] → [B, N, D] với N = num_tokens, D = embed_dim.
+    # Lan Anh phụ trách tính attention theo head, lưu trọng số và ghép đầu ra.
     def forward(self, x: Tensor) -> Tensor:
         B, N, D = x.shape
 
@@ -120,6 +124,7 @@ class MultiHeadSelfAttention(nn.Module):
 # MLP: Linear → GELU → Dropout → Linear → Dropout.
 # Mở rộng chiều lên mlp_dim rồi thu về embed_dim. GELU là hàm kích hoạt mượt hơn ReLU.
 class MLP(nn.Module):
+    # Lan Anh phụ trách hai lớp tuyến tính, GELU và dropout của MLP.
     def __init__(self, embed_dim: int = 128, mlp_dim: int = 256, dropout: float = 0.0):
         super().__init__()
         self.net = nn.Sequential(
@@ -133,6 +138,7 @@ class MLP(nn.Module):
             nn.Dropout(dropout),
         )
 
+    # Lan Anh phụ trách áp dụng MLP lên các token.
     def forward(self, x: Tensor) -> Tensor:
         return self.net(x)
 
@@ -144,6 +150,7 @@ class MLP(nn.Module):
 # Cấu trúc: x + MHSA(LN(x)) rồi x + MLP(LN(x)). Residual connection giúp
 # gradient chảy trực tiếp, tương tự ý tưởng của ResNet.
 class TransformerBlock(nn.Module):
+    # Lan Anh phụ trách các lớp chuẩn hóa, attention và MLP của encoder block.
     def __init__(self, embed_dim: int = 128, num_heads: int = 4,
                  mlp_ratio: float = 2.0, dropout: float = 0.0):
         super().__init__()
@@ -154,6 +161,7 @@ class TransformerBlock(nn.Module):
         # mlp_dim = embed_dim × mlp_ratio, ví dụ 128 × 2 = 256.
         self.mlp = MLP(embed_dim, int(embed_dim * mlp_ratio), dropout)
 
+    # Lan Anh phụ trách áp dụng pre-norm và hai kết nối residual của block.
     def forward(self, x: Tensor) -> Tensor:
         # Pre-LN: norm trước attention/MLP, sau đó cộng residual.
         x = x + self.attn(self.norm1(x))
@@ -167,6 +175,7 @@ class TransformerBlock(nn.Module):
 # VisionTransformer: ghép patch embedding → CLS token + positional embedding
 # → N transformer blocks → LayerNorm → classification head.
 class VisionTransformer(nn.Module):
+    # Lan Anh phụ trách cấu trúc ViT, CLS token, positional embedding và tùy chọn ablation.
     def __init__(self, image_size: int = 32, patch_size: int = 4,
                  in_channels: int = 3, num_classes: int = 10,
                  embed_dim: int = 128, depth: int = 4, num_heads: int = 4,
@@ -221,6 +230,7 @@ class VisionTransformer(nn.Module):
         # Khởi tạo trọng số.
         self._init_weights()
 
+    # Lan Anh phụ trách khởi tạo trọng số của ViT.
     def _init_weights(self):
         """Khởi tạo trọng số theo cách của ViT gốc."""
         # CLS token: truncated normal std=0.02
@@ -240,6 +250,7 @@ class VisionTransformer(nn.Module):
                 nn.init.ones_(module.weight)
                 nn.init.zeros_(module.bias)
 
+    # Lan Anh phụ trách tính logits từ ảnh qua patch embedding, encoder và classification head.
     def forward(self, x: Tensor) -> Tensor:
         """
         Forward pass.
@@ -271,6 +282,7 @@ class VisionTransformer(nn.Module):
         logits = self.head(cls_output)
         return logits
 
+    # Lan Anh phụ trách trích trọng số các head sau lượt forward để Hiền dùng khi vẽ.
     def get_attention_weights(self) -> list[Tensor]:
         """Trả attention weights của tất cả encoder blocks sau forward gần nhất.
 
@@ -294,6 +306,7 @@ class VisionTransformer(nn.Module):
 from src.models.resnet import count_parameters  # noqa: E402
 
 
+# Lan Anh phụ trách khởi tạo ViT và tùy chọn ablation từ YAML.
 def build_model(config: dict) -> nn.Module:
     """Factory function cho trainer — tạo ViT từ config YAML.
 

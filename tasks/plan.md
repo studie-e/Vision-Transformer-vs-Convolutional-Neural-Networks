@@ -3,13 +3,13 @@
 ## Phạm vi đã chốt với nhóm
 
 - Thành viên: **Lan Anh, Hiền, Minh**; cả ba có năng lực tương đương.
-- Phần cứng: **RTX 5080 trên máy cá nhân**, dùng chung một hàng đợi thí nghiệm.
+- Phần cứng: **GPU trên máy cá nhân**, dùng chung một hàng đợi thí nghiệm.
 - Phân công theo bảng gốc, chỉ đổi chỗ Minh và Hiền: **Lan Anh cài và train ViT; Minh phụ trách CNN, trainer và môi trường; Hiền phụ trách dữ liệu, đánh giá và phân tích**.
 - Nhóm chủ động hoàn thiện sản phẩm trong **4 tuần đầu của lịch môn học 6 tuần**. Không thay đổi hạn nộp chính thức.
 - Mục tiêu đề xuất: làm đủ yêu cầu tối thiểu, có attention map, ablation, phân tích inductive bias và thử thêm Swin để hướng tới mức giỏi. Đây là mục tiêu thực hiện, không phải cam kết điểm số.
 - Chưa có ngày bắt đầu, lịch sử dụng máy và số giờ làm mỗi người; kế hoạch dùng tuần tương đối. Chốt lịch GPU trong tuần 1 sau khi đo thời gian chạy thực tế.
 - Cập nhật 12/11/2026: đã triển khai phần tuần 1 của Minh; xem [bàn giao](../docs/minh-week1.md) và [pilot](../results/pilot.md). ViT và split chính còn chờ Lan Anh/Hiền. Theo xác nhận của Minh, giảng viên không yêu cầu gửi lời mời GitHub; các dòng về lời mời trong tài liệu gốc được điều chỉnh theo chỉ dẫn này.
-- Cập nhật 14/11/2026: đã đủ sáu lượt chính tuần 2 theo YAML nhóm chốt, với cặp seed 2026/42 và 100 epoch. **Lan Anh phụ trách ViT, Hiền chuẩn bị dữ liệu và cấu hình chung, Minh chạy ResNet.** Hiền phụ trách đối chiếu và tổng hợp kết quả. [Cấu hình hiện hành](../configs/week2/README.md) · [Kết quả sáu lượt](../results/team_week2/README.md).
+- Cập nhật 14/11/2026: đã đủ sáu lượt chính tuần 2 theo YAML nhóm chốt, với cặp seed 2026/42 và 100 epoch. **Lan Anh phụ trách ViT. Minh chạy ResNet và hỗ trợ chạy ba lượt ViT trên GPU. Hiền phụ trách dữ liệu, cấu hình chung, đối chiếu và tổng hợp kết quả.** [Cấu hình hiện hành](../configs/week2/README.md) · [Kết quả sáu lượt](../results/team_week2/README.md).
 
 ## 1. Yêu cầu rút ra từ tài liệu gốc
 
@@ -87,7 +87,7 @@ Nếu thiếu thời gian GPU: giảm Swin xuống một tỷ lệ trước; n�
 | Người | Phần kỹ thuật chính | Phần thí nghiệm/phân tích | Phần báo cáo và trình bày |
 |---|---|---|---|
 | **Lan Anh** | Tự cài patch embedding, positional embedding, self-attention, Transformer encoder, classification head của ViT; hỗ trợ tích hợp trainer | Trực tiếp train ViT và ablation positional embedding; giải thích thiết kế ViT | Method–ViT, hình kiến trúc ViT, phần ablation; trình bày khoảng 3–4 phút |
-| **Minh** | ResNet có số tham số tương đương; trainer/checkpoint/resume, môi trường RTX 5080; thử Swin | Trực tiếp train ResNet/Swin; thống kê tham số, thời gian; điều phối lịch GPU dùng chung với Lan Anh | Method–CNN/Swin, thiết lập train/phần cứng, README train và demo; trình bày khoảng 3–4 phút |
+| **Minh** | ResNet có số tham số tương đương; trainer/checkpoint/resume, môi trường CUDA; thử Swin | Trực tiếp train ResNet/Swin; thống kê tham số, thời gian; điều phối lịch GPU dùng chung với Lan Anh | Method–CNN/Swin, thiết lập train/phần cứng, README train và demo; trình bày khoảng 3–4 phút |
 | **Hiền** | Dataset, train/val/test, tập con 10%/50%/100%; script đánh giá/tổng hợp và xuất attention map | Kiểm tra dữ liệu, accuracy, biểu đồ, confusion matrix, lỗi và inductive bias | Dữ liệu/đánh giá, Analysis, ghép bản ACL/slide và kiểm tra format; trình bày khoảng 3–4 phút |
 
 Hiền tổng hợp tài liệu, nhưng **mỗi người tự viết phần mình** và cùng sửa Abstract, Introduction, Conclusion, Limitations. Mục tiêu chia tương đối đều; tỷ lệ đóng góp cuối kỳ ghi theo công việc thực tế, không mặc định mỗi người đúng 1/3. Lan Anh chịu trách nhiệm mô hình/lượt chạy ViT và ablation; Minh chịu trách nhiệm ResNet/Swin và trainer; Hiền chịu trách nhiệm dữ liệu/đánh giá.
@@ -103,7 +103,7 @@ Hiền tổng hợp tài liệu, nhưng **mỗi người tự viết phần mìn
 
 | Tuần | Lan Anh — ViT | Minh — CNN và huấn luyện | Hiền — dữ liệu và phân tích |
 |---|---|---|---|
-| **1** | Đọc bài ViT; tự cài ViT nhỏ, chạy thử | Đọc ResNet; dựng ResNet, trainer, môi trường RTX 5080; đo thời gian chạy | Chuẩn bị dữ liệu, tập con; dựng template ACL và tổng hợp proposal |
+| **1** | Đọc bài ViT; tự cài ViT nhỏ, chạy thử | Đọc ResNet; dựng ResNet, trainer, môi trường CUDA; đo thời gian chạy | Chuẩn bị dữ liệu, tập con; dựng template ACL và tổng hợp proposal |
 | **2** | Phụ trách ViT ở **10%, 50%, 100%** dữ liệu | Chạy ResNet ở ba tỷ lệ, khớp số tham số với ViT và hỗ trợ vận hành GPU cho ba lượt ViT | Chuẩn bị cấu hình chung, kiểm tra kết quả, tạo bảng, biểu đồ và attention map thử |
 | **3** | Chạy thêm seed; làm ablation positional embedding | Chạy thêm seed; bắt đầu thử Swin sau các lượt chính | Tổng hợp trung bình/độ lệch chuẩn, phân tích lỗi; hoàn thiện milestone |
 | **4** | Chốt ablation, phần Method–ViT và slide | Chốt Swin, README, môi trường, demo và slide | Chốt Analysis, hình/bảng; ghép báo cáo ACL và slide |

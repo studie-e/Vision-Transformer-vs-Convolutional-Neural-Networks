@@ -5,7 +5,7 @@ Phân công giữ nguyên bảng gốc, chỉ đổi chỗ Minh và Hiền:
 | Người | Trách nhiệm xuyên suốt |
 |---|---|
 | **Lan Anh** | Tự cài ViT, trực tiếp train ViT ở ba tỷ lệ và nhiều seed; tự làm/train ablation; viết Method–ViT và slide |
-| **Minh** | ResNet, trainer, môi trường RTX 5080, trực tiếp train ResNet và Swin; README, tái lập, demo và slide |
+| **Minh** | ResNet, trainer, môi trường CUDA, trực tiếp train ResNet và Swin; README, tái lập, demo và slide |
 | **Hiền** | Dữ liệu/tập con, đánh giá, attention, bảng/hình, phân tích; tổng hợp proposal, milestone, báo cáo ACL và slide |
 
 Lộ trình riêng: [Lan Anh](lan-anh.md), [Minh](minh.md), [Hiền](hien.md). Yêu cầu môn học: [plan.md](../plan.md). Trạng thái nghiệm thu cập nhật tập trung tại [todo.md](../todo.md); bảng ngày dưới đây là lịch thực hiện, không phải bộ trạng thái thứ hai.
@@ -47,7 +47,7 @@ Mỗi ngày là một phiên công việc chính; có thể ghép các ngày n�
 
 ## Hàng đợi GPU và số lượt chạy
 
-Minh điều phối lịch dùng RTX 5080. **Lan Anh trực tiếp chạy ViT/ablation; Minh trực tiếp chạy ResNet/Swin.** Hai người đặt lịch trước, không tự mở hai lượt tranh GPU.
+Minh điều phối lịch dùng GPU. **Lan Anh trực tiếp chạy ViT/ablation; Minh trực tiếp chạy ResNet/Swin.** Hai người đặt lịch trước, không tự mở hai lượt tranh GPU.
 
 | Cửa sổ dự kiến | Lượt chạy | Số lượt | Người chạy |
 |---|---|---:|---|

@@ -17,6 +17,7 @@ torch.set_num_threads(1)
 
 # Test này kiểm tra ResNet trả đúng số logits và mọi tham số đều nhận gradient hữu hạn.
 # Không có đối số; pytest coi test đạt khi mọi assert thành công, không cần trả dữ liệu.
+# Minh phụ trách kiểm tra logits và gradient của ResNet.
 def test_resnet_classifies_small_rgb_images_and_has_finite_gradients():
     # Dùng mạng hẹp để test nhanh, vẫn giữ kiến trúc residual cần kiểm tra.
     model = CifarResNet(width=8)
@@ -34,6 +35,7 @@ def test_resnet_classifies_small_rgb_images_and_has_finite_gradients():
 
 # Test này kiểm tra mạng thực sự học được một batch cố định, không chỉ forward chạy không lỗi.
 # Loss phải giảm mạnh sau cập nhật; đây không phải test accuracy trên dữ liệu chưa thấy.
+# Minh phụ trách kiểm tra ResNet học được một batch cố định.
 def test_resnet_can_memorize_a_fixed_batch():
     # Cố định khởi tạo/dữ liệu để kết quả test không thay đổi tùy lần chạy.
     seed_everything(17)
@@ -60,6 +62,7 @@ def test_resnet_can_memorize_a_fixed_batch():
 
 # Test này kiểm tra validation: tính loss đúng theo từng ảnh và không đổi thống kê BatchNorm.
 # Dùng 5 ảnh/batch_size=2 để batch cuối chỉ có 1 ảnh, làm lộ lỗi lấy trung bình các batch sai trọng số.
+# Minh phụ trách kiểm tra validation dùng đủ ảnh và giữ trạng thái BatchNorm.
 def test_validation_uses_all_samples_and_does_not_change_batchnorm():
     # Mạng nhỏ có BatchNorm để phát hiện nếu run_epoch vô tình để chế độ train khi validation.
     model = nn.Sequential(nn.BatchNorm1d(2), nn.Linear(2, 2))
@@ -89,6 +92,7 @@ def test_validation_uses_all_samples_and_does_not_change_batchnorm():
 # Hàm phụ loaders: tạo lại cùng bộ dữ liệu giả và hai DataLoader cho test resume.
 # Không có đối số; trả (train_loader, val_loader), dùng dữ liệu nhỏ để test nhanh.
 # Hai loader cố ý dùng cùng dataset để kiểm tra cơ chế resume, không dùng để đánh giá khái quát hóa.
+# Minh phụ trách tạo hai DataLoader cố định cho bài kiểm thử resume.
 def loaders():
     # Generator riêng tạo dữ liệu luôn giống nhau dù RNG toàn cục đã đi tới đâu.
     g = torch.Generator().manual_seed(123)
@@ -105,6 +109,7 @@ def loaders():
 
 # Hàm phụ model_for_resume: tạo mạng nhỏ với dropout để thử lưu/khôi phục RNG.
 # Không có đối số; trả nn.Sequential mới với cùng trọng số khởi tạo nhờ seed=17.
+# Minh phụ trách tạo mạng nhỏ có dropout để kiểm tra khôi phục ngẫu nhiên.
 def model_for_resume():
     # Seed trước khi tạo Linear để hai lần dựng mạng có cùng trọng số ban đầu.
     seed_everything(17)
@@ -121,6 +126,7 @@ CONFIG = {'seed': 17, 'training': {'epochs': 3, 'lr': 0.05, 'optimizer': 'sgd',
 # Test này so chạy liền 3 epoch với chạy 1 epoch rồi dựng lại đối tượng và resume 2 epoch.
 # tmp_path là thư mục tạm pytest tự cấp, tránh test ghi vào run thật của Minh.
 # Mục tiêu: bắt lỗi mất trọng số/buffer, RNG/dropout/shuffle, lịch lr, bộ đếm và lịch sử log.
+# Minh phụ trách so sánh lượt resume với lượt chạy liên tục, kể cả optimizer, RNG và lịch learning rate.
 def test_resume_matches_uninterrupted_training_including_optimizer_rng_and_schedule(tmp_path):
     # Nhánh chuẩn: một model mới, chạy liên tục đủ 3 epoch.
     full = model_for_resume()
@@ -157,6 +163,7 @@ def test_resume_matches_uninterrupted_training_including_optimizer_rng_and_sched
 
 # Test này bảo vệ kết quả: run mới không ghi đè run cũ, resume không được âm thầm đổi config.
 # Nhận tmp_path do pytest cấp; thành công khi fit phát đúng loại lỗi mong đợi.
+# Minh phụ trách kiểm tra từ chối ghi đè lượt cũ hoặc resume với cấu hình khác.
 def test_trainer_refuses_overwriting_an_existing_run_or_changed_resume_config(tmp_path):
     # Tạo một run có kết quả epoch 1 để làm tình huống có dữ liệu cần bảo vệ.
     model = model_for_resume()
@@ -173,6 +180,7 @@ def test_trainer_refuses_overwriting_an_existing_run_or_changed_resume_config(tm
 
 # Test này kiểm tra lấy mẫu pilot lặp lại được theo seed, không trùng train/val và không lấy quá số ảnh.
 # Không tải dataset thật: chỉ cần kiểm tra logic chia chỉ số với giả định có 100 mẫu.
+# Minh phụ trách kiểm tra chỉ số pilot lặp lại được, rời nhau và từ chối kích thước sai.
 def test_pilot_indices_are_repeatable_disjoint_and_reject_invalid_sizes():
     # Import hàm cần kiểm tra; việc import không tự tải dữ liệu vì chưa gọi build_loaders.
     from src.pilot_data import pilot_indices

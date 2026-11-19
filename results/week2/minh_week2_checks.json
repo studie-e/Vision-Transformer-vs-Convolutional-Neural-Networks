@@ -3,7 +3,7 @@
   "pulled_main": "6211fe0",
   "branch": "Minh",
   "torch": "2.11.0+cu128",
-  "device": "NVIDIA GeForce RTX 5080",
+  "device": "GPU hỗ trợ CUDA",
   "test_split_evaluated": false,
   "main_vit_runs_completed_by_minh": 0,
   "main_resnet_runs": [

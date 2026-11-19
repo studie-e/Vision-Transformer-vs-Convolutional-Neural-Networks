@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (kiểm thử mô hình ViT, attention và ablation).
 """Kiểm thử tự động cho các thành phần ViT của Lan Anh (tuần 1):
 - src.models.vit: PatchEmbedding, MultiHeadSelfAttention, MLP, TransformerBlock, VisionTransformer
 - Khớp tham số so với ResNet: chênh lệch ≤10% (T04, T05)
@@ -22,6 +23,7 @@ from src.models.vit import (
 )
 
 
+# Lan Anh phụ trách chuẩn bị cấu hình ViT nhỏ dùng chung cho kiểm thử.
 @pytest.fixture
 def default_config():
     return {
@@ -42,6 +44,7 @@ def default_config():
     }
 
 
+# Lan Anh phụ trách kiểm tra kích thước chuỗi patch embedding.
 def test_patch_embedding_shape():
     pe = PatchEmbedding(image_size=32, patch_size=4, in_channels=3, embed_dim=96)
     assert pe.num_patches == 64
@@ -54,6 +57,7 @@ def test_patch_embedding_shape():
         PatchEmbedding(image_size=32, patch_size=5)
 
 
+# Lan Anh phụ trách kiểm tra đầu ra và trọng số multi-head attention.
 def test_multi_head_attention_and_weights():
     mha = MultiHeadSelfAttention(embed_dim=96, num_heads=4, dropout=0.0)
     x = torch.randn(2, 65, 96)
@@ -66,6 +70,7 @@ def test_multi_head_attention_and_weights():
         MultiHeadSelfAttention(embed_dim=96, num_heads=5)
 
 
+# Lan Anh phụ trách kiểm tra kích thước đầu ra của MLP.
 def test_mlp_block():
     mlp = MLP(embed_dim=96, mlp_dim=144, dropout=0.0)
     x = torch.randn(2, 65, 96)
@@ -73,6 +78,7 @@ def test_mlp_block():
     assert out.shape == (2, 65, 96)
 
 
+# Lan Anh phụ trách kiểm tra kích thước đầu ra của encoder block.
 def test_transformer_block():
     block = TransformerBlock(embed_dim=96, num_heads=4, mlp_ratio=1.5, dropout=0.0)
     x = torch.randn(2, 65, 96)
@@ -80,6 +86,7 @@ def test_transformer_block():
     assert out.shape == (2, 65, 96)
 
 
+# Lan Anh phụ trách kiểm tra logits và gradient khi chạy ViT.
 def test_vit_forward_and_backward(default_config):
     model = build_model(default_config)
     x = torch.randn(4, 3, 32, 32)
@@ -94,6 +101,7 @@ def test_vit_forward_and_backward(default_config):
             assert p.grad is not None, f"Parameter {name} has no gradient"
 
 
+# Lan Anh phụ trách kiểm tra số tham số ViT có gần ResNet.
 def test_vit_parameter_budget(default_config):
     model = build_model(default_config)
     vit_params = count_parameters(model)
@@ -106,6 +114,7 @@ def test_vit_parameter_budget(default_config):
     assert resnet_params == 272474
 
 
+# Lan Anh phụ trách kiểm tra lấy trọng số attention theo từng tầng.
 def test_vit_attention_extraction(default_config):
     model = build_model(default_config)
     model.eval()
@@ -121,6 +130,7 @@ def test_vit_attention_extraction(default_config):
         assert torch.allclose(sums, torch.ones_like(sums), atol=1e-5)
 
 
+# Lan Anh phụ trách kiểm tra chế độ tắt positional embedding.
 def test_vit_ablation_mode():
     config = {
         'model': {
@@ -151,6 +161,7 @@ def test_vit_ablation_mode():
     assert count_parameters(model) == 268042
 
 
+# Lan Anh phụ trách kiểm tra ViT học trên một batch cố định.
 def test_vit_overfit_single_batch(default_config):
     torch.manual_seed(42)
     # Tắt dropout khi kiểm tra overfit batch nhỏ

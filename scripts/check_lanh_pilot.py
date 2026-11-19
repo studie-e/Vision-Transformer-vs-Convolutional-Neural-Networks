@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (pilot ViT với dữ liệu CIFAR-10 và kiểm tra attention).
 """Pilot tích hợp dữ liệu thật CIFAR-10 cho ViT — tuần 1 Lan Anh.
 
 Chạy: python -X utf8 -m scripts.check_lanh_pilot --device cpu
@@ -29,6 +30,7 @@ from src.models.vit import build_model, count_parameters
 from src.train import fit, seed_everything
 
 
+# Lan Anh phụ trách chạy pilot ViT với dữ liệu thật và lưu log, kết quả, mẫu attention.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-dir', default='runs/lanh_week1_smoke')

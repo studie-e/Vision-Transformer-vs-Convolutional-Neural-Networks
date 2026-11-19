@@ -1,3 +1,4 @@
+# Người phụ trách: Hiền (chia CIFAR-10, tạo manifest và cung cấp DataLoader).
 # Tạo danh sách ảnh CIFAR-10 theo từng seed và dựng DataLoader để train, validation hoặc đánh giá cuối.
 # ResNet và ViT dùng chung danh sách ảnh ở mỗi tỷ lệ để so sánh trên cùng dữ liệu.
 """Chuẩn bị dữ liệu chính — Hiền.
@@ -46,6 +47,7 @@ RATIOS = (0.10, 0.50, 1.00)
 # Transform
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách augmentation và chuẩn hóa ảnh train.
 def make_train_transform():
     """Transform cho tập train: augmentation → ToTensor → Normalize.
 
@@ -63,6 +65,7 @@ def make_train_transform():
     ])
 
 
+# Hiền phụ trách chuyển tensor và chuẩn hóa ảnh validation/test.
 def make_eval_transform():
     """Transform cho val/test: chỉ ToTensor và Normalize, không augmentation."""
     return transforms.Compose([
@@ -75,6 +78,7 @@ def make_eval_transform():
 # Tạo split và manifest
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách lấy ngẫu nhiên số chỉ số bằng nhau cho từng lớp.
 def _stratified_indices(targets, n_per_class, rng):
     """Lấy n_per_class chỉ số cho mỗi lớp theo thứ tự ngẫu nhiên từ rng.
 
@@ -105,6 +109,7 @@ def _stratified_indices(targets, n_per_class, rng):
     return selected
 
 
+# Hiền phụ trách tách train/validation và tạo các tập con lồng nhau theo seed.
 def make_splits(split_seed, root='data', download=False):
     """Tạo split 45k/5k train/val từ tập train CIFAR-10 và tập con 10%/50%/100%.
 
@@ -179,6 +184,7 @@ def make_splits(split_seed, root='data', download=False):
     assert set(subsets['1.00']) == set(train_indices), '100% phải bằng toàn bộ train!'
 
     # --- Bước 3: thống kê số ảnh/lớp để kiểm tra ---
+    # Hiền phụ trách đếm số ảnh của từng lớp trong danh sách chỉ số.
     def count_per_class(indices):
         counts = [0] * NUM_CLASSES
         for i in indices:
@@ -203,6 +209,7 @@ def make_splits(split_seed, root='data', download=False):
     }
 
 
+# Hiền phụ trách lưu danh sách chỉ số và thống kê chia dữ liệu.
 def save_manifest(split_data, out_dir='results/splits'):
     """Lưu manifest JSON và thống kê ra thư mục results/splits/.
 
@@ -231,6 +238,7 @@ def save_manifest(split_data, out_dir='results/splits'):
     return manifest_path
 
 
+# Hiền phụ trách đọc và kiểm tra manifest theo split seed.
 def load_manifest(split_seed, splits_dir='results/splits'):
     """Nạp manifest đã lưu từ file JSON.
 
@@ -250,6 +258,7 @@ def load_manifest(split_seed, splits_dir='results/splits'):
     return manifest
 
 
+# Hiền phụ trách kiểm tra chỉ số và tính nhất quán của các tập con.
 def validate_manifest(m, targets=None, split_seed=None):
     """Validate actual indices; optionally recompute balance from CIFAR labels."""
     if split_seed is not None and m['split_seed'] != split_seed:
@@ -283,6 +292,7 @@ def validate_manifest(m, targets=None, split_seed=None):
     return True
 
 
+# Hiền phụ trách tính SHA-256 của manifest để dùng khi đánh giá hoặc resume.
 def manifest_digest(manifest):
     return hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
 
@@ -291,6 +301,7 @@ def manifest_digest(manifest):
 # Xây dựng DataLoader cho trainer
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách tạo DataLoader train/validation từ manifest và cấu hình.
 def build_loaders(config):
     """Tạo (train_loader, val_loader) từ manifest đã lưu, tương thích với src.train.
 
@@ -352,6 +363,7 @@ def build_loaders(config):
     return train_loader, val_loader
 
 
+# Hiền phụ trách tạo DataLoader cho tập test CIFAR-10 chính thức.
 def build_test_loader(config):
     """Tạo test_loader từ tập test CIFAR-10 chính thức.
 
@@ -376,6 +388,7 @@ def build_test_loader(config):
 # Kiểm tra nhanh (chạy từ terminal)
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách kiểm tra toàn vẹn các manifest đã tạo.
 def _verify_splits(splits_dir='results/splits', seeds=(2026, 2027, 2028), targets=None):
     """Kiểm tra tính đúng đắn của tất cả manifest đã tạo.
 

@@ -18,6 +18,7 @@ from torchvision.datasets.utils import download_url
 # Hàm pilot_indices: lấy ngẫu nhiên hai nhóm chỉ số train/validation không giao nhau.
 # Đầu vào: tổng số ảnh, số ảnh mỗi nhóm và split seed; đầu ra: hai list chỉ số.
 # Đây chỉ là chia pilot ngẫu nhiên, chưa phân tầng theo lớp và chưa phải split chính của Hiền.
+# Minh phụ trách chọn chỉ số train và validation cho pilot.
 def pilot_indices(size, train_samples, val_samples, seed):
     # Mỗi nhóm phải có ít nhất một ảnh và tổng hai nhóm không được vượt số ảnh có sẵn.
     if min(train_samples, val_samples) < 1 or train_samples + val_samples > size:
@@ -32,6 +33,7 @@ def pilot_indices(size, train_samples, val_samples, seed):
 # Hàm build_loaders: dựng hai DataLoader phục vụ kiểm tra kỹ thuật ResNet tuần 1.
 # Đầu vào: config chứa data và seed; trả (train_loader, val_loader) cho trainer dùng chung.
 # Cả hai nhóm đều lấy từ tập train CIFAR-10, không lấy tập test chính thức làm validation.
+# Minh phụ trách nạp CIFAR-10 pilot và tạo hai DataLoader để chạy thử.
 def build_loaders(config):
     # Đọc nhóm cấu hình dữ liệu: nguồn, nơi lưu, số ảnh, split_seed, batch_size và quyền tải.
     data = config['data']

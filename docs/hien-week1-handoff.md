@@ -8,7 +8,7 @@ Thông tin họ tên đầy đủ/MSSV được để trống theo yêu cầu; k
 - Toàn bộ suite: **23 test đạt**, không bỏ qua test dữ liệu thật. Môi trường phát cảnh báo dọn dẹp `pyreadline3` khi thoát, nhưng pytest trả mã 0; đây không phải lỗi test.
 - Ba manifest đã kiểm tra bằng nhãn CIFAR-10 thật và sinh lại trùng toàn bộ chỉ số, không chỉ trùng số lượng.
 - Pilot ResNet 272.474 tham số: 4.500 train, 5.000 validation, một epoch, 36 cập nhật; validation **846/5.000 = 0,1692**. Evaluator khớp chính xác trainer. Đây là kết quả kiểm tra kỹ thuật sau một epoch, không phải kết quả so sánh chính.
-- Train 20,23 giây; train + validation 27,25 giây trên CPU trong phiên này. Không dùng con số này để suy ra lịch GPU RTX 5080 của Minh.
+- Train 20,23 giây; train + validation 27,25 giây trên CPU trong phiên này. Không dùng con số này để suy ra lịch GPU của Minh.
 - Bằng chứng: [kiểm tra dữ liệu/pilot](../results/hien_week1_checks.json), [metadata từng run](../results/hien_pilot_runs.csv), [bảng tổng hợp](../results/hien_pilot_summary.csv), [log epoch](../results/hien_pilot_metrics.csv).
 - Môi trường thực tế Python 3.12.3, torch 2.12.1+cpu, torchvision 0.27.1; khác môi trường CUDA đã ghim trong requirements của Minh. Phiên bản chi tiết được lưu trong JSON, chưa tuyên bố đã kiểm tra cài sạch theo requirements.
 - Checkpoint/nhãn/xác suất/TensorBoard nằm tại `runs/hien_week1_smoke/` (không theo dõi bằng Git); cần sao lưu thư mục này khi bàn giao sang máy khác.

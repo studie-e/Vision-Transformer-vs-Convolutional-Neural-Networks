@@ -1,8 +1,8 @@
 # Kết quả ResNet tuần 3
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (thực hiện các lượt ResNet bổ sung và tổng hợp kết quả validation).
 
-Đã hoàn tất sáu lượt ResNet mới trên RTX 5080 với `(split_seed, seed)` là `(2027, 43)` và `(2028, 44)`. Giữ giao thức tuần 2 gồm 100 epoch, batch 128, SGD lr 0,05, momentum 0,9, weight decay 0,0005, cosine annealing và 272.474 tham số. Mỗi lượt chọn checkpoint trên 5.000 ảnh validation, hòa giữ epoch sớm hơn. Tập test dành cho đánh giá cuối.
+Đã hoàn tất sáu lượt ResNet mới trên GPU với `(split_seed, seed)` là `(2027, 43)` và `(2028, 44)`. Giữ giao thức tuần 2 gồm 100 epoch, batch 128, SGD lr 0,05, momentum 0,9, weight decay 0,0005, cosine annealing và 272.474 tham số. Mỗi lượt chọn checkpoint trên 5.000 ảnh validation, hòa giữ epoch sớm hơn. Tập test dành cho đánh giá cuối.
 
 | Tỷ lệ | Seed 42 | Seed 43 | Seed 44 | Trung bình ± SD (điểm %) | Bước mỗi lượt |
 |---|---:|---:|---:|---:|---:|

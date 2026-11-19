@@ -25,6 +25,7 @@ RESULT_DIR = Path('results/week3')
 
 # Hàm config_paths trả danh sách YAML theo thứ tự seed rồi đến tỷ lệ.
 # ResNet dùng hai cặp seed bổ sung, còn Swin tuần 3 dùng cặp đầu tiên ở 10% và 100%.
+# Minh phụ trách chọn YAML ResNet hoặc Swin theo seed và tỷ lệ dữ liệu.
 def config_paths(model):
     if model == 'resnet':
         return [CONFIG_DIR / f'resnet_{ratio}_seed{seed}.yaml'
@@ -35,6 +36,7 @@ def config_paths(model):
 # Hàm verify_training_source kiểm tra thay đổi mã giữa P0 và P1 trước khi gộp thống kê.
 # Git xác nhận mã train sạch lúc chạy. Hai bản Python phải có cùng cây cú pháp.
 # Công cụ vẽ hình và lời ghi người phụ trách ở đầu requirements không ảnh hưởng lượt train.
+# Minh phụ trách đối chiếu phiên bản mã trước khi gộp kết quả.
 def verify_training_source(baseline, repeat):
     for row in (baseline, repeat):
         if any(line[3:].startswith(('src/', 'requirements.txt')) for line in row['git_status'].splitlines()):
@@ -72,6 +74,7 @@ def verify_training_source(baseline, repeat):
 
 # Hàm collect_validation nạp lại best.pt bằng CUDA, đối chiếu trainer và đóng ZIP.
 # CSV từng lượt giữ provenance gốc. Chỉ bảng thống kê ResNet gộp P0/P1 sau kiểm tra cấu hình và mã.
+# Minh phụ trách kiểm tra, tổng hợp và đóng gói kết quả validation tuần 3.
 def collect_validation(model, device):
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     paths = config_paths(model)
@@ -130,6 +133,7 @@ def collect_validation(model, device):
 
 
 # Hàm main nhận lựa chọn train/collect. run_one kiểm tra và tiếp tục last.pt khi run bị ngắt.
+# Minh phụ trách lệnh chạy thí nghiệm hoặc thu kết quả tuần 3.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stage', choices=('train', 'collect'), required=True)

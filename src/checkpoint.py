@@ -18,6 +18,7 @@ import torch
 # Hàm random_state: chụp vị trí hiện tại của các bộ sinh số ngẫu nhiên để resume.
 # Đầu vào: các DataLoader theo thứ tự train, val; đầu ra: dict có thể lưu trong checkpoint.
 # Seed chỉ là điểm xuất phát; trạng thái RNG cho biết đã đi tới đâu sau nhiều batch/epoch.
+# Minh phụ trách thu trạng thái ngẫu nhiên để ghi vào checkpoint.
 def random_state(loaders):
     # NumPy trả tuple gồm tên thuật toán, mảng trạng thái, vị trí và thông tin bộ đệm Gaussian.
     numpy_state = np.random.get_state()
@@ -41,6 +42,7 @@ def random_state(loaders):
 # Hàm restore_random_state: đặt lại các RNG đúng vị trí đã chụp bởi random_state.
 # Đầu vào: dict trong checkpoint và các loader đúng thứ tự cũ. Không trả dữ liệu.
 # Phải gọi sau khi tạo/nạp model, optimizer và loader, trước batch tiếp theo của run resume.
+# Minh phụ trách khôi phục RNG của Python, NumPy, PyTorch và DataLoader.
 def restore_random_state(state, loaders):
     # Khôi phục RNG Python, không chỉ đặt lại seed ban đầu.
     random.setstate(state['python'])
@@ -67,6 +69,7 @@ def restore_random_state(state, loaders):
 # Hàm save_checkpoint: ghi dict trạng thái ra đĩa qua file tạm, rồi thay file đích.
 # Đầu vào: Path tới best.pt/last.pt và state; không trả dữ liệu. Thư mục cha phải có sẵn.
 # Cách này tránh để file đích chứa nội dung ghi dở; vẫn cần tránh hai tiến trình ghi cùng run.
+# Minh phụ trách ghi qua file tạm rồi thay checkpoint đích.
 def save_checkpoint(path: Path, state: dict):
     # Ví dụ last.pt -> last.tmp: giữ file last.pt trước đó trong lúc đang ghi bản mới.
     temporary = path.with_suffix('.tmp')
@@ -78,6 +81,7 @@ def save_checkpoint(path: Path, state: dict):
 
 # Hàm load_checkpoint: đọc checkpoint từ đĩa, trả dict cho fit khôi phục từng thành phần.
 # Đầu vào: đường dẫn checkpoint của nhóm; không tạo lại cả đối tượng nn.Module từ file.
+# Minh phụ trách đọc checkpoint PyTorch trên CPU bằng weights_only.
 def load_checkpoint(path):
     # Tensor/primitive-only checkpoints; do not enable arbitrary pickle objects.
     # map_location='cpu' cho phép đọc cả file từng lưu trên GPU khi đang kiểm tra bằng CPU.

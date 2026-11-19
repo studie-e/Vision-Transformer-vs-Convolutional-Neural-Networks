@@ -1,6 +1,6 @@
 # Lộ trình Minh — CNN, trainer, môi trường và Swin
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (ResNet, Swin, trainer, môi trường và demo).
 
 **Vai trò đổi từ cột Hiền trong bảng gốc:** cài/train ResNet, xây trainer/môi trường dùng chung, đo thời gian chạy, thử Swin; README, tái lập, demo và slide. Lan Anh vẫn trực tiếp train ViT/ablation. Hiền phụ trách dữ liệu, metric, attention, phân tích và ghép báo cáo.
 
@@ -12,7 +12,7 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
-| **1** | Kiểm tra PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản. Thiết lập repo/log/sao lưu, quyền chia sẻ trong nhóm. Đọc kiến trúc ResNet. | Môi trường chạy GPU, README ban đầu, ghi chú ResNet → cả nhóm |
+| **1** | Kiểm tra PyTorch/CUDA thực tế trên GPU; ghi phiên bản. Thiết lập repo/log/sao lưu, quyền chia sẻ trong nhóm. Đọc kiến trúc ResNet. | Môi trường chạy GPU, README ban đầu, ghi chú ResNet → cả nhóm |
 | **2** | Dựng ResNet cho ảnh nhỏ, ghi biến thể/nguồn mã; thử forward/backward. Thống nhất với Lan Anh đầu vào ảnh và logits 10 lớp. | `src/models/resnet.py`, cấu hình dự kiến |
 | **3** | Dựng vòng train/validation, optimizer/scheduler theo cấu hình; tích hợp dữ liệu Hiền giao. Log loss/accuracy/lr; kiểm tra train/eval. | `src/train.py`, `configs/train.yaml` bản đầu → Lan Anh |
 | **4** | Bổ sung checkpoint/resume: trạng thái mô hình, optimizer, scheduler và thông tin cần để tiếp tục. Lưu config/seed/commit theo run. | `src/checkpoint.py`, log mẫu, hướng dẫn chạy/resume |

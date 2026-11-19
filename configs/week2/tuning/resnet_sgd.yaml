@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (tuning tuần 2).
+# Người phụ trách: Minh (mô hình ResNet và cấu hình tuning), Hiền (manifest dữ liệu).
 # Thử ResNet với SGD trong 10 epoch trên 50% dữ liệu train để so sánh cách thiết lập optimizer.
 seed: 42
 model:

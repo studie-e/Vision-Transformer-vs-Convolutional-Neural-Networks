@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (trainer dùng chung).
+# Hiền bổ sung lưu và kiểm tra mã băm của manifest dữ liệu khi huấn luyện và resume.
 # Đọc cấu hình YAML để tạo mô hình và bộ nạp dữ liệu, rồi chạy train và validation theo từng epoch.
 # Lưu chỉ số vào CSV và TensorBoard, chọn best.pt theo validation accuracy và dùng last.pt để huấn luyện tiếp.
 """Minimal model-independent trainer. See docs/minh-week1.md for the contract."""
@@ -31,6 +32,7 @@ from src.models.resnet import count_parameters
 # Đầu vào: seed là số nguyên trong cấu hình. Hàm không trả dữ liệu, mà đổi thiết lập toàn cục.
 # Mục đích: cùng seed/cấu hình/môi trường thì dễ kiểm tra và tái lập hơn;
 # không bảo đảm kết quả bitwise giống nhau giữa các máy hoặc phiên bản PyTorch khác nhau.
+# Minh phụ trách đặt seed và chế độ tính toán xác định cho lượt chạy.
 def seed_everything(seed):
     # Chỉ đặt nếu biến chưa tồn tại; cuBLAS dùng workspace này cho một số phép toán CUDA xác định.
     os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
@@ -50,6 +52,7 @@ def seed_everything(seed):
 
 # Hàm sync: chờ GPU xử lý xong công việc để phép đo thời gian không bị kết thúc quá sớm.
 # Đầu vào: torch.device. Không trả dữ liệu; với CPU thì không cần chờ thêm.
+# Minh phụ trách đồng bộ CUDA trước khi chốt thời gian.
 def sync(device):
     # Lệnh CUDA thường chạy bất đồng bộ: Python có thể đi tiếp khi GPU còn đang tính.
     if device.type == 'cuda':
@@ -61,6 +64,7 @@ def sync(device):
 # Đầu vào: model trả logits [B,C]; loader trả ảnh và nhãn long [B]; device là CPU/GPU.
 # Có optimizer => cập nhật trọng số; optimizer=None => chỉ đánh giá.
 # Trả về dict gồm loss trung bình theo ảnh, accuracy 0–1, số ảnh và số batch đã xử lý.
+# Minh phụ trách vòng lặp batch, cập nhật trọng số khi train và tính chỉ số.
 def run_epoch(model, loader, device, optimizer=None):
     # Không kiểm tra tên tập dữ liệu; việc có optimizer quyết định đây có phải bước học hay không.
     training = optimizer is not None
@@ -114,8 +118,10 @@ def run_epoch(model, loader, device, optimizer=None):
 # Hàm environment: ghi dấu môi trường và phiên bản mã để truy lại một thí nghiệm.
 # Không có đối số; trả dict chứa Python/PyTorch/CUDA/GPU, commit, trạng thái Git và hash src.
 # Đây là metadata, không phải số liệu accuracy hay thiết lập optimizer.
+# Minh phụ trách ghi môi trường chạy và dấu vết phiên bản mã.
 def environment():
     # Hàm con git: nhận các đối số lệnh Git, trả stdout dạng chuỗi đã bỏ khoảng trắng hai đầu.
+    # Minh phụ trách truy vấn Git để điền thông tin phiên bản.
     def git(*args):
         # Danh sách đối số không đi qua shell; capture_output giữ kết quả để đưa vào metadata.
         # check=False: Git trả mã lỗi không tự gây CalledProcessError; stdout có thể rỗng khi lỗi.
@@ -140,6 +146,7 @@ def environment():
 # Hàm write_metrics: ghi toàn bộ lịch sử epoch ra CSV để Hiền tổng hợp kết quả.
 # Đầu vào: path là Path, history là danh sách dict có cùng các cột. Không trả dữ liệu.
 # Ghi lại từ history trong checkpoint giúp tiếp tục run mà không nhân đôi các dòng epoch cũ.
+# Minh phụ trách ghi lịch sử huấn luyện theo epoch ra CSV.
 def write_metrics(path, history):
     # Chưa có epoch nào thì không biết bộ cột cần ghi, nên chưa tạo CSV.
     if history:
@@ -158,6 +165,8 @@ def write_metrics(path, history):
 # device chọn CPU/GPU; resume là last.pt; stop_after_epoch dừng sớm nhưng giữ tổng epoch của scheduler.
 # Trả về history của các epoch đã hoàn thành, đồng thời lưu kết quả vào run_dir.
 # Khi bắt đầu run mới, bên gọi cần seed trước khi khởi tạo model (main đã làm việc này).
+# Minh phụ trách vòng train/validation, optimizer, lịch learning rate, log và checkpoint/resume.
+# Hiền bổ sung lưu mã băm manifest dữ liệu vào metadata và checkpoint, rồi kiểm tra mã băm khi resume.
 def fit(model, train_loader, val_loader, config, run_dir, *, device='cpu',
         resume=None, stop_after_epoch=None):
     """Train to the configured horizon; stop_after_epoch preserves the LR schedule.
@@ -322,6 +331,7 @@ def fit(model, train_loader, val_loader, config, run_dir, *, device='cpu',
 # Hàm factory: tìm một hàm tạo mô hình/dữ liệu theo tên module:function trong YAML.
 # Ví dụ src.models.resnet:build_model => trả đối tượng hàm build_model, chưa gọi hàm đó.
 # Đầu vào là chuỗi cấu hình tin cậy của nhóm; đầu ra thường là một callable.
+# Minh phụ trách nạp hàm tạo mô hình hoặc DataLoader từ tên trong YAML.
 def factory(path):
     # Tách vị trí module Python và tên hàm cần lấy theo dấu hai chấm.
     module, name = path.split(':')
@@ -331,6 +341,7 @@ def factory(path):
 
 # Hàm main: điểm vào khi chạy python -m src.train từ terminal.
 # Nhận tham số qua dòng lệnh, đọc YAML, tạo model/loaders rồi gọi fit; không trả dữ liệu cho terminal.
+# Minh phụ trách lệnh chạy trainer, từ đọc YAML đến gọi fit.
 def main():
     # argparse tạo giao diện lệnh và phần trợ giúp --help từ mô tả module.
     parser = argparse.ArgumentParser(description=__doc__)

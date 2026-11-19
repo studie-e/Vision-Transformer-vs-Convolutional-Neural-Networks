@@ -1,3 +1,4 @@
+# Người phụ trách: Hiền (kiểm thử dữ liệu, đánh giá và tổng hợp kết quả).
 """Kiểm thử tự động cho các module tuần 1 của Hiền:
 - src.data: tính phân tầng, không giao nhau, tính lồng nhau, build_loaders.
 - src.evaluate: compute_accuracy với ví dụ biết đáp án.
@@ -18,12 +19,14 @@ from src.data import (
 from src.evaluate import compute_accuracy
 
 
+# Hiền phụ trách chuẩn bị một dòng kết quả mẫu cho bài kiểm thử thống kê.
 def sample_row(**changes):
     row = dict(model='resnet', ratio='0.10', split='val', protocol_id='recipe',
                train_seed='42', split_seed='2026', params='272474', accuracy='0.8')
     return {**row, **changes}
 
 
+# Hiền phụ trách kiểm tra từ chối seed trùng và tách đúng giao thức, tập đánh giá.
 def test_summary_rejects_duplicates_and_separates_protocols_and_splits():
     from scripts.summarize import summarize
     with pytest.raises(ValueError, match='Duplicate'):
@@ -35,6 +38,7 @@ def test_summary_rejects_duplicates_and_separates_protocols_and_splits():
     assert all(r['n_seeds'] == 1 for r in result)
 
 
+# Hiền phụ trách kiểm tra từ chối giá trị accuracy ngoài miền hợp lệ.
 @pytest.mark.parametrize('value', ['nan', 'inf', '-0.1', '1.1'])
 def test_summary_rejects_invalid_accuracy(value):
     from scripts.summarize import summarize
@@ -42,6 +46,7 @@ def test_summary_rejects_invalid_accuracy(value):
         summarize([sample_row(accuracy=value)])
 
 
+# Hiền phụ trách kiểm tra lỗi khi manifest bị thiếu hoặc hỏng.
 def test_missing_and_corrupted_manifests_fail(tmp_path):
     from src.data import _verify_splits, validate_manifest
     assert not _verify_splits(tmp_path)
@@ -51,6 +56,7 @@ def test_missing_and_corrupted_manifests_fail(tmp_path):
         validate_manifest(manifest)
 
 
+# Hiền phụ trách kiểm tra đối chiếu cấu hình đánh giá và mã giao thức theo thiết lập.
 def test_evaluation_rejects_changed_config_and_protocol_tracks_recipe():
     from src.evaluate import checked_config, protocol_id
     import copy
@@ -66,6 +72,7 @@ def test_evaluation_rejects_changed_config_and_protocol_tracks_recipe():
     assert protocol_id(config) != protocol_id(other)
 
 
+# Hiền phụ trách kiểm tra phát hiện manifest thay đổi so với checkpoint.
 def test_manifest_fingerprint_rejects_changes():
     import yaml
     from src.data import manifest_digest
@@ -78,6 +85,7 @@ def test_manifest_fingerprint_rejects_changes():
         checked_config(state, config)
 
 
+# Hiền phụ trách kiểm tra trainer từ chối resume với manifest khác checkpoint.
 def test_resume_rejects_changed_manifest(tmp_path):
     from src.train import fit
     from torch.utils.data import DataLoader, TensorDataset
@@ -92,6 +100,7 @@ def test_resume_rejects_changed_manifest(tmp_path):
         fit(torch.nn.Linear(2, 2), train, val, config, tmp_path, resume=tmp_path / 'last.pt')
 
 
+# Hiền phụ trách kiểm thử luồng đánh giá từ checkpoint đến CSV và bảng tổng hợp.
 def test_checkpoint_evaluation_metadata_csv_and_summary(tmp_path, monkeypatch):
     """Known-answer end-to-end evaluation, without treating fake data as evidence."""
     import json
@@ -102,10 +111,13 @@ def test_checkpoint_evaluation_metadata_csv_and_summary(tmp_path, monkeypatch):
     from scripts.summarize import load_runs, summarize
 
     class KnownDataset:
+        # Hiền phụ trách khởi tạo ảnh và nhãn dùng trong bài kiểm thử tích hợp.
         def __init__(self, **kwargs):
             self.targets = [i % 10 for i in range(50000)]
+        # Hiền phụ trách cung cấp số ảnh trong dataset kiểm thử.
         def __len__(self):
             return 50000
+        # Hiền phụ trách trả một ảnh và nhãn cho evaluator trong bài kiểm thử.
         def __getitem__(self, idx):
             label = self.targets[idx]
             return torch.nn.functional.one_hot(torch.tensor(label), 10).float(), label
@@ -139,6 +151,7 @@ def test_checkpoint_evaluation_metadata_csv_and_summary(tmp_path, monkeypatch):
     assert math.isnan(summary[0]['std_accuracy'])
 
 
+# Hiền phụ trách kiểm tra DataLoader và khả năng tái lập split với CIFAR-10 thật.
 def test_real_cifar_loaders_and_reproducible_splits():
     """Integration check when the official dataset is present; never downloads in pytest."""
     import yaml
@@ -166,6 +179,7 @@ def test_real_cifar_loaders_and_reproducible_splits():
 # Test evaluate & summarize (không cần dữ liệu thật)
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách kiểm tra accuracy bằng các ví dụ biết đáp án.
 def test_compute_accuracy_with_known_examples():
     """Kiểm tra tính accuracy bằng ví dụ biết đáp án."""
     # 3/5 đúng = 0.6
@@ -189,6 +203,7 @@ def test_compute_accuracy_with_known_examples():
         compute_accuracy([], [])
 
 
+# Hiền phụ trách kiểm tra trung bình và độ lệch chuẩn mẫu bằng ví dụ tính tay.
 def test_mean_std_with_known_examples():
     """Kiểm tra tính mean và std mẫu bằng ví dụ tính tay."""
     # 3 seed: 0.70, 0.72, 0.74 => mean=0.72, std=0.02
@@ -210,6 +225,7 @@ def test_mean_std_with_known_examples():
 # Test data manifests
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách kiểm tra chỉ số, độ lồng nhau và tính cân bằng của manifest.
 @pytest.mark.parametrize('seed', [2026, 2027, 2028])
 def test_manifest_integrity(seed):
     """Kiểm tra tính toàn vẹn của manifest đã lưu trên disk."""
@@ -243,6 +259,7 @@ def test_manifest_integrity(seed):
     assert sub100 == set(train_idx)
 
 
+# Hiền phụ trách kiểm tra các phép biến đổi ảnh trả về tensor đúng kích thước.
 def test_transforms_produce_correct_shapes():
     """Kiểm tra transforms cho ra tensor 3x32x32."""
     from PIL import Image

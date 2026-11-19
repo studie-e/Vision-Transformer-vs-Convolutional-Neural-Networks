@@ -1,8 +1,8 @@
 # Thực thi ba lượt ViT trên GPU — tuần 2
 
-**Người phụ trách: Lan Anh** (mô hình ViT, mã trích xuất attention và Method–ViT), **Hiền** (dữ liệu, cấu hình nhóm, đối chiếu và phân tích), **Minh** (hỗ trợ chạy ba lượt trên RTX 5080, kiểm tra và đóng gói).
+**Người phụ trách: Lan Anh** (mô hình ViT, mã trích xuất attention và Method–ViT), **Hiền** (dữ liệu, cấu hình nhóm, đối chiếu và phân tích), **Minh** (hỗ trợ chạy ba lượt trên GPU, kiểm tra và đóng gói).
 
-Ghi lại lệnh chạy ba lượt ViT trên RTX 5080, cách đối chiếu kết quả và gói bàn giao cho Hiền.
+Ghi lại lệnh chạy ba lượt ViT trên GPU, cách đối chiếu kết quả và gói bàn giao cho Hiền.
 
 ## Tài liệu đã đọc và cấu hình ưu tiên
 

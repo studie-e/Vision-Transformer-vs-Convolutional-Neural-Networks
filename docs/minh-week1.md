@@ -1,6 +1,6 @@
 # Bàn giao tuần 1 — Minh
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (bàn giao ResNet, trainer và cơ chế lưu, khôi phục checkpoint tuần 1).
 
 Hướng dẫn đọc mã ResNet, chạy thử trainer và tiếp tục huấn luyện từ checkpoint tuần 1.
 
@@ -15,7 +15,7 @@ Ngày thực hiện: **12/11/2026**, theo lịch Asia/Saigon. Repo ban đầu ch
 | File | Trách nhiệm | Minh cần giải thích được |
 |---|---|---|
 | `src/models/resnet.py` | Stem 3×3; 3 stage residual; global average pooling; head 10 lớp | Vì sao có shortcut, vì sao đổi chiều cần projection; width ảnh hưởng tham số |
-| `src/train.py` | Factory, seed, train/validation, optimizer/lr, log, chọn best checkpoint | CrossEntropy nhận logits; train khác eval; vì sao val loss tính trọng số theo số ảnh |
+| `src/train.py` | Minh phụ trách factory, seed, vòng train/validation, optimizer, log và chọn checkpoint. Hiền bổ sung lưu và kiểm tra mã băm manifest trong `fit` khi tích hợp dữ liệu chính. | CrossEntropy nhận logits; train khác eval; vì sao val loss tính trọng số theo số ảnh |
 | `src/checkpoint.py` | Lưu state_dict và RNG; ghi file tạm rồi thay thế | Chỉ lưu trọng số chưa đủ để tiếp tục train; last khác best; resume tại epoch boundary |
 | `src/pilot_data.py` | Adapter dữ liệu chẩn đoán, dùng tập train CIFAR | Vì sao đây chưa phải split chính; không lấy test làm validation; seed ảnh hưởng tập con |
 | `src/inspect_model.py` | Đếm tham số, thử các width 4–128 để khớp mục tiêu | Công thức chênh lệch, vì sao chưa có ViT thì chưa chốt được width cuối |

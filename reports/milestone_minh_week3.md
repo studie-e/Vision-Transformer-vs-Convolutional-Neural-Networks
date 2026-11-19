@@ -1,12 +1,12 @@
 # Milestone tuần 3 — phần Minh
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (viết phần ResNet, Swin và tiến độ cho báo cáo milestone).
 
 Tóm tắt kết quả ResNet sau khi bổ sung seed và tiến độ chạy thử Swin để ghép vào báo cáo milestone.
 
 ## Tiến độ và kết quả validation
 
-Hoàn tất sáu lượt ResNet bổ sung và giữ nguyên ba lượt seed đầu, tổng 9 lượt ResNet. Dữ liệu mỗi split được chia phân tầng và dùng chung theo từng cặp seed của hai mô hình. ResNet train từ đầu trên RTX 5080, với batch 128, SGD lr 0,05, momentum 0,9, weight decay 0,0005 và cosine annealing trong 100 epoch. Đánh giá lại `best.pt` trên CUDA khớp số dự đoán đúng trong cả sáu lượt mới.
+Hoàn tất sáu lượt ResNet bổ sung và giữ nguyên ba lượt seed đầu, tổng 9 lượt ResNet. Dữ liệu mỗi split được chia phân tầng và dùng chung theo từng cặp seed của hai mô hình. ResNet train từ đầu trên GPU, với batch 128, SGD lr 0,05, momentum 0,9, weight decay 0,0005 và cosine annealing trong 100 epoch. Đánh giá lại `best.pt` trên CUDA khớp số dự đoán đúng trong cả sáu lượt mới.
 
 | Tỷ lệ | Seed 42 | Seed 43 | Seed 44 | Trung bình ± SD (điểm %) | Bước mỗi lượt |
 |---|---:|---:|---:|---:|---:|

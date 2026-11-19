@@ -14,6 +14,7 @@ from src.train import factory
 
 # Hàm main: đếm tham số trainable của mô hình; tùy chọn tìm width ResNet gần ngân sách ViT.
 # Nhận --config và --target từ terminal; in JSON, không sửa cấu hình và không huấn luyện.
+# Minh phụ trách lệnh đếm tham số và dò độ rộng ResNet gần số tham số ViT.
 def main():
     # Khai báo giao diện lệnh, cho phép xem cách dùng bằng --help.
     parser = argparse.ArgumentParser(description=__doc__)

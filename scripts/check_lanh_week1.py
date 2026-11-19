@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (kiểm tra mô hình ViT tự cài tuần 1).
 """Kiểm tra tuần 1 Lan Anh — ViT tự cài.
 
 Chạy: python -X utf8 -m scripts.check_lanh_week1
@@ -19,6 +20,7 @@ from src.models.vit import VisionTransformer, count_parameters, build_model
 from src.models.resnet import CifarResNet, count_parameters as resnet_count
 
 
+# Lan Anh phụ trách các kiểm tra ViT về gradient, tham số, attention và ablation.
 def main():
     device = 'cpu'
     print("=" * 60)

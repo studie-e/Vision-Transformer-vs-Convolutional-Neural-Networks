@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 
 # Hàm read_csv: đọc file CSV thành list dict để vẽ, không tính lại hay sửa số liệu thí nghiệm.
 # Nhận Path; trả danh sách dòng, các giá trị số được chuyển khi sử dụng ở main.
+# Minh phụ trách đọc CSV kết quả ResNet để vẽ.
 def read_csv(path):
     with Path(path).open(encoding='utf-8', newline='') as stream:
         return list(csv.DictReader(stream))
@@ -20,6 +21,7 @@ def read_csv(path):
 
 # Hàm main: vẽ ba cặp đường loss/accuracy và validation accuracy theo tỷ lệ dữ liệu.
 # Chỉ đọc kết quả ResNet một seed; không tạo error bar hay kết luận so sánh ViT khi chưa có dữ liệu.
+# Minh phụ trách xuất đường cong học và biểu đồ theo tỷ lệ dữ liệu của ResNet.
 def main():
     output = Path('results/week2/figures')
     output.mkdir(parents=True, exist_ok=True)

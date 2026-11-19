@@ -13,6 +13,7 @@ from torchvision.models.swin_transformer import SwinTransformer
 # Hàm build_model: tạo Swin cho CIFAR-10 theo factory mà trainer đang sử dụng.
 # Nhận config đầy đủ; trả mạng mới khởi tạo, không tải bất kỳ pretrained weights nào.
 # Prototype dùng 3 stage: patch 2×2 tạo lưới 16×16, patch merging giảm còn 8×8 rồi 4×4.
+# Minh phụ trách cấu hình Swin của torchvision cho ảnh CIFAR-10.
 def build_model(config):
     # Độ rộng 26/52/104 chia hết cho 2/4/8 head; cửa sổ 4×4 hợp với ba lưới trên.
     # Giữ mô hình nhỏ để thuận tiện khảo sát sau; số tham số vẫn phải được báo cáo riêng.

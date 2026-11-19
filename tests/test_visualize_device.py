@@ -11,6 +11,7 @@ import src.visualize as visualize
 
 # Hàm test: công cụ vẽ phải dùng thiết bị đã chọn hoặc thiết bị train được ghi trong metadata.
 # Giả lập biên evaluator để test chạy được cả trên máy CPU; số liệu ở đây chỉ là fixture đơn vị.
+# Minh phụ trách kiểm tra thiết bị đánh giá lấy từ tham số hoặc metadata huấn luyện.
 @pytest.mark.parametrize('requested,expected', [('cuda', 'cuda'), (None, 'cuda'), ('cpu', 'cpu')])
 def test_visualization_routes_evaluation_to_the_requested_or_training_device(tmp_path, monkeypatch, requested, expected):
     config = {'data': {'split_seed': 2026}, 'model': {'factory': 'src.models.vit:build_model'}}
@@ -23,6 +24,7 @@ def test_visualization_routes_evaluation_to_the_requested_or_training_device(tmp
     called = []
 
     # Hàm giả tại biên tính toán: ghi thiết bị được chuyển xuống evaluator, không giả huấn luyện thật.
+    # Minh phụ trách giả lập evaluator và ghi lại thiết bị nhận được.
     def evaluate(path, config, split='val', device='cpu'):
         called.append(device)
         return {'accuracy': 0.5}

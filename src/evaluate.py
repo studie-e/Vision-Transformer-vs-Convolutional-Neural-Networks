@@ -1,3 +1,4 @@
+# Người phụ trách: Hiền (đánh giá checkpoint, tính accuracy và ghi kết quả).
 """Script đánh giá — Hiền.
 
 Đánh giá một checkpoint đã lưu trên tập validation hoặc test; sinh nhãn dự đoán và phân phối
@@ -28,6 +29,7 @@ from torchvision import datasets
 from src.data import build_test_loader, load_manifest, make_eval_transform, validate_manifest, manifest_digest, CLASSES
 
 
+# Hiền phụ trách đối chiếu cấu hình và manifest với checkpoint đã lưu.
 def checked_config(state, config):
     if state.get('config') != config:
         raise ValueError('Evaluation config differs from checkpoint config')
@@ -39,6 +41,7 @@ def checked_config(state, config):
     return state['config']
 
 
+# Hiền phụ trách tạo mã giao thức dùng để nhóm các lượt có cùng thiết lập.
 def protocol_id(config):
     """Group identical recipes while allowing train/split seeds to vary."""
     recipe = copy.deepcopy(config)
@@ -52,6 +55,7 @@ def protocol_id(config):
 # Hàm tính metric
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách tính top-1 accuracy từ nhãn dự đoán và nhãn thật.
 def compute_accuracy(predictions, labels):
     """Tính top-1 accuracy từ danh sách nhãn dự đoán và nhãn thật.
 
@@ -76,6 +80,7 @@ def compute_accuracy(predictions, labels):
     return {'accuracy': correct / total, 'correct': correct, 'total': total}
 
 
+# Hiền phụ trách nạp checkpoint, suy luận và trả accuracy, dự đoán cùng xác suất cho tập được chọn.
 def evaluate_checkpoint(checkpoint_path, config, split='val', device='cpu'):
     """Đánh giá một checkpoint trên tập val hoặc test.
 
@@ -165,6 +170,7 @@ RUNS_CSV_FIELDNAMES = [
 ]
 
 
+# Hiền phụ trách ghi một dòng kết quả vào CSV với các trường chuẩn.
 def append_run(result_row, csv_path='results/runs.csv'):
     """Ghi thêm một dòng vào results/runs.csv.
 
@@ -200,6 +206,7 @@ def append_run(result_row, csv_path='results/runs.csv'):
     return path
 
 
+# Hiền phụ trách tập hợp cấu hình, metadata và điểm đánh giá cho một lượt.
 def build_run_row(config_path, checkpoint_path, eval_result, split, notes=''):
     """Tổng hợp một dòng metadata cho runs.csv từ checkpoint và kết quả đánh giá.
 
@@ -276,6 +283,7 @@ def build_run_row(config_path, checkpoint_path, eval_result, split, notes=''):
 # Kiểm tra metric bằng ví dụ biết đáp án
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách kiểm tra phép tính accuracy bằng ví dụ biết đáp án.
 def _verify_metric():
     """Kiểm tra compute_accuracy bằng ví dụ biết đáp án trước khi dùng trên dữ liệu thật.
 

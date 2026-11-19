@@ -1,6 +1,6 @@
 # Kết quả tuần 2 — Minh, 14/11/2026
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (chạy ResNet và tổng hợp kết quả tuần 2).
 
 Tổng hợp kết quả validation của ResNet theo tỷ lệ dữ liệu, thông số đã thử và đường dẫn bằng chứng.
 

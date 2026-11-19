@@ -1,10 +1,10 @@
 # Minh — thực thi tuần 3
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (bàn giao các lượt ResNet bổ sung và chạy thử Swin).
 
 Nhánh `Minh` đã đồng bộ từ `main` ở `8578f44` trước khi chạy. Tuần 3 tiếp tục giao thức nhóm với ResNet 272.474 tham số, batch 128, 100 epoch, SGD lr 0,05, momentum 0,9, weight decay 0,0005 và cosine annealing. Hai cặp `(split_seed, train_seed)` mới là `(2027, 43)` và `(2028, 44)`. Mỗi cặp có ba lượt ở 4.500, 22.500 và 45.000 ảnh train. Checkpoint chọn theo top-1 trên validation của manifest tương ứng, hòa điểm giữ epoch sớm hơn.
 
-Sáu lượt ResNet đã hoàn tất. Swin đã chạy thử một epoch với 4.500 ảnh train trên RTX 5080, ghi đầy đủ checkpoint và log. [Kết quả và gói bàn giao](../results/week3/README.md) · [Phần Minh cho milestone](../reports/milestone_minh_week3.md).
+Sáu lượt ResNet đã hoàn tất. Swin đã chạy thử một epoch với 4.500 ảnh train trên GPU, ghi đầy đủ checkpoint và log. [Kết quả và gói bàn giao](../results/week3/README.md) · [Phần Minh cho milestone](../reports/milestone_minh_week3.md).
 
 ## Tái lập và bàn giao
 

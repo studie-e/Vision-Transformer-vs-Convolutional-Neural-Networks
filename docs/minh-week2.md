@@ -1,6 +1,6 @@
 # Bàn giao tuần 2 — Minh
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (bàn giao lượt chạy và báo cáo ResNet tuần 2).
 
 Ghi lại cách chạy và kiểm tra ba lượt ResNet theo tỷ lệ dữ liệu, kèm cấu hình và lệnh tái lập.
 

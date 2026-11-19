@@ -11,6 +11,7 @@ from scripts.run_minh_week3 import verify_training_source
 
 
 # Dựng lịch sử Git riêng để kiểm tra nhận diện thay đổi thật và ghi chú người phụ trách.
+# Minh phụ trách kiểm tra đối chiếu phiên bản phân biệt chú thích với thay đổi mã hoặc phụ thuộc.
 @pytest.mark.parametrize('modified', ['labels_only', 'python_logic', 'dependency', 'new_module'])
 def test_training_provenance_accepts_only_non_executable_edits(tmp_path, monkeypatch, modified):
     monkeypatch.chdir(tmp_path)
@@ -22,6 +23,7 @@ def test_training_provenance_accepts_only_non_executable_edits(tmp_path, monkeyp
     requirements.write_text('torch==2.11.0\n', encoding='utf-8')
 
     # Lưu snapshot tại một commit để verify_training_source đọc đúng phiên bản qua Git.
+    # Minh phụ trách tạo commit trong repo thử để so sánh hai trạng thái.
     def snapshot():
         subprocess.run(['git', 'add', '.'], check=True)
         subprocess.run(['git', '-c', 'user.name=Test', '-c', 'user.email=test@example.com',

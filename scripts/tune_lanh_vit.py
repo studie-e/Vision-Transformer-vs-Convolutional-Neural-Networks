@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (khảo sát các thiết lập optimizer của ViT).
 """Thực hiện khảo sát siêu tham số (hyperparameter tuning) cho ViT — Tuần 2 Ngày 8.
 
 Khảo sát 3 công thức huấn luyện trên tập 10% (4.500 ảnh, 3 epochs) với split_seed=2026, seed=42:
@@ -23,6 +24,7 @@ from src.models.vit import build_model
 from src.train import fit, seed_everything
 
 
+# Lan Anh phụ trách chạy thử một cấu hình optimizer của ViT.
 def run_candidate(name, train_settings, base_config, device='cpu'):
     print(f"\n--- Thử nghiệm cấu hình: {name} ---")
     config = copy.deepcopy(base_config)
@@ -61,6 +63,7 @@ def run_candidate(name, train_settings, base_config, device='cpu'):
     }
 
 
+# Lan Anh phụ trách điều phối các lượt khảo sát ViT và lưu kết quả.
 def main():
     torch.set_num_threads(4)
     base_config = yaml.safe_load(Path('configs/vit.yaml').read_text(encoding='utf-8'))

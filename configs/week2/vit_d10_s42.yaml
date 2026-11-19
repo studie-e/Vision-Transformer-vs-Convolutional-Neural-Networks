@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (cấu hình thử nghiệm ViT trước khi nhóm chốt recipe).
+# Người phụ trách: Minh (cấu hình ViT sau tuning trước giao thức chính), Lan Anh (mô hình ViT), Hiền (manifest dữ liệu).
 # Lưu cấu hình ViT 10% dữ liệu, seed 42, dùng learning rate 0.001 từ đợt thử trước giao thức chính.
 # Historical tuning recipe, lr=0.001. Current team P0 config: vit_10.yaml (lr=0.0003).
 seed: 42

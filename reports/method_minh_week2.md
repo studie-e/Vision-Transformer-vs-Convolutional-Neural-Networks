@@ -1,6 +1,6 @@
 # Method–CNN và thiết lập thí nghiệm — Minh, tuần 2
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (viết Method–CNN và mô tả thiết lập huấn luyện).
 
 Mô tả kiến trúc ResNet, cách chọn checkpoint và thiết lập dùng để so sánh CNN với ViT.
 

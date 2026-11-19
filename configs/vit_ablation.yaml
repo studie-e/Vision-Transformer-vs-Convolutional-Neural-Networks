@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (cấu hình ablation ViT), Hiền (dữ liệu và manifest dùng chung).
 # ViT ablation: bỏ positional embedding.
 # Chỉ đổi use_pos_embed; giữ nguyên mọi thứ khác.
 # Dùng cho thí nghiệm P2 ở 50% dữ liệu × 3 seed.

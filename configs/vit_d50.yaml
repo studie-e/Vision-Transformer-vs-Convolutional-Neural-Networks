@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (cấu hình ViT ở giai đoạn đầu tuần 2), Hiền (dữ liệu và manifest).
 # Config ViT 50% dữ liệu — Tuần 2 (T10 Lan Anh)
 # Seed đầu tiên: split_seed=2026, seed=42
 seed: 42

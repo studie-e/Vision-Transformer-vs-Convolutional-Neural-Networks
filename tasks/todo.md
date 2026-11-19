@@ -12,7 +12,7 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 ### T01. Môi trường, repo và log — Minh; cả nhóm phối hợp
 
-- [x] Có môi trường chạy PyTorch/CUDA thực tế trên RTX 5080; ghi phiên bản và lệnh cài trong README và báo cáo pilot.
+- [x] Có môi trường chạy PyTorch/CUDA thực tế trên GPU; ghi phiên bản và lệnh cài trong README và báo cáo pilot.
 - [ ] Đã có repo và log TensorBoard cục bộ, quy ước config/seed/commit; còn xác nhận nơi chia sẻ/sao lưu log. Không cần mời GitHub theo giảng viên (Minh xác nhận 12/11/2026).
 - [ ] Dữ liệu/checkpoint đã được loại khỏi Git; còn xác nhận và thực hiện sao lưu sang nơi nhóm thống nhất.
 - **Kiểm tra:** GPU và log cục bộ đã chạy; kiểm tra đường dẫn/quyền truy cập sau khi nhóm chọn nơi chia sẻ log, không yêu cầu lời mời GitHub.
@@ -59,7 +59,7 @@ Quy mô S/M chỉ phản ánh phạm vi sửa file dự kiến; thời gian GPU 
 
 - [x] ResNet đã qua trainer chung và có loss/accuracy/lr; Hiền đã cung cấp split chính và config tích hợp. ViT Lan Anh cũng đã chạy qua trainer chung thành công trên 4.500 ảnh CIFAR-10 thật (`runs/lanh_week1_smoke`).
 - [x] Checkpoint lưu model/optimizer/scheduler/RNG/generator/epoch/step; kiểm thử resume và validation có bằng chứng trong results/pilot.md.
-- [x] Đã đo thời gian/epoch ViT (16,57s trên CPU) và ResNet (trên RTX 5080 và CPU). Cả hai mô hình đều có bằng chứng pilot độc lập (`results/pilot.md`, `results/hien_pilot_*`, `results/lanh_pilot_*`).
+- [x] Đã đo thời gian/epoch ViT (16,57s trên CPU) và ResNet (trên GPU và CPU). Cả hai mô hình đều có bằng chứng pilot độc lập (`results/pilot.md`, `results/hien_pilot_*`, `results/lanh_pilot_*`).
 - **Bằng chứng:** [kết quả pilot ResNet](../results/pilot.md), [kết quả pilot ViT](../results/lanh_pilot_summary.csv), [checks ViT](../results/lanh_week1_checks.json).
 - **Kiểm tra:** Lan Anh chạy thử ViT, Minh chạy thử ResNet; dừng rồi resume, đối chiếu log và cấu hình; không coi pilot là bảng kết quả cuối.
 - **Phụ thuộc:** T03–T05. **File dự kiến:** `src/train.py`, `src/checkpoint.py`, `configs/train.yaml`, `results/pilot.md`. **Quy mô:** M.

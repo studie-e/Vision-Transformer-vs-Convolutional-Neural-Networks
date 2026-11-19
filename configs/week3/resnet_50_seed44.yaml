@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (huấn luyện ResNet tuần 3).
+# Người phụ trách: Minh (cấu hình và lượt chạy ResNet), Hiền (manifest chia dữ liệu theo seed).
 # Lặp thí nghiệm ResNet 50% dữ liệu với cặp seed chia dữ liệu 2028 và seed huấn luyện 44.
 seed: 44
 model:

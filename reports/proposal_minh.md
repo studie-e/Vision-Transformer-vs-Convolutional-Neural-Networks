@@ -1,6 +1,6 @@
 # Nội dung Minh gửi Hiền để ghép proposal
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (soạn phần CNN và thiết lập huấn luyện cho proposal chung).
 
 Đây là phần CNN/thiết lập dự kiến, cần ghép với phần dữ liệu và ViT; chưa phải proposal ACL hoàn chỉnh.
 
@@ -12,7 +12,7 @@ ViT và ResNet đều khởi tạo từ đầu, cùng dữ liệu/tập con 10%,
 
 ## Thiết lập và theo dõi
 
-Môi trường đã kiểm tra: Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8 và NVIDIA RTX 5080. Trainer chung dùng CrossEntropyLoss trên logits; hỗ trợ SGD/AdamW, cosine learning-rate schedule, chọn checkpoint bằng validation accuracy và resume tại ranh giới epoch. Mỗi lượt lưu seed, cấu hình, trạng thái mã nguồn, loss/accuracy, thời gian và bộ nhớ GPU; TensorBoard hỗ trợ theo dõi. Số epoch và siêu tham số chính sẽ được chốt sau pilot của cả hai mô hình.
+Môi trường đã kiểm tra: Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8. Trainer chung dùng CrossEntropyLoss trên logits; hỗ trợ SGD/AdamW, cosine learning-rate schedule, chọn checkpoint bằng validation accuracy và resume tại ranh giới epoch. Mỗi lượt lưu seed, cấu hình, trạng thái mã nguồn, loss/accuracy, thời gian và bộ nhớ GPU; TensorBoard hỗ trợ theo dõi. Số epoch và siêu tham số chính sẽ được chốt sau pilot của cả hai mô hình.
 
 Pilot tuần 1 chỉ dùng dữ liệu chẩn đoán riêng và ResNet; chưa thay cho split chính của Hiền hay kết quả so sánh ViT–CNN. Không đưa accuracy pilot vào bảng kết quả chính. Số đo pilot đã chạy được lưu trong `results/pilot.md` để cả nhóm cân đối lịch GPU.
 

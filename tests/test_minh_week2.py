@@ -14,6 +14,7 @@ from src.models.swin import build_model
 
 # Hàm test: hai kiến trúc phải được thử cùng số recipe/epoch và cùng split, không ưu ái CNN.
 # tmp_path do pytest tạo để các YAML kiểm tra không ghi vào cấu hình thật của nhóm.
+# Minh phụ trách kiểm tra các lượt tuning dùng cùng ngân sách và manifest.
 def test_tuning_budget_is_equal_and_uses_the_main_manifest(tmp_path):
     paths = make_tuning_configs(tmp_path)
     import yaml
@@ -30,6 +31,7 @@ def test_tuning_budget_is_equal_and_uses_the_main_manifest(tmp_path):
 
 
 # Hàm test: chọn recipe bằng validation, giữ thứ tự khi hòa và không chọn riêng lượt chạy dở.
+# Minh phụ trách kiểm tra chọn theo validation và loại lượt chạy chưa hoàn tất.
 def test_recipe_selection_uses_validation_and_refuses_incomplete_candidates():
     rows = [
         {'recipe': 'sgd', 'best_val_accuracy': 0.6, 'completed_epochs': 10},
@@ -46,6 +48,7 @@ def test_recipe_selection_uses_validation_and_refuses_incomplete_candidates():
 
 # Hàm test: Swin thư viện được cấu hình cho ảnh nhỏ, logits và gradient đều đúng.
 # Không train Swin tuần 2; chỉ xác nhận prototype sẵn sàng cho phần mở rộng tuần 3.
+# Minh phụ trách kiểm tra Swin nhận ảnh RGB 32×32 và cho gradient hữu hạn.
 def test_swin_prototype_accepts_32_pixel_rgb_and_has_finite_gradients():
     torch.set_num_threads(1)
     model = build_model({'model': {'kwargs': {}}})
@@ -58,6 +61,7 @@ def test_swin_prototype_accepts_32_pixel_rgb_and_has_finite_gradients():
 
 # Hàm test: YAML đã khóa phải được giữ nguyên, kể cả thay ít epoch để chạy nhanh cũng bị từ chối.
 # monkeypatch chỉ đổi thư mục làm việc sang fixture; không đụng giao thức thực đang huấn luyện.
+# Minh phụ trách kiểm tra từ chối cấu hình giảm ngân sách huấn luyện.
 def test_locked_configs_reject_reducing_the_training_budget(tmp_path, monkeypatch):
     import json
     import yaml

@@ -1,3 +1,4 @@
+# Người phụ trách: Lan Anh (lượt ViT CPU 5 epoch và mẫu attention từ giai đoạn đầu tuần 2).
 """Thực hiện các lượt chạy chính Tuần 2 cho Lan Anh — ViT 10%, 50%, 100% dữ liệu (T10).
 
 Seed đầu tiên: split_seed=2026, train_seed=42.
@@ -53,6 +54,7 @@ RUN_CONFIGS = [
 ]
 
 
+# Lan Anh phụ trách lấy attention trên các ảnh mẫu để bàn giao cho Hiền.
 def extract_sample_attentions(model, val_loader, device):
     """Trích xuất attention weights trên 10 ảnh cố định đại diện cho 10 lớp CIFAR-10."""
     model.eval()
@@ -82,6 +84,7 @@ def extract_sample_attentions(model, val_loader, device):
     }
 
 
+# Lan Anh phụ trách script chạy ViT CPU 5 epoch trước giao thức 100 epoch của nhóm.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')

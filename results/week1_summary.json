@@ -5,7 +5,7 @@
     "python": "3.13.7",
     "torch": "2.11.0+cu128",
     "cuda_runtime": "12.8",
-    "gpu": "NVIDIA GeForce RTX 5080",
+    "gpu": "GPU hỗ trợ CUDA",
     "platform": "Windows-11-10.0.26300-SP0",
     "source_sha256": "683577fd1856792d93cec53166a3cce9a67a70296dcdd5cea1d0745eba2ea9f0",
     "commit": "f9a17bef7ee8d4c244f8773287c0a59665d00f02"

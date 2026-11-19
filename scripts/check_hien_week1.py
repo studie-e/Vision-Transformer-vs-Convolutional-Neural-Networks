@@ -1,3 +1,4 @@
+# Người phụ trách: Hiền (kiểm tra tích hợp dữ liệu CIFAR-10 và đánh giá pilot tuần 1).
 """Real-data integration pilot; never evaluates the official test set.
 
 Run from the repository root: python -X utf8 -m scripts.check_hien_week1
@@ -20,6 +21,7 @@ from src.train import fit, seed_everything
 from scripts.summarize import load_runs, summarize, save_summary_csv
 
 
+# Hiền phụ trách chạy thử tích hợp dữ liệu CIFAR-10 và kiểm tra kết quả validation.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-dir', default='runs/hien_week1_smoke')

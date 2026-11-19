@@ -1,12 +1,12 @@
 # Pilot tuần 1 của Minh — 12/11/2026
 
-**Người phụ trách: Minh.**
+**Người phụ trách: Minh** (thực hiện pilot ResNet và kiểm tra khôi phục huấn luyện).
 
 Lưu bằng chứng chạy thử ResNet, khả năng học một batch và kết quả đối chiếu khi tiếp tục từ checkpoint.
 
 ## Môi trường và phạm vi
 
-- Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8, RTX 5080, driver 617.42.
+- Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8, driver 617.42.
 - ResNet CIFAR-style, width 16, 3 block/stage, projection shortcut; **272,474 tham số trainable**.
 - Mã nguồn khi chạy: SHA-256 `683577fd1856792d93cec53166a3cce9a67a70296dcdd5cea1d0745eba2ea9f0`; HEAD `f9a17bef7ee8d4c244f8773287c0a59665d00f02` còn thay đổi chưa commit. Metadata đầy đủ nằm trong từng thư mục run.
 - Lan Anh/Hiền chưa giao ViT/split chính. Các phép chạy dưới đây kiểm tra kỹ thuật của Minh, không phải bảng so sánh chính.

@@ -1,3 +1,4 @@
+# Người phụ trách: Hiền (gộp các lượt hợp lệ và xuất thống kê theo mô hình, tỷ lệ và giao thức).
 """Script tổng hợp kết quả — Hiền.
 
 Đọc results/runs.csv (do src.evaluate tạo ra), tính mean ± std theo từng
@@ -25,6 +26,7 @@ from pathlib import Path
 # Đọc runs.csv
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách đọc CSV lượt chạy và lọc theo tập đánh giá.
 def load_runs(csv_path, split_filter=None):
     """Nạp results/runs.csv, lọc theo split nếu cần.
 
@@ -51,6 +53,7 @@ def load_runs(csv_path, split_filter=None):
 # Tổng hợp mean ± std
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách tính trung bình và độ lệch chuẩn mẫu qua các seed.
 def _mean_std(values):
     """Tính mean và độ lệch chuẩn mẫu (ddof=1) của danh sách số thực.
 
@@ -66,6 +69,7 @@ def _mean_std(values):
     return mean, math.sqrt(variance)
 
 
+# Hiền phụ trách nhóm kết quả theo giao thức và kiểm tra seed trùng.
 def summarize(rows):
     """Nhóm theo (model, ratio, split, protocol), từ chối seed trùng.
 
@@ -143,6 +147,7 @@ def summarize(rows):
 # Xuất bảng
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách định dạng giá trị số và hiển thị N/A khi thiếu số liệu.
 def _fmt(val, digits=4):
     """Định dạng số thực; NaN → 'N/A'."""
     if val != val:   # NaN
@@ -150,6 +155,7 @@ def _fmt(val, digits=4):
     return f'{val:.{digits}f}'
 
 
+# Hiền phụ trách in bảng kết quả Markdown.
 def print_markdown_table(summary, split='val'):
     """In bảng Markdown ra stdout."""
     print(f'\n## Bảng kết quả tổng hợp ({split})\n')
@@ -162,6 +168,7 @@ def print_markdown_table(summary, split='val'):
               f"| {_fmt(s['mean_accuracy'])} | {_fmt(s['std_accuracy'])} | {accs_str} |")
 
 
+# Hiền phụ trách ghi bảng thống kê ra CSV.
 def save_summary_csv(summary, out_path='results/summary.csv'):
     """Lưu bảng tổng hợp ra CSV."""
     path = Path(out_path)
@@ -188,6 +195,7 @@ def save_summary_csv(summary, out_path='results/summary.csv'):
 # Kiểm tra bằng ví dụ biết đáp án
 # ---------------------------------------------------------------------------
 
+# Hiền phụ trách đối chiếu phép tính thống kê với ví dụ tính tay.
 def _verify():
     """Kiểm tra _mean_std bằng ví dụ tính tay."""
     # Ví dụ 1: 3 seed, accuracy 0.70/0.72/0.74 → mean=0.72, std=0.02

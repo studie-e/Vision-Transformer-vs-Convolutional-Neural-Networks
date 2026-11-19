@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (huấn luyện ResNet theo giao thức nhóm).
+# Người phụ trách: Hiền (YAML và manifest dùng chung), Minh (mô hình ResNet và vận hành lượt chạy).
 # Chạy lượt chính ResNet tuần 2 trên 50% dữ liệu train, dùng seed 42 và huấn luyện 100 epoch.
 seed: 42
 model:

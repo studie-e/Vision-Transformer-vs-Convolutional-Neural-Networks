@@ -18,6 +18,7 @@ from src.data import load_manifest, manifest_digest
 
 # Hàm package_run: kiểm tra bằng chứng của một run rồi nén toàn bộ thư mục thành ZIP.
 # Nhận thư mục run, nơi xuất và YAML đã chốt nếu chạy ngoài P0; trả metadata gói.
+# Minh phụ trách đối chiếu cấu hình, log và checkpoint trước khi tạo ZIP và checksum.
 def package_run(run_dir, output, *, expected_config_path=None):
     run_dir, output = Path(run_dir), Path(output)
     required = ('config.yaml', 'metadata.json', 'metrics.csv', 'best.pt', 'last.pt')
@@ -85,6 +86,7 @@ def package_run(run_dir, output, *, expected_config_path=None):
 
 # Hàm main: nhận nhiều --run, kiểm tra/nén lần lượt rồi lưu danh sách gói cho Hiền.
 # Không tự thay đổi trạng thái run_matrix hoặc giả định Hiền đã tiếp nhận các file.
+# Minh phụ trách lệnh đóng gói từng lượt và ghi danh mục để Hiền tiếp nhận.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', action='append', type=Path, required=True)
