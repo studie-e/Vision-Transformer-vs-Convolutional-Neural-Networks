@@ -14,8 +14,8 @@ from src.data import load_manifest, manifest_digest
 
 
 # Hàm package_run: kiểm tra bằng chứng của một run rồi nén toàn bộ thư mục thành ZIP.
-# Nhận thư mục run và nơi xuất; trả metadata gói. Không gửi file ra dịch vụ bên ngoài.
-def package_run(run_dir, output):
+# Nhận thư mục run, nơi xuất và YAML đã chốt nếu chạy ngoài P0; trả metadata gói.
+def package_run(run_dir, output, *, expected_config_path=None):
     run_dir, output = Path(run_dir), Path(output)
     required = ('config.yaml', 'metadata.json', 'metrics.csv', 'best.pt', 'last.pt')
     # Đủ file chưa đủ để nghiệm thu: các bước dưới còn kiểm tra config, epoch và manifest.
@@ -25,19 +25,22 @@ def package_run(run_dir, output):
     metadata = json.loads((run_dir / 'metadata.json').read_text(encoding='utf-8'))
     architecture = config['model']['factory'].split(':')[0].split('.')[-1]
     level = {'0.10': '10', '0.50': '50', '1.00': '100'}[f"{float(config['data']['ratio']):.2f}"]
-    expected_path = Path(f'configs/week2/{architecture}_{level}.yaml')
+    # Lệnh tuần 2 mặc định dùng YAML P0. Tuần sau truyền YAML cụ thể theo cặp seed.
+    expected_path = Path(expected_config_path or f'configs/week2/{architecture}_{level}.yaml')
     expected = yaml.safe_load(expected_path.read_text(encoding='utf-8'))
     if config != expected or metadata['config'] != config:
-        raise ValueError(f'Run differs from the current team P0 config: {run_dir}')
+        raise ValueError(f'Run differs from {expected_path}: {run_dir}')
     last = torch.load(run_dir / 'last.pt', map_location='cpu', weights_only=True)
     best = torch.load(run_dir / 'best.pt', map_location='cpu', weights_only=True)
+    manifest = load_manifest(config['data']['split_seed'], config['data'].get('splits_dir', 'results/splits'))
+    expected_digest = manifest_digest(manifest)
     for state in (last, best):
         if state['config'] != config:
             raise ValueError('Checkpoint config differs from the run config')
-        if state['manifest_sha256'] != manifest_digest(load_manifest(config['data']['split_seed'])):
+        if state['manifest_sha256'] != expected_digest or metadata['manifest_sha256'] != expected_digest:
             raise ValueError('Checkpoint manifest differs from the shared split')
     # batch cuối không bị bỏ nên số bước là ceil(số ảnh / batch_size) × 100.
-    samples = {'10': 4500, '50': 22500, '100': 45000}[level]
+    samples = len(manifest['subsets'][f"{float(config['data']['ratio']):.2f}"])
     batch_size = config['data']['batch_size']
     steps = ((samples + batch_size - 1) // batch_size) * 100
     if last['epoch'] != 100 or len(last['history']) != 100 or last['global_step'] != steps:
@@ -48,7 +51,9 @@ def package_run(run_dir, output):
         raise ValueError('Metrics CSV is missing or duplicating epochs')
     # max giữ epoch sớm hơn khi hòa; đối chiếu best.pt với cả CSV và trạng thái cuối.
     winner = max(history, key=lambda row: float(row['val_accuracy']))
-    if best['epoch'] != int(winner['epoch']) or best['epoch'] != last['best_epoch']:
+    if (best['epoch'] != int(winner['epoch']) or best['epoch'] != last['best_epoch']
+            or float(winner['val_accuracy']) != last['best_val_accuracy']
+            or best['best_val_accuracy'] != last['best_val_accuracy']):
         raise ValueError('Best checkpoint does not follow the agreed tie rule')
     output.mkdir(parents=True, exist_ok=True)
     target = output / f'{run_dir.name}.zip'
