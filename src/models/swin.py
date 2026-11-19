@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (cấu hình mô hình Swin cho CIFAR-10).
 """Prototype Swin ảnh nhỏ dùng torchvision, chưa phải lượt mở rộng đã huấn luyện.
 
 Nguồn API/kiến trúc thư viện:

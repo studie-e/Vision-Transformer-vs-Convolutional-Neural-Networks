@@ -151,13 +151,14 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T14. Hai seed còn lại của ResNet — Minh
 
-- [ ] Thêm 6 lượt ResNet, giữ giao thức T09; tổng ResNet đủ 3 tỷ lệ × 3 seed.
-- [ ] Bàn giao config/log/checkpoint, thời gian/số bước và các lượt lỗi.
+- [x] Hoàn tất 6 lượt ResNet với các cặp `(2027, 43)` và `(2028, 44)`, đủ 100 epoch mỗi lượt. Tổng ResNet đủ 9 lượt. [Bảng kết quả và kiểm tra](../results/week3/README.md).
+- [ ] Đã chuẩn bị gói ZIP gồm config, log, checkpoint, thời gian và số bước tại `runs/handoff/week3/resnet_week3_all_runs.zip`. Chờ Hiền tiếp nhận và đối chiếu với các lượt ViT.
 - **Kiểm tra:** Hiền đối chiếu ghép cặp dữ liệu/seed với T13 và cấu hình ResNet.
 - **Phụ thuộc:** Checkpoint C. **Sản phẩm:** 6 run manifest, checkpoint và log. **Quy mô:** S về cấu hình; chia hàng đợi thành từng lượt.
 
 ### T15. Milestone ACL — Hiền ghép, cả ba viết phần mình
 
+- Phần Minh đã soạn với thống kê ResNet qua 3 seed, tiến độ 12/18 lượt chính và trạng thái Swin. [Bản ghép milestone của Minh](../reports/milestone_minh_week3.md).
 - [ ] Tối đa 4 trang, có kết quả baseline, tiến độ, khó khăn và kế hoạch còn lại.
 - [ ] Phân biệt kết quả đã có với mục tiêu; ghi số seed thực tế và việc chưa hoàn tất.
 - [ ] Nộp cuối tuần 3, không chờ phần mở rộng nếu chưa xong.
@@ -182,7 +183,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T17. Thử Swin — Minh chủ trì, Lan Anh hỗ trợ
 
-- [ ] Dùng Swin nhỏ cho ảnh 32×32; ghi nguồn mã, số tham số, recipe và khởi tạo từ đầu.
+- [x] Chuẩn bị Swin 261.824 tham số cho ảnh 32×32 và YAML 10%/100% ở cặp `(2026, 42)`. Chạy thử một epoch CUDA ở 10%, đạt 1.097/5.000 trên validation. [Giao thức và nguồn](../docs/minh-week3.md) · [Kết quả chạy thử](../results/week3/swin_smoke_runs.csv).
 - [ ] Mục tiêu 10% và 100% × 3 seed; nếu phải thu hẹp thì ghi phạm vi và tính thăm dò trước khi báo cáo.
 - [ ] Có bảng bổ sung và nhận xét về giới hạn so sánh khi khác số tham số/recipe.
 - **Kiểm tra:** Minh chạy thử kiến trúc trên ảnh nhỏ trước khi train chính; Hiền đối chiếu dataset/metric và cách ghi kết quả.

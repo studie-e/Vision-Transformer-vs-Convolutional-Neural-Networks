@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (biểu đồ ResNet tuần 2).
 """Vẽ learning curve và data scaling ResNet từ CSV thật của tuần 2."""
 
 import csv

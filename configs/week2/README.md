@@ -1,5 +1,7 @@
 # Cấu hình nhóm hiện hành — tuần 2
 
+**Người phụ trách: Minh.**
+
 Giao thức được nhóm xác nhận: [experiment_protocol.md](../../docs/experiment_protocol.md), [bàn giao GPU ViT](../../docs/bao-cao-tuan2-lan-anh-ho-tro.md).
 
 | Run | YAML hiện hành | Recipe |

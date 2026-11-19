@@ -1,5 +1,7 @@
 # Lộ trình Minh — CNN, trainer, môi trường và Swin
 
+**Người phụ trách: Minh.**
+
 **Vai trò đổi từ cột Hiền trong bảng gốc:** cài/train ResNet, xây trainer/môi trường dùng chung, đo thời gian chạy, thử Swin; README, tái lập, demo và slide. Lan Anh vẫn trực tiếp train ViT/ablation. Hiền phụ trách dữ liệu, metric, attention, phân tích và ghép báo cáo.
 
 Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, T17, T18–T21** trong [todo.md](../todo.md). Ngày 1–28 là ngày tương đối; cửa sổ GPU phải được kiểm tra bằng pilot. Cập nhật trạng thái tại todo; đường dẫn dưới đây là sản phẩm dự kiến.
@@ -39,6 +41,8 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 **Cuối tuần cần đạt:** 3 tỷ lệ ResNet seed đầu đủ log/config/checkpoint; recipe và số tham số khớp phần công bố; Lan Anh sử dụng được trainer; Swin mới chuẩn bị, chưa lấy GPU khỏi các lượt chính.
 
 ## Tuần 3 — thêm seed và bắt đầu Swin
+
+Đã hoàn tất sáu lượt ResNet bổ sung và đối chiếu lại trên CUDA. Swin đã chạy thử một epoch và có hai cấu hình cho loạt mở rộng sau bảng chính. [Kết quả tuần 3](../../results/week3/README.md) · [Phần Minh cho milestone](../../reports/milestone_minh_week3.md).
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|

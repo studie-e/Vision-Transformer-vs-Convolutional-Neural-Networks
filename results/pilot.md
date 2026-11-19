@@ -1,5 +1,7 @@
 # Pilot tuần 1 của Minh — 12/11/2026
 
+**Người phụ trách: Minh.**
+
 ## Môi trường và phạm vi
 
 - Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8, RTX 5080, driver 617.42.

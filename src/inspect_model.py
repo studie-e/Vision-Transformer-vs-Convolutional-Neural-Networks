@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (đếm và khớp số tham số mô hình).
 """Count a model and, optionally, search a ResNet width to match a ViT budget."""
 
 import argparse

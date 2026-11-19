@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (kiểm thử ResNet, trainer và checkpoint).
 import csv
 
 import pytest

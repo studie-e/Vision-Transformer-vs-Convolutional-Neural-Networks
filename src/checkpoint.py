@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (checkpoint và khôi phục trạng thái huấn luyện).
 """Epoch-boundary checkpoints using state_dict, including random generators.
 
 Sources: https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html
