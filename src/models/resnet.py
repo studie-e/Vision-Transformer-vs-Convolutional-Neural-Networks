@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (mô hình ResNet cho CIFAR-10).
 """CIFAR-style ResNet with configurable width and projection shortcuts.
 
 Architecture source: He et al., https://arxiv.org/abs/1512.03385 (section 4.2).

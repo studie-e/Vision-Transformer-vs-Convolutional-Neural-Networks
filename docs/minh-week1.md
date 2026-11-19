@@ -1,5 +1,7 @@
 # Bàn giao tuần 1 — Minh
 
+**Người phụ trách: Minh.**
+
 ## Phạm vi và trạng thái
 
 Ngày thực hiện: **12/11/2026**, theo lịch Asia/Saigon. Repo ban đầu chỉ có tài liệu, trên nhánh `Minh`. Lan Anh và Hiền xác nhận chưa có ViT/split chính. Minh xác nhận giảng viên không cần lời mời GitHub; không gửi lời mời hay tin nhắn ra ngoài.

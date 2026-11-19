@@ -1,5 +1,7 @@
 # Lộ trình Minh — CNN, trainer, môi trường và Swin
 
+**Người phụ trách: Minh.**
+
 **Vai trò đổi từ cột Hiền trong bảng gốc:** cài/train ResNet, xây trainer/môi trường dùng chung, đo thời gian chạy, thử Swin; README, tái lập, demo và slide. Lan Anh vẫn trực tiếp train ViT/ablation. Hiền phụ trách dữ liệu, metric, attention, phân tích và ghép báo cáo.
 
 Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, T17, T18–T21** trong [todo.md](../todo.md). Ngày 1–28 là ngày tương đối; cửa sổ GPU phải được kiểm tra bằng pilot. Cập nhật trạng thái tại todo; đường dẫn dưới đây là sản phẩm dự kiến.

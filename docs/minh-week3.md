@@ -1,5 +1,7 @@
 # Minh — thực thi tuần 3
 
+**Người phụ trách: Minh.**
+
 Nhánh `Minh` đã đồng bộ từ `main` ở `8578f44` trước khi chạy. Tuần 3 tiếp tục giao thức nhóm với ResNet 272.474 tham số, batch 128, 100 epoch, SGD lr 0,05, momentum 0,9, weight decay 0,0005 và cosine annealing. Hai cặp `(split_seed, train_seed)` mới là `(2027, 43)` và `(2028, 44)`. Mỗi cặp có ba lượt ở 4.500, 22.500 và 45.000 ảnh train. Checkpoint chọn theo top-1 trên validation của manifest tương ứng, hòa điểm giữ epoch sớm hơn.
 
 Sáu lượt ResNet đã hoàn tất. Swin đã chạy thử một epoch với 4.500 ảnh train trên RTX 5080, ghi đầy đủ checkpoint và log. [Kết quả và gói bàn giao](../results/week3/README.md) · [Phần Minh cho milestone](../reports/milestone_minh_week3.md).
@@ -16,7 +18,7 @@ python -X utf8 -m scripts.run_minh_week3 --stage collect --model resnet
 
 Lệnh train chạy tuần tự trên GPU. Khi chạy lại, trainer đọc `last.pt` để tiếp tục lượt dở và kiểm tra các lượt đã hoàn tất. Các lượt ResNet nằm ở `runs/week3/resnet_{10,50,100}_seed{43,44}` và stdout nằm ở `runs/week3/logs/`. Lệnh collect đánh giá độc lập trên GPU, kiểm tra 100 epoch và đóng gói từng run kèm SHA-256 tại `runs/handoff/week3/resnet/`. Bảng kết quả và log gọn nằm ở `results/week3/`.
 
-CSV từng run lưu nguyên commit, hash nguồn và hash manifest. Bảng tổng hợp gộp seed 42 từ tuần 2 với seed 43 và 44 sau khi xác nhận cùng recipe và mã huấn luyện. Công cụ vẽ hình được thêm/sửa sau khi chạy seed 42 nên hash toàn thư mục `src` thay đổi. Độ lệch chuẩn dùng `ddof=1` và phản ánh cả việc đổi tập train/validation lẫn seed huấn luyện. Mỗi kết quả tính trên 5.000 ảnh validation của split tương ứng.
+CSV từng run lưu nguyên commit, hash nguồn và hash manifest. Bảng tổng hợp gộp seed 42 với seed 43 và 44 sau khi đối chiếu recipe và cây cú pháp Python của mã huấn luyện. Hash thư mục `src` có thể đổi khi thêm chú thích hoặc cập nhật công cụ vẽ hình. Bước đối chiếu vẫn phát hiện thay đổi mã thực thi và phiên bản thư viện. Độ lệch chuẩn dùng `ddof=1` và phản ánh cả việc đổi tập train/validation lẫn seed huấn luyện. Mỗi kết quả tính trên 5.000 ảnh validation của split tương ứng.
 
 ## Swin cho ảnh 32×32
 

@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (kiểm thử chọn thiết bị đánh giá khi vẽ hình).
 import csv
 import json
 

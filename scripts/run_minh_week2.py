@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (tuning và các lượt ResNet tuần 2).
 """Tuning ngang ngân sách, khóa recipe và thực hiện ResNet tuần 2 của Minh."""
 
 import argparse

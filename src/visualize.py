@@ -18,6 +18,7 @@ from src.evaluate import build_run_row, evaluate_checkpoint
 from src.train import factory
 
 
+# Người phụ trách: Minh (chọn thiết bị để đối chiếu kết quả).
 # Hàm inspect_run: nạp và đối chiếu checkpoint/log trên thiết bị được chọn.
 # Nhận thư mục run và device tùy chọn; mặc định dùng thiết bị train trong metadata.
 # CPU/CUDA có thể khác làm tròn ở ảnh sát ranh giới, nên không ép đánh giá GPU run bằng CPU.
@@ -55,6 +56,7 @@ def save_figure(fig, path):
     plt.close(fig)
 
 
+# Người phụ trách: Minh (chạy phần attention trên cùng thiết bị khi đánh giá).
 # Hàm attention_examples: vẽ ảnh đúng/sai theo manifest và attention của checkpoint đã đối chiếu.
 # Tham số device phải cùng thiết bị với bước tạo result để giữ nhãn dự đoán nhất quán.
 def attention_examples(directory, config, result, output, device='cpu'):
@@ -101,6 +103,7 @@ def attention_examples(directory, config, result, output, device='cpu'):
     save_figure(fig, output)
 
 
+# Người phụ trách: Minh (tùy chọn --device và truyền thiết bị xuống bước đánh giá, vẽ attention).
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', type=Path, action='append', required=True)

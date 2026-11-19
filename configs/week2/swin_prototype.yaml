@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (cấu hình Swin thử nghiệm).
 # Chỉ kiểm tra forward/backward tuần 2; chưa có số liệu Swin huấn luyện.
 model:
   factory: src.models.swin:build_model

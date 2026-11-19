@@ -1,6 +1,8 @@
+# Người phụ trách: Minh (các lượt ResNet và Swin tuần 3).
 """Chạy và kiểm tra các lượt ResNet/Swin của Minh trong tuần 3."""
 
 import argparse
+import ast
 import csv
 import json
 import subprocess
@@ -30,18 +32,41 @@ def config_paths(model):
 
 
 # Hàm verify_training_source kiểm tra thay đổi mã giữa P0 và P1 trước khi gộp thống kê.
-# Hash toàn thư mục src khác vì các thay đổi ở công cụ vẽ hình sau P0.
-# Kiểm tra Git chỉ cho phép khác file vẽ hình và xác nhận mã train sạch lúc chạy.
+# Git xác nhận mã train sạch lúc chạy. Hai bản Python phải có cùng cây cú pháp.
+# Công cụ vẽ hình và lời ghi người phụ trách ở đầu requirements không ảnh hưởng lượt train.
 def verify_training_source(baseline, repeat):
     for row in (baseline, repeat):
         if any(line[3:].startswith(('src/', 'requirements.txt')) for line in row['git_status'].splitlines()):
             raise ValueError(f"Uncommitted training source for {row['run_id']}")
     changed = subprocess.check_output(
-        ['git', 'diff', '--name-only', baseline['commit'], repeat['commit'], '--', 'src', 'requirements.txt'],
+        ['git', 'diff', '--no-renames', '--name-only', baseline['commit'], repeat['commit'],
+         '--', 'src', 'requirements.txt'],
         text=True,
     ).splitlines()
-    if set(changed) - {'src/visualize.py'}:
-        raise ValueError(f'Different training sources: {changed}')
+    for path in changed:
+        if path == 'src/visualize.py':
+            continue
+        try:
+            before, after = (subprocess.check_output(['git', 'show', f"{row['commit']}:{path}"],
+                                                    stderr=subprocess.DEVNULL)
+                             for row in (baseline, repeat))
+        except subprocess.CalledProcessError as error:
+            # File chỉ có ở một commit là thay đổi mã, kể cả khi file trống.
+            raise ValueError(f'Different training sources: {path}') from error
+        if path.endswith('.py'):
+            # AST giữ biểu thức và câu lệnh, bỏ chú thích cùng vị trí dòng.
+            if ast.dump(ast.parse(before)) == ast.dump(ast.parse(after)):
+                continue
+        elif path == 'requirements.txt':
+            label = '# Người phụ trách: Minh'.encode('utf-8')
+            before_lines, after_lines = before.splitlines(), after.splitlines()
+            if before_lines and before_lines[0].startswith(label):
+                before_lines = before_lines[1:]
+            if after_lines and after_lines[0].startswith(label):
+                after_lines = after_lines[1:]
+            if before_lines == after_lines:
+                continue
+        raise ValueError(f'Different training sources: {path}')
 
 
 # Hàm collect_validation nạp lại best.pt bằng CUDA, đối chiếu trainer và đóng ZIP.

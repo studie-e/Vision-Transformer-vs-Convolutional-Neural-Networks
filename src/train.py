@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (trainer dùng chung).
 """Minimal model-independent trainer. See docs/minh-week1.md for the contract."""
 
 import argparse

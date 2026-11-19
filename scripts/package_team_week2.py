@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (kiểm tra và đóng gói các lượt huấn luyện).
 """Đóng gói run P0 đã chạy đủ 100 epoch để bàn giao nội bộ cho Hiền."""
 
 import argparse
