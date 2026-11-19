@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (tuning tuần 2).
+# Thử ResNet với AdamW trong 10 epoch trên 50% dữ liệu train để so sánh cách thiết lập optimizer.
 seed: 42
 model:
   factory: src.models.resnet:build_model

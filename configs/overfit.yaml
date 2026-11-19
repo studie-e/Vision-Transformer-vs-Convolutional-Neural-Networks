@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (kiểm tra ResNet trên một batch).
+# Dùng 32 ảnh trong một batch train để kiểm tra ResNet có học được một tập rất nhỏ hay không.
 seed: 17
 model:
   factory: src.models.resnet:build_model

@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Hướng dẫn đọc mã ResNet, chạy thử trainer và tiếp tục huấn luyện từ checkpoint tuần 1.
+
 ## Phạm vi và trạng thái
 
 Ngày thực hiện: **12/11/2026**, theo lịch Asia/Saigon. Repo ban đầu chỉ có tài liệu, trên nhánh `Minh`. Lan Anh và Hiền xác nhận chưa có ViT/split chính. Minh xác nhận giảng viên không cần lời mời GitHub; không gửi lời mời hay tin nhắn ra ngoài.

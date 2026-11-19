@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Mô tả kiến trúc ResNet, cách chọn checkpoint và thiết lập dùng để so sánh CNN với ViT.
+
 > Cập nhật giao thức nhóm: ViT P0 hiện hành dùng AdamW lr **0.0003**, wd 0.05, 100 epoch theo `configs/week2/vit_{10,50,100}.yaml`. Recipe ViT lr 0.001 trong các số liệu tuning dưới đây là lịch sử, không phải lựa chọn nhóm hiện tại. Ba run ResNet 100 epoch vẫn khớp giao thức.
 
 

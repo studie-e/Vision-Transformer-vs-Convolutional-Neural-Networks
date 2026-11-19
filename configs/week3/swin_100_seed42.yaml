@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (thử nghiệm Swin tuần 3).
+# Chạy thử nghiệm mở rộng Swin với 100% dữ liệu train, seed 42 và ngân sách 100 epoch.
 seed: 42
 model:
   factory: src.models.swin:build_model

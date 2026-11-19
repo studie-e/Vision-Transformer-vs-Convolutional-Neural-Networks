@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Lưu bằng chứng chạy thử ResNet, khả năng học một batch và kết quả đối chiếu khi tiếp tục từ checkpoint.
+
 ## Môi trường và phạm vi
 
 - Windows, Python 3.13.7, PyTorch 2.11.0+cu128, CUDA runtime 12.8, RTX 5080, driver 617.42.

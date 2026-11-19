@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (tuning tuần 2).
+# Thử ViT với SGD trong 10 epoch trên 50% dữ liệu train để so sánh cách thiết lập optimizer.
 seed: 42
 model:
   factory: src.models.vit:build_model

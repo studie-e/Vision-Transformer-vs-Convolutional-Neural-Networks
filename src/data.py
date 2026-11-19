@@ -1,3 +1,5 @@
+# Tạo danh sách ảnh CIFAR-10 theo từng seed và dựng DataLoader để train, validation hoặc đánh giá cuối.
+# ResNet và ViT dùng chung danh sách ảnh ở mỗi tỷ lệ để so sánh trên cùng dữ liệu.
 """Chuẩn bị dữ liệu chính — Hiền.
 
 Tạo split 45k train / 5k val / 10k test theo phân tầng; lưu manifest JSON cho mỗi seed.

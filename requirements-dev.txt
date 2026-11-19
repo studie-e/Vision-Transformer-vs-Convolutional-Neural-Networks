@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (môi trường kiểm thử và vẽ hình).
+# Người phụ trách: Minh (bổ sung pytest để chạy kiểm thử và matplotlib để vẽ hình từ kết quả).
 -r requirements.txt
 pytest==9.1.1
 matplotlib==3.10.7

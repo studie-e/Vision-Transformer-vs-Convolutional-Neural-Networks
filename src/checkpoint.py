@@ -1,4 +1,6 @@
 # Người phụ trách: Minh (checkpoint và khôi phục trạng thái huấn luyện).
+# Lưu và đọc checkpoint chứa trọng số, optimizer, lịch learning rate và lịch sử huấn luyện.
+# Khôi phục trạng thái ngẫu nhiên của Python, NumPy, PyTorch và DataLoader để tiếp tục lượt chạy.
 """Epoch-boundary checkpoints using state_dict, including random generators.
 
 Sources: https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html

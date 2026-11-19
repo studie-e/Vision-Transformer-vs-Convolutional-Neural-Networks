@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (kiểm thử quy trình tuần 2 và cấu hình Swin).
+# Kiểm tra ngân sách tuning ngang nhau, cách chọn cấu hình theo validation và đầu ra của Swin thử nghiệm.
 """Kiểm tra giao thức tuần 2 và prototype Swin, không thay cho thí nghiệm thật."""
 
 import copy

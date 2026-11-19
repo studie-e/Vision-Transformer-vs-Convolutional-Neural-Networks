@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (dữ liệu chạy thử tuần 1).
+# Lấy hai tập con train và validation từ phần train của CIFAR-10 để kiểm tra trainer và chạy thử ResNet.
 """Week-1 diagnostic data only; replace with Hien's official split factory.
 
 Loads only the CIFAR-10 training partition. No test data is used for validation.

@@ -1,4 +1,6 @@
 # Người phụ trách: Minh (trainer dùng chung).
+# Đọc cấu hình YAML để tạo mô hình và bộ nạp dữ liệu, rồi chạy train và validation theo từng epoch.
+# Lưu chỉ số vào CSV và TensorBoard, chọn best.pt theo validation accuracy và dùng last.pt để huấn luyện tiếp.
 """Minimal model-independent trainer. See docs/minh-week1.md for the contract."""
 
 import argparse

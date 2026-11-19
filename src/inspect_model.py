@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (đếm và khớp số tham số mô hình).
+# Tạo mô hình từ YAML và in số tham số có thể huấn luyện. Có thể tìm độ rộng ResNet gần số tham số ViT.
 """Count a model and, optionally, search a ResNet width to match a ViT budget."""
 
 import argparse

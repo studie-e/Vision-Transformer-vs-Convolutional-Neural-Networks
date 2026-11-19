@@ -1,3 +1,5 @@
+# Đọc log của từng lượt chạy, đánh giá best.pt trên validation và đối chiếu với số liệu đã ghi.
+# Xuất đường cong học, ma trận nhầm lẫn, biểu đồ theo tỷ lệ dữ liệu và bản đồ attention của ViT.
 """Validation-only figures and run checks for the week-two handoff."""
 
 import argparse

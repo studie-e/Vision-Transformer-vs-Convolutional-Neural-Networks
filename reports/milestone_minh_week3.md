@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Tóm tắt kết quả ResNet sau khi bổ sung seed và tiến độ chạy thử Swin để ghép vào báo cáo milestone.
+
 ## Tiến độ và kết quả validation
 
 Hoàn tất sáu lượt ResNet bổ sung và giữ nguyên ba lượt seed đầu, tổng 9 lượt ResNet. Dữ liệu mỗi split được chia phân tầng và dùng chung theo từng cặp seed của hai mô hình. ResNet train từ đầu trên RTX 5080, với batch 128, SGD lr 0,05, momentum 0,9, weight decay 0,0005 và cosine annealing trong 100 epoch. Đánh giá lại `best.pt` trên CUDA khớp số dự đoán đúng trong cả sáu lượt mới.

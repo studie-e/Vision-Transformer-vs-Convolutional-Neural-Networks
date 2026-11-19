@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Chỉ cách chọn YAML hiện hành để chạy ResNet và ViT ở ba tỷ lệ dữ liệu trong tuần 2.
+
 Giao thức được nhóm xác nhận: [experiment_protocol.md](../../docs/experiment_protocol.md), [bàn giao GPU ViT](../../docs/bao-cao-tuan2-lan-anh-ho-tro.md).
 
 | Run | YAML hiện hành | Recipe |

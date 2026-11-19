@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (kiểm tra và đóng gói các lượt huấn luyện).
+# Đọc thư mục run, đối chiếu cấu hình, log và checkpoint rồi tạo ZIP kèm mã kiểm tra SHA-256 để bàn giao.
 """Đóng gói run P0 đã chạy đủ 100 epoch để bàn giao nội bộ cho Hiền."""
 
 import argparse

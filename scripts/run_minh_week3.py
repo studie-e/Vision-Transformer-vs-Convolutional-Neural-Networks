@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (các lượt ResNet và Swin tuần 3).
+# Chạy thêm seed ResNet hoặc thử Swin, kiểm tra khả năng đối chiếu các lượt chạy, rồi xuất CSV và gói bàn giao.
 """Chạy và kiểm tra các lượt ResNet/Swin của Minh trong tuần 3."""
 
 import argparse

@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (huấn luyện ResNet tuần 3).
+# Lặp thí nghiệm ResNet 10% dữ liệu với cặp seed chia dữ liệu 2027 và seed huấn luyện 43.
 seed: 43
 model:
   factory: src.models.resnet:build_model

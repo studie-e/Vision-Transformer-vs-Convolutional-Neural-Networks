@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (huấn luyện ResNet theo giao thức nhóm).
+# Lưu cấu hình ResNet 100% dữ liệu, seed 42, từ đợt khóa thông số trước khi nhóm chốt tên YAML hiện hành.
 seed: 42
 model:
   factory: src.models.resnet:build_model

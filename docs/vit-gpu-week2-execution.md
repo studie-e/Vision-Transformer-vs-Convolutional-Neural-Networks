@@ -2,6 +2,8 @@
 
 **Người phụ trách: Minh.**
 
+Ghi lại lệnh chạy ba lượt ViT trên RTX 5080, cách đối chiếu kết quả và gói bàn giao cho Hiền.
+
 ## Tài liệu đã đọc và cấu hình ưu tiên
 
 Đã đọc [báo cáo hỗ trợ Lan Anh](bao-cao-tuan2-lan-anh-ho-tro.md), [giao thức nhóm](experiment_protocol.md), `docs/lanh-week2.md` và các YAML trên `origin/hien`/`origin/lanh`. Mã được fetch và merge vào nhánh `Minh`, giữ lại bằng chứng ResNet đã hoàn thành. Xung đột checklist được xử lý theo quyết định nhóm mới nhất, không dùng kết quả 5 epoch để xác nhận đủ 100 epoch.

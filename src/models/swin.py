@@ -1,4 +1,6 @@
 # Người phụ trách: Minh (cấu hình mô hình Swin cho CIFAR-10).
+# Tạo Swin Transformer bằng torchvision, điều chỉnh kích thước patch và cửa sổ attention cho ảnh 32×32.
+# Đọc cấu hình từ YAML để khởi tạo mô hình phục vụ thí nghiệm mở rộng trên CIFAR-10.
 """Prototype Swin ảnh nhỏ dùng torchvision, chưa phải lượt mở rộng đã huấn luyện.
 
 Nguồn API/kiến trúc thư viện:

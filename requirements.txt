@@ -1,4 +1,4 @@
-# Người phụ trách: Minh (môi trường huấn luyện).
+# Người phụ trách: Minh (khóa phiên bản PyTorch và các thư viện đọc dữ liệu, cấu hình và ghi log huấn luyện).
 --extra-index-url https://download.pytorch.org/whl/cu128
 torch==2.11.0+cu128
 torchvision==0.26.0+cu128

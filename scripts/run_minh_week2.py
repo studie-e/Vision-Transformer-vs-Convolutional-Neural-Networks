@@ -1,4 +1,5 @@
 # Người phụ trách: Minh (tuning và các lượt ResNet tuần 2).
+# Điều phối các lượt thử optimizer, chạy ResNet ở 10%, 50% và 100% dữ liệu, rồi kiểm tra kết quả validation.
 """Tuning ngang ngân sách, khóa recipe và thực hiện ResNet tuần 2 của Minh."""
 
 import argparse
