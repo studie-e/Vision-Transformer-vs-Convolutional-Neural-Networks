@@ -21,9 +21,9 @@ from src.evaluate import build_run_row, evaluate_checkpoint
 from src.train import factory
 
 
-# Minh hỗ trợ chọn thiết bị để đối chiếu kết quả.
-# Hàm inspect_run: nạp và đối chiếu checkpoint/log trên thiết bị được chọn.
-# Nhận thư mục run và device tùy chọn; mặc định dùng thiết bị train trong metadata.
+# Hiền phụ trách đánh giá best.pt trên validation, đối chiếu với log và tổng hợp thông tin lượt chạy.
+# Minh bổ sung tham số device và đọc thiết bị huấn luyện từ metadata.json khi không chỉ định.
+# Minh cũng ghi thiết bị đánh giá vào kết quả qua trường evaluation_device.
 # CPU/CUDA có thể khác làm tròn ở ảnh sát ranh giới, nên không ép đánh giá GPU run bằng CPU.
 def inspect_run(directory, device=None):
     config_path = directory / 'config.yaml'
@@ -53,15 +53,17 @@ def inspect_run(directory, device=None):
     return config, result, row, history
 
 
+# Hiền phụ trách chỉnh bố cục, lưu biểu đồ ra file và đóng figure sau khi lưu.
 def save_figure(fig, path):
     fig.tight_layout()
     fig.savefig(path, dpi=140, bbox_inches='tight')
     plt.close(fig)
 
 
-# Minh hỗ trợ chạy bước lấy attention trên cùng thiết bị với bước đánh giá.
-# Hàm attention_examples: vẽ ảnh đúng/sai theo manifest và attention của checkpoint đã đối chiếu.
-# Tham số device phải cùng thiết bị với bước tạo result để giữ nhãn dự đoán nhất quán.
+# Hiền phụ trách chọn ảnh đúng/sai theo manifest và vẽ bản đồ attention chồng lên ảnh gốc.
+# Hàm lấy trọng số từ get_attention_weights() do Lan Anh cài trong mô hình ViT.
+# Minh bổ sung bước đưa mô hình và ảnh lên cùng thiết bị với bước đánh giá để giữ dự đoán nhất quán.
+# Minh chuyển bản đồ attention về CPU trước khi chuyển sang NumPy để vẽ.
 def attention_examples(directory, config, result, output, device='cpu'):
     """Use the first correct and incorrect images in the fixed manifest order."""
     _, loader = build_loaders(config)
@@ -106,7 +108,8 @@ def attention_examples(directory, config, result, output, device='cpu'):
     save_figure(fig, output)
 
 
-# Minh bổ sung tùy chọn --device cho bước đánh giá và vẽ attention.
+# Hiền phụ trách luồng đọc các thư mục run, xuất biểu đồ và ghi bảng validation.csv.
+# Minh thêm tùy chọn --device, truyền nó vào inspect_run rồi dùng thiết bị đánh giá đó khi lấy attention.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', type=Path, action='append', required=True)
