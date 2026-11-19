@@ -89,7 +89,8 @@ def collect_validation(model, device):
                 raise ValueError(f"Recipe changed since P0: {row['run_id']}")
             verify_training_source(baseline, row)
             # Chỉ quy về cùng ID trên bản sao dùng tính thống kê. CSV bằng chứng giữ ID gốc.
-            summary_rows.append({**row, 'protocol_id': baseline['protocol_id']})
+            summary_rows.append({**row, 'protocol_id': baseline['protocol_id'],
+                                 'split_seed': str(row['split_seed']), 'train_seed': str(row['train_seed'])})
 
     summary = summarize(summary_rows)
     seeds = {int(row['n_seeds']) for row in summary}

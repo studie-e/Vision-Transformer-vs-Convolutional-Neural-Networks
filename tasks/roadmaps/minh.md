@@ -40,6 +40,8 @@ Tham chiếu [lịch chung](README.md) và **T01, T02, T05, T06, T09, T11, T14, 
 
 ## Tuần 3 — thêm seed và bắt đầu Swin
 
+Đã hoàn tất sáu lượt ResNet bổ sung và đối chiếu lại trên CUDA. Swin đã chạy thử một epoch và có hai cấu hình cho loạt mở rộng sau bảng chính. [Kết quả tuần 3](../../results/week3/README.md) · [Phần Minh cho milestone](../../reports/milestone_minh_week3.md).
+
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
 | **15** | Bắt đầu nhóm ResNet train seed 43, split seed 2027, ưu tiên 10%/50% theo lịch chung; dùng đúng tập con ghép cặp ViT. | Run/log và trạng thái → Hiền |
