@@ -158,8 +158,10 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T15. Milestone ACL — Hiền ghép, cả ba viết phần mình
 
-- [ ] Tối đa 4 trang, có kết quả baseline, tiến độ, khó khăn và kế hoạch còn lại.
-- [ ] Phân biệt kết quả đã có với mục tiêu; ghi số seed thực tế và việc chưa hoàn tất.
+Tiến độ Hiền tuần 3: đã tái tạo bảng từ 6/18 bản ghi, kiểm tra best epoch/time/steps với log, khóa bộ ảnh validation đa lớp và chuẩn bị công cụ ghép lỗi/attention. Bản milestone ở `reports/milestone.tex`. Thiếu 12 lượt seed bổ sung và checkpoint P0 local. Xem [bàn giao](../docs/hien-week3.md).
+
+- [x] Milestone ACL đã biên dịch thành 2 trang, kiểm tra trực quan bảng/hình, có baseline, tiến độ, khó khăn và kế hoạch còn lại. Tên/MSSV chờ điền theo yêu cầu.
+- [x] Phân biệt 6 lượt một seed đã có với mục tiêu 18 lượt; ghi thiếu checkpoint local và các phần phân tích chờ dữ liệu.
 - [ ] Nộp cuối tuần 3, không chờ phần mở rộng nếu chưa xong.
 - **Kiểm tra:** cả ba đối chiếu số liệu với log, kiểm tra PDF/template/số trang.
 - **Phụ thuộc:** T10–T12; cập nhật T13–T14 theo kết quả thực tế tại hạn nộp.
