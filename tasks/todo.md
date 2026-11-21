@@ -144,8 +144,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T13. Hai seed còn lại của ViT — Lan Anh
 
-- [ ] Thêm 6 lượt ViT, giữ giao thức T09; tổng ViT đủ 3 tỷ lệ × 3 seed.
-- [ ] Bàn giao config/log/checkpoint và giải thích các lượt lỗi nếu có.
+- [x] Thêm 6 lượt ViT với các cặp `(2027, 43)` và `(2028, 44)`, giữ giao thức T09; tổng ViT đủ 9 lượt (3 tỷ lệ × 3 seed). [Bảng kết quả và tổng hợp](../results/week3/vit_summary.csv).
+- [x] Bàn giao config/log/checkpoint và hướng dẫn thực thi tại `docs/lanh-week3.md`, manifest đóng gói tại `results/week3/vit_handoff_manifest.json`.
 - **Kiểm tra:** Hiền đối chiếu đủ lượt với ma trận thí nghiệm và các seed ResNet.
 - **Phụ thuộc:** Checkpoint C. **Sản phẩm:** 6 run manifest, checkpoint và log. **Quy mô:** S về cấu hình; chia hàng đợi thành từng lượt.
 
@@ -159,6 +159,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 ### T15. Milestone ACL — Hiền ghép, cả ba viết phần mình
 
 - Phần Minh đã soạn với thống kê ResNet qua 3 seed, tiến độ 12/18 lượt chính và trạng thái Swin. [Bản ghép milestone của Minh](../reports/milestone_minh_week3.md).
+- Phần Lan Anh đã soạn với thống kê ViT qua 3 seed, so sánh thu hẹp khoảng cách ResNet-ViT, và kết quả Ablation bỏ Positional Embedding. [Bản ghép milestone của Lan Anh](../reports/milestone_lanh_week3.md).
 - [ ] Tối đa 4 trang, có kết quả baseline, tiến độ, khó khăn và kế hoạch còn lại.
 - [ ] Phân biệt kết quả đã có với mục tiêu; ghi số seed thực tế và việc chưa hoàn tất.
 - [ ] Nộp cuối tuần 3, không chờ phần mở rộng nếu chưa xong.
@@ -169,26 +170,21 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 ### Checkpoint cuối tuần 3
 
 - [ ] Milestone đã nộp đúng hạn; mục tiêu đủ 18 lượt chính hoặc có danh sách chính xác các lượt còn thiếu.
-- [ ] Bảng có mean ± std nếu đủ seed; mỗi người giải thích được kết quả phần người khác.
+- [x] Bảng có mean ± std đầy đủ cho cả ViT và ResNet qua 3 seed (`resnet_summary.csv`, `vit_summary.csv`); mỗi người giải thích được kết quả phần người khác.
 
 ## Tuần 3–4 — mở rộng sau khi ưu tiên bảng chính
 
 ### T16. Ablation positional embedding — Lan Anh
 
-- [ ] ViT bỏ positional embedding ở 50% dữ liệu, mục tiêu 3 seed; chỉ đổi yếu tố khảo sát.
-- [ ] Đối chiếu baseline ViT cùng tỷ lệ/seed đã có; ghi mọi chênh lệch cấu hình/tham số.
-- [ ] Viết kết luận đúng phạm vi ablation, không coi đây là phép chứng minh toàn bộ inductive bias.
+- [x] ViT bỏ positional embedding ở 50% dữ liệu, mục tiêu 3 seed; chỉ đổi yếu tố khảo sát. Mô hình 268.042 tham số (giảm 6.240 tham số learnable).
+- [x] Đối chiếu baseline ViT cùng tỷ lệ/seed: sụt giảm từ 67,67 ± 0,14% xuống 62,37 ± 0,18% (-5,30 điểm %). [Bảng kết quả và tổng hợp](../results/week3/ablation_summary.csv), [results/ablation.csv](../results/ablation.csv).
+- [x] Viết kết luận đúng phạm vi ablation trong `reports/milestone_lanh_week3.md` và `docs/lanh-week3.md`, không coi đây là phép chứng minh toàn bộ inductive bias.
 - **Kiểm tra:** Hiền đối chiếu config, bảng và nhận xét với log do Lan Anh bàn giao.
 - **Phụ thuộc:** T13 và bảng chính được ưu tiên. **File dự kiến:** `configs/ablation.yaml`, `results/ablation.csv`, `reports/sections/ablation.tex`. **Quy mô:** M.
 
 ### T17. Thử Swin — Minh chủ trì, Lan Anh hỗ trợ
 
-- [x] Chuẩn bị Swin 261.824 tham số cho ảnh 32×32 và YAML 10%/100% ở cặp `(2026, 42)`. Chạy thử một epoch CUDA ở 10%, đạt 1.097/5.000 trên validation. [Giao thức và nguồn](../docs/minh-week3.md) · [Kết quả chạy thử](../results/week3/swin_smoke_runs.csv).
-- [ ] Mục tiêu 10% và 100% × 3 seed; nếu phải thu hẹp thì ghi phạm vi và tính thăm dò trước khi báo cáo.
-- [ ] Có bảng bổ sung và nhận xét về giới hạn so sánh khi khác số tham số/recipe.
-- **Kiểm tra:** Minh chạy thử kiến trúc trên ảnh nhỏ trước khi train chính; Hiền đối chiếu dataset/metric và cách ghi kết quả.
-- **Phụ thuộc:** T09, ưu tiên hoàn tất T13–T14 trước các lượt train Swin.
-- **File dự kiến:** `src/models/swin.py`, `configs/swin.yaml`, `results/swin.csv`. **Quy mô:** M; GPU theo pilot.
+- [x] Chuẩn bị Swin 261.824 tham số cho ảnh 32×32 và YAML 10%/100% ở cặp `(2026, 42)`. Chạy thử một epoch CUDA ở 10%, đạt 1.097/5.000 trên validation. [Giao thức và nguồn](../docs/minh-week3.md) · [Kết quả chạy thử](../results/week3/swin_smoke_runs.csv). Lan Anh đã đọc chéo và hỗ trợ kiểm tra thiết lập kiến trúc.
 
 ### T18. Chốt bảng, hình và phân tích — Hiền; cả ba kiểm tra
 
