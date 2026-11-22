@@ -28,7 +28,7 @@ Tham chiếu [lịch chung](README.md) và **T02, T03, T07–T09, T12, T15, T18�
 | **11** | Nhận các lượt đầu từ hai bạn; đối chiếu log/config/số ảnh. Sinh bảng validation từng mô hình/tỷ lệ, kiểm tra thiếu metadata. | Bảng validation cập nhật, danh sách lượt cần bổ sung |
 | **12** | Tạo attention thử trên validation từ checkpoint ViT đã có; kiểm tra mapping patch/ảnh gốc với Lan Anh. Chuẩn bị learning curve và confusion matrix. | Hình attention có chú thích và run nguồn |
 | **13** | Kiểm tra đủ 6 lượt seed đầu; dựng accuracy–data, learning curve, ảnh đúng/sai trên validation. Chỉ ghi nhận xét sơ bộ. | Bảng/hình sơ bộ → cả nhóm |
-| **14** | Viết phần Dữ liệu/Đánh giá bản đầu; đọc chéo trainer/ResNet của Minh, đặc biệt metric, chọn checkpoint, resume. Dự phòng lỗi dữ liệu/attention. | Phần viết, phản hồi đọc chéo, checkpoint tuần 2 |
+| **14** | Viết phần Dữ liệu/Đánh giá bản đầu; đọc chéo trainer/ResNet của Minh, đặc biệt metric, chọn checkpoint, resume. Dự phòng lỗi dữ liệu/attention. | Phầcn viết, phản hồi đọc chéo, checkpoint tuần 2 |
 
 **Cuối tuần cần đạt:** 6 lượt đầu có thể truy về log/checkpoint; bảng và attention validation đúng, không chỉ lấy ví dụ đẹp. Không dùng test để tuning hoặc chọn seed.
 

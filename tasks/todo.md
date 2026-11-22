@@ -127,7 +127,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T12. Attention map và bảng sơ bộ — Hiền
 
-- Tiến độ Hiền: đã xuất bảng validation, learning curve, confusion matrix và attention đúng/sai từ hai pilot CPU. Có giao thức dự thảo và ma trận 18 lượt. Các mục dưới đây chờ sáu lượt P0 và đọc chéo của nhóm. Xem [bàn giao tuần 2](../docs/hien-week2.md) và [giao thức](../docs/experiment_protocol.md).
+- Tiến độ Hiền: đã đối chiếu 6/6 bản ghi P0 với log từng epoch, bảng hình và manifest, xác nhận đủ 16 hình, và viết nhận xét validation một seed. Còn nhận ZIP/checkpoint trên máy Hiền và đọc chéo attention với Lan Anh. Xem [bàn giao tuần 2](../docs/hien-week2.md).
 
 - [x] Có bảng/biểu đồ sáu lượt 100 epoch tại `results/team_week2/visualizations/`, Minh chạy công cụ của Hiền để bàn giao; còn Hiền/Lan Anh đọc chéo.
 - [x] Đã xuất attention đúng/sai cho ba ViT, CLS → patch block cuối trung bình head, lưới 8×8; có chỉ số ảnh/nhãn/run nguồn tại `results/team_week2/visualizations/`.
