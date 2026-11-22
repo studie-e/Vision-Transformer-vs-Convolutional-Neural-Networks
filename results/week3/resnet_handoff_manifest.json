@@ -1,0 +1,80 @@
+[
+  {
+    "run_id": "resnet_10_seed43",
+    "architecture": "resnet",
+    "ratio": "0.10",
+    "run_dir": "runs/week3/resnet_10_seed43",
+    "zip_path": "runs/handoff/week3/resnet/resnet_10_seed43.zip",
+    "zip_bytes": 4655877,
+    "zip_sha256": "5c445c124b4c020f3d6ead71561013a6727180cf3a5a2b19e45150dc2a18b757",
+    "epochs": 100,
+    "best_epoch": 79,
+    "best_val_accuracy": 0.7414,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "resnet_50_seed43",
+    "architecture": "resnet",
+    "ratio": "0.50",
+    "run_dir": "runs/week3/resnet_50_seed43",
+    "zip_path": "runs/handoff/week3/resnet/resnet_50_seed43.zip",
+    "zip_bytes": 4650285,
+    "zip_sha256": "034c43fc877a0a3cd737b423b0ad6a4cf4cc01d3008017814cf3cb5ef25ecdcb",
+    "epochs": 100,
+    "best_epoch": 84,
+    "best_val_accuracy": 0.8828,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "resnet_100_seed43",
+    "architecture": "resnet",
+    "ratio": "1.00",
+    "run_dir": "runs/week3/resnet_100_seed43",
+    "zip_path": "runs/handoff/week3/resnet/resnet_100_seed43.zip",
+    "zip_bytes": 4652704,
+    "zip_sha256": "aaece1c32ff6548589d5585ae85185da6c3f7b482fb7dc5059d4de06237d7bbf",
+    "epochs": 100,
+    "best_epoch": 93,
+    "best_val_accuracy": 0.9182,
+    "global_steps": 35200
+  },
+  {
+    "run_id": "resnet_10_seed44",
+    "architecture": "resnet",
+    "ratio": "0.10",
+    "run_dir": "runs/week3/resnet_10_seed44",
+    "zip_path": "runs/handoff/week3/resnet/resnet_10_seed44.zip",
+    "zip_bytes": 4656791,
+    "zip_sha256": "10205027435a6393ad4f88198071b14b4dd6c9dff6009e6cab132e5ffacf29ad",
+    "epochs": 100,
+    "best_epoch": 87,
+    "best_val_accuracy": 0.7464,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "resnet_50_seed44",
+    "architecture": "resnet",
+    "ratio": "0.50",
+    "run_dir": "runs/week3/resnet_50_seed44",
+    "zip_path": "runs/handoff/week3/resnet/resnet_50_seed44.zip",
+    "zip_bytes": 4650726,
+    "zip_sha256": "c8878308e3f364b0cb18089f9a1bf90f4ea640c469fe609685f3996f58149f51",
+    "epochs": 100,
+    "best_epoch": 94,
+    "best_val_accuracy": 0.8828,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "resnet_100_seed44",
+    "architecture": "resnet",
+    "ratio": "1.00",
+    "run_dir": "runs/week3/resnet_100_seed44",
+    "zip_path": "runs/handoff/week3/resnet/resnet_100_seed44.zip",
+    "zip_bytes": 4653497,
+    "zip_sha256": "2017d628a67719321c5c83b75b249d1435a73fcc6e8ce6c5a9d0678723b2dc01",
+    "epochs": 100,
+    "best_epoch": 94,
+    "best_val_accuracy": 0.9182,
+    "global_steps": 35200
+  }
+]

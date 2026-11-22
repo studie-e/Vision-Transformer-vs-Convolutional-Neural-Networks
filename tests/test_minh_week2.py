@@ -1,3 +1,4 @@
+# Người phụ trách: Minh (kiểm thử quy trình tuần 2 và cấu hình Swin).
 """Kiểm tra giao thức tuần 2 và prototype Swin, không thay cho thí nghiệm thật."""
 
 import copy

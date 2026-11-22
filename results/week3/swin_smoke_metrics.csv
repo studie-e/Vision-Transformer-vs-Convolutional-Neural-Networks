@@ -1,0 +1,2 @@
+epoch,global_step,lr,train_loss,train_accuracy,val_loss,val_accuracy,train_seconds,epoch_seconds,peak_cuda_mb
+1,36,0.0003,2.142795620388455,0.19733333333333333,2.0601767612457276,0.2194,13.591258699998434,14.45282429999861,242.0986328125

@@ -1,5 +1,7 @@
 # Nội dung Minh gửi Hiền để ghép proposal
 
+**Người phụ trách: Minh.**
+
 Đây là phần CNN/thiết lập dự kiến, cần ghép với phần dữ liệu và ViT; chưa phải proposal ACL hoàn chỉnh.
 
 ## Baseline CNN và cách so sánh
