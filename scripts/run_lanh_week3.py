@@ -126,11 +126,11 @@ def collect_validation(model, device='cuda'):
         (package_dir / 'handoff_manifest.json').write_text(manifest, encoding='utf-8')
         (RESULT_DIR / f'{model}_handoff_manifest.json').write_text(manifest, encoding='utf-8')
     else:
-        # Nếu đang ở môi trường ngoài GPU, kiểm tra tính toàn vẹn của các bảng kết quả đã tổng hợp
-        if destination.exists():
-            with destination.open(encoding='utf-8') as f:
-                existing_rows = list(csv.DictReader(f))
-            print(f"Verified {len(existing_rows)} {model} records in {destination}.")
+        missing = [str(RUN_DIR / p.stem / 'best.pt') for p in paths
+                   if not (RUN_DIR / p.stem / 'best.pt').is_file()]
+        raise FileNotFoundError(
+            'Collect requires original checkpoints for independent validation. Missing: '
+            + ', '.join(missing))
 
 
 def main():

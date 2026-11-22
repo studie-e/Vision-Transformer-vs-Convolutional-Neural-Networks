@@ -1,0 +1,10 @@
+\section{Phân tích và kiểm tra dữ liệu thực nghiệm}
+Các log ResNet có ba cặp seed cho mỗi tỷ lệ. Validation trung bình tăng từ 74,34\% ở 10\% dữ liệu lên 88,32\% ở 50\% và 91,81\% ở 100\%. Độ lệch chuẩn mẫu lần lượt là 0,26; 0,07; 0,01 điểm phần trăm. Cả seed chia dữ liệu và seed train đều đổi, nên độ biến thiên bao gồm cả hai yếu tố.
+
+Đối với ViT, ba lượt seed 42 được ghi ở tuần 2 đạt 52,16\%, 67,66\% và 75,90\%. Các bản ghi seed 43 và 44 được tiếp nhận ở tuần 3, nhưng log chứa giá trị accuracy không tương ứng số ảnh đúng nguyên. Ví dụ, accuracy 0,2647 trên 5.000 ảnh tương ứng 1.323,5 ảnh đúng. Log ViT 10\% seed 43 còn ghi thời gian train epoch 100 bằng $-0,0945$ giây. Công thức trong trainer là tổng số dự đoán đúng chia số ảnh, nên các giá trị này cần đối chiếu lại từ checkpoint và log gốc. Báo cáo giữ nguyên dữ liệu nguồn và liệt kê lỗi trong audit\_issues.csv.
+
+Ba log ablation cũng đang chờ xác minh. CSV do Lan Anh bàn giao ghi mean 62,37\%, so với baseline ba seed 67,67\%, chênh 5,30 điểm phần trăm. Các con số này được ghi nhận như kết quả bàn giao cần xác minh; kết luận về tác động của positional embedding chờ kiểm tra lại thí nghiệm.
+
+Locality và weight sharing của CNN khác với attention toàn cục và positional embedding của ViT. Tuy vậy, hai mô hình dùng optimizer và regularization khác nhau. Tăng lượng ảnh ở cùng 100 epoch cũng tăng số bước cập nhật. Vì vậy, một phép so sánh này chưa tách riêng ảnh hưởng nhân quả của inductive bias.
+
+Swin chạy thử một epoch ở 10\%, đạt 1.097/5.000 ảnh đúng. Cần thêm các lượt đầy đủ để phân tích so sánh.
