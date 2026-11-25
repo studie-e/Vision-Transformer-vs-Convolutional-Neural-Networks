@@ -1,5 +1,7 @@
 # So sánh Vision Transformer và CNN
 
+Bản đọc chéo nội bộ tuần 4 của Hiền gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf), [hướng dẫn bàn giao và tái lập](docs/hien-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4` để sinh bảng có trạng thái kiểm tra. Audit hiện phát hiện lỗi accuracy/time trong sáu log ViT bổ sung và ba ablation; checkpoint gốc cần đối chiếu trước test cuối.
+
 Đề tài 3 môn Học sâu. Lan Anh: ViT; Minh: ResNet/trainer/môi trường; Hiền: dữ liệu/đánh giá/attention. [Kế hoạch](tasks/plan.md) · [Checklist](tasks/todo.md) · [Bàn giao tuần 1 của Minh](docs/minh-week1.md).
 
 Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: [bàn giao tuần 1 của Hiền](docs/hien-week1-handoff.md). Config chạy tích hợp: `configs/hien_smoke.yaml`; lệnh `python -X utf8 -m scripts.check_hien_week1 --device cpu` kiểm tra một epoch trên split chính và lưu bằng chứng pilot riêng.

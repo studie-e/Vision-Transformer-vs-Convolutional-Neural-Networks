@@ -15,3 +15,6 @@ reports/*.log
 reports/*.out
 reports/*.bbl
 reports/*.blg
+slides/*.aux
+slides/*.log
+slides/*.out

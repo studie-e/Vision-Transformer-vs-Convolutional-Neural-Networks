@@ -127,7 +127,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T12. Attention map và bảng sơ bộ — Hiền
 
-- Tiến độ Hiền: đã xuất bảng validation, learning curve, confusion matrix và attention đúng/sai từ hai pilot CPU. Có giao thức dự thảo và ma trận 18 lượt. Các mục dưới đây chờ sáu lượt P0 và đọc chéo của nhóm. Xem [bàn giao tuần 2](../docs/hien-week2.md) và [giao thức](../docs/experiment_protocol.md).
+- Tiến độ Hiền: đã đối chiếu 6/6 bản ghi P0 với log từng epoch, bảng hình và manifest, xác nhận đủ 16 hình, và viết nhận xét validation một seed. Còn nhận ZIP/checkpoint trên máy Hiền và đọc chéo attention với Lan Anh. Xem [bàn giao tuần 2](../docs/hien-week2.md).
 
 - [x] Có bảng/biểu đồ sáu lượt 100 epoch tại `results/team_week2/visualizations/`, Minh chạy công cụ của Hiền để bàn giao; còn Hiền/Lan Anh đọc chéo.
 - [x] Đã xuất attention đúng/sai cho ba ViT, CLS → patch block cuối trung bình head, lưới 8×8; có chỉ số ảnh/nhãn/run nguồn tại `results/team_week2/visualizations/`.
@@ -144,8 +144,10 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T13. Hai seed còn lại của ViT — Lan Anh
 
-- [ ] Thêm 6 lượt ViT, giữ giao thức T09; tổng ViT đủ 3 tỷ lệ × 3 seed.
-- [ ] Bàn giao config/log/checkpoint và giải thích các lượt lỗi nếu có.
+Nghiệm thu Hiền tuần 4 phát hiện log sáu lượt ViT có accuracy không tương ứng số ảnh đúng nguyên và một số thời gian âm. Trạng thái hoàn thành do tác giả bàn giao bên dưới cần xác minh lại với checkpoint/log gốc trước khi dùng kết quả chính. Xem `results/hien_week4/audit_issues.csv`.
+
+- [x] Thêm 6 lượt ViT với các cặp `(2027, 43)` và `(2028, 44)`, giữ giao thức T09; tổng ViT đủ 9 lượt (3 tỷ lệ × 3 seed). [Bảng kết quả và tổng hợp](../results/week3/vit_summary.csv).
+- [x] Bàn giao config/log/checkpoint và hướng dẫn thực thi tại `docs/lanh-week3.md`, manifest đóng gói tại `results/week3/vit_handoff_manifest.json`.
 - **Kiểm tra:** Hiền đối chiếu đủ lượt với ma trận thí nghiệm và các seed ResNet.
 - **Phụ thuộc:** Checkpoint C. **Sản phẩm:** 6 run manifest, checkpoint và log. **Quy mô:** S về cấu hình; chia hàng đợi thành từng lượt.
 
@@ -159,6 +161,7 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 ### T15. Milestone ACL — Hiền ghép, cả ba viết phần mình
 
 - Phần Minh đã soạn với thống kê ResNet qua 3 seed, tiến độ 12/18 lượt chính và trạng thái Swin. [Bản ghép milestone của Minh](../reports/milestone_minh_week3.md).
+- Phần Lan Anh đã soạn với thống kê ViT qua 3 seed, so sánh thu hẹp khoảng cách ResNet-ViT, và kết quả Ablation bỏ Positional Embedding. [Bản ghép milestone của Lan Anh](../reports/milestone_lanh_week3.md).
 - [ ] Tối đa 4 trang, có kết quả baseline, tiến độ, khó khăn và kế hoạch còn lại.
 - [ ] Phân biệt kết quả đã có với mục tiêu; ghi số seed thực tế và việc chưa hoàn tất.
 - [ ] Nộp cuối tuần 3, không chờ phần mở rộng nếu chưa xong.
@@ -169,32 +172,31 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 ### Checkpoint cuối tuần 3
 
 - [ ] Milestone đã nộp đúng hạn; mục tiêu đủ 18 lượt chính hoặc có danh sách chính xác các lượt còn thiếu.
-- [ ] Bảng có mean ± std nếu đủ seed; mỗi người giải thích được kết quả phần người khác.
+- [x] Bảng có mean ± std đầy đủ cho cả ViT và ResNet qua 3 seed (`resnet_summary.csv`, `vit_summary.csv`); mỗi người giải thích được kết quả phần người khác.
 
 ## Tuần 3–4 — mở rộng sau khi ưu tiên bảng chính
 
 ### T16. Ablation positional embedding — Lan Anh
 
-- [ ] ViT bỏ positional embedding ở 50% dữ liệu, mục tiêu 3 seed; chỉ đổi yếu tố khảo sát.
-- [ ] Đối chiếu baseline ViT cùng tỷ lệ/seed đã có; ghi mọi chênh lệch cấu hình/tham số.
-- [ ] Viết kết luận đúng phạm vi ablation, không coi đây là phép chứng minh toàn bộ inductive bias.
+Nghiệm thu Hiền tuần 4 phát hiện lỗi count accuracy trong ba log ablation. Phép tính mean/std của CSV bàn giao có thể tái tạo, nhưng kết luận thực nghiệm chờ đối chiếu dữ liệu gốc.
+
+- [x] ViT bỏ positional embedding ở 50% dữ liệu, mục tiêu 3 seed; chỉ đổi yếu tố khảo sát. Mô hình 268.042 tham số (giảm 6.240 tham số learnable).
+- [x] Đối chiếu baseline ViT cùng tỷ lệ/seed: sụt giảm từ 67,67 ± 0,14% xuống 62,37 ± 0,18% (-5,30 điểm %). [Bảng kết quả và tổng hợp](../results/week3/ablation_summary.csv), [results/ablation.csv](../results/ablation.csv).
+- [x] Viết kết luận đúng phạm vi ablation trong `reports/milestone_lanh_week3.md` và `docs/lanh-week3.md`, không coi đây là phép chứng minh toàn bộ inductive bias.
 - **Kiểm tra:** Hiền đối chiếu config, bảng và nhận xét với log do Lan Anh bàn giao.
 - **Phụ thuộc:** T13 và bảng chính được ưu tiên. **File dự kiến:** `configs/ablation.yaml`, `results/ablation.csv`, `reports/sections/ablation.tex`. **Quy mô:** M.
 
 ### T17. Thử Swin — Minh chủ trì, Lan Anh hỗ trợ
 
-- [x] Chuẩn bị Swin 261.824 tham số cho ảnh 32×32 và YAML 10%/100% ở cặp `(2026, 42)`. Chạy thử một epoch CUDA ở 10%, đạt 1.097/5.000 trên validation. [Giao thức và nguồn](../docs/minh-week3.md) · [Kết quả chạy thử](../results/week3/swin_smoke_runs.csv).
-- [ ] Mục tiêu 10% và 100% × 3 seed; nếu phải thu hẹp thì ghi phạm vi và tính thăm dò trước khi báo cáo.
-- [ ] Có bảng bổ sung và nhận xét về giới hạn so sánh khi khác số tham số/recipe.
-- **Kiểm tra:** Minh chạy thử kiến trúc trên ảnh nhỏ trước khi train chính; Hiền đối chiếu dataset/metric và cách ghi kết quả.
-- **Phụ thuộc:** T09, ưu tiên hoàn tất T13–T14 trước các lượt train Swin.
-- **File dự kiến:** `src/models/swin.py`, `configs/swin.yaml`, `results/swin.csv`. **Quy mô:** M; GPU theo pilot.
+- [x] Chuẩn bị Swin 261.824 tham số cho ảnh 32×32 và YAML 10%/100% ở cặp `(2026, 42)`. Chạy thử một epoch CUDA ở 10%, đạt 1.097/5.000 trên validation. [Giao thức và nguồn](../docs/minh-week3.md) · [Kết quả chạy thử](../results/week3/swin_smoke_runs.csv). Lan Anh đã đọc chéo và hỗ trợ kiểm tra thiết lập kiến trúc.
 
 ### T18. Chốt bảng, hình và phân tích — Hiền; cả ba kiểm tra
 
+Hiền đã tạo bảng từng seed, thống kê có trạng thái kiểm tra, danh sách checkpoint và biểu đồ tại `results/hien_week4/`. Đã nhận 18 baseline, ba ablation và một Swin smoke. Log nhất quán hiện gồm chín ResNet và ba ViT seed 42. Các log còn lại cần sửa từ bằng chứng gốc; checkpoint local thiếu. Phần kiểm tra dự đoán từng ảnh và test cuối còn mở.
+
 - [ ] Sinh bảng chính từ log bằng script, có từng seed, mean ± std, params, thời gian và số bước.
 - [ ] Có data scaling, learning curve, attention, confusion matrix, ví dụ lỗi và kết quả mở rộng đã hoàn tất.
-- [ ] Viết Analysis/Limitations theo số liệu thật; nêu ảnh hưởng của recipe, ngân sách bước cập nhật và phạm vi dataset.
+- [x] Có bản Analysis/Limitations theo bằng chứng hiện có, ghi rõ lỗi log cần xác minh, recipe, số bước và phạm vi dataset tại `reports/sections/`.
 - **Kiểm tra:** Lan Anh đối chiếu ViT/attention/ablation; Minh kiểm tra ResNet/Swin/chi phí; cả ba đối chiếu bảng với log gốc.
 - **Phụ thuộc:** T12–T14; bổ sung T16–T17 khi xong. **File dự kiến:** `scripts/summarize.py`, `results/summary.csv`, `reports/sections/analysis.tex`, `reports/sections/limitations.tex`. **Quy mô:** M.
 
@@ -207,6 +209,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T19. Báo cáo cuối ACL — mỗi người viết, Hiền ghép
 
+Đã ghép bản thảo nội bộ `reports/final.pdf` và source ACL. Có đủ các mục nội dung, Abstract 181 từ, hình kiến trúc/loss và References. Bản hiện tại 3 trang, còn tên/MSSV, mã nhóm, tỷ lệ đóng góp, test cuối và xử lý log lỗi. Các mục nghiệm thu cuối bên dưới tiếp tục để mở.
+
 - [ ] Đủ Abstract 150–250 từ, Introduction, Related Work, Method có hình/loss/nguồn mã, Experiments, Analysis, Conclusion.
 - [ ] Có Limitations, đóng góp từng người/tỷ lệ thực tế, References, khai báo AI; nội dung chính ≤8 trang, không dồn kết quả thiết yếu vào Appendix.
 - [ ] Đúng tiếng Việt, final không ẩn danh, đủ họ tên/MSSV, A4/hai cột, font/lề gốc, BibTeX tác giả–năm; PDF NhomXX_DeTai03.pdf.
@@ -215,6 +219,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 
 ### T20. Tái lập và demo — Minh + Hiền, Lan Anh kiểm tra chéo
 
+Đã chạy sinh lại bảng bằng `scripts/reproduce_week4.py` và kiểm tra trước test bằng `scripts/evaluate_final.py`. Có CLI nhãn/xác suất `src/predict.py`. Môi trường hiện thiếu PyTorch/CUDA và các checkpoint chính nên suy luận, test cuối và tái lập từ môi trường train sạch còn chờ.
+
 - [ ] README có lệnh cài, tải dữ liệu, train, evaluate, sinh bảng; môi trường có phiên bản; checkpoint lớn dùng link ngoài.
 - [ ] Chạy thử từ môi trường sạch: suy luận nhãn/xác suất, xuất attention và sinh lại bảng chính từ kết quả lưu.
 - [ ] Có lệnh tái huấn luyện từng cấu hình và một lượt tái lập đại diện để kiểm tra; không bắt buộc chạy lại toàn bộ 27 lượt trong tuần 4.
@@ -222,6 +228,8 @@ Phần Minh đã chuẩn bị tại [proposal_minh.md](../reports/proposal_minh.
 - **Phụ thuộc:** T18. **File dự kiến:** `README.md`, `requirements.txt`, `scripts/reproduce.py`, `src/predict.py`. **Quy mô:** M.
 
 ### T21. Slide và vấn đáp chéo — cả ba
+
+Đã chuẩn bị `slides/week4.pdf` gồm 10 slide, lịch 11 phút và bộ câu hỏi tại `docs/defense_questions.md`. Nội dung phản ánh audit hiện tại, cần nhóm duyệt và diễn tập thực tế. Xem `docs/hien-week4.md`.
 
 - [ ] Slide 10–12 phút, mỗi người khoảng 3–4 phút; số liệu khớp báo cáo; demo chạy thử.
 - [ ] Mỗi người giải thích được code mình, ít nhất một phần người khác, kết quả và một tình huống đổi siêu tham số/sửa code.

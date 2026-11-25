@@ -38,15 +38,15 @@ Tham chiếu [lịch chung](README.md) và các đầu việc **T02, T04, T06, T
 
 | Ngày | Việc cụ thể | Sản phẩm bàn giao |
 |---|---|---|
-| **15** | Bắt đầu 3 lượt ViT seed 42 theo lịch GPU; ưu tiên 10%/50%, giữ nguyên recipe. | Các run hoàn tất và trạng thái hàng đợi → Hiền |
-| **16** | Hoàn tất nhóm seed 42, gồm 100%; kiểm tra checkpoint và manifest từng lượt. | Đủ 3 lượt seed 42 hoặc danh sách còn thiếu |
-| **17** | Bắt đầu 3 lượt ViT seed 2026, cùng cấu hình và tập con ghép cặp ResNet. | Run/log seed 2026 → Hiền |
-| **18** | Hoàn tất nhóm seed 2026; đối chiếu đủ 3 tỷ lệ × 3 seed. | Mục tiêu đủ 9 lượt ViT chính, metadata chuẩn |
-| **19** | Chuẩn bị ViT bỏ positional embedding ở 50%; chỉ đổi yếu tố khảo sát, ghi chênh lệch tham số; khóa config ablation. | `configs/ablation.yaml`, baseline/3 seed đối chiếu → Hiền, Minh |
-| **20** | Train ablation khi toàn nhóm đã ưu tiên đủ 18 lượt chính. Viết tiến độ ViT/kết quả thực tế/khó khăn cho milestone. | Log ablation đã có; đoạn milestone → Hiền |
-| **21** | Rà milestone ≤4 trang; xác nhận số seed thật, phần còn thiếu; luyện giải thích ViT và kết quả CNN của Minh. | Xác nhận phần ViT trước hạn nộp |
+| **15** | Bắt đầu 3 lượt ViT seed 43 theo lịch GPU; ưu tiên 10%/50%, giữ nguyên recipe. | Các run hoàn tất và trạng thái hàng đợi → Hiền (đã hoàn thành) |
+| **16** | Hoàn tất nhóm seed 43, gồm 100%; kiểm tra checkpoint và manifest từng lượt. | Đủ 3 lượt seed 43 (`vit_10_seed43`, `vit_50_seed43`, `vit_100_seed43`) |
+| **17** | Bắt đầu 3 lượt ViT seed 44 (split 2028), cùng cấu hình và tập con ghép cặp ResNet. | Run/log seed 44 → Hiền (đã hoàn thành) |
+| **18** | Hoàn tất nhóm seed 44; đối chiếu đủ 3 tỷ lệ × 3 seed. | Đủ 9 lượt ViT chính, metadata và thống kê chuẩn tại `results/week3/vit_summary.csv` |
+| **19** | Chuẩn bị ViT bỏ positional embedding ở 50%; chỉ đổi yếu tố khảo sát, ghi chênh lệch tham số; khóa config ablation. | `configs/ablation.yaml`, `configs/week3/ablation_vit_50_seed*.yaml` (268.042 tham số) |
+| **20** | Train ablation khi toàn nhóm đã ưu tiên đủ 18 lượt chính. Viết tiến độ ViT/kết quả thực tế/khó khăn cho milestone. | Đủ 3 lượt ablation (`ablation_summary.csv`, giảm -5,30 điểm %); đoạn milestone `reports/milestone_lanh_week3.md` |
+| **21** | Rà milestone ≤4 trang; xác nhận số seed thật, phần còn thiếu; luyện giải thích ViT và kết quả CNN của Minh. | Đã hoàn tất bản thảo milestone cá nhân, sẵn sàng cho Hiền ghép |
 
-**Cuối tuần cần đạt:** mục tiêu đủ 9 lượt ViT; ablation đã bắt đầu hoặc có config/lịch rõ ràng; milestone ghi đúng tiến độ, không hoãn để chờ mở rộng.
+**Cuối tuần đã đạt:** Đủ 9 lượt ViT chính (mean 10%: 52,19%, 50%: 67,67%, 100%: 75,92%); 3 lượt ablation hoàn tất (mean 62,37%, giảm 5,30 điểm % so với baseline); bản thảo milestone cá nhân đã soạn xong.
 
 ## Tuần 4 — chốt ViT, ablation, báo cáo và slide
 
