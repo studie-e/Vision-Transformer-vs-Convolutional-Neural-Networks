@@ -28,7 +28,7 @@ CIFAR-10 \citep{krizhevsky2009learning} được chia phân tầng 45.000 train 
 
 Train dùng random crop padding 4 và random horizontal flip, sau đó chuyển tensor và chuẩn hóa. Validation chỉ chuyển tensor và chuẩn hóa với cùng hằng số. Các manifest được kiểm tra không giao nhau và lưu SHA-256.
 
-Sáu lượt chính dùng batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW với LR 0,0003 và weight decay 0,05. ResNet dùng SGD với LR 0,05, momentum 0,9 và weight decay 0,0005. Chọn best.pt theo validation accuracy cao nhất; khi hòa giữ epoch sớm hơn. Minh vận hành GPU RTX 5080 cho cả hai mô hình. TensorBoard và CSV ghi diễn biến từng epoch.
+Sáu lượt chính dùng batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW với LR 0,0003 và weight decay 0,05. ResNet dùng SGD với LR 0,05, momentum 0,9 và weight decay 0,0005. Chọn best.pt theo validation accuracy cao nhất; khi hòa giữ epoch sớm hơn. Minh vận hành GPU cho cả hai mô hình. TensorBoard và CSV ghi diễn biến từng epoch.
 
 \section{Kết quả và phân tích sơ bộ}
 \begin{table}[t]

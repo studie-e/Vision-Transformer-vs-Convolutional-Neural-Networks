@@ -3,6 +3,7 @@
 \usepackage{fontspec}
 \setmainfont{Arial}
 \usepackage{graphicx}
+\usepackage{booktabs}
 \usepackage{xcolor}
 \definecolor{navy}{HTML}{173752}
 \pagestyle{empty}
@@ -64,50 +65,60 @@ Mỗi tỷ lệ có 3.600 / 17.600 / 35.200 bước cập nhật.
 \end{minipage}\hfill
 \begin{minipage}{0.34\linewidth}
 \fontsize{18}{24}\selectfont
-ResNet có ba seed với log nhất quán.
+Mỗi điểm là trung bình của ba cặp seed trên 5.000 ảnh validation.
 
-ViT hiện giữ seed 42 trong bảng kiểm tra này.
-
-Sáu log ViT bổ sung cần xác minh.
+Mỗi cặp dùng chung manifest và số epoch. Thanh sai số biểu diễn SD mẫu.
 \end{minipage}
 
-\slide{Các log bổ sung cần kiểm tra lại}
-Ví dụ ViT 10\%, seed 43, epoch 1 ghi validation accuracy 0,2647.
+\slide{Kết quả test sau khi khóa checkpoint}
+\fontsize{16}{22}\selectfont
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Train & ResNet val & ResNet test & ViT val & ViT test\\
+\midrule
+\csname @@input\endcsname ../results/minh_week4/baseline_table.tex
+\bottomrule
+\end{tabular}
+\end{center}
 
-Trên 5.000 ảnh, giá trị đó tương ứng 1.323,5 ảnh đúng.
+\input{../results/minh_week4/slide_test_notes.tex}
 
-Epoch 100 ghi thời gian train âm. Log ablation cũng có accuracy không khớp số ảnh đúng nguyên.
-
-Cần nhận log/checkpoint gốc, đối chiếu và cập nhật bảng.
-
-\slide{Attention validation từ bộ P0}
+\slide{Attention và ghép lỗi trên cùng validation}
 \begin{minipage}{0.45\linewidth}
 \includegraphics[width=\linewidth,height=87mm,keepaspectratio]{../results/team_week2/visualizations/5_vit_0.50_attention.png}
 \end{minipage}\hfill
 \begin{minipage}{0.5\linewidth}
 \fontsize{18}{25}\selectfont
-Ảnh đúng/sai đầu tiên theo manifest, ViT 50\%, seed 42.
+Ảnh đúng/sai đầu tiên theo manifest, ViT 50\%, seed 42; CLS → patch ở block cuối, trung bình bốn head (lưới 8×8).
 
-CLS → patch, block cuối, trung bình bốn head; lưới 8×8.
+\input{../results/minh_week4/slide_paired_notes.tex}
 
-Hình do máy GPU Minh tạo. Bộ ảnh đa lớp cố định và ghép lỗi cần checkpoint local.
+Hiền phụ trách trực quan hóa và thống kê lỗi ghép cặp; Lan Anh cung cấp attention ViT.
 \end{minipage}
 
-\slide{Bộ tái lập và đánh giá cuối}
-Một lệnh sinh lại audit, bảng từng seed, mean/SD và data scaling.
+\slide{Từ một checkpoint đến dự đoán}
+\begin{minipage}{0.24\linewidth}
+\includegraphics[width=\linewidth]{../results/minh_week4/demo_input.png}
+\end{minipage}\hfill
+\begin{minipage}{0.70\linewidth}
+ResNet, 100\% train, seed 42. Ảnh validation CIFAR-10 số 23171 (manifest 2026).
 
-Danh sách checkpoint giữ run, seed, best validation và SHA-256.
+\input{../results/minh_week4/slide_demo_notes.tex}
 
-Đánh giá test cần đủ checkpoint/config và xử lý log lỗi.
+CLI src.predict xuất đủ xác suất 10 lớp và đối chiếu SHA-256 của best.pt.
+\end{minipage}
 
-Demo ảnh 32×32 → nhãn và xác suất; attention có công cụ riêng.
-
-\slide{Giới hạn và công việc còn lại}
-Recipe của hai kiến trúc khác nhau. Tăng dữ liệu cũng tăng bước cập nhật.
-
-ResNet validation trung bình 74,34 / 88,32 / 91,81\%.
-
-Nhận gói checkpoint, xác minh ViT/ablation, hoàn thiện thống kê và phân tích lỗi.
-
-Nhóm đọc duyệt số liệu, điền thông tin thành viên, khóa lựa chọn trước test cuối.
+\slide{Ablation và Swin trên validation}
+\fontsize{17}{23}\selectfont
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Mô hình & Train & Tham số & Val (\%)\\
+\midrule
+\csname @@input\endcsname ../results/minh_week4/extension_table.tex
+\bottomrule
+\end{tabular}
+\end{center}
+\input{../results/minh_week4/slide_extension_notes.tex}
 \end{document}

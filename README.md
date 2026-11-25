@@ -1,6 +1,10 @@
 # So sánh Vision Transformer và CNN
 
-Bản đọc chéo nội bộ tuần 4 của Hiền gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf), [hướng dẫn bàn giao và tái lập](docs/hien-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4` để sinh bảng có trạng thái kiểm tra. Audit hiện phát hiện lỗi accuracy/time trong sáu log ViT bổ sung và ba ablation; checkpoint gốc cần đối chiếu trước test cuối.
+## Tuần 4 — tái lập, demo và đánh giá cuối
+
+[Bàn giao của Minh](docs/minh-week4.md) có lệnh cài môi trường sạch, chạy demo trên ảnh validation, nạp lại checkpoint và đối chiếu số liệu. [Quy trình tuần 4](scripts/finish_week4.ps1) thực thi từ các YAML đã khóa. Phân công: Lan Anh phụ trách mô hình, mã và kết quả ViT/ablation; Hiền phụ trách dữ liệu, mã đánh giá, thống kê và kết quả test cuối; Minh phụ trách ResNet, Swin, trainer, kiểm tra tái lập, demo và hỗ trợ vận hành GPU.
+
+Tài liệu đối chiếu và đóng gói của Hiền gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf) và [hướng dẫn bàn giao tuần 4](docs/hien-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4 --strict` để kiểm tra toàn bộ 28 bản ghi validation (18 baseline, 3 ablation, 6 Swin mở rộng, 1 Swin smoke), `python -X utf8 -m scripts.evaluate_final` để kiểm tra danh sách 18 checkpoint đã khóa trước test, và `python -X utf8 -m scripts.week4_tables` để sinh bảng số LaTeX từ CSV thật.
 
 Đề tài 3 môn Học sâu. Lan Anh: ViT; Minh: ResNet/trainer/môi trường; Hiền: dữ liệu/đánh giá/attention. [Kế hoạch](tasks/plan.md) · [Checklist](tasks/todo.md) · [Bàn giao tuần 1 của Minh](docs/minh-week1.md).
 
@@ -24,7 +28,6 @@ Phần tuning/khóa cũ bên dưới được giữ để truy vết; ưu tiên 
 
 ```powershell
 python -X utf8 -m src.data --verify --verify-labels
-python -X utf8 -m scripts.run_minh_week2 --stage tune
 python -X utf8 -m scripts.run_minh_week2 --stage train
 python -X utf8 -m scripts.run_minh_week2 --stage collect
 python -X utf8 -m scripts.plot_minh_week2

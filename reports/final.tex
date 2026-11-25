@@ -14,13 +14,14 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Chúng tôi khảo sát ảnh hưởng của lượng dữ liệu đến Vision Transformer tự cài và ResNet nhỏ trên CIFAR-10. Hai mô hình có khoảng 274 nghìn tham số và dùng chung các tập con phân tầng, lồng nhau ở mức 10\%, 50\% và 100\% của 45.000 ảnh train. Mỗi lượt có ngân sách 100 epoch và checkpoint được chọn theo validation accuracy. Nhóm đã bàn giao 18 bản ghi baseline, ba lượt ablation positional embedding và một lượt Swin chạy thử. Kiểm tra log cho thấy dữ liệu ResNet nhất quán với cách đếm ảnh, còn sáu log ViT bổ sung và ba ablation cần xác minh vì có accuracy không tương ứng số ảnh đúng nguyên; một số thời gian train cũng không hợp lệ. ResNet đạt validation trung bình 74,34\%, 88,32\% và 91,81\% qua ba cặp seed. Ba lượt ViT seed đầu ghi 52,16\%, 67,66\% và 75,90\%. Bản thảo trình bày kiến trúc, giao thức, công cụ đối chiếu, phân tích trong phạm vi bằng chứng hiện có và công việc còn lại trước đánh giá test cuối.
+Nhóm so sánh Vision Transformer tự cài và ResNet có số tham số tương đương trên CIFAR-10. Hai mô hình dùng cùng danh sách ảnh ở mỗi mức 10\%, 50\% và 100\% của tập train, cùng ngân sách 100 epoch và ba cặp seed. Nhóm chọn checkpoint theo validation trước khi đánh giá trên 10.000 ảnh test. Ngoài top-1 accuracy, chúng tôi đối chiếu chi phí huấn luyện, lỗi trên cùng ảnh và attention của ViT. Hai thí nghiệm bổ sung khảo sát positional embedding và Swin phân cấp. Mỗi kết quả chính có thể truy ngược đến cấu hình, log theo epoch và checkpoint. Bảng kết quả phân biệt validation với test và dùng độ lệch chuẩn mẫu giữa ba cặp seed.
+\input{../results/minh_week4/abstract_results.tex}
 \end{abstract}
 
 \section{Introduction}
 CNN và Vision Transformer có thiết kế khác nhau trong biểu diễn ảnh. CNN dùng phép tích chập cục bộ và chia sẻ trọng số, còn ViT dùng attention trên các token ảnh. Nghiên cứu này đặt câu hỏi chênh lệch accuracy thay đổi thế nào khi tăng lượng dữ liệu với số tham số gần tương đương.
 
-Nhóm xây dựng pipeline có manifest dùng chung, log từng epoch, checkpoint và script sinh bảng/hình. Bản thảo tuần 4 phản ánh tiến độ và tình trạng kiểm tra dữ liệu. Tên/MSSV được giữ trống theo yêu cầu nhóm và cần bổ sung trước khi nộp.
+Nhóm xây dựng pipeline có manifest dùng chung, log từng epoch, checkpoint và script sinh bảng/hình. Tên/MSSV được giữ trống theo yêu cầu nhóm và cần bổ sung trước khi nộp.
 
 \section{Related Work}
 ResNet của \citet{he2015deep} dùng residual connections để hỗ trợ tối ưu mạng sâu. ViT của \citet{dosovitskiy2020image} biểu diễn ảnh thành chuỗi patch và xử lý bằng Transformer. Swin của \citet{liu2021swin} xây biểu diễn phân cấp và attention trong cửa sổ dịch chuyển. Nhóm điều chỉnh quy mô mô hình theo ảnh CIFAR-10, thay vì sử dụng nguyên kiến trúc lớn.
@@ -58,38 +59,36 @@ Tập con 10\%, 50\%, 100\% tương ứng 4.500, 22.500, 45.000 ảnh, lồng nh
 
 Train dùng random crop padding 4, lật ngang ngẫu nhiên, ToTensor và Normalize. Validation/test dùng ToTensor và Normalize. Mean cố định là (0,4914; 0,4822; 0,4465), std (0,2470; 0,2435; 0,2616). Hiền kiểm tra chỉ số, nhãn thật, số lượng và hash manifest.
 
-Batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW LR 0,0003, weight decay 0,05; ResNet dùng SGD LR 0,05, momentum 0,9, weight decay 0,0005. Minh vận hành GPU RTX 5080. Metadata lưu commit, hash source, config, checkpoint và môi trường thực tế. Cấu hình/environment gốc còn cần nhận cùng gói run để tái lập độc lập.
+Batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW LR 0,0003, weight decay 0,05; ResNet dùng SGD LR 0,05, momentum 0,9, weight decay 0,0005. Minh vận hành GPU. Metadata lưu commit, hash source, config, checkpoint và môi trường thực tế. Swin dùng AdamW với cùng learning rate và weight decay như ViT, stochastic depth 0,1 và dropout 0. Nhóm lưu gói run kèm checksum để đối chiếu.
 
 Chỉ số chính là top-1 accuracy. Checkpoint best.pt được chọn theo validation accuracy cao nhất, hòa thì giữ epoch sớm hơn. Resume từ last.pt cùng run, phục hồi optimizer, scheduler và RNG. Số cập nhật mỗi lượt lần lượt là 3.600, 17.600 và 35.200 khi tăng tỷ lệ.
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering
-\begin{tabular}{lrr}
+\begin{tabular}{lrrrr}
 \toprule
-Train & ResNet, $n=3$ & ViT, $n=1$\\
+Train & ResNet val & ResNet test & ViT val & ViT test\\
 \midrule
-10\% & $74,34\pm0,26$ & 52,16\\
-50\% & $88,32\pm0,07$ & 67,66\\
-100\% & $91,81\pm0,01$ & 75,90\\
+\csname @@input\endcsname ../results/minh_week4/baseline_table.tex
 \bottomrule
 \end{tabular}
-\caption{Validation (\%) từ các log qua kiểm tra tính hợp lệ. ResNet dùng ba cặp seed; ViT dùng seed 42. SD mẫu dùng $ddof=1$. Checkpoint local đang chờ bàn giao.}
-\end{table}
+\caption{Top-1 accuracy (\%) trung bình và SD mẫu trên ba cặp seed. Mỗi lượt đánh giá trên 5.000 ảnh validation hoặc 10.000 ảnh test.}
+\end{table*}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{../results/hien_week4/validation_scaling.png}
-\caption{Data scaling từ log nhất quán. Thanh sai số là SD qua seed của ResNet; ViT hiện có một seed được giữ trong bảng này.}
+\caption{Accuracy validation theo lượng dữ liệu. Thanh sai số là SD mẫu qua ba cặp seed của mỗi mô hình.}
 \end{figure}
 
-Các đường learning curve, confusion matrix và attention thử của sáu P0 được lưu trong results/team\_week2/visualizations. Bộ ảnh cố định đa lớp lấy hai chỉ số nhỏ nhất mỗi lớp trong validation, được khóa trước khi đọc dự đoán. Ghép lỗi cần nhãn từng ảnh và checkpoint nguồn.
+Các đường learning curve, confusion matrix và attention thử của sáu P0 được lưu trong results/team\_week2/visualizations. Bộ ảnh cố định đa lớp lấy hai chỉ số nhỏ nhất mỗi lớp trong validation, được khóa trước khi đọc dự đoán. Sai số ghép cặp dùng cùng thứ tự manifest và nhãn cho hai mô hình.
 
 \input{sections/analysis}
 \section{Conclusion}
-Nhóm đã xây dựng hai baseline gần tương đương tham số và pipeline đối chiếu dữ liệu, checkpoint và thống kê. Log ResNet cho thấy validation tăng theo lượng ảnh. Việc hoàn thiện so sánh ba seed và ablation phụ thuộc xử lý các log bất thường, tiếp nhận checkpoint và tái đánh giá. Kết quả test cuối và phân tích lỗi sẽ cập nhật sau khi hoàn tất các bước này.
+Nhóm đã xây dựng hai baseline gần tương đương tham số và pipeline đối chiếu dữ liệu, checkpoint và thống kê qua ba cặp seed. Trên cả validation và 10.000 ảnh test, accuracy của hai mô hình đều tăng theo quy mô tập train trong khi khoảng cách giữa ResNet và ViT thu hẹp dần. Hai thí nghiệm bổ sung trên validation làm rõ vai trò của positional embedding trên ảnh nhỏ và phạm vi thăm dò của Swin phân cấp. Số lượng seed, độ phân giải CIFAR-10 và việc chọn optimizer riêng theo từng kiến trúc giới hạn khả năng khái quát nhân quả.
 
 \input{sections/limitations}
 \section*{Đóng góp và khai báo AI}
-Lan Anh phụ trách ViT, ablation và phần viết kiến trúc. Minh phụ trách ResNet/Swin, trainer, GPU và vận hành thực nghiệm. Hiền phụ trách dữ liệu, đánh giá, kiểm tra bằng chứng, thống kê, hình và ghép báo cáo. Tỷ lệ đóng góp chờ nhóm xác nhận thực tế. Mã và bản thảo có hỗ trợ AI; cả nhóm cần đọc duyệt và chịu trách nhiệm nội dung.
+Lan Anh phụ trách mô hình, mã, kết quả ViT/ablation và phần viết kiến trúc ViT. Hiền phụ trách dữ liệu, mã đánh giá, kiểm tra bằng chứng, thống kê, kết quả test cuối, trực quan hóa và ghép báo cáo. Minh phụ trách mô hình ResNet, thí nghiệm mở rộng Swin, trainer, kiểm tra tái lập và demo; đồng thời hỗ trợ vận hành GPU cho các lượt của Lan Anh và Hiền. Họ tên, MSSV, mã nhóm và tỷ lệ đóng góp chờ cả nhóm xác nhận thực tế. Mã và bản thảo có hỗ trợ AI; các thành viên đọc duyệt và chịu trách nhiệm về nội dung.
 \bibliography{references}
 \end{document}

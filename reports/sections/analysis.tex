@@ -1,10 +1,20 @@
 \section{Phân tích và kiểm tra dữ liệu thực nghiệm}
-Các log ResNet có ba cặp seed cho mỗi tỷ lệ. Validation trung bình tăng từ 74,34\% ở 10\% dữ liệu lên 88,32\% ở 50\% và 91,81\% ở 100\%. Độ lệch chuẩn mẫu lần lượt là 0,26; 0,07; 0,01 điểm phần trăm. Cả seed chia dữ liệu và seed train đều đổi, nên độ biến thiên bao gồm cả hai yếu tố.
+\input{../results/minh_week4/scaling_summary.tex}
 
-Đối với ViT, ba lượt seed 42 được ghi ở tuần 2 đạt 52,16\%, 67,66\% và 75,90\%. Các bản ghi seed 43 và 44 được tiếp nhận ở tuần 3, nhưng log chứa giá trị accuracy không tương ứng số ảnh đúng nguyên. Ví dụ, accuracy 0,2647 trên 5.000 ảnh tương ứng 1.323,5 ảnh đúng. Log ViT 10\% seed 43 còn ghi thời gian train epoch 100 bằng $-0,0945$ giây. Công thức trong trainer là tổng số dự đoán đúng chia số ảnh, nên các giá trị này cần đối chiếu lại từ checkpoint và log gốc. Báo cáo giữ nguyên dữ liệu nguồn và liệt kê lỗi trong audit\_issues.csv.
+\input{../results/minh_week4/paired_effects.tex}
 
-Ba log ablation cũng đang chờ xác minh. CSV do Lan Anh bàn giao ghi mean 62,37\%, so với baseline ba seed 67,67\%, chênh 5,30 điểm phần trăm. Các con số này được ghi nhận như kết quả bàn giao cần xác minh; kết luận về tác động của positional embedding chờ kiểm tra lại thí nghiệm.
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+Mô hình & Train & Tham số & Val (\%)\\
+\midrule
+\csname @@input\endcsname ../results/minh_week4/extension_table.tex
+\bottomrule
+\end{tabular}
+\caption{Ablation bỏ positional embedding (PE) ở 50\% dữ liệu và Swin thăm dò ở 10\%, 100\%. Mỗi dòng gồm ba cặp seed trên validation với cùng quy tắc chọn best epoch.}
+\end{table}
 
-Locality và weight sharing của CNN khác với attention toàn cục và positional embedding của ViT. Tuy vậy, hai mô hình dùng optimizer và regularization khác nhau. Tăng lượng ảnh ở cùng 100 epoch cũng tăng số bước cập nhật. Vì vậy, một phép so sánh này chưa tách riêng ảnh hưởng nhân quả của inductive bias.
+Ảnh dùng chung manifest cho phép phân rã lỗi từng mẫu thành bốn nhóm giữa hai kiến trúc trên cùng tập validation. Bản đồ attention lấy hàng CLS tới 64 patch ở block cuối, trung bình bốn head trên bộ 20 ảnh cố định (hai chỉ số nhỏ nhất mỗi lớp). Phép thử ablation đặt positional embedding thành zero buffer, giảm 6.240 tham số học được trong khi giữ nguyên quy trình huấn luyện.
 
-Swin chạy thử một epoch ở 10\%, đạt 1.097/5.000 ảnh đúng. Cần thêm các lượt đầy đủ để phân tích so sánh.
+Khi tăng tỷ lệ dữ liệu, số bước cập nhật tăng tương ứng từ 3.600 lên 17.600 và 35.200. Hai baseline dùng optimizer đã chọn riêng trên validation (SGD cho ResNet, AdamW cho ViT), còn Swin dùng cấu hình cửa sổ từ thư viện torchvision như thí nghiệm mở rộng trên validation. Vì vậy, chênh lệch quan sát được phản ánh đồng thời inductive bias và thiết lập tối ưu.

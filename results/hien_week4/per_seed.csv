@@ -18,22 +18,330 @@ week2_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,8463043f5889dfb28db5
 ?? configs/week2/README.md
 ?? scripts/package_team_week2.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,1c29839d8f6fd8263a2cc693d8439651e3a32a95d7995d82ca7add018ab18263,274282,runs\week2_vit_50_seed42\config.yaml,4616c68f215fe3b95e12e0369aafd64f39425405,runs\week2_vit_50_seed42\best.pt,val,0.6766,3383,5000,0.6766,96,17600,16896,96,467.5448379999689,4.675448379999689,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:53.764495+00:00,vit,main,saved_log_consistent,results/team_week2/vit_50_metrics.csv,c79a5716ee1057705032ebf594270505e38ef4b2b11e96026660b4fd15823f60
 week2_vit_100_seed42,src.models.vit:build_model,1.00,2026,42,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,7ca4bb986f9dd0152bde2e6113d957eae6b983e5f49fd72d49d9acdf474d1895,274282,runs\week2_vit_100_seed42\config.yaml,5f3fc2c15abb7ba253416fc78eec27d7303ec617,runs\week2_vit_100_seed42\best.pt,val,0.759,3795,5000,0.759,84,35200,29568,84,900.6674501999623,9.006674501999623,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:54.872791+00:00,vit,main,saved_log_consistent,results/team_week2/vit_100_metrics.csv,15923fc18428342025dd05e9b56cc090bf9f8bf421a57d8154e292df5d666d56
-resnet_10_seed43,src.models.resnet:build_model,0.10,2027,43,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,8cf063d8a9b3496845c9e9fa190354b0e51c953ec2bdfdceb1574995861b30b3,272474,runs\week3\resnet_10_seed43\config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs\week3\resnet_10_seed43\best.pt,val,0.7414,3707,5000,0.7414,79,3600,2844,79,121.37175289999868,1.2137175289999869,Week 3 ResNet P1,2026-11-19T17:15:59.326205+00:00,resnet,main,saved_log_consistent,results/week3/resnet_10_seed43_metrics.csv,985532fef1a83cc4d65c30281b69a784433d4c80c3871ea21bb466009c5d1479
+resnet_10_seed43,src.models.resnet:build_model,0.10,2027,43,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,8cf063d8a9b3496845c9e9fa190354b0e51c953ec2bdfdceb1574995861b30b3,272474,runs\week3\resnet_10_seed43\config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs\week3\resnet_10_seed43\best.pt,val,0.7414,3707,5000,0.7414,79,3600,2844,79,121.37175289999868,1.2137175289999869,Week 3 ResNet P1,2026-11-25T07:26:28.365308+00:00,resnet,main,saved_log_consistent,results/week3/resnet_10_seed43_metrics.csv,985532fef1a83cc4d65c30281b69a784433d4c80c3871ea21bb466009c5d1479
 resnet_50_seed43,src.models.resnet:build_model,0.50,2027,43,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,"M scripts/package_team_week2.py
 ?? configs/week3/swin_100_seed42.yaml
 ?? configs/week3/swin_10_seed42.yaml
-?? scripts/run_minh_week3.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,7f2ffae404e085ab073803d69191f2f72d1497d63a51653c2ce5cbf050ae9146,272474,runs\week3\resnet_50_seed43\config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs\week3\resnet_50_seed43\best.pt,val,0.8828,4414,5000,0.8828,84,17600,14784,84,499.8837923999854,4.998837923999854,Week 3 ResNet P1,2026-11-19T17:16:00.942341+00:00,resnet,main,saved_log_consistent,results/week3/resnet_50_seed43_metrics.csv,e935c39ba981f7ba5e0e5428ddda1bccb43a3bcd1bd7d0cc1a31330d2474d2c0
-resnet_100_seed43,src.models.resnet:build_model,1.00,2027,43,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,dca54b77e323047ced0f5fb11312d16c0d8d95876ee4b77c82c21603a308ef9e,272474,runs\week3\resnet_100_seed43\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_100_seed43\best.pt,val,0.9182,4591,5000,0.9182,93,35200,32736,93,1128.5577975999931,11.285577975999932,Week 3 ResNet P1,2026-11-19T17:16:02.651044+00:00,resnet,main,saved_log_consistent,results/week3/resnet_100_seed43_metrics.csv,de0077369548e09c66c7ef85fe388622fab396e6f834e6f0992063ae5b4e9170
-resnet_10_seed44,src.models.resnet:build_model,0.10,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,8355bf64555dc1d05d02ee514a830e3a0f832014008da3af6211dd40682d93f7,272474,runs\week3\resnet_10_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_10_seed44\best.pt,val,0.7464,3732,5000,0.7464,87,3600,3132,87,130.55811219999487,1.3055811219999487,Week 3 ResNet P1,2026-11-19T17:16:04.394590+00:00,resnet,main,saved_log_consistent,results/week3/resnet_10_seed44_metrics.csv,20878a17d7127c2d403b6fd73f0fa603f7a31e2b731c0770ef8a0ad107df14fa
-resnet_50_seed44,src.models.resnet:build_model,0.50,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,566337d816ae2a19c91b7da99601ccc4ca829643d465fdbd53f2f51b45cc7565,272474,runs\week3\resnet_50_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_50_seed44\best.pt,val,0.8828,4414,5000,0.8828,94,17600,16544,94,663.0232550999954,6.630232550999954,Week 3 ResNet P1,2026-11-19T17:16:06.070090+00:00,resnet,main,saved_log_consistent,results/week3/resnet_50_seed44_metrics.csv,2309460e95f632f4745cffc2a8a836b8c002fc3758a12d0ec0df020c1f2c507d
-resnet_100_seed44,src.models.resnet:build_model,1.00,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,444e15a080de3ab8f0f1cc44f6bc48b1d2729f965f3e176bd4c1e47553b6e030,272474,runs\week3\resnet_100_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_100_seed44\best.pt,val,0.9182,4591,5000,0.9182,94,35200,33088,94,1318.3723251999927,13.183723251999927,Week 3 ResNet P1,2026-11-19T17:16:07.555886+00:00,resnet,main,saved_log_consistent,results/week3/resnet_100_seed44_metrics.csv,1ae3796a06c5db93bda0d0b3a64c231f5901f313e74303a631c6a63eb91bad44
-vit_10_seed43,src.models.vit:build_model,0.10,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,3b8f1a2c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a,274282,runs\week3\vit_10_seed43\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_10_seed43\best.pt,val,0.5208,2604,5000,0.5208,78,3600,2808,78,102.35,1.0235,Week 3 ViT P1,2026-11-20T14:15:20.124500+00:00,vit,main,invalid_saved_log,results/week3/vit_10_seed43_metrics.csv,789a5fdd430c2feb6655fa714142008e0954e38abafdbb8b7c3183855dfa7597
-vit_50_seed43,src.models.vit:build_model,0.50,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,4c9a2b3d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1b2c,274282,runs\week3\vit_50_seed43\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_50_seed43\best.pt,val,0.6782,3391,5000,0.6782,91,17600,16016,91,485.12,4.8512,Week 3 ViT P1,2026-11-20T14:15:22.451200+00:00,vit,main,invalid_saved_log,results/week3/vit_50_seed43_metrics.csv,7f950253e737c3fffbb60adff547f53676547f39b3afdb47d07b83903cd5518a
-vit_100_seed43,src.models.vit:build_model,1.00,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,5d0b3c4e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1c2d3e,274282,runs\week3\vit_100_seed43\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_100_seed43\best.pt,val,0.7584,3792,5000,0.7584,88,35200,30976,88,935.4,9.354,Week 3 ViT P1,2026-11-20T14:15:24.789100+00:00,vit,main,invalid_saved_log,results/week3/vit_100_seed43_metrics.csv,325044af08b0f590f196493e7c2afc43b6a232b59ee70a2592f87c69e2d904cf
-vit_10_seed44,src.models.vit:build_model,0.10,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,6e1c4d5f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1d2e3f4a,274282,runs\week3\vit_10_seed44\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_10_seed44\best.pt,val,0.5232,2616,5000,0.5232,82,3600,2952,82,99.8,0.998,Week 3 ViT P1,2026-11-20T14:15:26.981200+00:00,vit,main,invalid_saved_log,results/week3/vit_10_seed44_metrics.csv,43b53897141d3a01ec5938681547a3a6930570be804df9449c7477d863c38778
-vit_50_seed44,src.models.vit:build_model,0.50,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,7f2d5e6a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1e2f3a4b5c,274282,runs\week3\vit_50_seed44\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_50_seed44\best.pt,val,0.6754,3377,5000,0.6754,89,17600,15664,89,472.9,4.729,Week 3 ViT P1,2026-11-20T14:15:28.129000+00:00,vit,main,invalid_saved_log,results/week3/vit_50_seed44_metrics.csv,b10b591cffe6e519571a8c9f5576cae9087dd57d3f3a4190a0d72673ec7ac43d
-vit_100_seed44,src.models.vit:build_model,1.00,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,8a3e6f7b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1f2a3b4c5d6e,274282,runs\week3\vit_100_seed44\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\vit_100_seed44\best.pt,val,0.7602,3801,5000,0.7602,92,35200,32384,92,921.15,9.2115,Week 3 ViT P1,2026-11-20T14:15:30.456100+00:00,vit,main,invalid_saved_log,results/week3/vit_100_seed44_metrics.csv,effcb4c77f54156ef86be061513665e904250a228dd5a36a97a4fdee9b82c5cf
-ablation_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,9b4f7a8c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a,268042,runs\week3\ablation_vit_50_seed42\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed42\best.pt,val,0.624,3120,5000,0.624,85,17600,14960,85,458.2,4.582,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:10.120000+00:00,vit,ablation,invalid_saved_log,results/week3/ablation_vit_50_seed42_metrics.csv,e54bb47f803f70ba265852af04f856875f05d69665cac66e6630e9570655fd32
-ablation_vit_50_seed43,src.models.vit:build_model,0.50,2027,43,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,0c5a8b9d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1b2c3d4e5f6a7b8c,268042,runs\week3\ablation_vit_50_seed43\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed43\best.pt,val,0.6218,3109,5000,0.6218,81,17600,14256,81,462.1,4.621,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:12.340000+00:00,vit,ablation,invalid_saved_log,results/week3/ablation_vit_50_seed43_metrics.csv,b07373409a24d3946656f35d220b2e016881c51857f07b23c4a4f256d29dfab5
-ablation_vit_50_seed44,src.models.vit:build_model,0.50,2028,44,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,1d6b9c0e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1c2d3e4f5a6b7c8d9e,268042,runs\week3\ablation_vit_50_seed44\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed44\best.pt,val,0.6254,3127,5000,0.6254,90,17600,15840,90,455.8,4.558,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:14.560000+00:00,vit,ablation,invalid_saved_log,results/week3/ablation_vit_50_seed44_metrics.csv,9d07a14966d538776c2ac5cea5bf94d39817e4778e199369fdc37740ef0beb50
+?? scripts/run_minh_week3.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,7f2ffae404e085ab073803d69191f2f72d1497d63a51653c2ce5cbf050ae9146,272474,runs\week3\resnet_50_seed43\config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs\week3\resnet_50_seed43\best.pt,val,0.8828,4414,5000,0.8828,84,17600,14784,84,499.8837923999854,4.998837923999854,Week 3 ResNet P1,2026-11-25T07:26:30.136328+00:00,resnet,main,saved_log_consistent,results/week3/resnet_50_seed43_metrics.csv,e935c39ba981f7ba5e0e5428ddda1bccb43a3bcd1bd7d0cc1a31330d2474d2c0
+resnet_100_seed43,src.models.resnet:build_model,1.00,2027,43,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,dca54b77e323047ced0f5fb11312d16c0d8d95876ee4b77c82c21603a308ef9e,272474,runs\week3\resnet_100_seed43\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_100_seed43\best.pt,val,0.9182,4591,5000,0.9182,93,35200,32736,93,1128.5577975999931,11.285577975999932,Week 3 ResNet P1,2026-11-25T07:26:31.967966+00:00,resnet,main,saved_log_consistent,results/week3/resnet_100_seed43_metrics.csv,de0077369548e09c66c7ef85fe388622fab396e6f834e6f0992063ae5b4e9170
+resnet_10_seed44,src.models.resnet:build_model,0.10,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,8355bf64555dc1d05d02ee514a830e3a0f832014008da3af6211dd40682d93f7,272474,runs\week3\resnet_10_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_10_seed44\best.pt,val,0.7464,3732,5000,0.7464,87,3600,3132,87,130.55811219999487,1.3055811219999487,Week 3 ResNet P1,2026-11-25T07:26:33.790881+00:00,resnet,main,saved_log_consistent,results/week3/resnet_10_seed44_metrics.csv,20878a17d7127c2d403b6fd73f0fa603f7a31e2b731c0770ef8a0ad107df14fa
+resnet_50_seed44,src.models.resnet:build_model,0.50,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,566337d816ae2a19c91b7da99601ccc4ca829643d465fdbd53f2f51b45cc7565,272474,runs\week3\resnet_50_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_50_seed44\best.pt,val,0.8828,4414,5000,0.8828,94,17600,16544,94,663.0232550999954,6.630232550999954,Week 3 ResNet P1,2026-11-25T07:26:35.574193+00:00,resnet,main,saved_log_consistent,results/week3/resnet_50_seed44_metrics.csv,2309460e95f632f4745cffc2a8a836b8c002fc3758a12d0ec0df020c1f2c507d
+resnet_100_seed44,src.models.resnet:build_model,1.00,2028,44,edede44313fa2c9504429df083f281418951dabcd077d17c34397bb1e6c181b7,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,444e15a080de3ab8f0f1cc44f6bc48b1d2729f965f3e176bd4c1e47553b6e030,272474,runs\week3\resnet_100_seed44\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\resnet_100_seed44\best.pt,val,0.9182,4591,5000,0.9182,94,35200,33088,94,1318.3723251999927,13.183723251999927,Week 3 ResNet P1,2026-11-25T07:26:37.299592+00:00,resnet,main,saved_log_consistent,results/week3/resnet_100_seed44_metrics.csv,1ae3796a06c5db93bda0d0b3a64c231f5901f313e74303a631c6a63eb91bad44
+vit_10_seed43,src.models.vit:build_model,0.10,2027,43,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,66b0a2ee975a942f2de95cab9f8a6bde273885b6cdc2f96d4f8afb6ba1a1eaa3,274282,runs\week3\vit_10_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_10_seed43\best.pt,val,0.526,2630,5000,0.526,76,3600,2736,76,92.03651210001408,0.9203651210001408,Week 3 ViT P1,2026-11-25T07:25:53.841391+00:00,vit,main,saved_log_consistent,results/week3/vit_10_seed43_metrics.csv,ad5d2033b85c8578b8da45883173a15368bd49f2eca59d1b2a0c6bba2e373eb9
+vit_50_seed43,src.models.vit:build_model,0.50,2027,43,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,23c4be781991faa6c2ac7a9096e9e637aa994adf10f1c5c11bd1daefc65abe95,274282,runs\week3\vit_50_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_50_seed43\best.pt,val,0.6864,3432,5000,0.6864,77,17600,13552,77,455.58953230000225,4.555895323000023,Week 3 ViT P1,2026-11-25T07:25:55.601385+00:00,vit,main,saved_log_consistent,results/week3/vit_50_seed43_metrics.csv,50912723dc10fbb371feeed569e11c5a896420d2f05066b672c9a54b25ff547f
+vit_100_seed43,src.models.vit:build_model,1.00,2027,43,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,d09ec77c4e185671d80bc8fdb23705e8915d2b5b5271e167d81c030cfbfc8170,274282,runs\week3\vit_100_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_100_seed43\best.pt,val,0.7574,3787,5000,0.7574,91,35200,32032,91,915.5692426999994,9.155692426999995,Week 3 ViT P1,2026-11-25T07:25:57.447936+00:00,vit,main,saved_log_consistent,results/week3/vit_100_seed43_metrics.csv,afbec9bfd705fae0ceff13da2aae1f8818f1d28520ad0ae777ddbd2acb45434e
+vit_10_seed44,src.models.vit:build_model,0.10,2028,44,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,84bb8f2ba09427e4ce7d47754c9bf8c86740e314d188b34cf10cd6b7184af231,274282,runs\week3\vit_10_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_10_seed44\best.pt,val,0.5236,2618,5000,0.5236,73,3600,2628,73,91.78917879999062,0.9178917879999062,Week 3 ViT P1,2026-11-25T07:25:59.347348+00:00,vit,main,saved_log_consistent,results/week3/vit_10_seed44_metrics.csv,4d8d86cb9667ecf836cd2bc417f826f4e74ab0dee09bacb0ed3f54f6aa176d13
+vit_50_seed44,src.models.vit:build_model,0.50,2028,44,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,54820e8fde00f2e41eb239d6286aa62f53b523aeff1052b0f3bd27a42746253d,274282,runs\week3\vit_50_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_50_seed44\best.pt,val,0.6828,3414,5000,0.6828,85,17600,14960,85,450.8120527000028,4.508120527000028,Week 3 ViT P1,2026-11-25T07:26:01.193173+00:00,vit,main,saved_log_consistent,results/week3/vit_50_seed44_metrics.csv,8d4c854d429f59e8b37f7940fba9f93623299d013f115ae5d6053a7175214acf
+vit_100_seed44,src.models.vit:build_model,1.00,2028,44,e4a62421acdb1a99d04e04d9fc3f075ea27d3bef116e70c6f6fbbacbc28bcc69,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,72e74bfca5d81a996c9454201d56047c74fd89f8cdb87ed3f31173fefe044915,274282,runs\week3\vit_100_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\vit_100_seed44\best.pt,val,0.7454,3727,5000,0.7454,93,35200,32736,93,1065.8375619000071,10.658375619000072,Week 3 ViT P1,2026-11-25T07:26:02.962797+00:00,vit,main,saved_log_consistent,results/week3/vit_100_seed44_metrics.csv,c9f03df41438abe8306a5d58c511acb569e94cddee49703c638c1fa73fe3b906
+ablation_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,825a23a7bdbf05161a780de8f19b01757f7ac3a5e37d32256f3b28184dc1e448,268042,runs\week3\ablation_vit_50_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed42\best.pt,val,0.63,3150,5000,0.63,84,17600,14784,84,634.0433160000048,6.340433160000048,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:16.056037+00:00,vit,ablation,saved_log_consistent,results/week3/ablation_vit_50_seed42_metrics.csv,034ee4a53e4caf032f47900540b7fc0674a05a27ee907d2c0b29c3a3475a4c74
+ablation_vit_50_seed43,src.models.vit:build_model,0.50,2027,43,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,cd0a64bd05f92e63d9933143297b46de3e80bd2dfc7396b1c2a013c5b385b1df,268042,runs\week3\ablation_vit_50_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed43\best.pt,val,0.6236,3118,5000,0.6236,97,17600,17072,97,629.808213200009,6.298082132000091,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:17.961937+00:00,vit,ablation,saved_log_consistent,results/week3/ablation_vit_50_seed43_metrics.csv,2a4d906a3a2bccc2822efea9a6f61e5f04ab02dd6bea0c3b72ba07fa24e77bf0
+ablation_vit_50_seed44,src.models.vit:build_model,0.50,2028,44,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,144e353e48b01fe3c0eb3eb8286f3eb185dd433069e3dba88c62a6f0712a82c0,268042,runs\week3\ablation_vit_50_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed44\best.pt,val,0.6252,3126,5000,0.6252,91,17600,16016,91,634.200284200002,6.34200284200002,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:19.901583+00:00,vit,ablation,saved_log_consistent,results/week3/ablation_vit_50_seed44_metrics.csv,deeb3408d4dc1d60e73af9dd16d22535b5848e5f680c4f75e61aefe92290cc3c
 swin_smoke_10_seed42,src.models.swin:build_model,0.10,2026,42,ac06c0e9ad97cb2f96c83ed127b235b8597c16e5bd253b61844e4f4c8379a752,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,?? results/week3/,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,e88e1ca269f8af4fb53e0690db24a3fd469bc23a871fc2c2f4dbf1ea42f93b4c,261824,runs\week3\swin_smoke_10_seed42\config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs\week3\swin_smoke_10_seed42\best.pt,val,0.2194,1097,5000,0.2194,1,36,36,1,13.591258699998434,13.591258699998434,Week 3 CUDA smoke test; 1/100 epochs; split 2026 / train 42,2026-11-19T17:15:49.535051+00:00,swin,smoke,saved_log_consistent,results/week3/swin_smoke_metrics.csv,9b2f15d2d5aeaf9bed0bb4ba7b1ba5a7e2b69cab02040979be5216faea73293f
+swin_10_seed42,src.models.swin:build_model,0.10,2026,42,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,e834e914b9278f9cff5f2653c7ddb2bb1b8ae676750b3b4d7159929d7972a23b,261824,runs\week3\swin_10_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed42\best.pt,val,0.5044,2522,5000,0.5044,86,3600,3096,86,172.34318289998555,1.7234318289998556,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:46.154023+00:00,swin,extension,saved_log_consistent,results/week3/swin_10_seed42_metrics.csv,96236ae860bea069b9dfe429e4757e99cc7dffaf04d15c465dc7c24389d1448d
+swin_100_seed42,src.models.swin:build_model,1.00,2026,42,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,d1c6aa9c179a75c2abe80577bfd59f3d0398af7aae18bcc131057b9f5aa58bbd,261824,runs\week3\swin_100_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed42\best.pt,val,0.7774,3887,5000,0.7774,88,35200,30976,88,1739.3569754000018,17.39356975400002,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:48.285572+00:00,swin,extension,saved_log_consistent,results/week3/swin_100_seed42_metrics.csv,774f1494fd8e02bd5b95cc25dbb97ec8917b71029a6ccbaaa44e2447790a9cb6
+swin_10_seed43,src.models.swin:build_model,0.10,2027,43,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,7874216d0c1f7f3a92620a512fabd9bc518bb6ab7f204dab508fb9d23c3f6e74,261824,runs\week3\swin_10_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed43\best.pt,val,0.5252,2626,5000,0.5252,86,3600,3096,86,178.78711709999152,1.787871170999915,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:50.492153+00:00,swin,extension,saved_log_consistent,results/week3/swin_10_seed43_metrics.csv,da6571e1d560d8c5ad0894e0a93a324f5bfb4edd345116dc607ba56c178c706f
+swin_100_seed43,src.models.swin:build_model,1.00,2027,43,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,5a68ad8fd23f81e026b9f992d1d5d68f2e6650bbfc2699b7b2cd01a3451ed134,261824,runs\week3\swin_100_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed43\best.pt,val,0.7878,3939,5000,0.7878,90,35200,31680,90,1765.3524405000135,17.653524405000134,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:52.513003+00:00,swin,extension,saved_log_consistent,results/week3/swin_100_seed43_metrics.csv,b1edb90764b2334188c54cfa16ad388afe0be9bb5141651736761e90274b6833
+swin_10_seed44,src.models.swin:build_model,0.10,2028,44,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,dac841dbb74cdf81bf6fba3a42c2ac14eb7a55caf8efe37c90cf24f062c0c650,261824,runs\week3\swin_10_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed44\best.pt,val,0.5162,2581,5000,0.5162,80,3600,2880,80,175.83845979997932,1.7583845979997932,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:54.492264+00:00,swin,extension,saved_log_consistent,results/week3/swin_10_seed44_metrics.csv,9c68e17aeb8ba5859b8c6efe8a2731871572dd557031b9e0d11fe54bba268750
+swin_100_seed44,src.models.swin:build_model,1.00,2028,44,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,39ff50e0deaf08d795bed614f0405c79c7021aa0fa4167813feeee882c462919,261824,runs\week3\swin_100_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed44\best.pt,val,0.7802,3901,5000,0.7802,95,35200,33440,95,1772.1563500000047,17.721563500000048,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:56.571126+00:00,swin,extension,saved_log_consistent,results/week3/swin_100_seed44_metrics.csv,dd719ce1c8a6c4640e34e8ce65f6a73526916689a50064519a11a01a06503a7e
