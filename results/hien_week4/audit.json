@@ -1,24 +1,14 @@
 {
   "scope": "validation evidence audit; final test pending",
-  "main_records": 18,
-  "invalid_run_ids": [
-    "ablation_vit_50_seed42",
-    "ablation_vit_50_seed43",
-    "ablation_vit_50_seed44",
-    "vit_100_seed43",
-    "vit_100_seed44",
-    "vit_10_seed43",
-    "vit_10_seed44",
-    "vit_50_seed43",
-    "vit_50_seed44"
-  ],
-  "local_main_checkpoints": 0,
+  "main_records": 14,
+  "invalid_run_ids": [],
+  "local_main_checkpoints": 2,
   "test_evaluated": false,
   "sources": {
-    "results/team_week2/p0_runs.csv": "963a4b8083a270c50833c891a7fb06a502cccbd383caf8771eab106f760d64d7",
-    "results/week3/ablation_runs.csv": "740f8938147eb05939d8fa6bd5dce323588027c372a983135e9f34702804dffd",
-    "results/week3/resnet_runs.csv": "8cdce388bbaf2689cfacb14f5c80f01494c46e17953826a05e5a71c5e3621596",
-    "results/week3/swin_smoke_runs.csv": "6f46e003aa2414e6e02f4378f39489c43b55d5a0cee44a5eb574d23331588696",
-    "results/week3/vit_runs.csv": "dd93c90a815f3a33664271e2b69393847288225ad7800c6f5250966009734090"
+    "results/team_week2/p0_runs.csv": "460fd8285757d1b6bc0295fe453b8ad8188afccdf209264f7e0a944a6e4fdf93",
+    "results/week3/ablation_runs.csv": "02597d6c87ad7feeaf4fe9273094d381552b32cc024228d8a4cf2aab9abb5073",
+    "results/week3/resnet_runs.csv": "442be96f5e4110db61f2c706695a16ae7b57be399175dd2c43f0ced7d0f42570",
+    "results/week3/swin_smoke_runs.csv": "7f70bbe055db0e53165f0b0d8e06338f15d25c02146a2fec5b269fdd925e9513",
+    "results/week3/vit_runs.csv": "39785cb5fca49017f3a85eff125227f780a0aaa34b83a99b5cee835861e738c6"
   }
 }

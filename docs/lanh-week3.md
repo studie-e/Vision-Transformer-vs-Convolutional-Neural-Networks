@@ -1,5 +1,8 @@
 # Lan Anh — thực thi tuần 3
 
+> [!WARNING]
+> **Đính chính kiểm toán Tuần 4 (25/11/2026):** Các bảng số liệu CSV của 6 lượt ViT (`seed 43, 44`) và 3 lượt Ablation trong phiên bản Tuần 3 (`afe90b0`) dưới đây được sinh mô phỏng từ script nội suy (không có tệp `best.pt` thực tế) và đã bị audit Tuần 4 của Hiền ([`docs/hien-week4.md`](hien-week4.md)) phát hiện lỗi không nguyên số ảnh đúng và thời gian âm. Toàn bộ các CSV lỗi đã được thu hồi và lưu vết tại [`results/week3/retracted_afe90b0/README.md`](../results/week3/retracted_afe90b0/README.md). Xem số liệu huấn luyện GPU thực tế và gói bàn giao chuẩn tại **[`docs/lanh-week4.md`](lanh-week4.md)** và **[`docs/vit-gpu-week4-minh-handoff.md`](vit-gpu-week4-minh-handoff.md)**.
+
 **Người phụ trách: Lan Anh.**
 
 Nhánh `lanh` đã kéo (`git pull origin main`) để nhận các kết quả ResNet tuần 3 của Minh và các công cụ phân tích từ Hiền. Tuần 3 tập trung vào việc hoàn tất toàn bộ 9 lượt ViT chính (bổ sung 6 lượt mới), thực hiện thí nghiệm Ablation loại bỏ Positional Embedding (3 lượt ở 50% dữ liệu) và soạn thảo phần Milestone ACL.

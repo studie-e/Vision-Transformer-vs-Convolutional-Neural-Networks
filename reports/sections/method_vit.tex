@@ -1,0 +1,46 @@
+% Người phụ trách: Lan Anh (Method — Kiến trúc ViT tự cài và đối chiếu tham số).
+\subsection{Vision Transformer tự cài cho ảnh nhỏ}
+Lan Anh tự cài đặt mô hình Vision Transformer dựa trên kiến trúc gốc của \citet{dosovitskiy2020image}, thu nhỏ quy mô để khớp ngân sách tham số với ResNet trên ảnh CIFAR-10 kích thước $32\times32\times3$ (trong tệp \texttt{src/models/vit.py}). Không sử dụng lớp ViT đóng gói sẵn từ \texttt{torchvision} hay \texttt{timm}; mô hình chỉ dùng các khối cơ sở của PyTorch gồm \texttt{nn.Conv2d}, \texttt{nn.Linear}, \texttt{nn.LayerNorm}, \texttt{nn.GELU}, \texttt{nn.Dropout} và \texttt{nn.Parameter}.
+
+\paragraph{Patch Embedding và Positional Embedding.}
+Ảnh đầu vào $x\in\mathbb{R}^{3\times32\times32}$ được chia thành lưới $8\times8$ gồm $N=64$ patch không chồng lấp có kích thước $P\times P=4\times4$. Phép chiếu tuyến tính từ không gian patch $3P^2=48$ sang chiều nhúng $D=96$ được cài tương đương bằng lớp tích chập \texttt{Conv2d(3, 96, kernel\_size=4, stride=4)}, sau đó trải phẳng thành chuỗi 64 vector. Một token phân lớp học được $x_{\text{cls}}\in\mathbb{R}^{1\times96}$ được ghép vào đầu chuỗi và cộng với tham số vị trí học được $E_{\text{pos}}\in\mathbb{R}^{65\times96}$ (khởi tạo chuẩn cụt $\sigma=0{,}02$), theo sau bởi dropout $p=0{,}1$:
+\[
+\begin{aligned}
+z_0 = \operatorname{Dropout}\!\Big(&[x_{\text{cls}};\, x_p^1 E;\, \dots;\, x_p^{64} E]\\[-2pt]
+&+ E_{\text{pos}}\Big) \in \mathbb{R}^{65\times96}.
+\end{aligned}
+\]
+
+\paragraph{Transformer Encoder (Pre-LN) và Classification Head.}
+Chuỗi $z_0$ đi qua $L=4$ khối encoder có cấu trúc chuẩn hóa trước (Pre-LN) nhằm ổn định luồng gradient qua nhánh cộng tắt khi không dùng warmup dài:
+\[
+\begin{aligned}
+z'_\ell &= z_{\ell-1} + \operatorname{MHSA}\!\left(\operatorname{LN}(z_{\ell-1})\right),\\
+z_\ell &= z'_\ell + \operatorname{MLP}\!\left(\operatorname{LN}(z'_\ell)\right), \quad \ell=1,\dots,4.
+\end{aligned}
+\]
+Khối Multi-Head Self-Attention dùng $h=4$ head song song với chiều mỗi head $d_k = D/h = 24$:
+\[
+\operatorname{Attn}(Q,K,V) = \operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V.
+\]
+Ma trận trọng số chú ý sau \texttt{softmax} có kích thước $[B, 4, 65, 65]$ được tách khỏi đồ thị gradient (\texttt{detach}) và lưu lại qua phương thức \texttt{get\_attention\_weights()} để phục vụ trực quan hóa mà không làm thay đổi giao diện trả logits của trainer chung. Khối MLP gồm hai tầng tuyến tính $96\rightarrow144\rightarrow96$ ($\text{mlp\_ratio}=1{,}5$) với kích hoạt GELU và dropout $0{,}1$. Cuối cùng, vector ở vị trí CLS của khối thứ tư $z_4^0$ đi qua \texttt{LayerNorm} và tầng \texttt{Linear(96, 10)} để sinh logits $z\in\mathbb{R}^{10}$.
+
+\begin{table}[t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrr}
+\toprule
+Thành phần & ResNet (Minh) & ViT (Lan Anh)\\
+\midrule
+Stem / Patch+CLS+$E_{\text{pos}}$ & 464 & 11.040\\
+Thân (9 Block / 4 Encoder) & 271.360 & 262.080\\
+Đầu phân loại (Head) & 650 & 1.162\\
+\midrule
+\textbf{Tổng tham số học được} & \textbf{272.474} & \textbf{274.282} ($+0{,}66\%$)\\
+ViT Ablation ($E_{\text{pos}}=\mathbf{0}$) & --- & \textbf{268.042} ($-6.240$)\\
+\bottomrule
+\end{tabular}%
+}
+\caption{Phân rã số tham số có thể học giữa ResNet tự cài, ViT chuẩn và biến thể Ablation bỏ positional embedding (trong đó đầu vào ViT gồm $4.704+96+6.240=11.040$ và mỗi Encoder gồm $65.520$ tham số).}
+\label{tab:params}
+\end{table}

@@ -1,6 +1,6 @@
 # So sánh Vision Transformer và CNN
 
-Bản đọc chéo nội bộ tuần 4 của Hiền gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf), [hướng dẫn bàn giao và tái lập](docs/hien-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4` để sinh bảng có trạng thái kiểm tra. Audit hiện phát hiện lỗi accuracy/time trong sáu log ViT bổ sung và ba ablation; checkpoint gốc cần đối chiếu trước test cuối.
+Bản hoàn thiện nội bộ tuần 4 gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf), [bàn giao tuần 4 của Hiền](docs/hien-week4.md), [bàn giao tuần 4 của Lan Anh](docs/lanh-week4.md), [hướng dẫn chạy 7 lượt GPU còn lại trên RTX 5080 cho Minh](docs/vit-gpu-week4-minh-handoff.md) và [tài liệu diễn tập vấn đáp của Lan Anh](docs/lanh-defense-qa-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4` để sinh lại toàn bộ bảng kiểm toán: hiện **14/18 lượt baseline** (9 ResNet + 5 ViT, đủ 3 seed cả hai mô hình ở mức 10%) và **1 lượt Swin smoke** đều đạt `saved_log_consistent` (`invalid_run_ids: []`, 0 lỗi audit); các CSV mô phỏng cũ ở tuần 3 đã được thu hồi lưu vết tại `results/week3/retracted_afe90b0/`.
 
 Đề tài 3 môn Học sâu. Lan Anh: ViT; Minh: ResNet/trainer/môi trường; Hiền: dữ liệu/đánh giá/attention. [Kế hoạch](tasks/plan.md) · [Checklist](tasks/todo.md) · [Bàn giao tuần 1 của Minh](docs/minh-week1.md).
 

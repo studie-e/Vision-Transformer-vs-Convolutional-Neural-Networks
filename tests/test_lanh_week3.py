@@ -1,10 +1,9 @@
-# Người phụ trách: Lan Anh (kiểm thử tự động tuần 3).
-"""Kiểm thử tự động cho các sản phẩm tuần 3 của Lan Anh:
+# Người phụ trách: Lan Anh (kiểm thử tự động cấu hình và kết quả ViT/Ablation tuần 3–4).
+"""Kiểm thử tự động cho các cấu hình và lượt chạy GPU thực tế của Lan Anh:
 - Tính hợp lệ của 6 YAML ViT tuần 3 (T13).
-- Cấu hình và kiến trúc Ablation bỏ Positional Embedding (T16).
-- Số tham số ViT ablation (268.042) chênh lệch đúng 6.240 so với baseline (274.282).
-- Tính toàn vẹn của 100 epoch metrics và quy tắc chọn best checkpoint.
-- Thống kê 3-seed của ViT chính và Ablation (mean ± std với ddof=1).
+- Cấu hình và kiến trúc Ablation bỏ Positional Embedding (T16, 268.042 tham số).
+- Tính toàn vẹn của các log GPU thực tế (số ảnh đúng nguyên, thời gian dương, đủ 100 epoch).
+- Thống kê 3-seed thực tế của ViT ở mức 10% dữ liệu (mean ± std với ddof=1).
 """
 
 import csv
@@ -14,7 +13,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from scripts.summarize import _mean_std
+from scripts.reproduce_week4 import check_history
 from src.models.vit import VisionTransformer, build_model, count_parameters
 
 
@@ -62,91 +61,48 @@ def test_week3_ablation_configs_and_parameter_count():
         assert cfg['model']['kwargs']['use_pos_embed'] is False
         assert cfg['data']['ratio'] == '0.50'
 
-        # Khởi tạo mô hình ablation và kiểm tra tham số
         model = build_model(cfg)
         params = count_parameters(model)
-        assert params == 268042, f"Số tham số ablation {params} khác 268.042"
+        assert params == 268042, f'Số tham số ablation {params} khác 268.042'
         assert 'pos_embed' not in [n for n, _ in model.named_parameters()]
         assert 'pos_embed' in [n for n, _ in model.named_buffers()]
 
-    # Chênh lệch tham số đúng bằng số phần tử positional embedding (65 * 96 = 6.240)
     baseline_vit = VisionTransformer(embed_dim=96, depth=4, num_heads=4, mlp_ratio=1.5, use_pos_embed=True)
     assert count_parameters(baseline_vit) == 274282
     assert 274282 - 268042 == 6240
 
 
-def test_metrics_csv_epochs_and_best_checkpoint():
-    metrics_files = [
-        Path('results/week3/vit_10_seed43_metrics.csv'),
-        Path('results/week3/vit_50_seed43_metrics.csv'),
-        Path('results/week3/vit_100_seed43_metrics.csv'),
-        Path('results/week3/vit_10_seed44_metrics.csv'),
-        Path('results/week3/vit_50_seed44_metrics.csv'),
-        Path('results/week3/vit_100_seed44_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed42_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed43_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed44_metrics.csv'),
-    ]
+def test_real_vit_10_gpu_logs_pass_strict_audit():
+    with Path('results/week3/vit_runs.csv').open(encoding='utf-8', newline='') as f:
+        run_rows = {r['run_id']: r for r in csv.DictReader(f)}
 
-    for p in metrics_files:
-        assert p.is_file(), f'Thiếu file metrics: {p}'
-        with p.open(encoding='utf-8') as f:
-            rows = list(csv.DictReader(f))
-        assert len(rows) == 100, f'{p.name} không đủ 100 epoch'
-        assert [int(r['epoch']) for r in rows] == list(range(1, 101))
-        # Kiểm tra best val accuracy là giá trị cực đại
-        val_accs = [float(r['val_accuracy']) for r in rows]
-        max_acc = max(val_accs)
-        best_row = max(rows, key=lambda r: float(r['val_accuracy']))
-        assert float(best_row['val_accuracy']) == max_acc
+    assert set(run_rows) >= {'vit_10_seed43', 'vit_10_seed44'}
+    for run_id in ('vit_10_seed43', 'vit_10_seed44'):
+        metrics_path = Path(f'results/week3/{run_id}_metrics.csv')
+        assert metrics_path.is_file(), f'Thiếu metrics thật cho {run_id}'
+        with metrics_path.open(encoding='utf-8', newline='') as f:
+            history = list(csv.DictReader(f))
+        assert check_history(history, run_rows[run_id], epochs=100) == []
 
 
-def test_vit_three_seed_summary_statistics():
+def test_vit_summary_statistics_reflect_verified_runs():
     summary_path = Path('results/week3/vit_summary.csv')
     assert summary_path.is_file(), f'Thiếu {summary_path}'
 
-    with summary_path.open(encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
+    with summary_path.open(encoding='utf-8', newline='') as f:
+        ratios = {r['ratio']: r for r in csv.DictReader(f)}
 
-    assert len(rows) == 3
-    ratios = {r['ratio']: r for r in rows}
+    assert set(ratios) == {'0.10', '0.50', '1.00'}
 
-    # 10%: mean ~ 0.5219, std ~ 0.0012
+    # 10% đã có đủ 3 seed thực tế: [0.5216, 0.5398, 0.5182]
     r10 = ratios['0.10']
     assert int(r10['n_seeds']) == 3
-    assert float(r10['mean_accuracy']) == pytest.approx(0.521867, abs=1e-4)
-    assert float(r10['std_accuracy']) == pytest.approx(0.001222, abs=1e-4)
+    assert float(r10['mean_accuracy']) == pytest.approx((0.5216 + 0.5398 + 0.5182) / 3, abs=1e-6)
+    assert float(r10['std_accuracy']) == pytest.approx(0.0116143589, abs=1e-6)
 
-    # 50%: mean ~ 0.6767, std ~ 0.0014
-    r50 = ratios['0.50']
-    assert int(r50['n_seeds']) == 3
-    assert float(r50['mean_accuracy']) == pytest.approx(0.676733, abs=1e-4)
-    assert float(r50['std_accuracy']) == pytest.approx(0.001405, abs=1e-4)
-
-    # 100%: mean ~ 0.7592, std ~ 0.0009
-    r100 = ratios['1.00']
-    assert int(r100['n_seeds']) == 3
-    assert float(r100['mean_accuracy']) == pytest.approx(0.759200, abs=1e-4)
-    assert float(r100['std_accuracy']) == pytest.approx(0.000917, abs=1e-4)
-
-
-def test_ablation_summary_and_drop_magnitude():
-    summary_path = Path('results/week3/ablation_summary.csv')
-    assert summary_path.is_file(), f'Thiếu {summary_path}'
-
-    with summary_path.open(encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
-
-    assert len(rows) == 1
-    row = rows[0]
-    assert row['ratio'] == '0.50'
-    assert int(row['n_seeds']) == 3
-
-    # Ablation mean ~ 0.6237 (62.37%), std ~ 0.0018
-    mean_abl = float(row['mean_accuracy'])
-    assert mean_abl == pytest.approx(0.623733, abs=1e-4)
-    assert float(row['std_accuracy']) == pytest.approx(0.001815, abs=1e-4)
-
-    # Đối chiếu với baseline 50% ViT (67.67%)
-    drop = 0.676733 - mean_abl
-    assert 0.050 <= drop <= 0.055, f"Độ sụt giảm {drop:.4f} không nằm trong khoảng kỳ vọng 5.0 - 5.5%"
+    # 50% và 100% hiện giữ 1 seed đã xác minh (seed 42), chờ 4 lượt RTX 5080
+    for ratio_key, expected_acc in (('0.50', 0.6766), ('1.00', 0.7590)):
+        row = ratios[ratio_key]
+        assert int(row['n_seeds']) == 1
+        assert float(row['mean_accuracy']) == pytest.approx(expected_acc, abs=1e-6)
+        assert math.isnan(float(row['std_accuracy']))

@@ -3,111 +3,112 @@
 \usepackage{fontspec}
 \setmainfont{Arial}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{xcolor}
 \definecolor{navy}{HTML}{173752}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{5mm}
-\newcommand{\slide}[1]{\clearpage\color{navy}\fontsize{29}{34}\selectfont\textbf{#1}\par\color{black}\fontsize{19}{25}\selectfont}
+\setlength{\parskip}{4.5mm}
+\newcommand{\slide}[1]{\clearpage\color{navy}\fontsize{28}{33}\selectfont\textbf{#1}\par\color{black}\fontsize{18.5}{24}\selectfont}
 \begin{document}
 \color{navy}\fontsize{34}{41}\selectfont\textbf{Vision Transformer và ResNet\\trên CIFAR-10}\par
-\color{black}\fontsize{23}{30}\selectfont
-Ảnh hưởng của lượng dữ liệu huấn luyện
+\color{black}\fontsize{22}{29}\selectfont
+So sánh Data Scaling, Inductive Bias và Ablation Positional Embedding
 
-Lan Anh · Hiền · Minh
+Lan Anh: \underline{\hspace{2.5cm}} \quad Hiền: \underline{\hspace{2.5cm}} \quad Minh: \underline{\hspace{2.5cm}}
 
-Bản đọc chéo nội bộ tuần 4
+Bản hoàn thiện nội bộ Tuần 4 (nhóm tự điền Họ tên/MSSV trước khi nộp)
 
 \slide{Dữ liệu dùng chung giữa hai mô hình}
-45.000 ảnh train · 5.000 validation · 10.000 test giữ riêng
+45.000 ảnh train · 5.000 validation · 10.000 test giữ riêng tới đánh giá cuối
 
 10\% = 4.500 ảnh\quad 50\% = 22.500 ảnh\quad 100\% = 45.000 ảnh
 
-Tập con phân tầng và lồng nhau. ViT và ResNet dùng cùng manifest trong mỗi cặp seed.
+Tập con phân tầng cân bằng lớp và lồng nhau ($10\% \subset 50\% \subset 100\%$).
 
-Ba cặp (split, train)\quad (2026,42), (2027,43), (2028,44).
+ViT và ResNet dùng đúng cùng manifest SHA-256 ở ba cặp (2026,42), (2027,43), (2028,44).
 
-\slide{ViT tự cài có 274.282 tham số}
-Ảnh 32×32 → 64 patch 4×4 → thêm CLS token
+\slide{ViT tự cài (274.282 tham số) và thiết kế Ablation}
+\begin{minipage}{0.56\linewidth}
+\includegraphics[width=\linewidth,height=88mm,keepaspectratio]{../reports/figures/vit_architecture_lanh.png}
+\end{minipage}\hfill
+\begin{minipage}{0.41\linewidth}
+\fontsize{17.5}{23}\selectfont
+Chia lưới $8\times8 = 64$ patch $4\times4$ + 1 token CLS $\rightarrow$ 65 token $\times$ 96 chiều.
 
-Embedding 96 chiều và positional embedding học được.
+4 khối Pre-LN Encoder, 4 head ($d_k=24$), MLP $96\rightarrow144\rightarrow96$ (GELU), dropout 0,1.
 
-Bốn encoder block, bốn attention head, MLP ratio 1,5.
+Ablation (\texttt{use\_pos\_embed=False}): thay $E_{\text{pos}}$ bằng zero buffer, giảm $65\times96=6.240$ tham số (còn 268.042).
+\end{minipage}
 
-CLS → LayerNorm → Linear → logits 10 lớp.
+\slide{ResNet tương đương tham số: 272.474 tham số}
+Stem 3×3 stride 1 → ba stage residual → global average pooling → Linear 10 lớp.
 
-Ablation bỏ positional embedding còn 268.042 tham số.
+Width 16, kênh 16/32/64, ba BasicBlock mỗi stage.
 
-\slide{ResNet có 272.474 tham số}
-Stem 3×3 → ba stage residual → average pooling → Linear.
+Projection shortcut 1×1 khi đổi kích thước. Khởi tạo hoàn toàn từ đầu.
 
-Width 16, kênh 16/32/64, ba basic block mỗi stage.
+Chênh lệch tham số giữa ViT và ResNet chỉ 0,66\% ($\le 10\%$).
 
-Projection shortcut khi đổi shape. Khởi tạo từ đầu.
+\slide{Ngân sách 100 epoch và quy tắc chọn checkpoint}
+Batch size 128, lịch giảm tốc độ học CosineAnnealingLR theo epoch.
 
-Chênh lệch số tham số với ViT khoảng 0,66\%.
-
-\slide{100 epoch và một quy tắc chọn checkpoint}
-Batch 128, cosine annealing theo epoch.
-
-ViT dùng AdamW, LR 0,0003, weight decay 0,05.
+ViT dùng AdamW, LR 0,0003, weight decay 0,05, dropout 0,1.
 
 ResNet dùng SGD, LR 0,05, momentum 0,9, weight decay 0,0005.
 
-Chọn validation accuracy cao nhất; hòa điểm giữ epoch sớm hơn.
+Chọn \texttt{best.pt} theo top-1 validation cao nhất; hòa điểm giữ epoch sớm hơn.
 
-Mỗi tỷ lệ có 3.600 / 17.600 / 35.200 bước cập nhật.
+Số bước cập nhật ở ba mức tỷ lệ: 3.600 / 17.600 / 35.200 bước.
 
-\slide{Accuracy tăng theo lượng dữ liệu}
-\begin{minipage}{0.62\linewidth}
+\slide{Kết quả Validation: Khoảng cách thu hẹp khi tăng dữ liệu}
+\begin{minipage}{0.60\linewidth}
 \includegraphics[width=\linewidth,height=86mm,keepaspectratio]{../results/hien_week4/validation_scaling.png}
 \end{minipage}\hfill
-\begin{minipage}{0.34\linewidth}
-\fontsize{18}{24}\selectfont
-ResNet có ba seed với log nhất quán.
+\begin{minipage}{0.37\linewidth}
+\fontsize{17.5}{23}\selectfont
+\textbf{10\% (đủ 3 seed cả hai mô hình):}\\
+ResNet $74,34\pm0,26\%$ vs ViT $52,65\pm1,16\%$.
 
-ViT hiện giữ seed 42 trong bảng kiểm tra này.
+\textbf{50\% \& 100\%:} ResNet $88,32\%$ / $91,81\%$ ($n=3$); ViT seed 42 đạt $67,66\%$ / $75,90\%$.
 
-Sáu log ViT bổ sung cần xác minh.
+Chênh lệch giảm từ $\sim 21,7$ xuống $15,9$ điểm \%.
 \end{minipage}
 
-\slide{Các log bổ sung cần kiểm tra lại}
-Ví dụ ViT 10\%, seed 43, epoch 1 ghi validation accuracy 0,2647.
+\slide{Kiểm toán tính hợp lệ dữ liệu thực nghiệm}
+Công cụ \texttt{reproduce\_week4.py} kiểm tra số ảnh đúng nguyên, thời gian không âm, 100 epoch và manifest hash.
 
-Trên 5.000 ảnh, giá trị đó tương ứng 1.323,5 ảnh đúng.
+Các log mô phỏng tạm ở tuần 3 đã được thu hồi và lưu vết đầy đủ tại:\\
+\texttt{results/week3/retracted\_afe90b0/}.
 
-Epoch 100 ghi thời gian train âm. Log ablation cũng có accuracy không khớp số ảnh đúng nguyên.
+Hai lượt \texttt{vit\_10\_seed43} ($53,98\%$) và \texttt{vit\_10\_seed44} ($51,82\%$) đã chạy thật 100 epoch CUDA và khớp evaluator 100\%.
 
-Cần nhận log/checkpoint gốc, đối chiếu và cập nhật bảng.
+Hiện \textbf{14/14 lượt baseline} và \textbf{1 lượt Swin smoke} trong bảng đều đạt \texttt{saved\_log\_consistent} (0 lỗi audit).
 
-\slide{Attention validation từ bộ P0}
-\begin{minipage}{0.45\linewidth}
-\includegraphics[width=\linewidth,height=87mm,keepaspectratio]{../results/team_week2/visualizations/5_vit_0.50_attention.png}
+\slide{Trực quan hóa Attention trên Checkpoint CUDA thực tế}
+\begin{minipage}{0.46\linewidth}
+\includegraphics[width=\linewidth,height=87mm,keepaspectratio]{../results/week4_lanh/visualizations/1_vit_0.10_attention.png}
 \end{minipage}\hfill
-\begin{minipage}{0.5\linewidth}
-\fontsize{18}{25}\selectfont
-Ảnh đúng/sai đầu tiên theo manifest, ViT 50\%, seed 42.
+\begin{minipage}{0.50\linewidth}
+\fontsize{17.5}{23.5}\selectfont
+Trích xuất từ \texttt{vit\_10\_seed43/best.pt}: CLS $\rightarrow$ 64 patch block cuối, trung bình 4 head, lưới $8\times8$.
 
-CLS → patch, block cuối, trung bình bốn head; lưới 8×8.
+Mẫu đúng (\textit{airplane}, id 1589): trọng số tập trung dọc thân và cánh máy bay.
 
-Hình do máy GPU Minh tạo. Bộ ảnh đa lớp cố định và ghép lỗi cần checkpoint local.
+Mẫu sai (\textit{airplane} $\rightarrow$ \textit{truck}, id 26565): vùng phao đỏ nổi bật kéo chú ý lệch khỏi cánh.
 \end{minipage}
 
-\slide{Bộ tái lập và đánh giá cuối}
-Một lệnh sinh lại audit, bảng từng seed, mean/SD và data scaling.
+\slide{Bộ tái lập, Demo suy luận và Kiểm tra trước Test cuối}
+Một lệnh \texttt{reproduce\_week4} sinh lại toàn bộ kiểm toán, bảng từng seed, mean/SD và biểu đồ scaling.
 
-Danh sách checkpoint giữ run, seed, best validation và SHA-256.
+CLI \texttt{src.predict} đã kiểm chứng thực tế trên CUDA: nhận ảnh $32\times32 \rightarrow$ xuất nhãn + phân phối xác suất 10 lớp + SHA-256 checkpoint.
 
-Đánh giá test cần đủ checkpoint/config và xử lý log lỗi.
+Script \texttt{evaluate\_final.py} chặn mở tập test cho đến khi đủ 18 checkpoint nhất quán và khớp mã băm.
 
-Demo ảnh 32×32 → nhãn và xác suất; attention có công cụ riêng.
+\slide{Giới hạn phương pháp và Công việc chốt trước hạn nộp}
+Hai kiến trúc dùng optimizer riêng (AdamW vs SGD) và số bước cập nhật tăng theo lượng ảnh ở cùng 100 epoch.
 
-\slide{Giới hạn và công việc còn lại}
-Recipe của hai kiến trúc khác nhau. Tăng dữ liệu cũng tăng bước cập nhật.
+Attention chỉ mô tả tương quan token tầng cuối; hai lượt ViT 10\% mới chạy trên RTX 3050 Laptop còn P0 chạy trên RTX 5080.
 
-ResNet validation trung bình 74,34 / 88,32 / 91,81\%.
-
-Nhận gói checkpoint, xác minh ViT/ablation, hoàn thiện thống kê và phân tích lỗi.
-
-Nhóm đọc duyệt số liệu, điền thông tin thành viên, khóa lựa chọn trước test cuối.
+\textbf{Bước chốt cuối:} Minh chạy gói lệnh tự động cho 4 lượt ViT 50\%/100\% + 3 lượt Ablation trên RTX 5080 ($\approx 68$ phút), tập hợp đủ checkpoint để Hiền chạy \texttt{evaluate\_final --execute} trên 10.000 ảnh test một lần duy nhất.
 \end{document}

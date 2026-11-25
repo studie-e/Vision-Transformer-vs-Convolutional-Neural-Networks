@@ -1,5 +1,8 @@
 # Milestone tuần 3 — phần Lan Anh
 
+> [!WARNING]
+> **Đính chính kiểm toán Tuần 4 (25/11/2026):** Số liệu 6 lượt ViT (`seed 43, 44`) và 3 lượt Ablation trong bản thảo Tuần 3 (`afe90b0`) dưới đây xuất phát từ CSV mô phỏng đã thu hồi (xem lý do và biên bản truy vết tại [`results/week3/retracted_afe90b0/README.md`](../results/week3/retracted_afe90b0/README.md)). Số liệu chính thức đã qua kiểm chứng bằng checkpoint GPU thực tế được cập nhật trong báo cáo cuối ACL ([`reports/final.tex`](final.tex)) và [`docs/lanh-week4.md`](../docs/lanh-week4.md).
+
 **Người phụ trách: Lan Anh.**
 
 ## 1. Tiến độ và kết quả validation ViT qua ba seed (T13)
