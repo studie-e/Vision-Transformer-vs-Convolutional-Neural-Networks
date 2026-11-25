@@ -1,0 +1,131 @@
+run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc
+resnet_d10_s42,src.models.resnet:build_model,0.10,2026,42,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb,"?? docs/minh-week2.md
+?? reports/method_minh_week2.md
+?? results/week2/",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,8f5ccdf6926bfb23afe3263b6d902b51444e8d762c101466e06c23245afc3e82,272474,runs/week2/resnet_d10_s42/config.yaml,eb7534590db50066bfb19560f4592d55952af958,runs/week2/resnet_d10_s42/best.pt,val,0.7424,3712,5000,0.7424,96,3600,3456,96,104.29158809999353,1.0429158809999353,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:48.967769+00:00
+resnet_d50_s42,src.models.resnet:build_model,0.50,2026,42,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb,"M scripts/run_minh_week2.py
+?? docs/minh-week2.md
+?? reports/method_minh_week2.md
+?? results/week2/",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,9b1e327dffa8ecf5d1eae37713f54daa00b88062796ad3bdd0cc27b515c0b57d,272474,runs/week2/resnet_d50_s42/config.yaml,eb7534590db50066bfb19560f4592d55952af958,runs/week2/resnet_d50_s42/best.pt,val,0.884,4420,5000,0.884,89,17600,15664,89,498.7797736999928,4.987797736999928,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:50.121148+00:00
+resnet_d100_s42,src.models.resnet:build_model,1.00,2026,42,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,13399304c170e55b98cde1ab859f5652ffab15a2ee1dfae04e7513f35fac9edb,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,f0a24168f6d2228b8e0cecddae34cf1d7ea17b89f7f7a7350caa47263cdc69e8,272474,runs/week2/resnet_d100_s42/config.yaml,a21bf92762d063e52bfe7038c6ed9d5add0700b6,runs/week2/resnet_d100_s42/best.pt,val,0.918,4590,5000,0.918,95,35200,33440,95,1001.8720557000015,10.018720557000016,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:51.315293+00:00
+week2_vit_10_seed42,src.models.vit:build_model,0.10,2026,42,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,483cdb623f86d5f77ec698f22c8f65aef1ba73e699995c5ad7c13f64a54b9816,274282,runs/week2_vit_10_seed42/config.yaml,4616c68f215fe3b95e12e0369aafd64f39425405,runs/week2_vit_10_seed42/best.pt,val,0.5216,2608,5000,0.5216,70,3600,2520,70,96.41182110001319,0.9641182110001318,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:52.554635+00:00
+week2_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,"M README.md
+ M configs/week2/vit_d100_s42.yaml
+ M configs/week2/vit_d10_s42.yaml
+ M configs/week2/vit_d50_s42.yaml
+ M docs/minh-week2.md
+ M reports/method_minh_week2.md
+ M results/week2/minh_week2.md
+?? configs/week2/README.md
+?? scripts/package_team_week2.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,1c29839d8f6fd8263a2cc693d8439651e3a32a95d7995d82ca7add018ab18263,274282,runs/week2_vit_50_seed42/config.yaml,4616c68f215fe3b95e12e0369aafd64f39425405,runs/week2_vit_50_seed42/best.pt,val,0.6766,3383,5000,0.6766,96,17600,16896,96,467.5448379999689,4.675448379999689,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:53.764495+00:00
+week2_vit_100_seed42,src.models.vit:build_model,1.00,2026,42,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,7ca4bb986f9dd0152bde2e6113d957eae6b983e5f49fd72d49d9acdf474d1895,274282,runs/week2_vit_100_seed42/config.yaml,5f3fc2c15abb7ba253416fc78eec27d7303ec617,runs/week2_vit_100_seed42/best.pt,val,0.759,3795,5000,0.759,84,35200,29568,84,900.6674501999623,9.006674501999623,Current team P0: 100 epochs; split 2026/train 42; test unused; Minh operates ViT GPU for Lan Anh,2026-11-14T12:53:54.872791+00:00
+resnet_10_seed43,src.models.resnet:build_model,0.10,2027,43,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,8cf063d8a9b3496845c9e9fa190354b0e51c953ec2bdfdceb1574995861b30b3,272474,runs/week3/resnet_10_seed43/config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs/week3/resnet_10_seed43/best.pt,val,0.7414,3707,5000,0.7414,79,3600,2844,79,121.37175289999868,1.2137175289999869,Week 3 ResNet P1,2026-11-25T07:26:28.365308+00:00
+resnet_50_seed43,src.models.resnet:build_model,0.50,2027,43,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,"M scripts/package_team_week2.py
+?? configs/week3/swin_100_seed42.yaml
+?? configs/week3/swin_10_seed42.yaml
+?? scripts/run_minh_week3.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,7f2ffae404e085ab073803d69191f2f72d1497d63a51653c2ce5cbf050ae9146,272474,runs/week3/resnet_50_seed43/config.yaml,213d0eb38e50b9f6e31178d4680d4693682281de,runs/week3/resnet_50_seed43/best.pt,val,0.8828,4414,5000,0.8828,84,17600,14784,84,499.8837923999854,4.998837923999854,Week 3 ResNet P1,2026-11-25T07:26:30.136328+00:00
+resnet_100_seed43,src.models.resnet:build_model,1.00,2027,43,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,dca54b77e323047ced0f5fb11312d16c0d8d95876ee4b77c82c21603a308ef9e,272474,runs/week3/resnet_100_seed43/config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs/week3/resnet_100_seed43/best.pt,val,0.9182,4591,5000,0.9182,93,35200,32736,93,1128.5577975999931,11.285577975999932,Week 3 ResNet P1,2026-11-25T07:26:31.967966+00:00
+resnet_10_seed44,src.models.resnet:build_model,0.10,2028,44,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,8355bf64555dc1d05d02ee514a830e3a0f832014008da3af6211dd40682d93f7,272474,runs/week3/resnet_10_seed44/config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs/week3/resnet_10_seed44/best.pt,val,0.7464,3732,5000,0.7464,87,3600,3132,87,130.55811219999487,1.3055811219999487,Week 3 ResNet P1,2026-11-25T07:26:33.790881+00:00
+resnet_50_seed44,src.models.resnet:build_model,0.50,2028,44,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,566337d816ae2a19c91b7da99601ccc4ca829643d465fdbd53f2f51b45cc7565,272474,runs/week3/resnet_50_seed44/config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs/week3/resnet_50_seed44/best.pt,val,0.8828,4414,5000,0.8828,94,17600,16544,94,663.0232550999954,6.630232550999954,Week 3 ResNet P1,2026-11-25T07:26:35.574193+00:00
+resnet_100_seed44,src.models.resnet:build_model,1.00,2028,44,cc5c63937128585c77f01002cb0276e43ec70a1cff01972c82f9171d6b53440c,9382b27001c27ce64734ee1361b9c820f9b55edf498c47ce6082567c4b3395f8,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,444e15a080de3ab8f0f1cc44f6bc48b1d2729f965f3e176bd4c1e47553b6e030,272474,runs/week3/resnet_100_seed44/config.yaml,7d5c2759d668ba750c8cabe216c2dccde700abf7,runs/week3/resnet_100_seed44/best.pt,val,0.9182,4591,5000,0.9182,94,35200,33088,94,1318.3723251999927,13.183723251999927,Week 3 ResNet P1,2026-11-25T07:26:37.299592+00:00
+vit_10_seed43,src.models.vit:build_model,0.10,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,66b0a2ee975a942f2de95cab9f8a6bde273885b6cdc2f96d4f8afb6ba1a1eaa3,274282,runs/week3/vit_10_seed43/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_10_seed43/best.pt,val,0.526,2630,5000,0.526,76,3600,2736,76,92.03651210001408,0.9203651210001408,Week 3 ViT P1,2026-11-25T07:25:53.841391+00:00
+vit_50_seed43,src.models.vit:build_model,0.50,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,23c4be781991faa6c2ac7a9096e9e637aa994adf10f1c5c11bd1daefc65abe95,274282,runs/week3/vit_50_seed43/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_50_seed43/best.pt,val,0.6864,3432,5000,0.6864,77,17600,13552,77,455.58953230000225,4.555895323000023,Week 3 ViT P1,2026-11-25T07:25:55.601385+00:00
+vit_100_seed43,src.models.vit:build_model,1.00,2027,43,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,d09ec77c4e185671d80bc8fdb23705e8915d2b5b5271e167d81c030cfbfc8170,274282,runs/week3/vit_100_seed43/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_100_seed43/best.pt,val,0.7574,3787,5000,0.7574,91,35200,32032,91,915.5692426999994,9.155692426999995,Week 3 ViT P1,2026-11-25T07:25:57.447936+00:00
+vit_10_seed44,src.models.vit:build_model,0.10,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,84bb8f2ba09427e4ce7d47754c9bf8c86740e314d188b34cf10cd6b7184af231,274282,runs/week3/vit_10_seed44/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_10_seed44/best.pt,val,0.5236,2618,5000,0.5236,73,3600,2628,73,91.78917879999062,0.9178917879999062,Week 3 ViT P1,2026-11-25T07:25:59.347348+00:00
+vit_50_seed44,src.models.vit:build_model,0.50,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,54820e8fde00f2e41eb239d6286aa62f53b523aeff1052b0f3bd27a42746253d,274282,runs/week3/vit_50_seed44/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_50_seed44/best.pt,val,0.6828,3414,5000,0.6828,85,17600,14960,85,450.8120527000028,4.508120527000028,Week 3 ViT P1,2026-11-25T07:26:01.193173+00:00
+vit_100_seed44,src.models.vit:build_model,1.00,2028,44,8463043f5889dfb28db5f6d1f366b0f2904ffaf64dd1b5cf6ab13173b3eb6519,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,72e74bfca5d81a996c9454201d56047c74fd89f8cdb87ed3f31173fefe044915,274282,runs/week3/vit_100_seed44/config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs/week3/vit_100_seed44/best.pt,val,0.7454,3727,5000,0.7454,93,35200,32736,93,1065.8375619000071,10.658375619000072,Week 3 ViT P1,2026-11-25T07:26:02.962797+00:00

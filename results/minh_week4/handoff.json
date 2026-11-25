@@ -1,0 +1,26 @@
+{
+  "validation_runs": 27,
+  "device": "cuda",
+  "demo": {
+    "split": "validation",
+    "split_seed": 2026,
+    "index": 23171,
+    "true_label": 0
+  },
+  "baseline_18_csv": "results/minh_week4/baseline_18_val_runs.csv",
+  "reproduction": {
+    "reference": "runs/week2/resnet_d10_s42",
+    "repeat": "runs/week4_repeat/resnet_10_seed42",
+    "epochs": 100,
+    "best_epoch": 96,
+    "best_validation": 0.7424,
+    "model_tensors_equal": true,
+    "epoch_metrics_equal": true
+  },
+  "archive": {
+    "path": "runs/handoff/week4/minh_week4.zip",
+    "bytes": 161156406,
+    "sha256": "588cf02caa70af8a93d84c3f24674acdc2db9301e5f9dadff465377dc62eacf1",
+    "checksum_file": "runs/handoff/week4/minh_week4.sha256.txt"
+  }
+}

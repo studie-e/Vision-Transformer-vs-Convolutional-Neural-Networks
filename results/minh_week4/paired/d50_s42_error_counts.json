@@ -1,0 +1,6 @@
+{
+  "both_correct": 3173,
+  "vit_only_wrong": 1247,
+  "resnet_only_wrong": 210,
+  "both_wrong": 370
+}

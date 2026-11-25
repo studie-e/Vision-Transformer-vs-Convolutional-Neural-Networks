@@ -1,0 +1,9 @@
+{
+  "expected": 18,
+  "records_verified": 18,
+  "missing": 0,
+  "checkpoint_present": 18,
+  "config_available": 18,
+  "source_csv_sha256": "232f5369ac6c86d10ed303da80e327daa8a7af00d364a499127b2eebd4c023a9",
+  "paired_analysis": "exported"
+}

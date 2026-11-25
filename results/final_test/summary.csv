@@ -1,0 +1,7 @@
+model,ratio,split,n_seeds,mean_accuracy,std_accuracy
+src.models.resnet:build_model,0.10,test,3,0.7456333333333334,0.004556680078009973
+src.models.resnet:build_model,0.50,test,3,0.8768,0.00043588989435405757
+src.models.resnet:build_model,1.00,test,3,0.9171666666666667,0.0004932882862316341
+src.models.vit:build_model,0.10,test,3,0.5144,0.002463736998950992
+src.models.vit:build_model,0.50,test,3,0.6707,0.000984885780179626
+src.models.vit:build_model,1.00,test,3,0.7497333333333334,0.005783021125098303

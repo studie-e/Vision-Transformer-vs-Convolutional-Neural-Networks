@@ -1,4 +1,6 @@
+# Người phụ trách: Hiền (kiểm tra bằng chứng validation, xuất bảng và biểu đồ tuần 4); Minh cung cấp kết quả ResNet/Swin.
 """Audit saved evidence and regenerate week-four validation tables and figures."""
+import argparse
 import csv
 import hashlib
 import json
@@ -9,7 +11,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import numpy as np
+import yaml
 
 def load_runs(path):
     with path.open(encoding='utf-8', newline='') as stream:
@@ -28,6 +30,16 @@ def mean_std(values):
             statistics.stdev(values) if len(values) > 1 else float('nan'))
 
 OUTPUT = Path('results/hien_week4')
+
+
+def expected_recipe_path(scope, architecture, pct, seed):
+    if scope == 'main' and seed == 42:
+        return Path(f'configs/week2/{architecture}_{pct}.yaml')
+    if scope == 'main':
+        return Path(f'configs/week3/{architecture}_{pct}_seed{seed}.yaml')
+    if scope == 'ablation':
+        return Path(f'configs/week3/ablation_{architecture}_{pct}_seed{seed}.yaml')
+    return Path(f'configs/week3/{architecture}_{pct}_seed{seed}.yaml')
 
 
 def check_history(history, row, epochs=100):
@@ -68,7 +80,7 @@ def check_history(history, row, epochs=100):
     return errors
 
 
-def collect():
+def collect(root=Path('.'), require_swin=False):
     sources = [
         ('results/team_week2/p0_runs.csv', 'main', 'p0'),
         ('results/week3/resnet_runs.csv', 'main', 'resnet'),
@@ -76,52 +88,87 @@ def collect():
         ('results/week3/ablation_runs.csv', 'ablation', 'ablation'),
         ('results/week3/swin_smoke_runs.csv', 'smoke', 'swin'),
     ]
+    swin_csv = root / 'results/week3/swin_runs.csv'
+    if require_swin and not swin_csv.is_file():
+        raise FileNotFoundError(f'Missing Swin validation records: {swin_csv}')
+    if swin_csv.is_file():
+        sources.append(('results/week3/swin_runs.csv', 'extension', 'swin_full'))
     records, issues, registry = [], [], []
     seen = set()
     for filename, scope, group in sources:
-        for row in load_runs(Path(filename)):
+        for row in load_runs(root / filename):
             architecture = row['model'].split(':')[0].split('.')[-1]
             pct = round(float(row['ratio']) * 100)
             seed = int(row['train_seed'])
+            split_seed = int(row['split_seed'])
             identity = scope, architecture, pct, seed
             if identity in seen:
                 raise ValueError(f'Duplicate run {identity}')
             seen.add(identity)
             if group == 'p0':
-                log = Path(f'results/team_week2/{architecture}_{pct}_metrics.csv')
+                rel_log = Path(f'results/team_week2/{architecture}_{pct}_metrics.csv')
             elif group == 'swin':
-                log = Path('results/week3/swin_smoke_metrics.csv')
+                rel_log = Path('results/week3/swin_smoke_metrics.csv')
             else:
-                log = Path(f'results/week3/{row["run_id"]}_metrics.csv')
+                rel_log = Path(f'results/week3/{row["run_id"]}_metrics.csv')
+            log = root / rel_log
             history = load_runs(log)
             errors = check_history(history, row, epochs=1 if scope == 'smoke' else 100)
-            manifest = json.loads(Path(f"results/splits/split_seed{row['split_seed']}_manifest.json").read_text())
+            if (split_seed, seed) not in {(2026, 42), (2027, 43), (2028, 44)}:
+                errors.append('seed_pair')
+            if (row.get('checkpoint_epoch', '') != '' and int(row['checkpoint_epoch']) != int(row['best_epoch'])
+                    or row.get('best_val_accuracy', '') != ''
+                    and abs(float(row['best_val_accuracy']) - float(row['accuracy'])) > 1e-12):
+                errors.append('checkpoint_metadata')
+            manifest = json.loads((root / f"results/splits/split_seed{row['split_seed']}_manifest.json").read_text(encoding='utf-8'))
             digest = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
             if row['manifest_sha256'] != digest:
                 errors.append('manifest_hash')
             params = 268042 if scope == 'ablation' else {'resnet': 272474, 'vit': 274282, 'swin': 261824}[architecture]
             if int(row['params']) != params:
                 errors.append('parameter_count')
+            ckpt_rel = Path(row['checkpoint_path'].replace('\\', '/'))
+            cfg_rel = Path(row['config_path'].replace('\\', '/'))
+            ckpt_path = root / ckpt_rel
+            cfg_path = root / cfg_rel
+            ckpt_present = ckpt_path.is_file()
+            cfg_present = cfg_path.is_file()
+            ckpt_sha_verified = False
+            if ckpt_present:
+                if hashlib.sha256(ckpt_path.read_bytes()).hexdigest() != row['checkpoint_sha256']:
+                    errors.append('checkpoint_sha256')
+                else:
+                    ckpt_sha_verified = True
+            recipe_path = root / expected_recipe_path(scope, architecture, pct, seed)
+            if cfg_present and recipe_path.is_file():
+                if yaml.safe_load(cfg_path.read_text(encoding='utf-8')) != yaml.safe_load(recipe_path.read_text(encoding='utf-8')):
+                    errors.append('config_recipe')
             for error in errors:
-                issues.append(dict(run_id=row['run_id'], evidence=log.as_posix(), issue=error))
+                issues.append(dict(run_id=row['run_id'], evidence=rel_log.as_posix(), issue=error))
             status = 'invalid_saved_log' if errors else 'saved_log_consistent'
             record = dict(row, architecture=architecture, scope=scope, audit_status=status,
-                          metrics_path=log.as_posix(),
+                          metrics_path=rel_log.as_posix(),
                           metrics_sha256=hashlib.sha256(log.read_bytes()).hexdigest())
             records.append(record)
             registry.append(dict(run_id=row['run_id'], scope=scope, architecture=architecture,
                 ratio=row['ratio'], split_seed=row['split_seed'], train_seed=row['train_seed'],
-                checkpoint_path=row['checkpoint_path'], checkpoint_sha256=row['checkpoint_sha256'],
-                config_path=row['config_path'], audit_status=status,
-                checkpoint_present=Path(row['checkpoint_path']).is_file(),
-                config_present=Path(row['config_path']).is_file(),
+                manifest_sha256=row['manifest_sha256'], best_epoch=row['best_epoch'], val_accuracy=row['accuracy'],
+                checkpoint_path=ckpt_rel.as_posix(), checkpoint_sha256=row['checkpoint_sha256'],
+                checkpoint_sha256_verified=ckpt_sha_verified,
+                config_path=cfg_rel.as_posix(), audit_status=status,
+                checkpoint_present=ckpt_present,
+                config_present=cfg_present,
                 selected_by='best validation accuracy; earliest tied epoch'))
     return records, issues, registry
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--strict', action='store_true',
+                        help='Require full 18 main, 3 ablation, 6 Swin runs with zero issues and verified local checkpoints.')
+    args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    records, issues, registry = collect()
+    records, issues, registry = collect(require_swin=args.strict)
     write_csv(OUTPUT / 'per_seed.csv', records, list(records[0]))
     write_csv(OUTPUT / 'audit_issues.csv', issues, ['run_id', 'evidence', 'issue'])
     write_csv(OUTPUT / 'checkpoint_registry.csv', registry, list(registry[0]))
@@ -151,17 +198,31 @@ def main():
     fig.savefig(OUTPUT / 'validation_scaling.png', dpi=160)
     plt.close(fig)
     plan = {
-        'scope': 'validation evidence audit; final test pending',
+        'scope': 'validation evidence audit',
         'main_records': sum(r['scope'] == 'main' for r in records),
+        'ablation_records': sum(r['scope'] == 'ablation' for r in records),
+        'extension_records': sum(r['scope'] == 'extension' for r in records),
+        'smoke_records': sum(r['scope'] == 'smoke' for r in records),
+        'total_records': len(records),
+        'consistent_records': sum(r['audit_status'] == 'saved_log_consistent' for r in records),
         'invalid_run_ids': sorted({r['run_id'] for r in records if r['audit_status'] != 'saved_log_consistent'}),
         'local_main_checkpoints': sum(r['scope'] == 'main' and r['checkpoint_present'] for r in registry),
-        'test_evaluated': False,
+        'local_all_checkpoints': sum(bool(r['checkpoint_present']) for r in registry),
+        'verified_checkpoint_hashes': sum(bool(r['checkpoint_sha256_verified']) for r in registry),
+        'test_evaluated': Path('results/final_test/summary.csv').is_file(),
         'sources': {p: hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in sorted(
             {'results/team_week2/p0_runs.csv', 'results/week3/resnet_runs.csv',
              'results/week3/vit_runs.csv', 'results/week3/ablation_runs.csv', 'results/week3/swin_smoke_runs.csv'})},
     }
+    extension = Path('results/week3/swin_runs.csv')
+    if extension.is_file():
+        plan['sources'][extension.as_posix()] = hashlib.sha256(extension.read_bytes()).hexdigest()
     (OUTPUT / 'audit.json').write_text(json.dumps(plan, indent=2), encoding='utf-8')
     print(json.dumps(plan, indent=2))
+    if args.strict:
+        if (plan['main_records'] != 18 or plan['ablation_records'] != 3 or plan['extension_records'] != 6
+                or plan['invalid_run_ids'] or plan['verified_checkpoint_hashes'] != plan['total_records']):
+            raise ValueError(f'Strict week-4 audit failed: {json.dumps(plan)}')
 
 
 if __name__ == '__main__':
