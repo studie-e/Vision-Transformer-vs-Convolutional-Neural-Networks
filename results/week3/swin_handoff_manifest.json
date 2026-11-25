@@ -1,0 +1,80 @@
+[
+  {
+    "run_id": "swin_10_seed42",
+    "architecture": "swin",
+    "ratio": "0.10",
+    "run_dir": "runs/week3/swin_10_seed42",
+    "zip_path": "runs/handoff/week3/swin/swin_10_seed42.zip",
+    "zip_bytes": 6395892,
+    "zip_sha256": "e9ccaebe99b7a491f6700edefac51ed90cbef23f1f79777baa2ea2f33bfdd518",
+    "epochs": 100,
+    "best_epoch": 86,
+    "best_val_accuracy": 0.5044,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "swin_100_seed42",
+    "architecture": "swin",
+    "ratio": "1.00",
+    "run_dir": "runs/week3/swin_100_seed42",
+    "zip_path": "runs/handoff/week3/swin/swin_100_seed42.zip",
+    "zip_bytes": 6393147,
+    "zip_sha256": "afafb5dd08b2f654e31faecc600436f86b6f95f1db3410a81f37d2cf402f21d8",
+    "epochs": 100,
+    "best_epoch": 88,
+    "best_val_accuracy": 0.7774,
+    "global_steps": 35200
+  },
+  {
+    "run_id": "swin_10_seed43",
+    "architecture": "swin",
+    "ratio": "0.10",
+    "run_dir": "runs/week3/swin_10_seed43",
+    "zip_path": "runs/handoff/week3/swin/swin_10_seed43.zip",
+    "zip_bytes": 6398914,
+    "zip_sha256": "a4174dd78251364673b707c8f7d2ae4fa6833155edcf061c19cfe9506ffa1ad3",
+    "epochs": 100,
+    "best_epoch": 86,
+    "best_val_accuracy": 0.5252,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "swin_100_seed43",
+    "architecture": "swin",
+    "ratio": "1.00",
+    "run_dir": "runs/week3/swin_100_seed43",
+    "zip_path": "runs/handoff/week3/swin/swin_100_seed43.zip",
+    "zip_bytes": 6390411,
+    "zip_sha256": "206ee083975aca85b7659d5295d2ac0e753fe0b5eb9750fb9de8fd18525b036d",
+    "epochs": 100,
+    "best_epoch": 90,
+    "best_val_accuracy": 0.7878,
+    "global_steps": 35200
+  },
+  {
+    "run_id": "swin_10_seed44",
+    "architecture": "swin",
+    "ratio": "0.10",
+    "run_dir": "runs/week3/swin_10_seed44",
+    "zip_path": "runs/handoff/week3/swin/swin_10_seed44.zip",
+    "zip_bytes": 6396226,
+    "zip_sha256": "f6469d2c11befba0a312cad0cfe6fc322a09fc2524dab46e0880eabf4051d8e3",
+    "epochs": 100,
+    "best_epoch": 80,
+    "best_val_accuracy": 0.5162,
+    "global_steps": 3600
+  },
+  {
+    "run_id": "swin_100_seed44",
+    "architecture": "swin",
+    "ratio": "1.00",
+    "run_dir": "runs/week3/swin_100_seed44",
+    "zip_path": "runs/handoff/week3/swin/swin_100_seed44.zip",
+    "zip_bytes": 6394949,
+    "zip_sha256": "a645adb40ba6d2057552da1c3a387b6f78098761d8051aaea6844e2126faba60",
+    "epochs": 100,
+    "best_epoch": 95,
+    "best_val_accuracy": 0.7802,
+    "global_steps": 35200
+  }
+]

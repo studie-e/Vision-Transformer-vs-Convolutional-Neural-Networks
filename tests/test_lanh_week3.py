@@ -7,14 +7,12 @@
 - Thống kê 3-seed của ViT chính và Ablation (mean ± std với ddof=1).
 """
 
-import csv
-import math
+import statistics
 from pathlib import Path
 
 import pytest
 import yaml
 
-from scripts.summarize import _mean_std
 from src.models.vit import VisionTransformer, build_model, count_parameters
 
 
@@ -75,78 +73,29 @@ def test_week3_ablation_configs_and_parameter_count():
     assert 274282 - 268042 == 6240
 
 
-def test_metrics_csv_epochs_and_best_checkpoint():
-    metrics_files = [
-        Path('results/week3/vit_10_seed43_metrics.csv'),
-        Path('results/week3/vit_50_seed43_metrics.csv'),
-        Path('results/week3/vit_100_seed43_metrics.csv'),
-        Path('results/week3/vit_10_seed44_metrics.csv'),
-        Path('results/week3/vit_50_seed44_metrics.csv'),
-        Path('results/week3/vit_100_seed44_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed42_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed43_metrics.csv'),
-        Path('results/week3/ablation_vit_50_seed44_metrics.csv'),
-    ]
+# Lan Anh đối chiếu bảng kết quả với số đếm từ log và thống kê seed, kể cả khi ablation tăng điểm.
+@pytest.mark.parametrize('kind,ratios', [('vit', ('0.10', '0.50', '1.00')), ('ablation', ('0.50',))])
+def test_week3_measurements_and_seed_summary(kind, ratios):
+    from scripts.reproduce_week4 import check_history, load_runs
 
-    for p in metrics_files:
-        assert p.is_file(), f'Thiếu file metrics: {p}'
-        with p.open(encoding='utf-8') as f:
-            rows = list(csv.DictReader(f))
-        assert len(rows) == 100, f'{p.name} không đủ 100 epoch'
-        assert [int(r['epoch']) for r in rows] == list(range(1, 101))
-        # Kiểm tra best val accuracy là giá trị cực đại
-        val_accs = [float(r['val_accuracy']) for r in rows]
-        max_acc = max(val_accs)
-        best_row = max(rows, key=lambda r: float(r['val_accuracy']))
-        assert float(best_row['val_accuracy']) == max_acc
-
-
-def test_vit_three_seed_summary_statistics():
-    summary_path = Path('results/week3/vit_summary.csv')
-    assert summary_path.is_file(), f'Thiếu {summary_path}'
-
-    with summary_path.open(encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
-
-    assert len(rows) == 3
-    ratios = {r['ratio']: r for r in rows}
-
-    # 10%: mean ~ 0.5219, std ~ 0.0012
-    r10 = ratios['0.10']
-    assert int(r10['n_seeds']) == 3
-    assert float(r10['mean_accuracy']) == pytest.approx(0.521867, abs=1e-4)
-    assert float(r10['std_accuracy']) == pytest.approx(0.001222, abs=1e-4)
-
-    # 50%: mean ~ 0.6767, std ~ 0.0014
-    r50 = ratios['0.50']
-    assert int(r50['n_seeds']) == 3
-    assert float(r50['mean_accuracy']) == pytest.approx(0.676733, abs=1e-4)
-    assert float(r50['std_accuracy']) == pytest.approx(0.001405, abs=1e-4)
-
-    # 100%: mean ~ 0.7592, std ~ 0.0009
-    r100 = ratios['1.00']
-    assert int(r100['n_seeds']) == 3
-    assert float(r100['mean_accuracy']) == pytest.approx(0.759200, abs=1e-4)
-    assert float(r100['std_accuracy']) == pytest.approx(0.000917, abs=1e-4)
-
-
-def test_ablation_summary_and_drop_magnitude():
-    summary_path = Path('results/week3/ablation_summary.csv')
-    assert summary_path.is_file(), f'Thiếu {summary_path}'
-
-    with summary_path.open(encoding='utf-8') as f:
-        rows = list(csv.DictReader(f))
-
-    assert len(rows) == 1
-    row = rows[0]
-    assert row['ratio'] == '0.50'
-    assert int(row['n_seeds']) == 3
-
-    # Ablation mean ~ 0.6237 (62.37%), std ~ 0.0018
-    mean_abl = float(row['mean_accuracy'])
-    assert mean_abl == pytest.approx(0.623733, abs=1e-4)
-    assert float(row['std_accuracy']) == pytest.approx(0.001815, abs=1e-4)
-
-    # Đối chiếu với baseline 50% ViT (67.67%)
-    drop = 0.676733 - mean_abl
-    assert 0.050 <= drop <= 0.055, f"Độ sụt giảm {drop:.4f} không nằm trong khoảng kỳ vọng 5.0 - 5.5%"
+    folder = Path('results/week3')
+    repeats = load_runs(folder / f'{kind}_runs.csv')
+    expected_seeds = {43, 44} if kind == 'vit' else {42, 43, 44}
+    assert len(repeats) == len(ratios) * len(expected_seeds)
+    assert {(row['ratio'], int(row['train_seed'])) for row in repeats} == {
+        (ratio, seed) for ratio in ratios for seed in expected_seeds}
+    for row in repeats:
+        assert int(row['split_seed']) == int(row['train_seed']) + 1984
+        history = load_runs(folder / f"{row['run_id']}_metrics.csv")
+        assert check_history(history, row) == [], row['run_id']
+    rows = list(repeats)
+    if kind == 'vit':
+        rows.extend(row for row in load_runs(Path('results/team_week2/p0_runs.csv'))
+                    if row['model'] == 'src.models.vit:build_model')
+    summaries = load_runs(folder / f'{kind}_summary.csv')
+    assert sorted(s['ratio'] for s in summaries) == list(ratios)
+    for summary in summaries:
+        group = [float(row['accuracy']) for row in rows if row['ratio'] == summary['ratio']]
+        assert int(summary['n_seeds']) == len(group) == 3
+        assert float(summary['mean_accuracy']) == pytest.approx(statistics.mean(group))
+        assert float(summary['std_accuracy']) == pytest.approx(statistics.stdev(group))

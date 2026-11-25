@@ -5,11 +5,11 @@
     "ratio": "0.10",
     "run_dir": "runs/week3/vit_10_seed43",
     "zip_path": "runs/handoff/week3/vit/vit_10_seed43.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "3b8f1a2c4e5d6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a",
+    "zip_bytes": 6626470,
+    "zip_sha256": "9a8f0503133cebb9de1b9456cf824d5d00d8bb034281a6753980075a6b7af875",
     "epochs": 100,
-    "best_epoch": 78,
-    "best_val_accuracy": 0.5208,
+    "best_epoch": 76,
+    "best_val_accuracy": 0.526,
     "global_steps": 3600
   },
   {
@@ -18,11 +18,11 @@
     "ratio": "0.50",
     "run_dir": "runs/week3/vit_50_seed43",
     "zip_path": "runs/handoff/week3/vit/vit_50_seed43.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "4c9a2b3d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1b2c",
+    "zip_bytes": 6620512,
+    "zip_sha256": "b26e353a7f2b3789938fc5c813984f5a64a490dd52cfb043f53bc8fd988d2fa4",
     "epochs": 100,
-    "best_epoch": 91,
-    "best_val_accuracy": 0.6782,
+    "best_epoch": 77,
+    "best_val_accuracy": 0.6864,
     "global_steps": 17600
   },
   {
@@ -31,11 +31,11 @@
     "ratio": "1.00",
     "run_dir": "runs/week3/vit_100_seed43",
     "zip_path": "runs/handoff/week3/vit/vit_100_seed43.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "5d0b3c4e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1c2d3e",
+    "zip_bytes": 6622900,
+    "zip_sha256": "795398fd6b44f5ba22745c4bdce9908a9e5ef6599dc5d2a4f48cd99c7667bb3f",
     "epochs": 100,
-    "best_epoch": 88,
-    "best_val_accuracy": 0.7584,
+    "best_epoch": 91,
+    "best_val_accuracy": 0.7574,
     "global_steps": 35200
   },
   {
@@ -44,11 +44,11 @@
     "ratio": "0.10",
     "run_dir": "runs/week3/vit_10_seed44",
     "zip_path": "runs/handoff/week3/vit/vit_10_seed44.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "6e1c4d5f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1d2e3f4a",
+    "zip_bytes": 6624416,
+    "zip_sha256": "4a89b0b32226f7ee55da3ce18023a229d5f394ac4a24a465b9300357728f5580",
     "epochs": 100,
-    "best_epoch": 82,
-    "best_val_accuracy": 0.5232,
+    "best_epoch": 73,
+    "best_val_accuracy": 0.5236,
     "global_steps": 3600
   },
   {
@@ -57,11 +57,11 @@
     "ratio": "0.50",
     "run_dir": "runs/week3/vit_50_seed44",
     "zip_path": "runs/handoff/week3/vit/vit_50_seed44.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "7f2d5e6a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1e2f3a4b5c",
+    "zip_bytes": 6620737,
+    "zip_sha256": "9d2616381c64f003056af2cd9b2aabff54800ec10bcf436233821e47ae7e5975",
     "epochs": 100,
-    "best_epoch": 89,
-    "best_val_accuracy": 0.6754,
+    "best_epoch": 85,
+    "best_val_accuracy": 0.6828,
     "global_steps": 17600
   },
   {
@@ -70,11 +70,11 @@
     "ratio": "1.00",
     "run_dir": "runs/week3/vit_100_seed44",
     "zip_path": "runs/handoff/week3/vit/vit_100_seed44.zip",
-    "zip_bytes": 4720000,
-    "zip_sha256": "8a3e6f7b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1f2a3b4c5d6e",
+    "zip_bytes": 6623219,
+    "zip_sha256": "1a14d03f464efe6eebb3eaae0f922930246d051236e9d49c84065be97767ec6f",
     "epochs": 100,
-    "best_epoch": 92,
-    "best_val_accuracy": 0.7602,
+    "best_epoch": 93,
+    "best_val_accuracy": 0.7454,
     "global_steps": 35200
   }
 ]

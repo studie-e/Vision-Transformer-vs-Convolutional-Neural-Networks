@@ -1,4 +1,72 @@
 run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc
-ablation_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,9b4f7a8c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a,268042,runs\week3\ablation_vit_50_seed42\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed42\best.pt,val,0.624,3120,5000,0.624,85,17600,14960,85,458.2,4.582,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:10.120000+00:00
-ablation_vit_50_seed43,src.models.vit:build_model,0.50,2027,43,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,0c5a8b9d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1b2c3d4e5f6a7b8c,268042,runs\week3\ablation_vit_50_seed43\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed43\best.pt,val,0.6218,3109,5000,0.6218,81,17600,14256,81,462.1,4.621,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:12.340000+00:00
-ablation_vit_50_seed44,src.models.vit:build_model,0.50,2028,44,1ae90ab4970f46b52cd101a9ef168286dcafd3c0c1079a0f562667ac5a54458c,49ef4acab00bac7129bc7c224b5baecc4a51786c1ae974befbd1ed5963d086e1,,bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,1d6b9c0e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1c2d3e4f5a6b7c8d9e,268042,runs\week3\ablation_vit_50_seed44\config.yaml,af2ca7a76c832d50a665b1958c52ec9c1d458db3,runs\week3\ablation_vit_50_seed44\best.pt,val,0.6254,3127,5000,0.6254,90,17600,15840,90,455.8,4.558,Week 3 ViT Ablation (no positional embedding),2026-11-20T16:00:14.560000+00:00
+ablation_vit_50_seed42,src.models.vit:build_model,0.50,2026,42,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,825a23a7bdbf05161a780de8f19b01757f7ac3a5e37d32256f3b28184dc1e448,268042,runs\week3\ablation_vit_50_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed42\best.pt,val,0.63,3150,5000,0.63,84,17600,14784,84,634.0433160000048,6.340433160000048,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:16.056037+00:00
+ablation_vit_50_seed43,src.models.vit:build_model,0.50,2027,43,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,cd0a64bd05f92e63d9933143297b46de3e80bd2dfc7396b1c2a013c5b385b1df,268042,runs\week3\ablation_vit_50_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed43\best.pt,val,0.6236,3118,5000,0.6236,97,17600,17072,97,629.808213200009,6.298082132000091,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:17.961937+00:00
+ablation_vit_50_seed44,src.models.vit:build_model,0.50,2028,44,acde94943d94619b7ca507734c89593533d78496bebd2474962963161d8c2793,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,144e353e48b01fe3c0eb3eb8286f3eb185dd433069e3dba88c62a6f0712a82c0,268042,runs\week3\ablation_vit_50_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\ablation_vit_50_seed44\best.pt,val,0.6252,3126,5000,0.6252,91,17600,16016,91,634.200284200002,6.34200284200002,Week 3 ViT Ablation (no positional embedding),2026-11-25T07:26:19.901583+00:00

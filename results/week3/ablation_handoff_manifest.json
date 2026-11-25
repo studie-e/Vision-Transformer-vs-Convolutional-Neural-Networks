@@ -1,0 +1,41 @@
+[
+  {
+    "run_id": "ablation_vit_50_seed42",
+    "architecture": "vit",
+    "ratio": "0.50",
+    "run_dir": "runs/week3/ablation_vit_50_seed42",
+    "zip_path": "runs/handoff/week3/ablation/ablation_vit_50_seed42.zip",
+    "zip_bytes": 6481262,
+    "zip_sha256": "cc7d22c61da332bcdf312f568aaa3342b17c0eac7c8925d7017ac2e2b7daba6c",
+    "epochs": 100,
+    "best_epoch": 84,
+    "best_val_accuracy": 0.63,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "ablation_vit_50_seed43",
+    "architecture": "vit",
+    "ratio": "0.50",
+    "run_dir": "runs/week3/ablation_vit_50_seed43",
+    "zip_path": "runs/handoff/week3/ablation/ablation_vit_50_seed43.zip",
+    "zip_bytes": 6483202,
+    "zip_sha256": "7e0bb56c840edd0dfb0e38eb228f76a82da811ce79f228c59a3023ecaa6b62b8",
+    "epochs": 100,
+    "best_epoch": 97,
+    "best_val_accuracy": 0.6236,
+    "global_steps": 17600
+  },
+  {
+    "run_id": "ablation_vit_50_seed44",
+    "architecture": "vit",
+    "ratio": "0.50",
+    "run_dir": "runs/week3/ablation_vit_50_seed44",
+    "zip_path": "runs/handoff/week3/ablation/ablation_vit_50_seed44.zip",
+    "zip_bytes": 6482866,
+    "zip_sha256": "aef612040a871e06172a84a8dcd5f85b46d8249758cce6bf71398b0abaefd140",
+    "epochs": 100,
+    "best_epoch": 91,
+    "best_val_accuracy": 0.6252,
+    "global_steps": 17600
+  }
+]

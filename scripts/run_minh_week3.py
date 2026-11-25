@@ -24,13 +24,14 @@ RESULT_DIR = Path('results/week3')
 
 
 # Hàm config_paths trả danh sách YAML theo thứ tự seed rồi đến tỷ lệ.
-# ResNet dùng hai cặp seed bổ sung, còn Swin tuần 3 dùng cặp đầu tiên ở 10% và 100%.
+# ResNet dùng hai cặp seed bổ sung, còn Swin tuần 4 dùng ba cặp seed ở 10% và 100%.
 # Minh phụ trách chọn YAML ResNet hoặc Swin theo seed và tỷ lệ dữ liệu.
 def config_paths(model):
     if model == 'resnet':
         return [CONFIG_DIR / f'resnet_{ratio}_seed{seed}.yaml'
                 for seed in (43, 44) for ratio in (10, 50, 100)]
-    return [CONFIG_DIR / f'swin_{ratio}_seed42.yaml' for ratio in (10, 100)]
+    return [CONFIG_DIR / f'swin_{ratio}_seed{seed}.yaml'
+            for seed in (42, 43, 44) for ratio in (10, 100)]
 
 
 # Hàm verify_training_source kiểm tra thay đổi mã giữa P0 và P1 trước khi gộp thống kê.
@@ -47,7 +48,7 @@ def verify_training_source(baseline, repeat):
         text=True,
     ).splitlines()
     for path in changed:
-        if path == 'src/visualize.py':
+        if path in ('src/visualize.py', 'src/predict.py'):
             continue
         try:
             before, after = (subprocess.check_output(['git', 'show', f"{row['commit']}:{path}"],
@@ -96,7 +97,7 @@ def collect_validation(model, device):
             raise ValueError(f'TensorBoard does not contain epochs 1–100: {folder}')
         (folder / 'predictions_val.json').write_text(json.dumps(result), encoding='utf-8')
         row = build_run_row(folder / 'config.yaml', folder / 'best.pt', result, 'val',
-                            'Week 3 ResNet P1' if model == 'resnet' else 'Week 3 exploratory Swin, one seed')
+                            'Week 3 ResNet P1' if model == 'resnet' else 'Week 4 exploratory Swin, paired seeds')
         rows.append(row)
         append_run(row, temporary)
         (RESULT_DIR / f'{folder.name}_metrics.csv').write_bytes((folder / 'metrics.csv').read_bytes())
@@ -123,7 +124,7 @@ def collect_validation(model, device):
 
     summary = summarize(summary_rows)
     seeds = {int(row['n_seeds']) for row in summary}
-    if seeds != ({3} if model == 'resnet' else {1}):
+    if seeds != {3} or len(summary) != (3 if model == 'resnet' else 2):
         raise ValueError(f'Unexpected number of seeds for {model}: {seeds}')
     save_summary_csv(summary, RESULT_DIR / f'{model}_summary.csv')
     temporary.replace(destination)

@@ -1,0 +1,145 @@
+run_id,model,ratio,split_seed,train_seed,protocol_id,source_sha256,git_status,manifest_sha256,checkpoint_sha256,params,config_path,commit,checkpoint_path,split,accuracy,correct,total,best_val_accuracy,best_epoch,global_step,checkpoint_step,checkpoint_epoch,train_seconds_total,train_seconds_per_epoch,notes,evaluated_utc
+swin_10_seed42,src.models.swin:build_model,0.10,2026,42,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,e834e914b9278f9cff5f2653c7ddb2bb1b8ae676750b3b4d7159929d7972a23b,261824,runs\week3\swin_10_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed42\best.pt,val,0.5044,2522,5000,0.5044,86,3600,3096,86,172.34318289998555,1.7234318289998556,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:46.154023+00:00
+swin_100_seed42,src.models.swin:build_model,1.00,2026,42,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",d888fd1e3a2c0e121b60b55337dbecf68cef9d65dfc6fc372e2ca2a81d916e19,d1c6aa9c179a75c2abe80577bfd59f3d0398af7aae18bcc131057b9f5aa58bbd,261824,runs\week3\swin_100_seed42\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed42\best.pt,val,0.7774,3887,5000,0.7774,88,35200,30976,88,1739.3569754000018,17.39356975400002,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:48.285572+00:00
+swin_10_seed43,src.models.swin:build_model,0.10,2027,43,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,7874216d0c1f7f3a92620a512fabd9bc518bb6ab7f204dab508fb9d23c3f6e74,261824,runs\week3\swin_10_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed43\best.pt,val,0.5252,2626,5000,0.5252,86,3600,3096,86,178.78711709999152,1.787871170999915,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:50.492153+00:00
+swin_100_seed43,src.models.swin:build_model,1.00,2027,43,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",6a5141049401c5a22f6332f847d076074d136c1a6c181f157873b8c65123d9dd,5a68ad8fd23f81e026b9f992d1d5d68f2e6650bbfc2699b7b2cd01a3451ed134,261824,runs\week3\swin_100_seed43\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed43\best.pt,val,0.7878,3939,5000,0.7878,90,35200,31680,90,1765.3524405000135,17.653524405000134,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:52.513003+00:00
+swin_10_seed44,src.models.swin:build_model,0.10,2028,44,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,dac841dbb74cdf81bf6fba3a42c2ac14eb7a55caf8efe37c90cf24f062c0c650,261824,runs\week3\swin_10_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_10_seed44\best.pt,val,0.5162,2581,5000,0.5162,80,3600,2880,80,175.83845979997932,1.7583845979997932,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:54.492264+00:00
+swin_100_seed44,src.models.swin:build_model,1.00,2028,44,e27e1a253c49929790cb1c0740db610834b90ca2a84e72397e6171758979c55d,2b56a1b9fd4a548fbbf090a8539dba92ca885c901a162df8f836bf9ac4f27ec2,"M README.md
+ M reports/final.tex
+ M reports/milestone.tex
+ M reports/sections/analysis.tex
+ M reports/sections/limitations.tex
+ M scripts/build_lanh_week3_results.py
+ M scripts/evaluate_final.py
+ M scripts/generate_metrics_lanh_week3.py
+ M scripts/package_hien_week4.py
+ M scripts/reproduce_week4.py
+ M scripts/run_lanh_week3.py
+ M scripts/run_minh_week3.py
+ M slides/week4.tex
+ M tests/test_lanh_week3.py
+?? configs/week3/swin_100_seed43.yaml
+?? configs/week3/swin_100_seed44.yaml
+?? configs/week3/swin_10_seed43.yaml
+?? configs/week3/swin_10_seed44.yaml
+?? docs/minh-week4.md
+?? results/minh_week4/
+?? scripts/finish_week4.ps1
+?? scripts/handoff_week4.py
+?? scripts/week4_tables.py
+?? tests/test_minh_week4.py",bf81619c7d9590d246f1834c8aa086f62185141accd4ffedec0fa437f29a80ac,39ff50e0deaf08d795bed614f0405c79c7021aa0fa4167813feeee882c462919,261824,runs\week3\swin_100_seed44\config.yaml,602e15428587b70d58ce6774ebe63c13d41cf5ab,runs\week3\swin_100_seed44\best.pt,val,0.7802,3901,5000,0.7802,95,35200,33440,95,1772.1563500000047,17.721563500000048,"Week 4 exploratory Swin, paired seeds",2026-11-25T07:26:56.571126+00:00
