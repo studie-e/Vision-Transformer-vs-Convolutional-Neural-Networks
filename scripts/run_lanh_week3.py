@@ -1,5 +1,4 @@
-# Lan Anh phụ trách mã và kết quả ViT/ablation. Minh hỗ trợ vận hành GPU.
-# Người phụ trách: Lan Anh (các lượt ViT và Ablation tuần 3).
+# Người phụ trách: Lan Anh (mô hình, mã và kết quả các lượt ViT và Ablation tuần 3).
 """Chạy và kiểm tra các lượt ViT và Ablation của Lan Anh trong tuần 3."""
 
 import argparse

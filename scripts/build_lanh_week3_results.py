@@ -1,4 +1,4 @@
-# Lan Anh phụ trách kết quả ViT và ablation. Minh hỗ trợ vận hành GPU.
+# Người phụ trách: Lan Anh (kết quả ViT và ablation tuần 3).
 """Điểm vào cũ cho kết quả tuần 3. Dùng trainer và evaluator để thu số liệu."""
 
 if __name__ == '__main__':

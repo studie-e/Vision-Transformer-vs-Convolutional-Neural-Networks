@@ -1,5 +1,5 @@
 # Người đóng góp: Hiền (viết YAML ViT theo giao thức nhóm).
-# Phối hợp: Lan Anh phụ trách mô hình ViT. Minh hỗ trợ chạy lượt này trên GPU.
+# Phối hợp: Lan Anh phụ trách mô hình ViT.
 # Chạy ViT trên 50% dữ liệu train theo giao thức chính tuần 2.
 seed: 42
 model:

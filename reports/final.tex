@@ -59,7 +59,7 @@ Tập con 10\%, 50\%, 100\% tương ứng 4.500, 22.500, 45.000 ảnh, lồng nh
 
 Train dùng random crop padding 4, lật ngang ngẫu nhiên, ToTensor và Normalize. Validation/test dùng ToTensor và Normalize. Mean cố định là (0,4914; 0,4822; 0,4465), std (0,2470; 0,2435; 0,2616). Hiền kiểm tra chỉ số, nhãn thật, số lượng và hash manifest.
 
-Batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW LR 0,0003, weight decay 0,05; ResNet dùng SGD LR 0,05, momentum 0,9, weight decay 0,0005. Minh vận hành GPU. Metadata lưu commit, hash source, config, checkpoint và môi trường thực tế. Swin dùng AdamW với cùng learning rate và weight decay như ViT, stochastic depth 0,1 và dropout 0. Nhóm lưu gói run kèm checksum để đối chiếu.
+Batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW LR 0,0003, weight decay 0,05; ResNet dùng SGD LR 0,05, momentum 0,9, weight decay 0,0005. Metadata lưu commit, hash source, config, checkpoint và môi trường thực tế. Swin dùng AdamW với cùng learning rate và weight decay như ViT, stochastic depth 0,1 và dropout 0. Nhóm lưu gói run kèm checksum để đối chiếu.
 
 Chỉ số chính là top-1 accuracy. Checkpoint best.pt được chọn theo validation accuracy cao nhất, hòa thì giữ epoch sớm hơn. Resume từ last.pt cùng run, phục hồi optimizer, scheduler và RNG. Số cập nhật mỗi lượt lần lượt là 3.600, 17.600 và 35.200 khi tăng tỷ lệ.
 
@@ -89,6 +89,6 @@ Nhóm đã xây dựng hai baseline gần tương đương tham số và pipelin
 
 \input{sections/limitations}
 \section*{Đóng góp và khai báo AI}
-Lan Anh phụ trách mô hình, mã, kết quả ViT/ablation và phần viết kiến trúc ViT. Hiền phụ trách dữ liệu, mã đánh giá, kiểm tra bằng chứng, thống kê, kết quả test cuối, trực quan hóa và ghép báo cáo. Minh phụ trách mô hình ResNet, thí nghiệm mở rộng Swin, trainer, kiểm tra tái lập và demo; đồng thời hỗ trợ vận hành GPU cho các lượt của Lan Anh và Hiền. Họ tên, MSSV, mã nhóm và tỷ lệ đóng góp chờ cả nhóm xác nhận thực tế. Mã và bản thảo có hỗ trợ AI; các thành viên đọc duyệt và chịu trách nhiệm về nội dung.
+Lan Anh phụ trách mô hình, mã, kết quả ViT/ablation và phần viết kiến trúc ViT. Hiền phụ trách dữ liệu, mã đánh giá, kiểm tra bằng chứng, thống kê, kết quả test cuối, trực quan hóa và ghép báo cáo. Minh phụ trách mô hình ResNet, thí nghiệm mở rộng Swin, trainer, kiểm tra tái lập và demo. Họ tên, MSSV, mã nhóm và tỷ lệ đóng góp chờ cả nhóm xác nhận thực tế. Mã và bản thảo có hỗ trợ AI; các thành viên đọc duyệt và chịu trách nhiệm về nội dung.
 \bibliography{references}
 \end{document}

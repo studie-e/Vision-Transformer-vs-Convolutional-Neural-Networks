@@ -28,7 +28,7 @@ CIFAR-10 \citep{krizhevsky2009learning} được chia phân tầng 45.000 train 
 
 Train dùng random crop padding 4 và random horizontal flip, sau đó chuyển tensor và chuẩn hóa. Validation chỉ chuyển tensor và chuẩn hóa với cùng hằng số. Các manifest được kiểm tra không giao nhau và lưu SHA-256.
 
-Sáu lượt chính dùng batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW với LR 0,0003 và weight decay 0,05. ResNet dùng SGD với LR 0,05, momentum 0,9 và weight decay 0,0005. Chọn best.pt theo validation accuracy cao nhất; khi hòa giữ epoch sớm hơn. Minh vận hành GPU cho cả hai mô hình. TensorBoard và CSV ghi diễn biến từng epoch.
+Sáu lượt chính dùng batch 128, 100 epoch, cosine annealing theo epoch. ViT dùng AdamW với LR 0,0003 và weight decay 0,05. ResNet dùng SGD với LR 0,05, momentum 0,9 và weight decay 0,0005. Chọn best.pt theo validation accuracy cao nhất; khi hòa giữ epoch sớm hơn. TensorBoard và CSV ghi diễn biến từng epoch.
 
 \section{Kết quả và phân tích sơ bộ}
 \begin{table}[t]
@@ -55,7 +55,7 @@ CNN có locality và weight sharing, còn ViT dùng attention toàn cục và po
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{../results/team_week2/visualizations/accuracy_data.png}
-\caption{Validation ở ba tỷ lệ, một seed. Hình được tạo từ sáu checkpoint trên máy GPU của Minh.}
+\caption{Validation ở ba tỷ lệ, một seed. Hình được tạo từ sáu checkpoint P0 trên GPU.}
 \end{figure}
 
 \section{Tiến độ và bằng chứng}
@@ -73,6 +73,6 @@ Hai seed còn lại dùng các cặp (split, train) là (2027,43) và (2028,44),
 \section*{Giới hạn và đóng góp}
 Phân tích hiện có một seed và chỉ dùng CIFAR-10. Chưa có thống kê biến thiên seed hoặc kết quả test. Chênh lệch recipe và số bước giới hạn kết luận về nguyên nhân.
 
-Lan Anh phụ trách ViT và phần viết kiến trúc. Minh phụ trách ResNet, trainer, GPU và vận hành sáu lượt. Hiền phụ trách dữ liệu, đối chiếu, bảng/hình, công cụ phân tích và ghép milestone. Mã và bản thảo có hỗ trợ AI; nhóm cần đọc duyệt và chịu trách nhiệm trước khi nộp. Họ tên/MSSV được để trống theo yêu cầu. Bản này chờ nhóm duyệt và nộp theo hạn môn.
+Lan Anh phụ trách mô hình ViT, mã và phần viết kiến trúc. Minh phụ trách mô hình ResNet, trainer và tái lập. Hiền phụ trách dữ liệu, mã đánh giá, đối chiếu, bảng/hình, công cụ phân tích và ghép milestone. Mã và bản thảo có hỗ trợ AI; nhóm cần đọc duyệt và chịu trách nhiệm trước khi nộp. Họ tên/MSSV được để trống theo yêu cầu. Bản này chờ nhóm duyệt và nộp theo hạn môn.
 \bibliography{references}
 \end{document}

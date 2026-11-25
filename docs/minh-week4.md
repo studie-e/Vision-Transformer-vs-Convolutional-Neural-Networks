@@ -1,8 +1,8 @@
 # Bàn giao tuần 4 của Minh
 
 Phân công của nhóm:
-- **Lan Anh** phụ trách mô hình, mã và kết quả ViT/ablation. Minh hỗ trợ vận hành các lượt chạy này trên GPU.
-- **Hiền** phụ trách dữ liệu, mã đánh giá, thống kê, trực quan hóa và kết quả test cuối. Minh hỗ trợ vận hành GPU nhưng công việc và kết quả đánh giá vẫn ghi nhận cho Hiền.
+- **Lan Anh** phụ trách mô hình, mã và kết quả ViT/ablation.
+- **Hiền** phụ trách dữ liệu, mã đánh giá, thống kê, trực quan hóa và kết quả test cuối.
 - **Minh** phụ trách mô hình ResNet, thí nghiệm mở rộng Swin, trainer, kiểm tra tái lập và demo.
 
 ## Thí nghiệm và bằng chứng

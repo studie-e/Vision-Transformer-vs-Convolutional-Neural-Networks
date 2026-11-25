@@ -1,4 +1,4 @@
-# Hiền phụ trách thống kê và xuất bảng báo cáo. Minh cung cấp số liệu ResNet/Swin và vận hành GPU.
+# Người phụ trách: Hiền (thống kê và xuất bảng báo cáo); Minh đóng góp kết quả ResNet/Swin và demo.
 """Sinh bảng LaTeX từ log, checkpoint đã kiểm tra và kết quả test của 18 baseline."""
 import argparse
 import json

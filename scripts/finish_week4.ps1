@@ -1,4 +1,4 @@
-# Minh phụ trách lệnh tái lập và bàn giao. Lan Anh phụ trách ViT/ablation, Hiền phụ trách đánh giá cuối.
+﻿# Người phụ trách: Minh (quy trình tái lập và bàn giao); gọi các module tương ứng của Lan Anh và Hiền.
 param(
     [string]$Python = "python",
     [string]$CleanPython = "runs/week4_env/Scripts/python.exe",

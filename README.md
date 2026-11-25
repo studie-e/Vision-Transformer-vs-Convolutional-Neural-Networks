@@ -2,7 +2,7 @@
 
 ## Tuần 4 — tái lập, demo và đánh giá cuối
 
-[Bàn giao của Minh](docs/minh-week4.md) có lệnh cài môi trường sạch, chạy demo trên ảnh validation, nạp lại checkpoint và đối chiếu số liệu. [Quy trình tuần 4](scripts/finish_week4.ps1) thực thi từ các YAML đã khóa. Phân công: Lan Anh phụ trách mô hình, mã và kết quả ViT/ablation; Hiền phụ trách dữ liệu, mã đánh giá, thống kê và kết quả test cuối; Minh phụ trách ResNet, Swin, trainer, kiểm tra tái lập, demo và hỗ trợ vận hành GPU.
+[Bàn giao của Minh](docs/minh-week4.md) có lệnh cài môi trường sạch, chạy demo trên ảnh validation, nạp lại checkpoint và đối chiếu số liệu. [Quy trình tuần 4](scripts/finish_week4.ps1) thực thi từ các YAML đã khóa. Phân công: Lan Anh phụ trách mô hình, mã và kết quả ViT/ablation; Hiền phụ trách dữ liệu, mã đánh giá, thống kê và kết quả test cuối; Minh phụ trách ResNet, Swin, trainer, kiểm tra tái lập và demo.
 
 Tài liệu đối chiếu và đóng gói của Hiền gồm [báo cáo ACL](reports/final.pdf), [slide PDF](slides/week4.pdf) và [hướng dẫn bàn giao tuần 4](docs/hien-week4.md). Chạy `python -X utf8 -m scripts.reproduce_week4 --strict` để kiểm tra toàn bộ 28 bản ghi validation (18 baseline, 3 ablation, 6 Swin mở rộng, 1 Swin smoke), `python -X utf8 -m scripts.evaluate_final` để kiểm tra danh sách 18 checkpoint đã khóa trước test, và `python -X utf8 -m scripts.week4_tables` để sinh bảng số LaTeX từ CSV thật.
 
@@ -10,9 +10,9 @@ Tài liệu đối chiếu và đóng gói của Hiền gồm [báo cáo ACL](re
 
 Phần dữ liệu chính, evaluator, bảng từng seed/mean/std và proposal: [bàn giao tuần 1 của Hiền](docs/hien-week1-handoff.md). Config chạy tích hợp: `configs/hien_smoke.yaml`; lệnh `python -X utf8 -m scripts.check_hien_week1 --device cpu` kiểm tra một epoch trên split chính và lưu bằng chứng pilot riêng.
 
-## Giao thức nhóm mới nhất — ViT GPU hỗ trợ Lan Anh
+## Giao thức nhóm hiện hành (P0)
 
-Dùng [sáu YAML hiện hành](configs/week2/README.md) và [hướng dẫn nhóm](docs/bao-cao-tuan2-lan-anh-ho-tro.md): ViT **AdamW lr 0.0003, wd 0.05, dropout 0.1**; ResNet **SGD lr 0.05, momentum 0.9, wd 0.0005**. Cùng 100 epoch, batch 128, split seed 2026/train seed 42; giữ test cuối. Minh vận hành ba lượt ViT GPU hỗ trợ Lan Anh theo yêu cầu mới.
+Dùng [sáu YAML hiện hành](configs/week2/README.md) và [hướng dẫn nhóm](docs/bao-cao-tuan2-lan-anh-ho-tro.md): ViT **AdamW lr 0.0003, wd 0.05, dropout 0.1**; ResNet **SGD lr 0.05, momentum 0.9, wd 0.0005**. Cùng 100 epoch, batch 128, split seed 2026/train seed 42; giữ test cuối.
 
 Phần tuning/khóa cũ bên dưới được giữ để truy vết; ưu tiên YAML `vit_10.yaml`, `vit_50.yaml`, `vit_100.yaml` khi chạy P0 hiện hành.
 

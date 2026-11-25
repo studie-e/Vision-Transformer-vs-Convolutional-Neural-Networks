@@ -1,4 +1,4 @@
-# Hiền phụ trách mã, danh sách checkpoint và kết quả test cuối. Minh hỗ trợ vận hành GPU.
+# Người phụ trách: Hiền (mã đánh giá, danh sách checkpoint đã khóa và kết quả test cuối).
 """Preflight the selected checkpoint registry, then evaluate test with --execute."""
 import argparse
 import hashlib
